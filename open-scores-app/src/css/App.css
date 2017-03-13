@@ -66,3 +66,25 @@ body {
 
 .is-hidden {
   display: none; }
+
+.header-container {
+  align-items: center;
+  background: #63C273;
+  color: #fff;
+  display: flex;
+  height: 150px;
+  font-size: 50px;
+  justify-content: center; }
+
+.main-profile-container {
+  height: 700px;
+  margin: 0;
+  width: 20%; }
+
+.profile-pic img {
+  width: 15%; }
+
+.container-one {
+  border: 1px solid black;
+  height: 10%;
+  width: 10%; }
