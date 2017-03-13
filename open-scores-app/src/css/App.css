@@ -56,7 +56,26 @@ table {
   border-spacing: 0; }
 
 body {
-  font: 16px/1.6 "Nunito Sans", sans-serif; }
+  font: 16px/1.6 "Nunito Sans", sans-serif;
+  position: relative; }
+
+.score-wrapper {
+  background: #313131;
+  min-height: 100vh;
+  padding: 15vh;
+  width: 100%; }
+
+.score-container {
+  background: #FAFAFA;
+  color: #212121;
+  margin: 0 auto;
+  min-height: 85vh;
+  overflow: scroll;
+  padding: 2rem;
+  width: 85%; }
+  .score-container .score-title {
+    font: 2rem "Bilbo", cursive;
+    margin-bottom: 2rem; }
 
 .is-centered {
   text-align: center; }

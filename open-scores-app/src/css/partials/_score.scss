@@ -1,0 +1,21 @@
+.score-wrapper {
+  background: $dark;
+  min-height: 100vh;
+  padding: 15vh;
+  width: 100%;
+}
+
+.score-container {
+  background: $light;
+  color: $darkest;
+  margin: 0 auto;
+  min-height: 85vh;
+  overflow: scroll;
+  padding: 2rem;
+  width: 85%;
+
+  .score-title {
+    font: 2rem $commentsFont;
+    margin-bottom: 2rem;
+  }
+}

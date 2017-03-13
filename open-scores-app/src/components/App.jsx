@@ -25,7 +25,7 @@ class App extends Component {
       <div>
         <p>Start</p>
         <button id="chord" onMouseDown={this.playChord} onMouseUp={this.pauseChord}>Tone Me, Bruh!</button>
-      </div>
+    </div>
     );
   }
 }
