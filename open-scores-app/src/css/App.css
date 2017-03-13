@@ -66,3 +66,70 @@ body {
 
 .is-hidden {
   display: none; }
+
+.tool-box {
+  position: relative;
+  float: left;
+  border: 1px solid black;
+  height: 100vh;
+  width: 300px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: #373737;
+  border-radius: 6px;
+  box-shadow: 2px 2px 2px 1px rgba(65, 162, 235, 0.5); }
+
+.playback-controls {
+  margin-top: 7px; }
+
+.toggle-pos {
+  justify-content: flex-start; }
+
+.playback {
+  width: 20%;
+  display: inline-block;
+  background: #474747;
+  border-radius: 5px;
+  margin: 3px; }
+
+.playback img {
+  filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
+
+.icon {
+  border: 1px solid black;
+  background: #FF7800;
+  color: #FF7800;
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  margin: 10px; }
+
+.icon img {
+  filter: brightness(30%); }
+
+.icon:focus {
+  border: 0;
+  box-shadow: none;
+  background: #63C273;
+  outline: none; }
+
+.icon-dyn {
+  border: 1px solid black;
+  background: #FF7800;
+  color: #FF7800;
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  margin: 10px; }
+
+.icon-dyn img {
+  filter: brightness(30%); }
+
+.icon-dyn:focus {
+  border: 0;
+  box-shadow: none;
+  background: #63C273;
+  outline: none; }
+
+.chat-container {
+  flex-direction: column; }
