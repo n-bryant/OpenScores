@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import Vex from 'vexflow/releases/vexflow-min';
 
-class Vexx extends Component {
+class VFDisplay extends Component {
   componentDidMount() {
     const VF = Vex.Flow;
-    console.log(VF);
 
     // Create an SVG renderer and attach it to the DIV element named "boo".
     const div = document.getElementById('vfDisplay');
@@ -23,6 +22,67 @@ class Vexx extends Component {
 
     // Connect it to the rendering context and draw!
     stave.setContext(context).draw();
+
+    let notes = [ //adding multiple notes
+      new VF.StaveNote({
+        clef: "treble",
+        keys: ["g/4"],
+        duration: "q"
+      }),
+      new VF.StaveNote({
+        clef: "treble",
+        keys: ["g/4"],
+        duration: "q"
+      }),
+      new VF.StaveNote({
+        clef: "treble",
+        keys: ["g/4"],
+        duration: "q"
+      }),
+      new VF.StaveNote({
+        clef: "treble",
+        keys: ["g/4"],
+        duration: "q"
+      })
+    ];
+
+    let notes2 = [ //adding multiple notes
+      new VF.StaveNote({
+        clef: "treble",
+        keys: ["g/4"],
+        duration: "q"
+      }),
+      new VF.StaveNote({
+        clef: "treble",
+        keys: ["g/4"],
+        duration: "q"
+      }),
+      new VF.StaveNote({
+        clef: "treble",
+        keys: ["g/4"],
+        duration: "q"
+      }),
+      new VF.StaveNote({
+        clef: "treble",
+        keys: ["g/4"],
+        duration: "q"
+      })
+    ];
+
+    let voices = [
+      new VF.Voice({
+        num_beats: 4,
+        beat_value: 4
+      }).addTickables(notes)
+    ];
+
+    const formatter = new VF.Formatter().joinVoices(voices).format(voices, 400);
+    voices.forEach(function(v) {
+      v.draw(context, stave);
+    });
+
+    // Connect it to the rendering context and draw!
+    // stave.setContext(context).draw();
   }
 
   render() {
@@ -33,4 +93,4 @@ class Vexx extends Component {
   }
 }
 
-export default Vexx;
+export default VFDisplay;
