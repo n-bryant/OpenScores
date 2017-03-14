@@ -1,5 +1,5 @@
 .score-wrapper {
-  background: $dark;
+  background: $mediumDark;
   min-height: 100vh;
   padding: 15vh;
   width: 100%;
@@ -7,8 +7,10 @@
 
 .score-container {
   background: $light;
+  box-shadow: -1.5rem 1.5rem 1.5rem $darkest;
   color: $darkest;
   margin: 0 auto;
+  max-width: 900px;
   min-height: 85vh;
   overflow: scroll;
   padding: 2rem;
@@ -16,6 +18,21 @@
 
   .score-title {
     font: 2rem $commentsFont;
-    margin-bottom: 2rem;
+  }
+  .edit-title-form {
+    text-align: center;
+
+    .title-input {
+      background: #FAFAFA;
+      border: none;
+      color: $darkest;
+      font: 2rem $commentsFont;
+      width: 50%;
+
+      &:focus {
+        box-shadow: 0 0.5rem 1.5rem $greenAcc;
+        outline: none;
+      }
+    }
   }
 }
