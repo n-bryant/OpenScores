@@ -1,43 +1,57 @@
 import React, {Component} from 'react';
 
 class ToolBox extends Component {
+
+  toggleToolBoxPosition(event) {
+    const toggleBtn = document.querySelector('.toggle-pos');
+    const toolBox = document.querySelector('.tool-box');
+
+    if (toolBox.classList.contains('horizontal')) {
+      toolBox.classList.remove('horizontal');
+      toolBox.classList.add('vertical');
+    } else if (toolBox.classList.contains('vertical')) {
+      toolBox.classList.remove('vertical');
+      toolBox.classList.add('horizontal');
+    }
+  }
+
   render() {
     return (
       <div>
-        <div className="tool-box is-flex">
-
+        <div className="tool-box horizontal is-flex">
           <div className="playback-controls is-centered">
             <div className="playback-buttons">
-              <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122324.svg" alt="playback"/>
+              <button className="playback stopBtn is-centered">
+                <img src="https://image.flaticon.com/icons/svg/122/122324.svg" alt="stop button"/>
               </button>
-              <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122326.svg" alt="playback"/>
+              <button className="playback pauseBtn is-centered">
+                <img src="https://image.flaticon.com/icons/svg/122/122326.svg" alt="pause button"/>
               </button>
-              <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122323.svg" alt="playback"/>
+              <button className="playback playBtn is-centered">
+                <img src="https://image.flaticon.com/icons/svg/122/122323.svg" alt="play button"/>
               </button>
-              <button className="toggle-pos">
-                <img src="https://image.flaticon.com/icons/svg/122/122303.svg" alt="playback"/>
+              <button className="toggle-pos" onClick={this.toggleToolBoxPosition.bind(this)}>
+                <img src="https://image.flaticon.com/icons/svg/122/122303.svg" alt="toggle toolbox view button"/>
               </button>
             </div>
             <div className="playback-buttons">
-              <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122329.svg" alt="playback"/>
+              <button className="playback to-beg-btn is-centered">
+                <img src="https://image.flaticon.com/icons/svg/122/122329.svg" alt="reverse to beginning"/>
               </button>
-              <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122327.svg" alt="playback"/>
+              <button className="playback rev-btn is-centered">
+                <img src="https://image.flaticon.com/icons/svg/122/122327.svg" alt="reverse button"/>
               </button>
-              <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122328.svg" alt="playback"/>
+              <button className="playback ff-btn is-centered">
+                <img src="https://image.flaticon.com/icons/svg/122/122328.svg" alt="fast-forward button"/>
               </button>
-              <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122330.svg" alt="playback"/>
+              <button className="playback to-end-btn is-centered">
+                <img src="https://image.flaticon.com/icons/svg/122/122330.svg" alt="fast-forward to end"/>
               </button>
             </div>
           </div>
           <section className="notation-selectors is-flex">
             <div className="note-lengths-container is-centered">
+              <h3>Notes</h3>
               <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/122/122350.svg" alt="note"/></button>
               <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/122/122351.svg" alt="note"/></button>
               <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/122/122352.svg" alt="note"/></button>
@@ -47,6 +61,8 @@ class ToolBox extends Component {
               <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/122/122355.svg" alt="note"/></button>
             </div>
             <div className="rest-lengths-container is-centered">
+              <h3>Rests</h3>
+
               <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125052.svg" alt="note"/></button>
               <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125054.svg" alt="note"/></button>
               <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125055.svg" alt="note"/></button>
@@ -55,6 +71,8 @@ class ToolBox extends Component {
               <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125057.svg" alt="note"/></button>
             </div>
             <div className="dynamics-container is-centered">
+              <h3>Dynaics</h3>
+
               <button className="icon-dyn is-centered"><img src="https://image.flaticon.com/icons/svg/125/125066.svg" alt="note"/></button>
               <button className="icon-dyn is-centered"><img src="https://image.flaticon.com/icons/svg/125/125058.svg" alt="note"/></button>
               <button className="icon-dyn is-centered"><img src="https://image.flaticon.com/icons/svg/125/125059.svg" alt="note"/></button>
@@ -66,7 +84,7 @@ class ToolBox extends Component {
             </div>
           </section>
           <div className="chat-container is-flex is-centered">
-            <h4>chat</h4>
+            <h4>Chat</h4>
             <form className="chat-form is-flex">
               <textarea className="text-box"></textarea>
               <button type="submit">send</button>

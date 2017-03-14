@@ -105,20 +105,25 @@ body {
 .tool-box {
   position: fixed;
   border: 3px solid #474747;
-  margin-right: 30px;
-  min-height: 100vh;
-  width: 280px;
+  justify-content: space-around;
   flex-wrap: wrap;
-  flex-direction: row;
   background: #474747;
   border-radius: 6px;
   border-style: outset; }
 
+.tool-box.horizontal {
+  width: 100vw;
+  bottom: 0px; }
+
+.tool-box.vertical {
+  min-height: 100vh;
+  width: 16rem; }
+
 .playback-controls {
+  align-self: center;
   margin-top: 7px;
-  border-bottom: 3px solid #313131;
-  border-bottom-style: groove;
-  height: 9rem; }
+  height: 9rem;
+  width: 16rem; }
 
 .playback-controls .toggle-pos {
   position: relative;
@@ -128,6 +133,9 @@ body {
   background: none;
   border: none; }
 
+.playback-controls .toggle-pos:hover {
+  cursor: pointer; }
+
 .playback {
   width: 55px;
   display: inline-block;
@@ -136,24 +144,53 @@ body {
   margin: 3px;
   padding: 5px; }
 
+.playback:hover {
+  cursor: pointer; }
+
 .playback img {
   filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
 
+.stopBtn:focus {
+  background: #af4242; }
+
+.pauseBtn:focus {
+  background: #FAFAFA; }
+
+.playBtn:focus {
+  background: green; }
+
+.to-beg-btn:active {
+  background: #41A2EB; }
+
+.rev-btn:active {
+  background: #41A2EB; }
+
+.ff-btn:active {
+  background: #41A2EB; }
+
+.to-end-btn:active {
+  background: #41A2EB; }
+
 .notation-selectors {
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding: 5px;
+  color: #FAFAFA; }
 
 .icon {
   border: 1px solid black;
   background: #FF7800;
   color: #FF7800;
   border-radius: 5px;
-  width: 30px;
-  height: 30px;
-  margin: 8px; }
+  width: 2rem;
+  height: 2rem;
+  margin: 7px; }
 
 .icon img {
   filter: brightness(30%); }
+
+.icon:hover {
+  cursor: pointer; }
 
 .icon:focus {
   border: 0;
@@ -173,6 +210,9 @@ body {
 .icon-dyn img {
   filter: brightness(30%); }
 
+.icon-dyn:hover {
+  cursor: pointer; }
+
 .icon-dyn:focus {
   border: 0;
   box-shadow: none;
@@ -181,8 +221,7 @@ body {
 
 .chat-container {
   flex-direction: column;
-  border-radius: 5px;
-  width: 100%; }
+  color: #FAFAFA; }
 
 .header-container {
   align-items: center;
