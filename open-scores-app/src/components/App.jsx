@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import base from '../base';
 import Tone from 'tone';
 
-import ToolBox from './ToolBox'
+import ToolBox from './ToolBox';
 
 //creates 4 instances of the Tone.Synth
 const polySynth = new Tone.PolySynth(4, Tone.Synth).toMaster();
