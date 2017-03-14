@@ -103,10 +103,11 @@ body {
   outline: none; }
 
 .tool-box {
-  position: static;
+  position: fixed;
   border: 3px solid #474747;
+  margin-right: 30px;
   min-height: 100vh;
-  width: 300px;
+  width: 280px;
   flex-wrap: wrap;
   flex-direction: row;
   background: #474747;
@@ -121,22 +122,26 @@ body {
 
 .playback-controls .toggle-pos {
   position: relative;
-  bottom: 34px;
-  left: 13px; }
+  bottom: 1.5rem;
+  left: 1rem;
+  width: 2rem;
+  background: none;
+  border: none; }
 
 .playback {
   width: 55px;
   display: inline-block;
   background: #373737;
   border-radius: 5px;
-  margin: 3px; }
+  margin: 3px;
+  padding: 5px; }
 
 .playback img {
   filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
 
 .notation-selectors {
   flex-direction: column;
-  justify-content: space-around; }
+  justify-content: space-between; }
 
 .icon {
   border: 1px solid black;

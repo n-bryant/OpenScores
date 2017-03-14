@@ -9,28 +9,30 @@ class ToolBox extends Component {
           <div className="playback-controls is-centered">
             <div className="playback-buttons">
               <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122324.svg" alt="playback"></img>
+                <img src="https://image.flaticon.com/icons/svg/122/122324.svg" alt="playback"/>
               </button>
               <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122326.svg" alt="playback"></img>
+                <img src="https://image.flaticon.com/icons/svg/122/122326.svg" alt="playback"/>
               </button>
               <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122323.svg" alt="playback"></img>
+                <img src="https://image.flaticon.com/icons/svg/122/122323.svg" alt="playback"/>
               </button>
-              <button className="toggle-pos">toggle</button>
+              <button className="toggle-pos">
+                <img src="https://image.flaticon.com/icons/svg/122/122303.svg" alt="playback"/>
+              </button>
             </div>
             <div className="playback-buttons">
               <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122329.svg" alt="playback"></img>
+                <img src="https://image.flaticon.com/icons/svg/122/122329.svg" alt="playback"/>
               </button>
               <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122327.svg" alt="playback"></img>
+                <img src="https://image.flaticon.com/icons/svg/122/122327.svg" alt="playback"/>
               </button>
               <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122328.svg" alt="playback"></img>
+                <img src="https://image.flaticon.com/icons/svg/122/122328.svg" alt="playback"/>
               </button>
               <button className="playback is-centered">
-                <img src="https://image.flaticon.com/icons/svg/122/122330.svg" alt="playback"></img>
+                <img src="https://image.flaticon.com/icons/svg/122/122330.svg" alt="playback"/>
               </button>
             </div>
           </div>
