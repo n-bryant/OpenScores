@@ -1,24 +1,37 @@
 .tool-box {
-  position: static;
+  position: fixed;
   border: 3px solid $medium;
-  min-height: 100vh;
-  width: 300px;
+  justify-content: space-around;
   flex-wrap: wrap;
-  flex-direction: row;
   background: $medium;
   border-radius: 6px;
   border-style: outset;
+  &.horizontal {
+    width: 100vw;
+    bottom: 0px;
+
+  }
+  &.vertical {
+    min-height: 100vh;
+    width: 16rem;
+  }
 }
 
 .playback-controls {
+  align-self: center;
   margin-top: 7px;
-  border-bottom: 3px solid $dark;
-  border-bottom-style: groove;
   height: 9rem;
+  width: 16rem;
   .toggle-pos {
     position: relative;
-    bottom: 34px;
-    left: 13px;
+    bottom: 1.5rem;
+    left: 1rem;
+    width: 2rem;
+    background: none;
+    border: none;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -28,24 +41,62 @@
   background: $mediumDark;
   border-radius: 5px;
   margin: 3px;
-  // padding: 5px;
+  padding: 5px;
+  &:hover {
+    cursor: pointer;
+  }
   img {
     filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5));
   }
 }
-.notation-selectors {
-  // margin: 0px;
+
+.stopBtn:focus {
+  background: #af4242;
 }
+
+.pauseBtn:focus {
+  background: $light;
+}
+
+.playBtn:focus {
+  background: green;
+}
+
+.to-beg-btn:active {
+  background: $blueAcc;
+}
+
+.rev-btn:active {
+  background: $blueAcc;
+}
+.ff-btn:active {
+  background: $blueAcc;
+}
+.to-end-btn:active {
+  background: $blueAcc;
+}
+
+
+.notation-selectors {
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    color: $light;
+  }
+
 .icon {
   border: 1px solid black;
   background: $orange;
   color: $orange;
   border-radius: 5px;
-  width: 30px;
-  height: 30px;
-  margin: 8px;
+  width: 2rem;
+  height: 2rem;
+  margin: 7px;
   img {
     filter: brightness(30%);
+  }
+  &:hover {
+    cursor: pointer;
   }
   &:focus {
     border: 0;
@@ -65,6 +116,9 @@
   img {
     filter: brightness(30%);
   }
+  &:hover {
+    cursor: pointer;
+  }
   &:focus {
     border: 0;
     box-shadow: none;
@@ -75,6 +129,5 @@
 
 .chat-container {
   flex-direction: column;
-  border-radius: 5px;
-  width: 100%;
+  color: $light;
 }
