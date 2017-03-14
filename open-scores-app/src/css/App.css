@@ -73,10 +73,9 @@ body {
   overflow: scroll;
   padding: 2rem;
   width: 85%; }
-
-.score-container .score-title {
-  font: 2rem "Bilbo", cursive;
-  margin-bottom: 2rem; }
+  .score-container .score-title {
+    font: 2rem "Bilbo", cursive;
+    margin-bottom: 2rem; }
 
 .is-centered {
   text-align: center; }
