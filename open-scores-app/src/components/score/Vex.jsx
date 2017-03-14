@@ -8,7 +8,7 @@ class VFDisplay extends Component {
   componentDidMount() {
     const VF = Vex.Flow;
 
-    // Create an SVG renderer and attach it to the DIV element named "boo".
+    // Create an SVG renderer and attach it to the DIV element named "VFDisplay".
     const div = document.getElementById('vfDisplay');
     let renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
@@ -38,6 +38,10 @@ class VFDisplay extends Component {
       staveBars[i].setContext(context).draw();
     }
   }
+
+  // iterate over all bars, iterate over note positions, create invisible rest to be able to select
+  // when a 'selecotor' is clicked, user able to put a note
+  // that note updates the value at the index in the stave/note/array
 
   render() {
 
