@@ -84,23 +84,19 @@ body {
   overflow: scroll;
   padding: 2rem;
   width: 85%; }
-
-.score-container .score-title {
-  font: 2rem "Bilbo", cursive; }
-
-.score-container .edit-title-form {
-  text-align: center; }
-
-.score-container .edit-title-form .title-input {
-  background: #FAFAFA;
-  border: none;
-  color: #212121;
-  font: 2rem "Bilbo", cursive;
-  width: 50%; }
-
-.score-container .edit-title-form .title-input:focus {
-  box-shadow: 0 0.5rem 1.5rem #63C273;
-  outline: none; }
+  .score-container .score-title {
+    font: 2rem "Bilbo", cursive; }
+  .score-container .edit-title-form {
+    text-align: center; }
+    .score-container .edit-title-form .title-input {
+      background: #FAFAFA;
+      border: none;
+      color: #212121;
+      font: 2rem "Bilbo", cursive;
+      width: 50%; }
+      .score-container .edit-title-form .title-input:focus {
+        box-shadow: 0 0.5rem 1.5rem #63C273;
+        outline: none; }
 
 .tool-box {
   position: fixed;
@@ -119,14 +115,13 @@ body {
   border-bottom: 3px solid #313131;
   border-bottom-style: groove;
   height: 9rem; }
-
-.playback-controls .toggle-pos {
-  position: relative;
-  bottom: 1.5rem;
-  left: 1rem;
-  width: 2rem;
-  background: none;
-  border: none; }
+  .playback-controls .toggle-pos {
+    position: relative;
+    bottom: 1.5rem;
+    left: 1rem;
+    width: 2rem;
+    background: none;
+    border: none; }
 
 .playback {
   width: 55px;
@@ -135,9 +130,8 @@ body {
   border-radius: 5px;
   margin: 3px;
   padding: 5px; }
-
-.playback img {
-  filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
+  .playback img {
+    filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
 
 .notation-selectors {
   flex-direction: column;
@@ -151,15 +145,13 @@ body {
   width: 30px;
   height: 30px;
   margin: 8px; }
-
-.icon img {
-  filter: brightness(30%); }
-
-.icon:focus {
-  border: 0;
-  box-shadow: none;
-  background: #63C273;
-  outline: none; }
+  .icon img {
+    filter: brightness(30%); }
+  .icon:focus {
+    border: 0;
+    box-shadow: none;
+    background: #63C273;
+    outline: none; }
 
 .icon-dyn {
   border: 1px solid black;
@@ -169,15 +161,13 @@ body {
   width: 30px;
   height: 30px;
   margin: 8px; }
-
-.icon-dyn img {
-  filter: brightness(30%); }
-
-.icon-dyn:focus {
-  border: 0;
-  box-shadow: none;
-  background: #63C273;
-  outline: none; }
+  .icon-dyn img {
+    filter: brightness(30%); }
+  .icon-dyn:focus {
+    border: 0;
+    box-shadow: none;
+    background: #63C273;
+    outline: none; }
 
 .chat-container {
   flex-direction: column;
