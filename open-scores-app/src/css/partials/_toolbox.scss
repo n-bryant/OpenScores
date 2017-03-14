@@ -34,8 +34,10 @@
   }
 }
 .notation-selectors {
-  // margin: 0px;
-}
+  flex-direction: column;
+      justify-content: space-around;
+  }
+
 .icon {
   border: 1px solid black;
   background: $orange;
