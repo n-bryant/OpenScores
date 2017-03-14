@@ -69,22 +69,34 @@ body {
   display: none; }
 
 .score-wrapper {
-  background: #313131;
+  background: #373737;
   min-height: 100vh;
   padding: 15vh;
   width: 100%; }
 
 .score-container {
   background: #FAFAFA;
+  box-shadow: -1.5rem 1.5rem 1.5rem #212121;
   color: #212121;
   margin: 0 auto;
+  max-width: 900px;
   min-height: 85vh;
   overflow: scroll;
   padding: 2rem;
   width: 85%; }
   .score-container .score-title {
-    font: 2rem "Bilbo", cursive;
-    margin-bottom: 2rem; }
+    font: 2rem "Bilbo", cursive; }
+  .score-container .edit-title-form {
+    text-align: center; }
+    .score-container .edit-title-form .title-input {
+      background: #FAFAFA;
+      border: none;
+      color: #212121;
+      font: 2rem "Bilbo", cursive;
+      width: 50%; }
+      .score-container .edit-title-form .title-input:focus {
+        box-shadow: 0 0.5rem 1.5rem #63C273;
+        outline: none; }
 
 .tool-box {
   position: static;

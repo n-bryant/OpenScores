@@ -9,8 +9,8 @@ import './css/App.css';
 
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path='/' component={Score}>
-      <IndexRoute component={Score}/>
+    <Route path='/' component={App}>
+      <Route path='score' component={Score}/>
     </Route>
   </Router>
 ), document.getElementById('root'));
