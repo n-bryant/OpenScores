@@ -1,7 +1,11 @@
 @import 'partials/globals/reset';
-@import url('https://fonts.googleapis.com/css?family=Bilbo%7CBilbo+Swash+Caps%7CNunito%7CNunito+Sans');
+@import url( 'https://fonts.googleapis.com/css?family=Bilbo%7CBilbo+Swash+Caps%7CNunito%7CNunito+Sans');
 @import 'partials/globals/variables';
 @import 'partials/globals/mixins';
 @import 'partials/common';
-@import 'partials/score';
 @import 'partials/globals/modifiers';
+@import 'partials/score';
+@import 'partials/toolbox';
+@import 'partials/header-container';
+@import 'partials/main-side-bar';
+@import 'partials/user-compositions';

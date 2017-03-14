@@ -1,0 +1,80 @@
+.tool-box {
+  position: static;
+  border: 3px solid $medium;
+  min-height: 100vh;
+  width: 300px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background: $medium;
+  border-radius: 6px;
+  border-style: outset;
+}
+
+.playback-controls {
+  margin-top: 7px;
+  border-bottom: 3px solid $dark;
+  border-bottom-style: groove;
+  height: 9rem;
+  .toggle-pos {
+    position: relative;
+    bottom: 34px;
+    left: 13px;
+  }
+}
+
+.playback {
+  width: 55px;
+  display: inline-block;
+  background: $mediumDark;
+  border-radius: 5px;
+  margin: 3px;
+  // padding: 5px;
+  img {
+    filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5));
+  }
+}
+.notation-selectors {
+  // margin: 0px;
+}
+.icon {
+  border: 1px solid black;
+  background: $orange;
+  color: $orange;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  img {
+    filter: brightness(30%);
+  }
+  &:focus {
+    border: 0;
+    box-shadow: none;
+    background: $greenAcc;
+    outline: none;
+  }
+}
+.icon-dyn {
+  border: 1px solid black;
+  background: $orange;
+  color: $orange;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  img {
+    filter: brightness(30%);
+  }
+  &:focus {
+    border: 0;
+    box-shadow: none;
+    background: $greenAcc;
+    outline: none;
+  }
+}
+
+.chat-container {
+  flex-direction: column;
+  border-radius: 5px;
+  width: 100%;
+}
