@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import Vex from 'vexflow/releases/vexflow-min';
 
 class VFDisplay extends Component {
+  // for making things selectable, try adding transparent rests at each mark
+
+
   componentDidMount() {
     const VF = Vex.Flow;
 
@@ -10,79 +13,30 @@ class VFDisplay extends Component {
     let renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
     // Configure the rendering context.
-    renderer.resize(500, 500);
+    renderer.resize(1220, 500);
     let context = renderer.getContext();
     context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 
-    // Create a stave of width 400 at position 10, 40 on the canvas.
-    let stave = new VF.Stave(10, 40, 400);
+    // Create a bar for each bar; 4 by default;
+    let barCount = 4;
+    let staveX = 10;
+    let staveY = 40;
+    let staveWidth = 300;
+    let staveBars = [];
 
-    // Add a clef and time signature.
-    stave.addClef("treble").addTimeSignature("4/4");
+    for (let i = 0; i < barCount; i++) {
+      if (i === 0) {
+        // Create a stave of width 300 at position 10, 40 on the canvas.
+        staveBars[i] = new VF.Stave(staveX, staveY, staveWidth);
 
-    // Connect it to the rendering context and draw!
-    stave.setContext(context).draw();
-
-    let notes = [ //adding multiple notes
-      new VF.StaveNote({
-        clef: "treble",
-        keys: ["g/4"],
-        duration: "q"
-      }),
-      new VF.StaveNote({
-        clef: "treble",
-        keys: ["g/4"],
-        duration: "q"
-      }),
-      new VF.StaveNote({
-        clef: "treble",
-        keys: ["g/4"],
-        duration: "q"
-      }),
-      new VF.StaveNote({
-        clef: "treble",
-        keys: ["g/4"],
-        duration: "q"
-      })
-    ];
-
-    let notes2 = [ //adding multiple notes
-      new VF.StaveNote({
-        clef: "treble",
-        keys: ["g/4"],
-        duration: "q"
-      }),
-      new VF.StaveNote({
-        clef: "treble",
-        keys: ["g/4"],
-        duration: "q"
-      }),
-      new VF.StaveNote({
-        clef: "treble",
-        keys: ["g/4"],
-        duration: "q"
-      }),
-      new VF.StaveNote({
-        clef: "treble",
-        keys: ["g/4"],
-        duration: "q"
-      })
-    ];
-
-    let voices = [
-      new VF.Voice({
-        num_beats: 4,
-        beat_value: 4
-      }).addTickables(notes)
-    ];
-
-    const formatter = new VF.Formatter().joinVoices(voices).format(voices, 400);
-    voices.forEach(function(v) {
-      v.draw(context, stave);
-    });
-
-    // Connect it to the rendering context and draw!
-    // stave.setContext(context).draw();
+        // Add a clef and time signature.
+        staveBars[i].addClef("treble").addTimeSignature("4/4");
+      } else {
+        staveBars[i] = new VF.Stave(staveBars[i - 1].width + staveBars[i - 1].x, staveY, staveWidth);
+      }
+      // Connect it to the rendering context and draw
+      staveBars[i].setContext(context).draw();
+    }
   }
 
   render() {
