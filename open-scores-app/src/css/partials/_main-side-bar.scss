@@ -1,9 +1,19 @@
 .main-profile-container {
+    display: flex;
+    flex-direction: row;
     height: 700px;
     margin: 0;
     width: 20%;
 }
 
-.profile-pic img {
-    width: 15%;
+.profile-pic {
+    border-radius: 50%;
+    width: 80%;
+}
+
+.user-profile-image {
+    align-items: center;
+    background: $mediumDark;
+    display: flex;
+    flex-direction: column;
 }
