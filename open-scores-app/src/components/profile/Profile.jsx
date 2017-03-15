@@ -7,9 +7,9 @@ class Profile extends Component {
     render() {
         return (
             <section className="profile-wrapper">
-              <MainHeader/>
-              <MainSideBar/>
-              <UserCompositions/>
+                <MainHeader/>
+                <UserCompositions/>
+                <MainSideBar/>
             </section>
         );
     }
