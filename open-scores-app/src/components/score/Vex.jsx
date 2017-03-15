@@ -17,13 +17,46 @@ class VFDisplay extends Component {
     let context = renderer.getContext();
     context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 
-    let duration = '8';
+    let duration = '4';
     // you can set default note/chord values
-    let C7 = new VF.StaveNote({ keys: ['C/4', 'E/4', 'G/4', 'Bb/4'], duration: duration});
+    let C7 = new VF.StaveNote({
+      keys: [
+        'C/4', 'E/4', 'G/4', 'Bb/4'
+      ],
+      duration: duration
+    });
+    let c4 = new VF.StaveNote({keys: ['C/4'], duration: duration});
+    let cs4 = new VF.StaveNote({keys: ['C#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
+    let d4 = new VF.StaveNote({keys: ['D/4'], duration: duration});
+    let ds4 = new VF.StaveNote({keys: ['D#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
+    let e4 = new VF.StaveNote({keys: ['E/4'], duration: duration});
+    let f4 = new VF.StaveNote({keys: ['F/4'], duration: duration});
+    let fs4 = new VF.StaveNote({keys: ['F#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
+    let g4 = new VF.StaveNote({keys: ['G/4'], duration: duration});
+    let gs4 = new VF.StaveNote({keys: ['G#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
+    let a4 = new VF.StaveNote({keys: ['A/4'], duration: duration});
+    let as4 = new VF.StaveNote({keys: ['A#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
+    let b4 = new VF.StaveNote({keys: ['B/4'], duration: duration});
+    let c5 = new VF.StaveNote({keys: ['C/5'], duration: duration});
 
     // declaration of base score values
     let barCount = 1;
-    let noteVals = ['c', 'd', 'e', 'f', 'g', 'a', 'b'];
+    let noteVals = [
+      c4,
+      cs4,
+      d4,
+      ds4,
+      e4,
+      f4,
+      fs4,
+      g4,
+      gs4,
+      a4,
+      as4,
+      b4,
+      c5
+    ];
+
     let octaves = [3, 4, 5];
     let notes = [];
     let selectedNote;
@@ -31,13 +64,13 @@ class VFDisplay extends Component {
     let staveY = 40;
     let staveWidth = 300;
     let staveBars = [];
-    let voice = new VF.Voice({num_beats: 4,  beat_value: 4});
+    let voice = new VF.Voice({num_beats: 4, beat_value: 4});
 
     // create 1 note, push it to notes array, and draw that 1 note to page.
-      notes[0] = new VF.StaveNote({clef:"treble", keys: ["c/4"], duration: "q"});
-      notes[1] = new VF.StaveNote({clef:"treble", keys: ["c/4"], duration: "q"});
-      notes[2] = new VF.StaveNote({clef:"treble", keys: ["c/4"], duration: "q"});
-      notes[3] = new VF.StaveNote({clef:"treble", keys: ["c/4"], duration: "q"});
+    notes[0] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
+    notes[1] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
+    notes[2] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
+    notes[3] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
     drawScore();
 
     // draw a bar for each measure to the canvas
@@ -93,7 +126,7 @@ class VFDisplay extends Component {
       }
 
       function highlightNote() {
-        let highlightedNote = new VF.StaveNote({clef:"treble", keys: ["f/4"], duration: "q"});
+        let highlightedNote = new VF.StaveNote({clef: "treble", keys: ["f/4"], duration: "q"});
         highlightedNote.setStyle({fillStyle: "blue", strokeStyle: "blue"});
         notes[notes.indexOf(selectedNote)] = highlightedNote;
         voice = new VF.Voice({num_beats: 4, beat_value: 4});
@@ -102,9 +135,9 @@ class VFDisplay extends Component {
 
       function updateNote() {
         // set new note value for note on click and redraw canvas
-        let updatedNote = new VF.StaveNote({clef:"treble", keys: ["f/4"], duration: "q"});
+        let updatedNote = new VF.StaveNote({clef: "treble", keys: ["f/4"], duration: "q"});
         notes[notes.indexOf(selectedNote)] = updatedNote;
-        voice = new VF.Voice({num_beats: 4,  beat_value: 4});
+        voice = new VF.Voice({num_beats: 4, beat_value: 4});
         drawScore();
       }
     }
