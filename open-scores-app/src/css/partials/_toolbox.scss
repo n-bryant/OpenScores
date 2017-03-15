@@ -1,26 +1,22 @@
 .tool-box {
   position: fixed;
   border: 3px solid $medium;
-  justify-content: space-around;
-  flex-wrap: wrap;
   background: $medium;
   border-radius: 6px;
   border-style: outset;
   &.horizontal {
     width: 100vw;
     bottom: 0px;
-
   }
   &.vertical {
+    flex-direction: column;
     min-height: 100vh;
     width: 16rem;
   }
 }
 
 .playback-controls {
-  align-self: center;
-  margin-top: 7px;
-  height: 9rem;
+  flex-direction: column;
   width: 16rem;
   .toggle-pos {
     position: relative;
@@ -76,43 +72,22 @@
   background: $blueAcc;
 }
 
-
 .notation-selectors {
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 5px;
+    justify-content: space-around;
+    flex-wrap: wrap;
     color: $light;
   }
-
+.selectors {
+  width: 10rem;
+}
 .icon {
-  border: 1px solid black;
+  border: none;
   background: $orange;
-  color: $orange;
+  font-weight: bold;
   border-radius: 5px;
   width: 2rem;
   height: 2rem;
-  margin: 7px;
-  img {
-    filter: brightness(30%);
-  }
-  &:hover {
-    cursor: pointer;
-  }
-  &:focus {
-    border: 0;
-    box-shadow: none;
-    background: $greenAcc;
-    outline: none;
-  }
-}
-.icon-dyn {
-  border: 1px solid black;
-  background: $orange;
-  color: $orange;
-  border-radius: 5px;
-  width: 30px;
-  height: 30px;
-  margin: 8px;
+  margin: 3px;
   img {
     filter: brightness(30%);
   }
