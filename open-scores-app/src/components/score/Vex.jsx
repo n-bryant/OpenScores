@@ -18,6 +18,43 @@ class VFDisplay extends Component {
     context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 
     let duration = '4';
+
+    let noteVals = [];
+    function setLibrary() {
+      let c4 = new VF.StaveNote({keys: ['C/4'], duration: duration});
+      noteVals.push(c4);
+      let cs4 = new VF.StaveNote({keys: ['C#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
+      noteVals.push(cs4);
+      let d4 = new VF.StaveNote({keys: ['D/4'], duration: duration});
+      noteVals.push(d4);
+      let ds4 = new VF.StaveNote({keys: ['D#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
+      noteVals.push(ds4);
+      let e4 = new VF.StaveNote({keys: ['E/4'], duration: duration});
+      noteVals.push(e4);
+    }
+    setLibrary();
+
+    // // creates VexFlow scale library
+    // let scales = [{name: 'a', noteVals: []}, {name: 'b', noteVals: []}, {name: 'c', noteVals: []}];
+    // function setLibrary() {
+    //   let c3 = new VF.StaveNote({keys: ['C/3'], duration: duration});
+    //   let d3 = new VF.StaveNote({keys: ['D/3'], duration: duration});
+    //   let e3 = new VF.StaveNote({keys: ['E/3'], duration: duration});
+    //
+    //   let noteVals = [c3, d3, e3];
+    //   for (let i = 0; i < scales.length; i++) {
+    //     if (scales[i].name === 'a') {
+    //       notInScale = [d3]; // notes that we don't want this scale to have
+    //       // push only the notes that are included in the scale
+    //       noteVals.forEach((note) => {
+    //         if (notInScale.indexOf(note) === -1) {
+    //           scales[i].noteVals.push(note);
+    //         }
+    //       });
+    //     } // else if (scales[i].name === 'b') {} ...
+    //   }
+    // }
+
     // you can set default note/chord values
     let C7 = new VF.StaveNote({
       keys: [
@@ -25,41 +62,13 @@ class VFDisplay extends Component {
       ],
       duration: duration
     });
-    let c4 = new VF.StaveNote({keys: ['C/4'], duration: duration});
-    let cs4 = new VF.StaveNote({keys: ['C#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
-    let d4 = new VF.StaveNote({keys: ['D/4'], duration: duration});
-    let ds4 = new VF.StaveNote({keys: ['D#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
-    let e4 = new VF.StaveNote({keys: ['E/4'], duration: duration});
-    let f4 = new VF.StaveNote({keys: ['F/4'], duration: duration});
-    let fs4 = new VF.StaveNote({keys: ['F#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
-    let g4 = new VF.StaveNote({keys: ['G/4'], duration: duration});
-    let gs4 = new VF.StaveNote({keys: ['G#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
-    let a4 = new VF.StaveNote({keys: ['A/4'], duration: duration});
-    let as4 = new VF.StaveNote({keys: ['A#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
-    let b4 = new VF.StaveNote({keys: ['B/4'], duration: duration});
-    let c5 = new VF.StaveNote({keys: ['C/5'], duration: duration});
 
     // declaration of base score values
     let barCount = 1;
-    let noteVals = [
-      c4,
-      cs4,
-      d4,
-      ds4,
-      e4,
-      f4,
-      fs4,
-      g4,
-      gs4,
-      a4,
-      as4,
-      b4,
-      c5
-    ];
 
     let octaves = [3, 4, 5];
     let notes = [];
-    let selectedNote;
+    let selectedNote = null;
     let staveX = 10;
     let staveY = 40;
     let staveWidth = 300;
@@ -100,50 +109,109 @@ class VFDisplay extends Component {
         VF.Formatter.FormatAndDraw(context, staveBars[i], notes);
         bindEvents();
       }
+    }
 
-      function bindEvents() {
-        // select a note by id on click
-        let allNotes = document.querySelectorAll('.vf-stavenote');
-        allNotes.forEach((note) => {
-          note.addEventListener('click', function() {
-            getNoteById(this);
-          });
+    function bindEvents() {
+      // select a note by id on click
+      let allNotes = document.querySelectorAll('.vf-stavenote');
+      allNotes.forEach((note) => {
+        note.addEventListener('click', function() {
+          getNoteById(this);
         });
-      }
+      });
 
-      // sets selected note
-      function getNoteById(note) {
-        let selected = note;
-        let voiceNotes = voice.tickables;
-        console.log(voiceNotes);
-        for (let i = 0; i < voiceNotes.length; i++) {
-          if (voiceNotes[i].attrs.el.id === selected.id) {
-            selectedNote = voiceNotes[i];
-          }
+      // keypresses
+      document.onkeydown = checkKey;
+    }
+
+    // check which key was pressed
+    function checkKey(e) {
+      e = e || window.event;
+
+      if (e.keyCode == '38') {
+        // up arrow
+        e.preventDefault();
+        selectedNote ? changePitch('up') : selectedNote = null;
+      } else if (e.keyCode == '40') {
+        // down arrow
+        e.preventDefault();
+        selectedNote ? changePitch('down') : selectedNote = null;
+      } else if (e.keyCode == '37') {
+        // left arrow
+        console.log('left');
+      } else if (e.keyCode == '39') {
+        // right arrow
+        console.log('right');
+      }
+    }
+
+    // increase note value on up arrow
+    function changePitch(key) {
+      let currentPitch;
+      let newPitch;
+      noteVals.forEach((note) => {
+        if (note.keys[0].toLowerCase() === selectedNote.keys[0].toLowerCase()) {
+          currentPitch = noteVals.indexOf(note);
         }
-        // add visual representation of selection
-        highlightNote();
-        // updateNote();
+      });
+
+      if (currentPitch === noteVals.length - 1 && key === 'up') {
+        newPitch = noteVals[0];
+      } else if (currentPitch === 0 && key === 'down') {
+        newPitch = noteVals[noteVals.length - 1];
+      } else {
+        key === 'up' ? newPitch = noteVals[currentPitch + 1] : newPitch = noteVals[currentPitch - 1];
       }
 
-      function highlightNote() {
-        const blueAccent = "#41A2EB";
-        // remove highlight from any other note
+      /*
+        newPitch has the value of a noteVal which is a static object that doesn't get an updated id,
+        so when multiple notes are modulated to the same value, they have the same id, and collapse on each other
+      */
+      notes[notes.indexOf(selectedNote)] = newPitch;
+      selectedNote = newPitch;
+      voice = new VF.Voice({num_beats: 4, beat_value: 4});
+      setLibrary();
+      drawScore();
+      highlightNote();
+    }
 
-        // add highlight to currently selected note
-        let highlightedNote = notes[notes.indexOf(selectedNote)];
-        highlightedNote.setStyle({fillStyle: blueAccent, strokeStyle: blueAccent});
-        voice = new VF.Voice({num_beats: 4, beat_value: 4});
-        drawScore();
+    // sets selected note
+    function getNoteById(note) {
+      let selected = note;
+      let voiceNotes = voice.tickables;
+      for (let i = 0; i < voiceNotes.length; i++) {
+        if (voiceNotes[i].attrs.el.id === selected.id) {
+          selectedNote = voiceNotes[i];
+        }
       }
+      // add visual representation of selection
+      highlightNote();
+      // updateNote();
+    }
 
-      function updateNote() {
-        // set new note value for note on click and redraw canvas
-        let updatedNote = new VF.StaveNote({clef: "treble", keys: ["f/4"], duration: "q"});
-        notes[notes.indexOf(selectedNote)] = updatedNote;
-        voice = new VF.Voice({num_beats: 4, beat_value: 4});
-        drawScore();
-      }
+    function highlightNote() {
+      const blueAccent = "#41A2EB";
+      // remove highlight from notes that aren't selected
+      notes.forEach((note) => {
+        if (selectedNote.attrs.el.id !== note.attrs.el.id) {
+          note.setStyle({fillStyle: 'black', strokeStyle: 'black'});
+        }
+      });
+
+      let highlightedNote = notes[notes.indexOf(selectedNote)];
+      highlightedNote.setStyle({fillStyle: blueAccent, strokeStyle: blueAccent});
+      voice = new VF.Voice({num_beats: 4, beat_value: 4});
+      setLibrary();
+      drawScore();
+    }
+
+    function updateNote() {
+      // set new note value for note on click and redraw canvas
+      let updatedNote = new VF.StaveNote({clef: "treble", keys: ["f/4"], duration: "q"});
+      notes[notes.indexOf(selectedNote)] = updatedNote;
+      voice = new VF.Voice({num_beats: 4, beat_value: 4});
+      setLibrary();
+      drawScore();
     }
 
     // // Create notes
