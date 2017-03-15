@@ -225,7 +225,7 @@ body {
 
 .header-container {
   align-items: center;
-  background: #63C273;
+  background: #373737;
   color: #fff;
   display: flex;
   height: 150px;
@@ -233,14 +233,29 @@ body {
   justify-content: center; }
 
 .main-profile-container {
+  display: flex;
+  flex-direction: row;
   height: 700px;
   margin: 0;
   width: 20%; }
 
-.profile-pic img {
-  width: 15%; }
+.profile-pic {
+  border-radius: 50%;
+  width: 80%; }
+
+.user-profile-image {
+  align-items: center;
+  background: #373737;
+  display: flex;
+  flex-direction: column; }
 
 .container-one {
   border: 1px solid black;
-  height: 10%;
-  width: 10%; }
+  float: right;
+  height: 700px;
+  width: 80%; }
+
+.user-comp {
+  border: 1px solid red;
+  width: 20%;
+  height: 20%; }
