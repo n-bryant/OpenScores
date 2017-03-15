@@ -111,6 +111,7 @@ class VFDisplay extends Component {
         });
       }
 
+      // sets selected note
       function getNoteById(note) {
         let selected = note;
         let voiceNotes = voice.tickables;
@@ -126,9 +127,12 @@ class VFDisplay extends Component {
       }
 
       function highlightNote() {
-        let highlightedNote = new VF.StaveNote({clef: "treble", keys: ["f/4"], duration: "q"});
-        highlightedNote.setStyle({fillStyle: "blue", strokeStyle: "blue"});
-        notes[notes.indexOf(selectedNote)] = highlightedNote;
+        const blueAccent = "#41A2EB";
+        // remove highlight from any other note
+
+        // add highlight to currently selected note
+        let highlightedNote = notes[notes.indexOf(selectedNote)];
+        highlightedNote.setStyle({fillStyle: blueAccent, strokeStyle: blueAccent});
         voice = new VF.Voice({num_beats: 4, beat_value: 4});
         drawScore();
       }
