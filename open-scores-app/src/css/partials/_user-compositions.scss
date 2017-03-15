@@ -1,12 +1,14 @@
 .container-one {
+    background: $light;
+    border-radius: 10px;
     border: 1px solid black;
     float: right;
-    height: 700px;
-    width: 80%;
+    height: 300px;
+    width: 20%;
+    margin: 40px;
 }
 
-.user-comp {
-    border: 1px solid red;
-    width: 20%;
-    height: 20%;
+.container-one:hover {
+    border-color: $orange;
+    opacity: 1;
 }

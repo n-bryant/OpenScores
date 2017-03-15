@@ -226,11 +226,15 @@ body {
 .header-container {
   align-items: center;
   background: #373737;
-  color: #fff;
+  color: #FF7800;
   display: flex;
   height: 150px;
   font-size: 50px;
   justify-content: center; }
+
+.newThing {
+  background: #373737;
+  width: 100px; }
 
 .main-profile-container {
   display: flex;
@@ -249,13 +253,26 @@ body {
   display: flex;
   flex-direction: column; }
 
+.friends-main-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row; }
+
+.friends-profile-pic {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin: 15px; }
+
 .container-one {
+  background: #FAFAFA;
+  border-radius: 10px;
   border: 1px solid black;
   float: right;
-  height: 700px;
-  width: 80%; }
-
-.user-comp {
-  border: 1px solid red;
+  height: 300px;
   width: 20%;
-  height: 20%; }
+  margin: 40px; }
+
+.container-one:hover {
+  border-color: #FF7800;
+  opacity: 1; }

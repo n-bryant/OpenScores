@@ -1,9 +1,14 @@
 .header-container {
     align-items: center;
     background: $mediumDark;
-    color: #fff;
+    color: $orange;
     display: flex;
     height: 150px;
     font-size: 50px;
     justify-content: center;
+}
+
+.newThing {
+    background: $mediumDark;
+    width: 100px;
 }

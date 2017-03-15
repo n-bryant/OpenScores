@@ -7,6 +7,7 @@ class UserCompositions extends Component {
                 <div className="user-comp">
                     <p>Composition</p>
                 </div>
+                <div className="social-interactions"></div>
             </div>
         );
     }

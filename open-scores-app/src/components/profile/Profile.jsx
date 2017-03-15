@@ -9,6 +9,11 @@ class Profile extends Component {
             <section className="profile-wrapper">
                 <MainHeader/>
                 <UserCompositions/>
+                <UserCompositions/>
+                <UserCompositions/>
+                <UserCompositions/>
+                <UserCompositions/>
+                <UserCompositions/>
                 <MainSideBar/>
             </section>
         );

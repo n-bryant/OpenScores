@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Friends from './Friends';
 
 class MainSideBar extends Component {
     render() {
@@ -8,6 +9,10 @@ class MainSideBar extends Component {
                     <img className="profile-pic" src="https://s-media-cache-ak0.pinimg.com/736x/bf/b6/19/bfb6192a36bb33728209ac1040f2f574.jpg"></img>
                     <p>Scott</p>
                     <p>Corgi</p>
+                    <Friends/>
+                    <Friends/>
+                    <Friends/>
+                    <Friends/>
                 </div>
             </div>
         );
