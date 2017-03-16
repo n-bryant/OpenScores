@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import base from '../base';
-import Tone from 'tone';
+// import base from '../base';
+// import Tone from 'tone';
 
 class App extends Component {
   constructor() {

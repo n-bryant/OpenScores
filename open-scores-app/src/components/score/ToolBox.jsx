@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class ToolBox extends Component {
 
   toggleToolBoxPosition(event) {
-    const toggleBtn = document.querySelector('.toggle-pos');
+    // const toggleBtn = document.querySelector('.toggle-pos');
     const toolBox = document.querySelector('.tool-box');
 
     if (toolBox.classList.contains('horizontal')) {
@@ -52,7 +52,7 @@ class ToolBox extends Component {
           <section className="notation-selectors is-flex">
             <div className="note-lengths-container selectors is-centered">
               <h3>Measure</h3>
-              <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/7/7632.svg" alt="add measure"/></button>
+              <button className="icon is-centered add-measure-btn"><img src="https://image.flaticon.com/icons/svg/7/7632.svg" alt="add measure"/></button>
               <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125036.svg" alt="clef"/></button>
               <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125049.svg" alt="repeat"/></button>
 
