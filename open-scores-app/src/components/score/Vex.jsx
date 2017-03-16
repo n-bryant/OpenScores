@@ -244,6 +244,7 @@ class VFDisplay extends Component {
     let dfMajScale = [c3, df3, ef3, f3, gf3, af3, bf3, c4, df4, ef4, f4, gf4, af4, bf4, c5, df5, ef5, f5, gf5, af5, bf5, c6, df6, ef6, gf6, af6, bf6, c7];
     let gfMajScale = [df3, ef3, f3, gf3, af3, bf3, cf4, df4, ef4, f4, gf4, af4, bf4, cf5, df5, ef5, f5, gf5, af5, bf5, cf6, df6, ef6, gf6, af6, bf6, cf7];
 
+    //major triads
     let C5 = new VF.StaveNote({keys: ['C/4', 'E/4', 'G/4'], duration: duration});
     let Cs5 = new VF.StaveNote({keys: ['C#/4', 'E#/4', 'G#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
     let Df5 = new VF.StaveNote({keys: ['Db/4', 'F/4', 'Ab/4'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
@@ -253,21 +254,40 @@ class VFDisplay extends Component {
     let E5 = new VF.StaveNote({keys: ['E/4', 'G#/4', 'B/4'], duration: duration}).addAccidental(1, new VF.Accidental('#'));
     let F5 = new VF.StaveNote({keys: ['F/4', 'A/4', 'C/5'], duration: duration});
     let Fs5 = new VF.StaveNote({keys: ['F#/4', 'A#/4', 'C#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
-    let Gf5 = new VF.StaveNote({keys: ['Gb/4', 'B/4', 'Db/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
+    let Gf5 = new VF.StaveNote({keys: ['Gb/4', 'Bb/4', 'Db/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
     let G5 = new VF.StaveNote({keys: ['G/4', 'B/4', 'D/5'], duration: duration});
-    let Gs5 = new VF.StaveNote({keys: ['G#/4', 'B#/4', 'D#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
+    let Gs5 = new VF.StaveNote({keys: ['G#/4', 'B#/4', 'D#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
     let Af5 = new VF.StaveNote({keys: ['Ab/4', 'C/5', 'Eb/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
-    let A5 = new VF.StaveNote({keys: ['A/4', 'C#/5', 'E/4'], duration: duration}).addAccidental(1, new VF.Accidental('#'));
-    let As5 = new VF.StaveNote({keys: ['A#/4', 'C##/5', 'E#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('##f')).addAccidental(2, new VF.Accidental('#'));
+    let A5 = new VF.StaveNote({keys: ['A/4', 'C#/5', 'E/5'], duration: duration}).addAccidental(1, new VF.Accidental('#'));
+    let As5 = new VF.StaveNote({keys: ['A#/4', 'C##/5', 'E#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('##')).addAccidental(2, new VF.Accidental('#'));
     let Bf5 = new VF.StaveNote({keys: ['Bb/4', 'D/5', 'F/5'], duration: duration}).addAccidental(0, new VF.Accidental('b'));
     let B5 = new VF.StaveNote({keys: ['B/4', 'D#/5', 'F#/5'], duration: duration}).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
+
+    //minor triads
+    let Cm5 = new VF.StaveNote({keys: ['C/4', 'Eb/4', 'G/4'], duration: duration}).addAccidental(1, new VF.Accidental('b'));
+    let Csm5 = new VF.StaveNote({keys: ['C#/4', 'E/4', 'G#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
+    let Dfm5 = new VF.StaveNote({keys: ['Db/4', 'Fb/4', 'Ab/4'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
+    let Dm5 = new VF.StaveNote({keys: ['D/4', 'F/4', 'A/4'], duration: duration});
+    let Dsm5 = new VF.StaveNote({keys: ['D#/4', 'F#/4', 'A#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
+    let Efm5 = new VF.StaveNote({keys: ['Eb/4', 'Gb/4', 'Bb/4'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
+    let Em5 = new VF.StaveNote({keys: ['E/4', 'G/4', 'B/4'], duration: duration});
+    let Fm5 = new VF.StaveNote({keys: ['F/4', 'Ab/4', 'C/5'], duration: duration}).addAccidental(1, new VF.Accidental('b'));
+    let Fsm5 = new VF.StaveNote({keys: ['F#/4', 'A/4', 'C#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
+    let Gfm5 = new VF.StaveNote({keys: ['Gb/4', 'Bbb/4', 'Db/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('bb')).addAccidental(2, new VF.Accidental('b'));
+    let Gm5 = new VF.StaveNote({keys: ['G/4', 'Bb/4', 'D/5'], duration: duration}).addAccidental(1, new VF.Accidental('b'));
+    let Gsm5 = new VF.StaveNote({keys: ['G#/4', 'B/4', 'D#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
+    let Afm5 = new VF.StaveNote({keys: ['Ab/4', 'Cb/5', 'Eb/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
+    let Am5 = new VF.StaveNote({keys: ['A/4', 'C/5', 'E/5'], duration: duration});
+    let Asm5 = new VF.StaveNote({keys: ['A#/4', 'C#/5', 'E#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
+    let Bfm5 = new VF.StaveNote({keys: ['Bb/4', 'Db/5', 'F/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b'));
+    let Bm5 = new VF.StaveNote({keys: ['B/4', 'D/5', 'F#/5'], duration: duration}).addAccidental(2, new VF.Accidental('#'));
 
 
 
 
     let barCount = 1;
     let octaves = [3, 4, 5];
-    let notes = [];
+    let notes = [Bm5];
     let selectedNote;
     let staveX = 10;
     let staveY = 40;
@@ -276,10 +296,10 @@ class VFDisplay extends Component {
     let voice = new VF.Voice({num_beats: 4, beat_value: 4});
 
     // create 1 note, push it to notes array, and draw that 1 note to page.
-    notes[0] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
-    notes[1] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
-    notes[2] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
-    notes[3] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
+    // notes[0] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
+    // notes[1] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
+    // notes[2] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
+    // notes[3] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
     drawScore();
 
     // draw a bar for each measure to the canvas
