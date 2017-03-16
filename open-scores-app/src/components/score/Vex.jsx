@@ -102,11 +102,17 @@ class VFDisplay extends Component {
         // Connect it to the rendering context and draw
         staveBars[i].setContext(context).draw();
 
-        // assign notes to a voice
+        // Assign notes to a voice
         voice.addTickables(notes);
 
         // Render voice
         VF.Formatter.FormatAndDraw(context, staveBars[i], notes);
+
+        // Creating consistency in VF generated note element ids for selection later
+        let allNotes = document.querySelectorAll('.vf-stavenote');
+        for (let i = 0; i < allNotes.length; i++) {
+          allNotes[i].id = `note${i}`;
+        }
         bindEvents();
       }
     }
@@ -138,10 +144,10 @@ class VFDisplay extends Component {
         selectedNote ? changePitch('down') : selectedNote = null;
       } else if (e.keyCode == '37') {
         // left arrow
-        console.log('left');
+        changeSelection('left');
       } else if (e.keyCode == '39') {
         // right arrow
-        console.log('right');
+        changeSelection('right');
       }
     }
 
@@ -163,16 +169,35 @@ class VFDisplay extends Component {
         key === 'up' ? newPitch = noteVals[currentPitch + 1] : newPitch = noteVals[currentPitch - 1];
       }
 
-      /*
-        newPitch has the value of a noteVal which is a static object that doesn't get an updated id,
-        so when multiple notes are modulated to the same value, they have the same id, and collapse on each other
-      */
       notes[notes.indexOf(selectedNote)] = newPitch;
       selectedNote = newPitch;
       voice = new VF.Voice({num_beats: 4, beat_value: 4});
       setLibrary();
       drawScore();
       highlightNote();
+    }
+
+    // change selected note with left and right arrow keys
+    function changeSelection(key) {
+      let currentId = selectedNote.attrs.el.id;
+      currentId = parseInt(currentId.substr(4, 10));
+      if (key === 'right') {
+        let nextId;
+        if (document.getElementById(`note${currentId + 1}`)) {
+          nextId = document.getElementById(`note${currentId + 1}`);
+        } else {
+          nextId = document.querySelector('.vf-stavenote:first-of-type');
+        }
+        getNoteById(nextId);
+      } else {
+        let prevId;
+        if (document.getElementById(`note${currentId - 1}`)) {
+          prevId = document.getElementById(`note${currentId - 1}`);
+        } else {
+          prevId = document.querySelector('.vf-stavenote:last-of-type');
+        }
+        getNoteById(prevId);
+      }
     }
 
     // sets selected note
