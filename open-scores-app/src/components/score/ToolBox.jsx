@@ -73,7 +73,7 @@ class ToolBox extends Component {
               <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125088.svg" alt="sharp"/></button>
               <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125125.svg" alt="tie"/></button>
               <button className="icon is-centered">•</button>
-              <button className="icon is-centered">3</button>
+              <button className="icon triplet-btn is-centered"><p>┌3┐</p></button>
             </div>
             <div className="rest-lengths-container selectors is-centered">
               <h3>Rests</h3>
