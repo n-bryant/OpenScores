@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import VFDisplay from './VexTest';
+import VFDisplay from './Vex';
 import ToolBox from './ToolBox';
 // import ABCDisplay from './ABC';
 
@@ -8,7 +8,6 @@ class Score extends Component {
   processBPMForm(event) {
     event.preventDefault();
     const newBPM = this.bpm.value;
-    console.log(newBPM);
 
     this.props.editBPM(newBPM);
     this.bpmForm.reset();
