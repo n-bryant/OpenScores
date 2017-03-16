@@ -133,20 +133,22 @@ class VFDisplay extends Component {
     // check which key was pressed
     function checkKey(e) {
       e = e || window.event;
-      e.preventDefault();
 
-      e.preventDefault();
       if (e.keyCode == '38') {
         // up arrow
+        e.preventDefault();
         selectedNote ? changePitch('up') : selectedNote = null;
       } else if (e.keyCode == '40') {
         // down arrow
+        e.preventDefault();
         selectedNote ? changePitch('down') : selectedNote = null;
       } else if (e.keyCode == '37') {
         // left arrow
+        e.preventDefault();
         changeSelection('left');
       } else if (e.keyCode == '39') {
         // right arrow
+        e.preventDefault();
         changeSelection('right');
       }
     }
