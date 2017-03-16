@@ -122,7 +122,7 @@ class VFDisplay extends Component {
         'A#/4', 'C##/5', 'E#/5', 'G#/5'
       ],
       duration: duration
-    }).;
+    });
 
     let Bf7 = new VF.StaveNote({
       keys: [
@@ -232,101 +232,41 @@ class VFDisplay extends Component {
     let barCount = 1;
     let cMajScale = [c3, d3, e3, f3, g3, a3, b3, c4, d4, e4, f4, g4, a4, b4, c5, d5, e5, f5, g5, a5, b5, c6, d6, e6, f6, g6, a6, b6, c7];
     let gMajScale = [c3, d3, e3, fs3, g3, a3, b3, c4, d4, e4, fs4, g4, a4, b4, c5, d5, e5, fs5, g5, a5, b5, c6, d6, e6, fs6, g6, a6, b6, c7];
-    let dMajScale = [cs3, d3, e3, fs3, g3, a3, b3, cs4, d4, e4, fs4, g4, a4, b4, cs5, d5, e5, fs5, g5, a5, b5, cs6, d6, e6, fs6, g6, a6, b6, cs7];
-    let aMajScale = [cs3, d3, e3, fs3, gs3, a3, b3, cs4, d4, e4, fs4, gs4, a4, b4, cs5, d5, e5, fs5, gs5, a5, b5, cs6, d6, e6, fs6, gs6, a6, b6, cs7];
-    let eMajScale = [cs3, ds3, e3, fs3, gs3, a3, b3, cs4, ds4, e4, fs4, gs4, a4, b4, cs5, ds5, e5, fs5, gs5, a5, b5, cs6, ds6, e6, fs6, gs6, a6, b6, cs7];
-    let bMajScale = [cs3, ds3, e3, fs3, gs3, as3, b3, cs4, ds4, e4, fs4, gs4, as4, b4, cs5, ds5, e5, fs5, gs5, as5, b5, cs6, ds6, e6, fs6, gs6, as6, b6, cs7];
-    let fsMajScale = [cs3, ds3, es3, fs3, gs3, as3, b3, cs4, ds4, es4, fs4, gs4, as4, b4, cs5, ds5, es5, fs5, gs5, as5, b5, cs6, ds6, es6, fs6, gs6, as6, b6, cs7];
+    let dMajScale = [cs3, d3, e3, fs3, g3, a3, b3, cs4, d4, e4, fs4, g4, a4, b4, cs5, d5, e5, fs5, g5, a5, b5, cs6, d6, e6, fs6, g6, a6, b6];
+    let aMajScale = [cs3, d3, e3, fs3, gs3, a3, b3, cs4, d4, e4, fs4, gs4, a4, b4, cs5, d5, e5, fs5, gs5, a5, b5, cs6, d6, e6, fs6, gs6, a6, b6];
+    let eMajScale = [cs3, ds3, e3, fs3, gs3, a3, b3, cs4, ds4, e4, fs4, gs4, a4, b4, cs5, ds5, e5, fs5, gs5, a5, b5, cs6, ds6, e6, fs6, gs6, a6, b6];
+    let bMajScale = [cs3, ds3, e3, fs3, gs3, as3, b3, cs4, ds4, e4, fs4, gs4, as4, b4, cs5, ds5, e5, fs5, gs5, as5, b5, cs6, ds6, e6, fs6, gs6, as6, b6];
+    let fsMajScale = [cs3, ds3, es3, fs3, gs3, as3, b3, cs4, ds4, es4, fs4, gs4, as4, b4, cs5, ds5, es5, fs5, gs5, as5, b5, cs6, ds6, es6, fs6, gs6, as6, b6];
 
     let fMajScale = [c3, d3, e3, f3, g3, a3, b3, c4, d4, e4, f4, g4, a4, b4, c5, d5, e5, f5, g5, a5, b5, c6, d6, e6, f6, g6, a6, b6, c7];
+    let bfMajScale = [bf3, c3, ]
+    // setLibrary();
 
-    //array of strings of scale names, for loop iterate over that array, at each scale conditional only push ones
-    let noteVals = [
-      c3,
-      cs3,
-      df3,
-      d3,
-      ds3,
-      ef3,
-      e3,
-      es3,
-      ff3,
-      f3,
-      fs3,
-      gf3,
-      g3,
-      gs3,
-      af3,
-      a3,
-      as3,
-      bf3,
-      b3,
-      bs3,
-      cf4,
-      c4,
-      cs4,
-      df4,
-      d4,
-      ds4,
-      ef4,
-      e4,
-      es4,
-      ff4,
-      f4,
-      fs4,
-      gf4,
-      g4,
-      gs4,
-      af4,
-      a4,
-      as4,
-      bf4,
-      b4,
-      bs4,
-      cf5,
-      c5,
-      cs5,
-      df5,
-      d5,
-      ds5,
-      ef5,
-      e5,
-      es5,
-      ff5,
-      f5,
-      fs5,
-      gf5,
-      g5,
-      gs5,
-      af5,
-      a5,
-      as5,
-      bf5,
-      b5,
-      bs5,
-      cf6,
-      c6,
-      cs6,
-      df6,
-      d6,
-      ds6,
-      ef6,
-      e6,
-      es6,
-      ff6,
-      f6,
-      fs6,
-      gf6,
-      g6,
-      gs6,
-      af6,
-      a6,
-      as6,
-      bf6,
-      b6,
-      bs6,
-      cf7
-    ];
+    // creates VexFlow scale library
+    let scales = [{name: 'cMajScale', noteVals: []}, {name: 'gMajScale', noteVals: []}, {name: 'dMajScale', noteVals: []}, {name: 'aMajScale', noteVals: []}, {name: 'eMajScale', noteVals: []}, {name: 'bMajScale', noteVals: []}, {name: 'fsMajScale', noteVals: []},
+  {name: 'gfMajScale', noteVals: []}, {name: 'dfMajScale', noteVals: []}, {name: 'afMajScale', noteVals: []}, {name: 'efMajScale', noteVals: []}, {name: 'bfMajScale', noteVals: []}, {name: 'fMajScale', noteVals: []}];
+
+    function setLibrary() {
+      // let c3 = new VF.StaveNote({keys: ['C/3'], duration: duration});
+      // let d3 = new VF.StaveNote({keys: ['D/3'], duration: duration});
+      // let e3 = new VF.StaveNote({keys: ['E/3'], duration: duration});
+
+      let noteVals = [c3, cs3, df3, d3, ds3, ef3, e3, es3, ff3, f3, fs3, gf3, g3, gs3, af3, a3, as3, bf3, b3, bs3, cf4, c4, cs4, df4, d4, ds4, ef4, e4, es4, ff4, f4, fs4, gf4, g4, gs4, af4, a4, as4, bf4, b4, bs4, cf5, c5, cs5, df5, d5, ds5, ef5, e5, es5, ff5, f5, fs5, gf5, g5, gs5, af5, a5, as5, bf5, b5, bs5, cf6, c6, cs6, df6, d6, ds6, ef6, e6, es6, ff6, f6, fs6, gf6, g6, gs6, af6, a6, as6, bf6, b6, bs6, cf7];
+
+
+      for (let i = 0; i < scales.length; i++) {
+        if (scales[i].name === 'a') {
+        let  notInScale = [d3]; // notes that we don't want this scale to have
+          // push only the notes that are included in the scale
+          noteVals.forEach((note) => {
+            if (notInScale.indexOf(note) === -1) {
+              scales[i].noteVals.push(note);
+            }
+          });
+        } // else if (scales[i].name === 'b') {} ...
+      }
+    }
+
 
     let octaves = [3, 4, 5];
     let notes = [];
