@@ -128,13 +128,12 @@ class VFDisplay extends Component {
     function checkKey(e) {
       e = e || window.event;
 
+      e.preventDefault();
       if (e.keyCode == '38') {
         // up arrow
-        e.preventDefault();
         selectedNote ? changePitch('up') : selectedNote = null;
       } else if (e.keyCode == '40') {
         // down arrow
-        e.preventDefault();
         selectedNote ? changePitch('down') : selectedNote = null;
       } else if (e.keyCode == '37') {
         // left arrow
