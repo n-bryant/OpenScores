@@ -133,10 +133,6 @@ body {
     justify-content: center;
     overflow: scroll;
     padding: 2rem;
-    background: #474747;
-    border-radius: 6px;
-    border-style: outset; }
-  .tool-box.horizontal {
     width: 100vw;
     bottom: 0px; }
   .tool-box.vertical {
@@ -223,15 +219,6 @@ body {
     background: #41A2EB;
     outline: none; }
   .icon:focus {
-    width: 2rem;
-    height: 2rem;
-    margin: 3px; }
-  .icon img {
-    filter: brightness(30%); }
-  .icon:focus {
-    border: 0;
-    box-shadow: none;
-    background: #63C273;
     outline: none; }
 
 .chat-container {
