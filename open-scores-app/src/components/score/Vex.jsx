@@ -20,7 +20,7 @@ class VFDisplay extends Component {
 
     let duration = '4';
     let noteVals = [];
-    
+
     // let noteVals = getScale(scaleIWant);
     function setLibrary(scale) {
       noteVals = [];
@@ -249,8 +249,7 @@ class VFDisplay extends Component {
     let voices = [];
 
     for (let i = 0; i < beatCount; i++) {
-      // defaultMeasure.notes[i] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
-      defaultMeasure.notes[i] = BMaj7;
+      defaultMeasure.notes[i] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
     }
     notes.push(defaultMeasure.notes);
     drawScore();
