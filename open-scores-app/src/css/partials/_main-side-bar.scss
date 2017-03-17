@@ -1,9 +1,10 @@
-.main-profile-container {
+.main-side-container {
     display: flex;
     flex-direction: row;
     height: 700px;
     margin: 0;
     width: 20%;
+    position: absolute;
 }
 
 .profile-pic {
@@ -16,17 +17,4 @@
     background: $mediumDark;
     display: flex;
     flex-direction: column;
-}
-
-.friends-main-container {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-}
-
-.friends-profile-pic {
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    margin: 15px;
 }

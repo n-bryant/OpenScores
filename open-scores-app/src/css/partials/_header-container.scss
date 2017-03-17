@@ -3,12 +3,22 @@
     background: $mediumDark;
     color: $orange;
     display: flex;
-    height: 150px;
+    height: 80px;
     font-size: 50px;
+    flex-direction: row;
     justify-content: center;
+}
+
+.logo-container {
+    height: 20px;
+    width: 15%;
 }
 
 .newThing {
     background: $mediumDark;
     width: 100px;
+}
+
+.search-comp {
+    padding: 30px;
 }
