@@ -89,12 +89,9 @@ body {
   overflow: scroll;
   padding: 2rem;
   width: 85%; }
-<<<<<<< HEAD
-=======
   @media screen and (min-width: 320px) {
     .score-container {
       width: 100%; } }
->>>>>>> 53363203149e6e50559b07392f44572e86d2b602
   .score-container .score-title {
     font: 2rem "Bilbo", cursive; }
   .score-container .edit-title-form {
@@ -106,10 +103,6 @@ body {
       font: 2rem "Bilbo", cursive;
       width: 50%; }
       .score-container .edit-title-form .title-input:focus {
-<<<<<<< HEAD
-        box-shadow: 0 0.5rem 1.5rem #63C273;
-        outline: none; }
-=======
         background: rgba(71, 71, 71, 0.25);
         border-bottom: 2px solid #FF7800;
         outline: none; }
@@ -129,17 +122,10 @@ body {
       background: rgba(71, 71, 71, 0.25);
       border-bottom: 2px solid #FF7800;
       outline: none; }
->>>>>>> 53363203149e6e50559b07392f44572e86d2b602
 
 .tool-box {
   position: fixed;
   border: 3px solid #474747;
-<<<<<<< HEAD
-  background: #474747;
-  border-radius: 6px;
-  border-style: outset; }
-  .tool-box.horizontal {
-=======
   background: #474747; }
   .tool-box.horizontal {
     flex-wrap: nowrap;
@@ -147,7 +133,6 @@ body {
     justify-content: center;
     overflow: scroll;
     padding: 2rem;
->>>>>>> 53363203149e6e50559b07392f44572e86d2b602
     width: 100vw;
     bottom: 0px; }
   .tool-box.vertical {
@@ -221,19 +206,6 @@ body {
   cursor: pointer;
   font-weight: bold;
   border-radius: 5px;
-<<<<<<< HEAD
-  width: 2rem;
-  height: 2rem;
-  margin: 3px; }
-  .icon img {
-    filter: brightness(30%); }
-  .icon:hover {
-    cursor: pointer; }
-  .icon:focus {
-    border: 0;
-    box-shadow: none;
-    background: #63C273;
-=======
   width: 2.5rem;
   height: 2.5rem;
   margin: .5rem; }
@@ -247,7 +219,6 @@ body {
     background: #41A2EB;
     outline: none; }
   .icon:focus {
->>>>>>> 53363203149e6e50559b07392f44572e86d2b602
     outline: none; }
 
 .chat-container {
