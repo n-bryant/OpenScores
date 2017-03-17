@@ -8,8 +8,8 @@ class Profile extends Component {
         return (
             <section className="profile-wrapper">
                 <MainHeader/>
-                <UserCompositions/>
                 <MainSideBar/>
+                <UserCompositions/>
             </section>
         );
     }

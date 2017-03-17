@@ -2,9 +2,12 @@
   position: fixed;
   border: 3px solid $medium;
   background: $medium;
-  border-radius: 6px;
-  border-style: outset;
   &.horizontal {
+    flex-wrap: nowrap;
+    height: 196px;
+    justify-content: center;
+    overflow: scroll;
+    padding: 2rem;
     width: 100vw;
     bottom: 0px;
   }
@@ -87,23 +90,27 @@
   font-weight: bolder;
 }
 .icon {
-  border: none;
+  border: 2px solid $orange;
   background: $orange;
+  cursor: pointer;
   font-weight: bold;
   border-radius: 5px;
-  width: 2rem;
-  height: 2rem;
-  margin: 3px;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: .5rem;
   img {
     filter: brightness(30%);
   }
   &:hover {
-    cursor: pointer;
+    border: 2px solid $blueAcc;
+  }
+  &:active {
+    border: 2px solid $orange;
+    box-shadow: none;
+    background: $blueAcc;
+    outline: none;
   }
   &:focus {
-    border: 0;
-    box-shadow: none;
-    background: $greenAcc;
     outline: none;
   }
 }
