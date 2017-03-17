@@ -1,5 +1,4 @@
-import react {Component}
-from 'react';
+import react, {Component} from 'react';
 
 class Composition extends Component {
     render() {

@@ -20,12 +20,10 @@ class VFDisplay extends Component {
 
     let duration = '4';
     let noteVals = [];
-
     // let noteVals = getScale(scaleIWant);
-    function setLibrary(scale) {
-      noteVals = [];
 
-      //notes octave C3-C4
+    function setLibrary() {
+      noteVals = [];
       let c3 = new VF.StaveNote({keys: ['C/3'], duration: duration});
       let cs3 = new VF.StaveNote({keys: ['C#/3'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
       let df3 = new VF.StaveNote({keys: ['Db/3'], duration: duration}).addAccidental(0, new VF.Accidental('b'));
@@ -225,6 +223,7 @@ class VFDisplay extends Component {
       let Asmin7 = new VF.StaveNote({keys: [ 'A#/4', 'C#/5', 'E#/5', 'G#/5' ], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
       let Bfmin7 = new VF.StaveNote({keys: ['Bb/4', 'Db/5', 'F/5', 'Ab/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
       let Bmin7 = new VF.StaveNote({keys: ['B/4', 'D/5', 'F#/5', 'A/5'], duration: duration}).addAccidental(2, new VF.Accidental('#'));
+
       // console.log(scale);
       cMajScale.forEach((note) => {
         noteVals.push(note);
@@ -283,7 +282,6 @@ class VFDisplay extends Component {
         VF.Formatter.FormatAndDraw(context, staveBars[i], notes[i]);
         resetNoteElementIds();
       }
-      bindEvents();
     }
 
     // bind events
@@ -432,7 +430,7 @@ class VFDisplay extends Component {
 
     // reset library with new note and voice instances
     function resetCanvas() {
-      // setLibrary();
+      setLibrary();
       drawScore();
     }
 
@@ -462,6 +460,8 @@ class VFDisplay extends Component {
       });
       resetCanvas();
     }
+
+    bindEvents();
   }
 
   render() {
