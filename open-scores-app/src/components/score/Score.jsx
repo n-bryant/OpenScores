@@ -49,11 +49,11 @@ class Score extends Component {
               </form>
             </div>
             <div className="bpm-container">
-              <p ref={(scoreBPM) => this.bpmEl = scoreBPM} className="score-bpm" onClick={() => {this.toggleForm(this.bpmEl, this.bpmForm)}}>BPM={this.props.bpm}</p>
-              <form ref={(fullBPMForm) => this.bpmForm = fullBPMForm} className="edit-bpm-form is-hidden" name="edit-bpm-form" onSubmit={this.processBPMForm.bind(this)}>
-                <legend className="is-hidden">Edit BPM</legend>
+              <p ref={(scoreBPM) => this.bpmEl = scoreBPM} className="score-bpm" onClick={() => {this.toggleForm(this.bpmEl, this.bpmForm)}}>{this.props.bpm}bpm</p>
+              <form ref={(fullBPMForm) => this.bpmForm = fullBPMForm} className="edit-bpm-form is-flex is-hidden" name="edit-bpm-form" onSubmit={this.processBPMForm.bind(this)}>
+                <legend>bpm</legend>
                 <label htmlFor="bpm" className="is-hidden"/>
-                <input className="bpm-input" ref={(inputBPM) => this.bpm = inputBPM} type="number" id="bpm" min="0" required/>
+                <input className="bpm-input" ref={(inputBPM) => this.bpm = inputBPM} type="number" id="bpm" min="0" max="220" required/>
                 <label className="is-hidden" type="submit" value="Update BPM">
                   <input type="submit" value="update bpm"/>
                 </label>
