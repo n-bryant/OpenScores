@@ -1,9 +1,10 @@
-.main-profile-container {
+.main-side-container {
     display: flex;
     flex-direction: row;
     height: 700px;
     margin: 0;
     width: 20%;
+    position: absolute;
 }
 
 .profile-pic {

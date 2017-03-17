@@ -1,12 +1,25 @@
-.container-one {
-    border: 1px solid black;
+.composition-container {
     float: right;
-    height: 700px;
     width: 80%;
 }
 
-.user-comp {
-    border: 1px solid red;
-    width: 20%;
-    height: 20%;
+.main-comp-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    // float: right;
+}
+
+.container-one {
+    background: $light;
+    border: 1px solid black;
+    height: 225px;
+    width: 17%;
+    margin: 40px;
+}
+
+.container-one:hover {
+    border-color: $orange;
+    opacity: 1;
 }
