@@ -89,7 +89,6 @@ body {
   overflow: scroll;
   padding: 2rem;
   width: 85%; }
-<<<<<<< HEAD
   @media screen and (min-width: 320px) {
     .score-container {
       width: 100%; } }
@@ -134,6 +133,10 @@ body {
     justify-content: center;
     overflow: scroll;
     padding: 2rem;
+    background: #474747;
+    border-radius: 6px;
+    border-style: outset; }
+  .tool-box.horizontal {
     width: 100vw;
     bottom: 0px; }
   .tool-box.vertical {
@@ -144,17 +147,15 @@ body {
 .playback-controls {
   flex-direction: column;
   width: 16rem; }
-
-.playback-controls .toggle-pos {
-  position: relative;
-  bottom: 1.5rem;
-  left: 1rem;
-  width: 2rem;
-  background: none;
-  border: none; }
-
-.playback-controls .toggle-pos:hover {
-  cursor: pointer; }
+  .playback-controls .toggle-pos {
+    position: relative;
+    bottom: 1.5rem;
+    left: 1rem;
+    width: 2rem;
+    background: none;
+    border: none; }
+    .playback-controls .toggle-pos:hover {
+      cursor: pointer; }
 
 .playback {
   width: 55px;
@@ -163,12 +164,10 @@ body {
   border-radius: 5px;
   margin: 3px;
   padding: 5px; }
-
-.playback:hover {
-  cursor: pointer; }
-
-.playback img {
-  filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
+  .playback:hover {
+    cursor: pointer; }
+  .playback img {
+    filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
 
 .stopBtn:focus {
   background: #af4242; }
@@ -224,6 +223,15 @@ body {
     background: #41A2EB;
     outline: none; }
   .icon:focus {
+    width: 2rem;
+    height: 2rem;
+    margin: 3px; }
+  .icon img {
+    filter: brightness(30%); }
+  .icon:focus {
+    border: 0;
+    box-shadow: none;
+    background: #63C273;
     outline: none; }
 
 .chat-container {
