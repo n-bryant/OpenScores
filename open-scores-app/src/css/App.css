@@ -84,19 +84,23 @@ body {
   overflow: scroll;
   padding: 2rem;
   width: 85%; }
-  .score-container .score-title {
-    font: 2rem "Bilbo", cursive; }
-  .score-container .edit-title-form {
-    text-align: center; }
-    .score-container .edit-title-form .title-input {
-      background: #FAFAFA;
-      border: none;
-      color: #212121;
-      font: 2rem "Bilbo", cursive;
-      width: 50%; }
-      .score-container .edit-title-form .title-input:focus {
-        box-shadow: 0 0.5rem 1.5rem #63C273;
-        outline: none; }
+
+.score-container .score-title {
+  font: 2rem "Bilbo", cursive; }
+
+.score-container .edit-title-form {
+  text-align: center; }
+
+.score-container .edit-title-form .title-input {
+  background: #FAFAFA;
+  border: none;
+  color: #212121;
+  font: 2rem "Bilbo", cursive;
+  width: 50%; }
+
+.score-container .edit-title-form .title-input:focus {
+  box-shadow: 0 0.5rem 1.5rem #63C273;
+  outline: none; }
 
 .tool-box {
   position: fixed;
@@ -104,26 +108,30 @@ body {
   background: #474747;
   border-radius: 6px;
   border-style: outset; }
-  .tool-box.horizontal {
-    width: 100vw;
-    bottom: 0px; }
-  .tool-box.vertical {
-    flex-direction: column;
-    min-height: 100vh;
-    width: 16rem; }
+
+.tool-box.horizontal {
+  width: 100vw;
+  bottom: 0px; }
+
+.tool-box.vertical {
+  flex-direction: column;
+  min-height: 100vh;
+  width: 16rem; }
 
 .playback-controls {
   flex-direction: column;
   width: 16rem; }
-  .playback-controls .toggle-pos {
-    position: relative;
-    bottom: 1.5rem;
-    left: 1rem;
-    width: 2rem;
-    background: none;
-    border: none; }
-    .playback-controls .toggle-pos:hover {
-      cursor: pointer; }
+
+.playback-controls .toggle-pos {
+  position: relative;
+  bottom: 1.5rem;
+  left: 1rem;
+  width: 2rem;
+  background: none;
+  border: none; }
+
+.playback-controls .toggle-pos:hover {
+  cursor: pointer; }
 
 .playback {
   width: 55px;
@@ -132,10 +140,12 @@ body {
   border-radius: 5px;
   margin: 3px;
   padding: 5px; }
-  .playback:hover {
-    cursor: pointer; }
-  .playback img {
-    filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
+
+.playback:hover {
+  cursor: pointer; }
+
+.playback img {
+  filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
 
 .stopBtn:focus {
   background: #af4242; }
@@ -180,15 +190,18 @@ body {
   width: 2rem;
   height: 2rem;
   margin: 3px; }
-  .icon img {
-    filter: brightness(30%); }
-  .icon:hover {
-    cursor: pointer; }
-  .icon:focus {
-    border: 0;
-    box-shadow: none;
-    background: #63C273;
-    outline: none; }
+
+.icon img {
+  filter: brightness(30%); }
+
+.icon:hover {
+  cursor: pointer; }
+
+.icon:focus {
+  border: 0;
+  box-shadow: none;
+  background: #63C273;
+  outline: none; }
 
 .chat-container {
   flex-direction: column;
