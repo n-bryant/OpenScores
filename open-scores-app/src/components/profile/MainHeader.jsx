@@ -5,7 +5,7 @@ class MainHeader extends Component {
         return (
             <div className="header-container">
                 <section className="main-header-container">
-                    <h1>Write Some Musak!!!</h1>
+                    <input className="search-comp" type="search" placeholder="Find Compositions..."></input>
                 </section>
             </div>
         );

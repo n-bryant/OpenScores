@@ -89,6 +89,7 @@ body {
   overflow: scroll;
   padding: 2rem;
   width: 85%; }
+<<<<<<< HEAD
   @media screen and (min-width: 320px) {
     .score-container {
       width: 100%; } }
@@ -143,15 +144,17 @@ body {
 .playback-controls {
   flex-direction: column;
   width: 16rem; }
-  .playback-controls .toggle-pos {
-    position: relative;
-    bottom: 1.5rem;
-    left: 1rem;
-    width: 2rem;
-    background: none;
-    border: none; }
-    .playback-controls .toggle-pos:hover {
-      cursor: pointer; }
+
+.playback-controls .toggle-pos {
+  position: relative;
+  bottom: 1.5rem;
+  left: 1rem;
+  width: 2rem;
+  background: none;
+  border: none; }
+
+.playback-controls .toggle-pos:hover {
+  cursor: pointer; }
 
 .playback {
   width: 55px;
@@ -160,10 +163,12 @@ body {
   border-radius: 5px;
   margin: 3px;
   padding: 5px; }
-  .playback:hover {
-    cursor: pointer; }
-  .playback img {
-    filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
+
+.playback:hover {
+  cursor: pointer; }
+
+.playback img {
+  filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
 
 .stopBtn:focus {
   background: #af4242; }
@@ -228,18 +233,31 @@ body {
 .header-container {
   align-items: center;
   background: #373737;
-  color: #fff;
+  color: #FF7800;
   display: flex;
-  height: 150px;
+  height: 80px;
   font-size: 50px;
+  flex-direction: row;
   justify-content: center; }
 
-.main-profile-container {
+.logo-container {
+  height: 20px;
+  width: 15%; }
+
+.newThing {
+  background: #373737;
+  width: 100px; }
+
+.search-comp {
+  padding: 30px; }
+
+.main-side-container {
   display: flex;
   flex-direction: row;
   height: 700px;
   margin: 0;
-  width: 20%; }
+  width: 20%;
+  position: absolute; }
 
 .profile-pic {
   border-radius: 50%;
@@ -251,13 +269,23 @@ body {
   display: flex;
   flex-direction: column; }
 
-.container-one {
-  border: 1px solid black;
+.composition-container {
   float: right;
-  height: 700px;
   width: 80%; }
 
-.user-comp {
-  border: 1px solid red;
-  width: 20%;
-  height: 20%; }
+.main-comp-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%; }
+
+.container-one {
+  background: #FAFAFA;
+  border: 1px solid black;
+  height: 225px;
+  width: 17%;
+  margin: 40px; }
+
+.container-one:hover {
+  border-color: #FF7800;
+  opacity: 1; }
