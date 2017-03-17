@@ -20,7 +20,7 @@ class VFDisplay extends Component {
 
     let duration = '4';
     let noteVals = [];
-
+    
     // let noteVals = getScale(scaleIWant);
     function setLibrary(scale) {
       noteVals = [];
@@ -132,7 +132,6 @@ class VFDisplay extends Component {
       let dfMajScale = [c3, df3, ef3, f3, gf3, af3, bf3, c4, df4, ef4, f4, gf4, af4, bf4, c5, df5, ef5, f5, gf5, af5, bf5, c6, df6, ef6, gf6, af6, bf6, c7];
       let gfMajScale = [df3, ef3, f3, gf3, af3, bf3, cf4, df4, ef4, f4, gf4, af4, bf4, cf5, df5, ef5, f5, gf5, af5, bf5, cf6, df6, ef6, gf6, af6, bf6, cf7];
 
-
       //major triads
       let C5 = new VF.StaveNote({keys: ['C/4', 'E/4', 'G/4'], duration: duration});
       let Cs5 = new VF.StaveNote({keys: ['C#/4', 'E#/4', 'G#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
@@ -179,7 +178,7 @@ class VFDisplay extends Component {
       let Ds7 = new VF.StaveNote({keys: ['D#/4', 'F##/4', 'A#/4', 'C#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('##')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
       let Ef7 = new VF.StaveNote({keys: ['Eb/4', 'G/4', 'Bb/4', 'Db/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
       let E7 = new VF.StaveNote({keys: ['E/4', 'G#/4', 'B/4', 'D/5'], duration: duration}).addAccidental(1, new VF.Accidental('#'));
-      let F7 = new VF.StaveNote({keys: ['F/4', 'A/4', 'C/5', 'Eb/5'], duration: duration}).addAccidental(3, new VF.Accidental('b'));;
+      let F7 = new VF.StaveNote({keys: ['F/4', 'A/4', 'C/5', 'Eb/5'], duration: duration}).addAccidental(3, new VF.Accidental('b'));
       let Fs7 = new VF.StaveNote({keys: ['F#/4', 'A#/4', 'C#/5', 'E/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
       let Gf7 = new VF.StaveNote({keys: ['Gb/4', 'Bb/4', 'Db/5', 'Fb/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
       let G7 = new VF.StaveNote({keys: ['G/4', 'B/4', 'D/5', 'F/5'], duration: duration});
@@ -189,7 +188,43 @@ class VFDisplay extends Component {
       let As7 = new VF.StaveNote({keys: [ 'A#/4', 'C##/5', 'E#/5', 'G#/5' ], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('##')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
       let Bf7 = new VF.StaveNote({keys: ['Bb/4', 'D/5', 'F/5', 'Ab/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
       let B7 = new VF.StaveNote({keys: ['B/4', 'D#/5', 'F#/5', 'A/5'], duration: duration}).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
+      //Major seven chords
+      let CMaj7 = new VF.StaveNote({keys: ['C/4', 'E/4', 'G/4', 'B/4'], duration: duration});
+      let CsMaj7 = new VF.StaveNote({keys: ['C#/4', 'E#/4', 'G#/4', 'B#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
+      let DfMaj7 = new VF.StaveNote({keys: ['Db/4', 'F/4', 'Ab/4', 'C/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
+      let DMaj7 = new VF.StaveNote({keys: ['D/4', 'F#/4', 'A/4', 'C#/5'], duration: duration}).addAccidental(1, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
+      let DsMaj7 = new VF.StaveNote({keys: ['D#/4', 'F##/4', 'A#/4', 'C##/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('##')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('##'));
+      let EfMaj7 = new VF.StaveNote({keys: ['Eb/4', 'G/4', 'Bb/4', 'D/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
+      let EMaj7 = new VF.StaveNote({keys: ['E/4', 'G#/4', 'B/4', 'D#/5'], duration: duration}).addAccidental(1, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
+      let FMaj7 = new VF.StaveNote({keys: ['F/4', 'A/4', 'C/5', 'E/5'], duration: duration});
+      let FsMaj7 = new VF.StaveNote({keys: ['F#/4', 'A#/4', 'C#/5', 'E#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
+      let GfMaj7 = new VF.StaveNote({keys: ['Gb/4', 'Bb/4', 'Db/5', 'F/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
+      let GMaj7 = new VF.StaveNote({keys: ['G/4', 'B/4', 'D/5', 'F#/5'], duration: duration}).addAccidental(3, new VF.Accidental('#'));
+      let GsMaj7 = new VF.StaveNote({keys: ['G#/4', 'B#/4', 'D#/5', 'F##/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('##'));
+      let AfMaj7 = new VF.StaveNote({keys: [ 'Ab/4', 'C/5', 'Eb/5', 'G/5' ], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
+      let AMaj7 = new VF.StaveNote({keys: [ 'A/4', 'C#/5', 'E/5', 'G#/5' ], duration: duration}).addAccidental(1, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
+      let AsMaj7 = new VF.StaveNote({keys: [ 'A#/4', 'C##/5', 'E#/5', 'G##/5' ], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('##')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('##'));
+      let BfMaj7 = new VF.StaveNote({keys: ['Bb/4', 'D/5', 'F/5', 'A/5'], duration: duration}).addAccidental(0, new VF.Accidental('b'));
+      let BMaj7 = new VF.StaveNote({keys: ['B/4', 'D#/5', 'F#/5', 'A#/5'], duration: duration}).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
 
+      //minor seven chords
+      let Cmin7 = new VF.StaveNote({keys: ['C/4', 'Eb/4', 'G/4', 'Bb/4'], duration: duration}).addAccidental(1, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
+      let Csmin7 = new VF.StaveNote({keys: ['C#/4', 'E/4', 'G#/4', 'B/4'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
+      let Dfmin7 = new VF.StaveNote({keys: ['Db/4', 'Fb/4', 'Ab/4', 'Cb/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
+      let Dmin7 = new VF.StaveNote({keys: ['D/4', 'F/4', 'A/4', 'C/5'], duration: duration});
+      let Dsmin7 = new VF.StaveNote({keys: ['D#/4', 'F#/4', 'A#/4', 'C#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
+      let Efmin7 = new VF.StaveNote({keys: ['Eb/4', 'Gb/4', 'Bb/4', 'Db/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
+      let Emin7 = new VF.StaveNote({keys: ['E/4', 'G/4', 'B/4', 'D/5'], duration: duration});
+      let Fmin7 = new VF.StaveNote({keys: ['F/4', 'Ab/4', 'C/5', 'Eb/5'], duration: duration}).addAccidental(1, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
+      let Fsmin7 = new VF.StaveNote({keys: ['F#/4', 'A/4', 'C#/5', 'E/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
+      let Gfmin7 = new VF.StaveNote({keys: ['Gb/4', 'Bbb/4', 'Db/5', 'Fb/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('bb')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
+      let Gmin7 = new VF.StaveNote({keys: ['G/4', 'Bb/4', 'D/5', 'F/5'], duration: duration}).addAccidental(1, new VF.Accidental('b'));
+      let Gsmin7 = new VF.StaveNote({keys: ['G#/4', 'B/4', 'D#/5', 'F#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
+      let Afmin7 = new VF.StaveNote({keys: [ 'Ab/4', 'Cb/5', 'Eb/5', 'Gb/5' ], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
+      let Amin7 = new VF.StaveNote({keys: [ 'A/4', 'C/5', 'E/5', 'G/5' ], duration: duration});
+      let Asmin7 = new VF.StaveNote({keys: [ 'A#/4', 'C#/5', 'E#/5', 'G#/5' ], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
+      let Bfmin7 = new VF.StaveNote({keys: ['Bb/4', 'Db/5', 'F/5', 'Ab/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
+      let Bmin7 = new VF.StaveNote({keys: ['B/4', 'D/5', 'F#/5', 'A/5'], duration: duration}).addAccidental(2, new VF.Accidental('#'));
       // console.log(scale);
       cMajScale.forEach((note) => {
         noteVals.push(note);
@@ -214,7 +249,8 @@ class VFDisplay extends Component {
     let voices = [];
 
     for (let i = 0; i < beatCount; i++) {
-      defaultMeasure.notes[i] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
+      // defaultMeasure.notes[i] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
+      defaultMeasure.notes[i] = BMaj7;
     }
     notes.push(defaultMeasure.notes);
     drawScore();
@@ -397,7 +433,7 @@ class VFDisplay extends Component {
 
     // reset library with new note and voice instances
     function resetCanvas() {
-      setLibrary();
+      // setLibrary();
       drawScore();
     }
 
