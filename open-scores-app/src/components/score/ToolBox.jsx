@@ -3,24 +3,13 @@ import Playback from './Playback';
 
 class ToolBox extends Component {
 
-  toggleToolBoxPosition(event) {
-    // const toggleBtn = document.querySelector('.toggle-pos');
-    const toolBox = document.querySelector('.tool-box');
 
-    if (toolBox.classList.contains('horizontal')) {
-      toolBox.classList.remove('horizontal');
-      toolBox.classList.add('vertical');
-    } else if (toolBox.classList.contains('vertical')) {
-      toolBox.classList.remove('vertical');
-      toolBox.classList.add('horizontal');
-    }
-  }
 
   render() {
     return (
       <div>
         <div className="tool-box horizontal is-flex">
-          <Playback/> 
+          <Playback/>
           <section className="notation-selectors is-flex">
             <div className="note-lengths-container selectors is-centered">
               <h3>Measure</h3>
