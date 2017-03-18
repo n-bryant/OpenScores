@@ -25,17 +25,6 @@ class VFDisplay extends Component {
     function setLibrary() {
       noteVals = [];
 
-      // let c4 = new VF.StaveNote({keys: ['C/4'], duration: duration});
-      // noteVals.push(c4);
-      // let cs4 = new VF.StaveNote({keys: ['C#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
-      // noteVals.push(cs4);
-      // let d4 = new VF.StaveNote({keys: ['D/4'], duration: duration});
-      // noteVals.push(d4);
-      // let ds4 = new VF.StaveNote({keys: ['D#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
-      // noteVals.push(ds4);
-      // let e4 = new VF.StaveNote({keys: ['E/4'], duration: duration});
-      // noteVals.push(e4);
-
       let Cs7 = new VF.StaveNote({
         keys: [
           'C#/4', 'E#/4', 'G#/4', 'B/4'
@@ -315,10 +304,7 @@ class VFDisplay extends Component {
     let staveBars = [];
     let voices = [];
 
-    for (let i = 0; i < beatCount; i++) {
-      defaultMeasure.notes[i] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
-    }
-    notes.push(defaultMeasure.notes);
+    newDefaultMeasure();
     drawScore();
 
     // draw a bar for each measure to the canvas
@@ -333,6 +319,9 @@ class VFDisplay extends Component {
 
           // Add a clef and time signature to first bar.
           staveBars[i].addClef("treble").addTimeSignature("4/4");
+        } else if (i % 5 === 0) {
+          staveY += 100;
+          staveBars[i] = new VF.Stave(staveBars[i - 1].width + staveBars[i - 1].x, staveY, staveWidth);
         } else {
           staveBars[i] = new VF.Stave(staveBars[i - 1].width + staveBars[i - 1].x, staveY, staveWidth);
         }
@@ -354,6 +343,18 @@ class VFDisplay extends Component {
 
     // bind events
     function bindEvents() {
+      document.querySelector('.add-measure-btn').addEventListener('click', () => {
+        addMeasure();
+      });
+
+      bindNotes();
+
+      // keypresses
+      document.onkeydown = checkKey;
+    }
+
+    // bind notes on each canvas paint
+    function bindNotes() {
       let allNotes = document.querySelectorAll('.vf-stavenote');
       allNotes.forEach((note) => {
         // select a note by id on click
@@ -361,13 +362,6 @@ class VFDisplay extends Component {
           getNoteById(this);
         });
       });
-
-      document.querySelector('.add-measure-btn').addEventListener('click', () => {
-        addMeasure();
-      });
-
-      // keypresses
-      document.onkeydown = checkKey;
     }
 
     // check which key was pressed
@@ -402,14 +396,9 @@ class VFDisplay extends Component {
     // inserts a measure at the end of the score
     // maybe just draw 1 new stave here with defaultMeasure notes instead of drawing whole canvas?
     function addMeasure() {
+      console.log('test');
       // barCount++;
-      // beatCount += 4;
-      console.log(beatCount);
-
-      // start a new line every 5 measures
-      // if (barCount % 5 === 0) {
-      //   staveY += 80;
-      // }
+      // newDefaultMeasure();
       // resetCanvas();
     }
 
@@ -500,6 +489,15 @@ class VFDisplay extends Component {
     function resetCanvas() {
       setLibrary();
       drawScore();
+      bindEvents();
+    }
+
+    // Creates a new default measure
+    function newDefaultMeasure() {
+      for (let i = 0; i < beatCount; i++) {
+        defaultMeasure.notes[i] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
+      }
+      notes.push(defaultMeasure.notes);
     }
 
     // Creates consistency in VF generated note element ids for selection later
