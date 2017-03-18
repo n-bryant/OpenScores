@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import VFDisplay from './Vex';
+import VFDisplay from './VexTest';
 import ToolBox from './ToolBox';
 // import ABCDisplay from './ABC';
 
