@@ -322,10 +322,10 @@ class VFDisplay extends Component {
       for (let i = 0; i < score.measures.length; i++) {
         if (i === 0) {
           // create a stave of width 300 at position 10, 40 on the canvas.
-          score.measures[i].stave = new VF.Stave(staveX, staveY, staveWidth);
+          score.measures[i].stave = new VF.Stave(staveX, staveY, staveWidth, { fill_style: score.measures[i].fillColor});
 
           // add a clef and time signature to first bar.
-          score.measures[i].stave.addClef("treble").addTimeSignature("4/4");
+          score.measures[i].stave.addClef("treble").addTimeSignature(`${beatCount}/${beatValue}`);
         } else if (i % 4 === 0) {
           score.measures[i].stave = new VF.Stave(staveX, score.measures[i - 1].stave.y + 100, staveWidth);
         } else {
@@ -335,6 +335,12 @@ class VFDisplay extends Component {
         // draw staves and notes
         score.measures[i].stave.setContext(context).draw();
         VF.Formatter.FormatAndDraw(context, score.measures[i].stave, score.measures[i].notes);
+
+        // generate beams
+        let beams = VF.Beam.generateBeams(score.measures[i].notes);
+        beams.forEach(function(beam) {
+          beam.setContext(context).draw();
+        });
       }
     }
 
@@ -388,7 +394,7 @@ class VFDisplay extends Component {
         } else if (e.keyCode === 8) {
           // backspace
           e.preventDefault();
-          deleteNote();
+          setRest();
         } else if (e.keyCode === 27) {
           // escape key
           e.preventDefault();
@@ -452,20 +458,6 @@ class VFDisplay extends Component {
       }
     }
 
-    // replace selected note with rest of same duration
-    function deleteNote() {
-      let pitchVal = selectedNote.keys;
-      if (!duration.includes('r')) {
-        duration += 'r';
-        selectedNote = new VF.StaveNote({clef: "treble", keys: pitchVal, duration: duration});
-        selectedId = `vf-${selectedNote.attrs.id}`;
-        score.measures[barIndex].notes[barNoteIndex] = selectedNote;
-        score.noteIDMap[idMapIndex] = selectedId;
-      }
-      resetCanvas();
-      highlightNote();
-    }
-
     // match clicked note with its data by id and set as selected
     function getNoteById(note, arrows) {
       arrows ? selectedId = note : selectedId = note.id;
@@ -505,16 +497,10 @@ class VFDisplay extends Component {
       resetCanvas();
     }
 
-    // reset library with new note and voice instances
-    function resetCanvas() {
-      setLibrary();
-      drawScore();
-      bindEvents();
-    }
-
     // Creates a new default measure
     function newMeasure() {
       let tempBar = {};
+      tempBar.fillColor = '#999999';
       tempBar.stave = new VF.Stave(staveX, staveY, staveWidth);
       tempBar.notes = [];
       for (let i = 0; i < beatCount; i++) {
@@ -522,6 +508,55 @@ class VFDisplay extends Component {
         score.noteIDMap.push(`vf-${tempBar.notes[i].attrs.id}`);
       }
       score.measures.push(tempBar);
+      setMeasureBeats(score.measures[score.measures.length - 1]);
+    }
+
+    // reset library with new note and voice instances
+    function resetCanvas() {
+      setLibrary();
+      drawScore();
+      bindEvents();
+    }
+
+    // calculates the current count of beats in a measure
+    function setMeasureBeats(measure) {
+      let totalBeats = 0;
+      measure.notes.forEach((note) => {
+        let beatVal = note.duration.replace('r', '');
+        switch (beatVal) {
+          case 'w':
+            totalBeats += 4;
+            break;
+          case 'h':
+            totalBeats += 2;
+            break;
+          case 'q':
+            totalBeats += 1;
+            break;
+          case '8':
+            totalBeats += .5;
+            break;
+          case '16':
+            totalBeats += .25;
+            break;
+        }
+      });
+      measure.beats = totalBeats;
+      validateMeasure(measure);
+    }
+
+    // replace selected note with rest of same duration
+    function setRest() {
+      let pitchVal = selectedNote.keys;
+      if (!duration.includes('r')) {
+        duration += 'r';
+        selectedNote = new VF.StaveNote({clef: "treble", keys: pitchVal, duration: duration});
+        selectedId = `vf-${selectedNote.attrs.id}`;
+        score.measures[barIndex].notes[barNoteIndex] = selectedNote;
+        score.noteIDMap[idMapIndex] = selectedId;
+      }
+      resetCanvas();
+      highlightNote();
     }
 
     // unselect a note
@@ -533,6 +568,18 @@ class VFDisplay extends Component {
         });
       }
       resetCanvas();
+    }
+
+    // provides validation for a measure's beat value
+    function validateMeasure(measure) {
+      let beats = measure.beats;
+      if (beats > beatCount || beats < beatCount) {
+        measure.fillColor = '#FF7800';
+        resetCanvas();
+      } else {
+        measure.fillColor = '#999999';
+        resetCanvas();
+      }
     }
 
     bindEvents();
