@@ -417,6 +417,12 @@ class VFDisplay extends Component {
       }
     }
 
+    // adds specified accidental to selected note
+    function addAccidental(accidental) {
+      // if note.keys does not already have an accidental
+        // give it the one provided by the button press
+    }
+
     // inserts a measure at the end of the score
     function addMeasure() {
       newMeasure();
