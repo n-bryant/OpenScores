@@ -59,12 +59,11 @@ class ToolBox extends Component {
             </div>
             <div className="note-lengths-container selectors is-centered">
               <h3>Notes</h3>
-              <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/122/122350.svg" alt="whole note"/></button>
-              <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/122/122351.svg" alt="half note"/></button>
-              <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/122/122352.svg" alt="quarter note"/></button>
-              <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/122/122321.svg" alt="eighth note"/></button>
-              <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/122/122353.svg" alt="sixteenth note"/></button>
-              <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/122/122354.svg" alt="thirty-second note"/></button>
+              <button className="icon note-option is-centered" data-val="w"><img src="https://image.flaticon.com/icons/svg/122/122350.svg" alt="whole note"/></button>
+              <button className="icon note-option is-centered" data-val="h"><img src="https://image.flaticon.com/icons/svg/122/122351.svg" alt="half note"/></button>
+              <button className="icon note-option is-centered" data-val="q"><img src="https://image.flaticon.com/icons/svg/122/122352.svg" alt="quarter note"/></button>
+              <button className="icon note-option is-centered" data-val="8"><img src="https://image.flaticon.com/icons/svg/122/122321.svg" alt="eighth note"/></button>
+              <button className="icon note-option is-centered" data-val="16"><img src="https://image.flaticon.com/icons/svg/122/122353.svg" alt="sixteenth note"/></button>
             </div>
             <div className="accidentals-container selectors is-centered">
               <h3>Modifiers</h3>
@@ -77,12 +76,11 @@ class ToolBox extends Component {
             </div>
             <div className="rest-lengths-container selectors is-centered">
               <h3>Rests</h3>
-              <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125053.svg" alt="whole rest"/></button>
-              <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125052.svg" alt="half rest"/></button>
-              <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125054.svg" alt="quarter rest"/></button>
-              <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125055.svg" alt="eighth rest"/></button>
-              <button className="icon is-centered"><img src="https://cdn3.iconfinder.com/data/icons/music-notes-symbols/512/Icon_19-128.png" alt="sixteenth rest"/></button>
-              <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125056.svg" alt="thirty-second rest"/></button>
+              <button className="icon note-option is-centered" data-val="wr"><img src="https://image.flaticon.com/icons/svg/125/125053.svg" alt="whole rest"/></button>
+              <button className="icon note-option is-centered" data-val="hr"><img src="https://image.flaticon.com/icons/svg/125/125052.svg" alt="half rest"/></button>
+              <button className="icon note-option is-centered" data-val="qr"><img src="https://image.flaticon.com/icons/svg/125/125054.svg" alt="quarter rest"/></button>
+              <button className="icon note-option is-centered" data-val="8r"><img src="https://image.flaticon.com/icons/svg/125/125055.svg" alt="eighth rest"/></button>
+              <button className="icon note-option is-centered" data-val="16r"><img src="https://cdn3.iconfinder.com/data/icons/music-notes-symbols/512/Icon_19-128.png" alt="sixteenth rest"/></button>
             </div>
             <div className="dynamics-container selectors is-centered">
               <h3>Dynaics</h3>

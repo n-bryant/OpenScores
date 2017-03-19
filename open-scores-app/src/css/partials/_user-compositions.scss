@@ -14,9 +14,18 @@
 .container-one {
     background: $light;
     border: 1px solid black;
-    height: 225px;
     width: 17%;
     margin: 40px;
+
+    a {
+      height: 100%;
+      width: 100%;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
 }
 
 .container-one:hover {

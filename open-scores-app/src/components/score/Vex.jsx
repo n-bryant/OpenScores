@@ -352,6 +352,16 @@ class VFDisplay extends Component {
         document.querySelector('.add-measure-btn').addEventListener('click', () => {
           addMeasure();
         });
+
+        let noteOptions = document.querySelectorAll('.note-option');
+        noteOptions.forEach((option) => {
+          option.addEventListener('click', function() {
+            if (selectedNote) {
+              setNoteDuration(option.getAttribute('data-val'));
+            }
+          });
+        });
+
         pageLoad = false;
       }
 
@@ -394,7 +404,11 @@ class VFDisplay extends Component {
         } else if (e.keyCode === 8) {
           // backspace
           e.preventDefault();
-          setRest();
+          deleteNote();
+        } else if (e.keyCode === 67) {
+          // c key
+          e.preventDefault();
+          copyNote();
         } else if (e.keyCode === 27) {
           // escape key
           e.preventDefault();
@@ -456,6 +470,28 @@ class VFDisplay extends Component {
           getNoteById(score.noteIDMap[score.noteIDMap.length - 1], true);
         }
       }
+    }
+
+    // copy selected note and paste copy next to it
+    function copyNote() {
+      let pitchVal = selectedNote.keys;
+      let durVal = selectedNote.duration;
+
+      selectedNote = new VF.StaveNote({clef: "treble", keys: pitchVal, duration: durVal});
+      selectedId = `vf-${selectedNote.attrs.id}`;
+      score.measures[barIndex].notes.splice(barNoteIndex, 0, selectedNote);
+      score.noteIDMap.splice(idMapIndex, 0, selectedId);
+
+      setMeasureBeats(score.measures[barIndex]);
+      highlightNote();
+    }
+
+    // remove selected note from score
+    function deleteNote() {
+      score.measures[barIndex].notes.splice(barNoteIndex, 1);
+      score.noteIDMap.splice(idMapIndex, 1);
+      setMeasureBeats(score.measures[barIndex]);
+      unselectNote();
     }
 
     // match clicked note with its data by id and set as selected
@@ -545,23 +581,28 @@ class VFDisplay extends Component {
       validateMeasure(measure);
     }
 
-    // replace selected note with rest of same duration
-    function setRest() {
+    // sets note to a specified duration
+    function setNoteDuration(durVal) {
+      duration = durVal;
       let pitchVal = selectedNote.keys;
-      if (!duration.includes('r')) {
-        duration += 'r';
-        selectedNote = new VF.StaveNote({clef: "treble", keys: pitchVal, duration: duration});
-        selectedId = `vf-${selectedNote.attrs.id}`;
-        score.measures[barIndex].notes[barNoteIndex] = selectedNote;
-        score.noteIDMap[idMapIndex] = selectedId;
-      }
-      resetCanvas();
+
+      selectedNote = new VF.StaveNote({clef: "treble", keys: pitchVal, duration: duration});
+      selectedId = `vf-${selectedNote.attrs.id}`;
+      score.measures[barIndex].notes[barNoteIndex] = selectedNote;
+      score.noteIDMap[idMapIndex] = selectedId;
+
+      setMeasureBeats(score.measures[barIndex]);
       highlightNote();
     }
 
     // unselect a note
     function unselectNote() {
       selectedNote = null;
+      barIndex = null;
+      selectedId = null;
+      idMapIndex = null;
+      selectedNote = null;
+      barNoteIndex = null;
       for (let i = 0; i < score.measures.length; i++) {
         score.measures[i].notes.forEach((note) => {
           note.setStyle({fillStyle: 'black', strokeStyle: 'black'});
