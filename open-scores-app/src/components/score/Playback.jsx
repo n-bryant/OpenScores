@@ -20,11 +20,11 @@ class Playback extends Component {
   }
 
    playSound(event) {
-     var context = new AudioContext();
-      var source = context.createBufferSource();
-      source.buffer = dogBarkingBuffer;
-      source.connect(context.destination);
-      source.start(0);
+    //  var context = new AudioContext();
+    //   var source = context.createBufferSource();
+    //   source.buffer = dogBarkingBuffer;
+    //   source.connect(context.destination);
+    //   source.start(0);
   }
 
 playSomething(event){
