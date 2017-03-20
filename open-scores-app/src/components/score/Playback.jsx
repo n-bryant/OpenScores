@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Tone from 'tone';
 import $ from 'jquery';
-import Interface from 'interface';
-import AudioContext from 'audio-context';
+// import Interface from 'interface';
+// import AudioContext from 'audio-context';
 
 class Playback extends Component {
   toggleToolBoxPosition(event) {
