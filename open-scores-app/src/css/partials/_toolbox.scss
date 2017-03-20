@@ -76,12 +76,16 @@
 }
 
 .notation-selectors {
-    justify-content: space-around;
-    flex-wrap: wrap;
-    color: $light;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  color: $light;
+
+  .key-sig-btn {
+    font: 1rem $primaryFont;
   }
+}
 .selectors {
-  width: 10rem;
+  width: 20rem;
 }
 .triplet-btn p {
   text-align: center;
@@ -118,4 +122,38 @@
 .chat-container {
   flex-direction: column;
   color: $light;
+}
+
+.options-wrapper {
+  flex-wrap: wrap;
+  justify-content: center;
+  .icon {
+    width: 2.5rem;
+  }
+}
+
+.time-options-wrapper {
+  position: relative;
+
+  .time-options-container {
+    background: $dark;
+    border: 2px solid $light;
+    color: $orange;
+    justify-content: space-around;
+    left: 0;
+    padding: .5rem;
+    position: absolute;
+    top: 0;
+    transform: translate(-35%,-100%);
+    width: 200px;
+
+    .time-option {
+      cursor: pointer;
+
+      &:hover {
+        color: $light;
+        text-decoration: underline;
+      }
+    }
+  }
 }
