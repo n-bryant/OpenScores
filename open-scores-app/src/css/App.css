@@ -123,6 +123,13 @@ body {
       border-bottom: 2px solid #FF7800;
       outline: none; }
 
+#vfDisplay {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  min-width: 800px;
+  width: 100%; }
+
 .tool-box {
   position: fixed;
   border: 3px solid #474747;
@@ -277,9 +284,14 @@ body {
 .container-one {
   background: #FAFAFA;
   border: 1px solid black;
-  height: 225px;
   width: 17%;
   margin: 40px; }
+  .container-one a {
+    height: 100%;
+    width: 100%; }
+    .container-one a img {
+      display: block;
+      width: 100%; }
 
 .container-one:hover {
   border-color: #FF7800;
