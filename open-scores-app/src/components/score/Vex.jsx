@@ -7,6 +7,7 @@ class VFDisplay extends Component {
 
   // wait for page load to bring in VexFlow
   componentDidMount() {
+    let pageLoad = true;
     const VF = Vex.Flow;
 
     // Create an SVG renderer and attach it to the DIV element named "vfDisplay".
@@ -20,12 +21,123 @@ class VFDisplay extends Component {
 
     let duration = '4';
     let noteVals = [];
-
     // let noteVals = getScale(scaleIWant);
-    function setLibrary(scale) {
+
+    function setLibrary() {
       noteVals = [];
 
-      //notes octave C3-C4
+      let Cs7 = new VF.StaveNote({
+        keys: [
+          'C#/4', 'E#/4', 'G#/4', 'B/4'
+        ],
+        duration: duration
+      });
+
+      let Df7 = new VF.StaveNote({
+        keys: [
+          'Db/4', 'F/4', 'Ab/4', 'Cb/5'
+        ],
+        duration: duration
+      });
+
+      let D7 = new VF.StaveNote({
+        keys: [
+          'D/4', 'F#/4', 'A/4', 'C/5'
+        ],
+        duration: duration
+      });
+
+      let Ds7 = new VF.StaveNote({
+        keys: [
+          'D#/4', 'F##/4', 'A#/4', 'C#/5'
+        ],
+        duration: duration
+      });
+
+      let Ef7 = new VF.StaveNote({
+        keys: [
+          'Eb/4', 'G/4', 'Bb/4', 'Db/5'
+        ],
+        duration: duration
+      });
+
+      let E7 = new VF.StaveNote({
+        keys: [
+          'E/4', 'G#/4', 'B/4', 'D/5'
+        ],
+        duration: duration
+      });
+
+      let F7 = new VF.StaveNote({
+        keys: [
+          'F/4', 'A/4', 'C/5', 'Eb/5'
+        ],
+        duration: duration
+      });
+
+      let Fs7 = new VF.StaveNote({
+        keys: [
+          'F#/4', 'A#/4', 'C#/5', 'E/5'
+        ],
+        duration: duration
+      });
+
+      let Gf7 = new VF.StaveNote({
+        keys: [
+          'Gb/4', 'Bb/4', 'Db/5', 'Fb/5'
+        ],
+        duration: duration
+      });
+
+      let G7 = new VF.StaveNote({
+        keys: [
+          'G/4', 'B/4', 'D/5', 'F/5'
+        ],
+        duration: duration
+      });
+
+      let Gs7 = new VF.StaveNote({
+        keys: [
+          'G#/4', 'B#/4', 'D#/5', 'F#/5'
+        ],
+        duration: duration
+      });
+
+      let Af7 = new VF.StaveNote({
+        keys: [
+          'Ab/4', 'C/5', 'Eb/5', 'Gb/5'
+        ],
+        duration: duration
+      });
+
+      let A7 = new VF.StaveNote({
+        keys: [
+          'A/4', 'C#/5', 'E/5', 'G/5'
+        ],
+        duration: duration
+      });
+
+      let As7 = new VF.StaveNote({
+        keys: [
+          'A#/4', 'C##/5', 'E#/5', 'G#/5'
+        ],
+        duration: duration
+      });
+
+      let Bf7 = new VF.StaveNote({
+        keys: [
+          'Bb/4', 'D/5', 'F/5', 'Ab/5'
+        ],
+        duration: duration
+      });
+
+      let B7 = new VF.StaveNote({
+        keys: [
+          'B/4', 'D#/5', 'F#/5', 'A/5'
+        ],
+        duration: duration
+      });
+
       let c3 = new VF.StaveNote({keys: ['C/3'], duration: duration});
       let cs3 = new VF.StaveNote({keys: ['C#/3'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
       let df3 = new VF.StaveNote({keys: ['Db/3'], duration: duration}).addAccidental(0, new VF.Accidental('b'));
@@ -47,7 +159,7 @@ class VFDisplay extends Component {
       let b3 = new VF.StaveNote({keys: ['B/3'], duration: duration});
       let bs3 = new VF.StaveNote({keys: ['B#/3'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
       let cf4 = new VF.StaveNote({keys: ['Cb/4'], duration: duration}).addAccidental(0, new VF.Accidental('b'));
-        //notes octave C4-C5
+
       let c4 = new VF.StaveNote({keys: ['C/4'], duration: duration});
       let cs4 = new VF.StaveNote({keys: ['C#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
       let df4 = new VF.StaveNote({keys: ['Db/4'], duration: duration}).addAccidental(0, new VF.Accidental('b'));
@@ -69,7 +181,7 @@ class VFDisplay extends Component {
       let b4 = new VF.StaveNote({keys: ['B/4'], duration: duration});
       let bs4 = new VF.StaveNote({keys: ['B#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
       let cf5 = new VF.StaveNote({keys: ['Cb/5'], duration: duration}).addAccidental(0, new VF.Accidental('b'));
-        //notes octave C5-C6
+
       let c5 = new VF.StaveNote({keys: ['C/5'], duration: duration});
       let cs5 = new VF.StaveNote({keys: ['C#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
       let df5 = new VF.StaveNote({keys: ['Db/5'], duration: duration}).addAccidental(0, new VF.Accidental('b'));
@@ -91,7 +203,7 @@ class VFDisplay extends Component {
       let b5 = new VF.StaveNote({keys: ['B/5'], duration: duration});
       let bs5 = new VF.StaveNote({keys: ['B#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
       let cf6 = new VF.StaveNote({keys: ['Cb/6'], duration: duration}).addAccidental(0, new VF.Accidental('b'));
-        //notes octave C6-C7
+
       let c6 = new VF.StaveNote({keys: ['C/6'], duration: duration});
       let cs6 = new VF.StaveNote({keys: ['C#/6'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
       let df6 = new VF.StaveNote({keys: ['Db/6'], duration: duration}).addAccidental(0, new VF.Accidental('b'));
@@ -170,61 +282,6 @@ class VFDisplay extends Component {
       let Bfm5 = new VF.StaveNote({keys: ['Bb/4', 'Db/5', 'F/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b'));
       let Bm5 = new VF.StaveNote({keys: ['B/4', 'D/5', 'F#/5'], duration: duration}).addAccidental(2, new VF.Accidental('#'));
 
-      //dominant seven chords
-      let C7 = new VF.StaveNote({keys: ['C/4', 'E/4', 'G/4', 'Bb/4'], duration: duration}).addAccidental(3, new VF.Accidental('b'));
-      let Cs7 = new VF.StaveNote({keys: ['C#/4', 'E#/4', 'G#/4', 'B/4'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
-      let Df7 = new VF.StaveNote({keys: ['Db/4', 'F/4', 'Ab/4', 'Cb/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
-      let D7 = new VF.StaveNote({keys: ['D/4', 'F#/4', 'A/4', 'C/5'], duration: duration}).addAccidental(1, new VF.Accidental('#'));
-      let Ds7 = new VF.StaveNote({keys: ['D#/4', 'F##/4', 'A#/4', 'C#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('##')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
-      let Ef7 = new VF.StaveNote({keys: ['Eb/4', 'G/4', 'Bb/4', 'Db/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
-      let E7 = new VF.StaveNote({keys: ['E/4', 'G#/4', 'B/4', 'D/5'], duration: duration}).addAccidental(1, new VF.Accidental('#'));
-      let F7 = new VF.StaveNote({keys: ['F/4', 'A/4', 'C/5', 'Eb/5'], duration: duration}).addAccidental(3, new VF.Accidental('b'));
-      let Fs7 = new VF.StaveNote({keys: ['F#/4', 'A#/4', 'C#/5', 'E/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
-      let Gf7 = new VF.StaveNote({keys: ['Gb/4', 'Bb/4', 'Db/5', 'Fb/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
-      let G7 = new VF.StaveNote({keys: ['G/4', 'B/4', 'D/5', 'F/5'], duration: duration});
-      let Gs7 = new VF.StaveNote({keys: ['G#/4', 'B#/4', 'D#/5', 'F#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
-      let Af7 = new VF.StaveNote({keys: [ 'Ab/4', 'C/5', 'Eb/5', 'Gb/5' ], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
-      let A7 = new VF.StaveNote({keys: [ 'A/4', 'C#/5', 'E/5', 'G/5' ], duration: duration}).addAccidental(1, new VF.Accidental('#'));
-      let As7 = new VF.StaveNote({keys: [ 'A#/4', 'C##/5', 'E#/5', 'G#/5' ], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('##')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
-      let Bf7 = new VF.StaveNote({keys: ['Bb/4', 'D/5', 'F/5', 'Ab/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
-      let B7 = new VF.StaveNote({keys: ['B/4', 'D#/5', 'F#/5', 'A/5'], duration: duration}).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
-      //Major seven chords
-      let CMaj7 = new VF.StaveNote({keys: ['C/4', 'E/4', 'G/4', 'B/4'], duration: duration});
-      let CsMaj7 = new VF.StaveNote({keys: ['C#/4', 'E#/4', 'G#/4', 'B#/4'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
-      let DfMaj7 = new VF.StaveNote({keys: ['Db/4', 'F/4', 'Ab/4', 'C/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
-      let DMaj7 = new VF.StaveNote({keys: ['D/4', 'F#/4', 'A/4', 'C#/5'], duration: duration}).addAccidental(1, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
-      let DsMaj7 = new VF.StaveNote({keys: ['D#/4', 'F##/4', 'A#/4', 'C##/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('##')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('##'));
-      let EfMaj7 = new VF.StaveNote({keys: ['Eb/4', 'G/4', 'Bb/4', 'D/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
-      let EMaj7 = new VF.StaveNote({keys: ['E/4', 'G#/4', 'B/4', 'D#/5'], duration: duration}).addAccidental(1, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
-      let FMaj7 = new VF.StaveNote({keys: ['F/4', 'A/4', 'C/5', 'E/5'], duration: duration});
-      let FsMaj7 = new VF.StaveNote({keys: ['F#/4', 'A#/4', 'C#/5', 'E#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
-      let GfMaj7 = new VF.StaveNote({keys: ['Gb/4', 'Bb/4', 'Db/5', 'F/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
-      let GMaj7 = new VF.StaveNote({keys: ['G/4', 'B/4', 'D/5', 'F#/5'], duration: duration}).addAccidental(3, new VF.Accidental('#'));
-      let GsMaj7 = new VF.StaveNote({keys: ['G#/4', 'B#/4', 'D#/5', 'F##/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('##'));
-      let AfMaj7 = new VF.StaveNote({keys: [ 'Ab/4', 'C/5', 'Eb/5', 'G/5' ], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b'));
-      let AMaj7 = new VF.StaveNote({keys: [ 'A/4', 'C#/5', 'E/5', 'G#/5' ], duration: duration}).addAccidental(1, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
-      let AsMaj7 = new VF.StaveNote({keys: [ 'A#/4', 'C##/5', 'E#/5', 'G##/5' ], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('##')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('##'));
-      let BfMaj7 = new VF.StaveNote({keys: ['Bb/4', 'D/5', 'F/5', 'A/5'], duration: duration}).addAccidental(0, new VF.Accidental('b'));
-      let BMaj7 = new VF.StaveNote({keys: ['B/4', 'D#/5', 'F#/5', 'A#/5'], duration: duration}).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
-
-      //minor seven chords
-      let Cmin7 = new VF.StaveNote({keys: ['C/4', 'Eb/4', 'G/4', 'Bb/4'], duration: duration}).addAccidental(1, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
-      let Csmin7 = new VF.StaveNote({keys: ['C#/4', 'E/4', 'G#/4', 'B/4'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
-      let Dfmin7 = new VF.StaveNote({keys: ['Db/4', 'Fb/4', 'Ab/4', 'Cb/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
-      let Dmin7 = new VF.StaveNote({keys: ['D/4', 'F/4', 'A/4', 'C/5'], duration: duration});
-      let Dsmin7 = new VF.StaveNote({keys: ['D#/4', 'F#/4', 'A#/4', 'C#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
-      let Efmin7 = new VF.StaveNote({keys: ['Eb/4', 'Gb/4', 'Bb/4', 'Db/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
-      let Emin7 = new VF.StaveNote({keys: ['E/4', 'G/4', 'B/4', 'D/5'], duration: duration});
-      let Fmin7 = new VF.StaveNote({keys: ['F/4', 'Ab/4', 'C/5', 'Eb/5'], duration: duration}).addAccidental(1, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
-      let Fsmin7 = new VF.StaveNote({keys: ['F#/4', 'A/4', 'C#/5', 'E/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#'));
-      let Gfmin7 = new VF.StaveNote({keys: ['Gb/4', 'Bbb/4', 'Db/5', 'Fb/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('bb')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
-      let Gmin7 = new VF.StaveNote({keys: ['G/4', 'Bb/4', 'D/5', 'F/5'], duration: duration}).addAccidental(1, new VF.Accidental('b'));
-      let Gsmin7 = new VF.StaveNote({keys: ['G#/4', 'B/4', 'D#/5', 'F#/5'], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
-      let Afmin7 = new VF.StaveNote({keys: [ 'Ab/4', 'Cb/5', 'Eb/5', 'Gb/5' ], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(2, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
-      let Amin7 = new VF.StaveNote({keys: [ 'A/4', 'C/5', 'E/5', 'G/5' ], duration: duration});
-      let Asmin7 = new VF.StaveNote({keys: [ 'A#/4', 'C#/5', 'E#/5', 'G#/5' ], duration: duration}).addAccidental(0, new VF.Accidental('#')).addAccidental(1, new VF.Accidental('#')).addAccidental(2, new VF.Accidental('#')).addAccidental(3, new VF.Accidental('#'));
-      let Bfmin7 = new VF.StaveNote({keys: ['Bb/4', 'Db/5', 'F/5', 'Ab/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
-      let Bmin7 = new VF.StaveNote({keys: ['B/4', 'D/5', 'F#/5', 'A/5'], duration: duration}).addAccidental(2, new VF.Accidental('#'));
       // console.log(scale);
       cMajScale.forEach((note) => {
         noteVals.push(note);
@@ -233,25 +290,29 @@ class VFDisplay extends Component {
     setLibrary();
 
     // declaration of base score values
-    let barCount = 1;
     let beatCount = 4;
     let beatValue = 4;
-    let defaultMeasure = {
-      notes: []
-    }
-    let notes = [];
+    let barIndex = null;
+    let firstTie = true;
+    let selectedId = null;
+    let idMapIndex = null;
     let selectedNote = null;
-    let selectedBarId, selectedBeatId;
-    let staveX = 10;
-    let staveY = 40;
-    let staveWidth = 300;
-    let staveBars = [];
-    let voices = [];
+    let barNoteIndex = null;
 
-    for (let i = 0; i < beatCount; i++) {
-      defaultMeasure.notes[i] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
+    let score = {
+      title: 'Score Title',
+      keySig: 'CMaj',
+      timeSig: '4/4',
+      clef: 'treble',
+      measures: [],
+      noteIDMap: []
     }
-    notes.push(defaultMeasure.notes);
+
+    let staveX = 0;
+    let staveY = 0;
+    let staveWidth = 300;
+
+    newMeasure();
     drawScore();
 
     // draw a bar for each measure to the canvas
@@ -259,35 +320,79 @@ class VFDisplay extends Component {
       // clear anything on the canvas
       context.clear();
 
-      for (let i = 0; i < barCount; i++) {
+      for (let i = 0; i < score.measures.length; i++) {
+        // add a clef and time signature to first bar.
+        let x = score.measures[i].staveX;
+        let y = score.measures[i].staveY;
+        let fill = score.measures[i].fillColor;
         if (i === 0) {
-          // Create a stave of width 300 at position 10, 40 on the canvas.
-          staveBars[i] = new VF.Stave(staveX, staveY, staveWidth);
-
-          // Add a clef and time signature to first bar.
-          staveBars[i].addClef("treble").addTimeSignature("4/4");
+          score.measures[i].stave = new VF.Stave(x, y, staveWidth, { fill_style: fill});
+          score.measures[i].stave.addClef("treble").addTimeSignature(`${beatCount}/${beatValue}`);
         } else {
-          staveBars[i] = new VF.Stave(staveBars[i - 1].width + staveBars[i - 1].x, staveY, staveWidth);
+          score.measures[i].stave = new VF.Stave(x, y, staveWidth, { fill_style: fill});
         }
 
-        // Connect stave to the rendering context and draw
-        staveBars[i].setContext(context).draw();
+        // draw staves and notes
+        score.measures[i].stave.setContext(context).draw();
+        VF.Formatter.FormatAndDraw(context, score.measures[i].stave, score.measures[i].notes);
 
-        // Assign notes to a voice
-        let voice = new VF.Voice({num_beats: beatCount, beat_value: beatValue});
-        voices.push(voice);
-        voices[i] = new VF.Voice({num_beats: beatCount, beat_value: beatValue});
-        voices[i].addTickables(notes[i]);
+        // generate beams
+        let beams = VF.Beam.generateBeams(score.measures[i].notes);
+        beams.forEach(function(beam) {
+          beam.setContext(context).draw();
+        });
 
-        // Render voice
-        VF.Formatter.FormatAndDraw(context, staveBars[i], notes[i]);
-        resetNoteElementIds();
+        score.measures[i].ties.forEach(function(tie) {tie.setContext(context).draw()});
       }
-      bindEvents();
     }
 
     // bind events
     function bindEvents() {
+      bindNotes();
+
+      if (pageLoad) {
+        // add measure button
+        document.querySelector('.add-measure-btn').addEventListener('click', () => {
+          addMeasure();
+        });
+
+        // note options buttons
+        let noteOptions = document.querySelectorAll('.note-option');
+        noteOptions.forEach((option) => {
+          option.addEventListener('click', function() {
+            if (selectedNote) {
+              setNoteDuration(option.getAttribute('data-val'));
+            }
+          });
+        });
+
+        // accidental options buttons
+        let accidentalOptions = document.querySelectorAll('.acc-option');
+        accidentalOptions.forEach((option) => {
+          option.addEventListener('click', function() {
+            if (selectedNote) {
+              addAccidental(option.getAttribute('data-val'));
+            }
+          })
+        });
+
+        document.querySelector('.tie-btn').addEventListener('click', function() {
+          if (selectedNote) {
+            tieNotes();
+            // do I want this as a toggle or have user click button once, set first index, and then again to set second index?
+            // is there a way to wait for a secondary click while tieNotes is running?
+          }
+        });
+
+        pageLoad = false;
+      }
+
+      // keypresses
+      document.onkeydown = checkKey;
+    }
+
+    // bind notes on each canvas paint
+    function bindNotes() {
       let allNotes = document.querySelectorAll('.vf-stavenote');
       allNotes.forEach((note) => {
         // select a note by id on click
@@ -295,13 +400,6 @@ class VFDisplay extends Component {
           getNoteById(this);
         });
       });
-
-      document.querySelector('.add-measure-btn').addEventListener('click', () => {
-        addMeasure();
-      });
-
-      // keypresses
-      document.onkeydown = checkKey;
     }
 
     // check which key was pressed
@@ -325,6 +423,14 @@ class VFDisplay extends Component {
           // right arrow
           e.preventDefault();
           changeSelection('right');
+        } else if (e.keyCode === 8) {
+          // backspace
+          e.preventDefault();
+          deleteNote();
+        } else if (e.keyCode === 67) {
+          // c key
+          e.preventDefault();
+          copyNote();
         } else if (e.keyCode === 27) {
           // escape key
           e.preventDefault();
@@ -333,18 +439,22 @@ class VFDisplay extends Component {
       }
     }
 
-    // inserts a measure at the end of the score
-    // maybe just draw 1 new stave here with defaultMeasure notes instead of drawing whole canvas?
-    function addMeasure() {
-      // barCount++;
-      // beatCount += 4;
-      console.log(beatCount);
+    // adds specified accidental to selected note
+    function addAccidental(accidental) {
+      selectedNote = new VF.StaveNote({clef: "treble", keys: selectedNote.keys, duration: duration})
+        .addAccidental(0, new VF.Accidental(accidental));
+      selectedId = `vf-${selectedNote.attrs.id}`;
+      score.measures[barIndex].notes[barNoteIndex] = selectedNote;
+      score.noteIDMap[idMapIndex] = selectedId;
 
-      // start a new line every 5 measures
-      // if (barCount % 5 === 0) {
-      //   staveY += 80;
-      // }
-      // resetCanvas();
+      resetCanvas();
+      highlightNote();
+    }
+
+    // inserts a measure at the end of the score
+    function addMeasure() {
+      newMeasure();
+      resetCanvas();
     }
 
     // increase note value on up arrow
@@ -365,109 +475,245 @@ class VFDisplay extends Component {
         key === 'up' ? newPitch = noteVals[currentPitch + 1] : newPitch = noteVals[currentPitch - 1];
       }
 
-      notes[selectedBarId][notes[selectedBarId].indexOf(selectedNote)] = newPitch;
+      // update value in score object
+      score.measures[barIndex].notes[score.measures[barIndex].notes.indexOf(selectedNote)] = newPitch;
+      score.noteIDMap[score.noteIDMap.indexOf(selectedId)] = `vf-${newPitch.attrs.id}`;
+      selectedId = `vf-${newPitch.attrs.id}`;
       selectedNote = newPitch;
       resetCanvas();
-      // console.log(notes[0]);
-      highlightNote(selectedBarId);
+      highlightNote();
     }
 
     // change selected note with left and right arrow keys
     function changeSelection(key) {
+      let currentId = selectedNote.attrs.el.id;
+      let selectedIndex = score.noteIDMap.indexOf(selectedId);
+      let nextId = score.noteIDMap[selectedIndex + 1];
+      let prevId = score.noteIDMap[selectedIndex - 1];
+
       if (key === 'right') {
-        let nextId;
-        if (document.getElementById(`note_${selectedBarId}-${selectedBeatId + 1}`)) {
-          nextId = document.getElementById(`note_${selectedBarId}-${selectedBeatId + 1}`);
+        if (nextId) {
+          getNoteById(nextId, true);
         } else {
-          nextId = document.querySelector('.vf-stavenote:first-of-type');
+          getNoteById(score.noteIDMap[0], true);
         }
-        getNoteById(nextId);
       } else {
-        let prevId;
-        if (document.getElementById(`note_${selectedBarId}-${selectedBeatId - 1}`)) {
-          prevId = document.getElementById(`note_${selectedBarId}-${selectedBeatId - 1}`);
+        if (prevId) {
+          getNoteById(prevId, true);
         } else {
-          prevId = document.querySelector('.vf-stavenote:last-of-type');
+          getNoteById(score.noteIDMap[score.noteIDMap.length - 1], true);
         }
-        getNoteById(prevId);
       }
     }
 
-    // sets selected note
-    function getNoteById(note) {
-      let barStart = (note.id.indexOf('_') + 1);
-      let barEnd = (note.id.indexOf('-') - barStart);
-      let beatStart = (note.id.indexOf('-') + 1);
+    // copy selected note and paste copy next to it
+    function copyNote() {
+      let pitchVal = selectedNote.keys;
+      let durVal = selectedNote.duration;
 
-      let barId = note.id.substr(barStart, barEnd);
-      selectedBarId = parseInt(barId, 10);
-      let beatId = note.id.substr(beatStart);
-      selectedBeatId = parseInt(beatId, 10)
+      selectedNote = new VF.StaveNote({clef: "treble", keys: pitchVal, duration: durVal});
+      selectedId = `vf-${selectedNote.attrs.id}`;
+      score.measures[barIndex].notes.splice(barNoteIndex, 0, selectedNote);
+      score.noteIDMap.splice(idMapIndex, 0, selectedId);
 
-      let voiceNotes = voices[barId].tickables;
-      for (let i = 0; i < voiceNotes.length; i++) {
-        if (voiceNotes[i].attrs.el.id === note.id) {
-          selectedNote = voiceNotes[i];
+      setMeasureBeats(score.measures[barIndex]);
+      highlightNote();
+    }
+
+    // remove selected note from score
+    function deleteNote() {
+      // don't allow first note in first measure to be deleted
+      if (score.measures[0].notes.length > 1) {
+        score.measures[barIndex].notes.splice(barNoteIndex, 1);
+        score.noteIDMap.splice(idMapIndex, 1);
+        setMeasureBeats(score.measures[barIndex]);
+
+        // handle deleting last note in a measure
+        if (score.measures[barIndex].beats === 0) {
+          score.measures.splice(barIndex, 1);
+        }
+        unselectNote();
+      }
+    }
+
+    // match clicked note with its data by id and set as selected
+    function getNoteById(note, arrows) {
+      arrows ? selectedId = note : selectedId = note.id;
+      barIndex;
+
+      for (let i = 0; i < score.measures.length; i++) {
+        for (let j = 0; j < score.measures[i].notes.length; j++) {
+          let currentNote = score.measures[i].notes[j];
+          let currentNoteId = score.measures[i].notes[j].attrs.el.id;
+          if (selectedId === currentNoteId) {
+            barIndex = score.measures.indexOf(score.measures[i]);
+            selectedNote = currentNote;
+            duration = selectedNote.duration;
+            barNoteIndex = score.measures[barIndex].notes.indexOf(selectedNote);
+            idMapIndex = score.noteIDMap.indexOf(selectedId);
+          }
         }
       }
 
-      // add visual representation of selection
-      highlightNote(barId);
+      highlightNote();
     }
 
     // mark a note as highlighted
-    function highlightNote(bar) {
+    function highlightNote() {
       const blueAccent = "#41A2EB";
-      // remove highlight from notes that aren't selected
-      notes[bar].forEach((note) => {
-        if (selectedNote.attrs.el.id !== note.attrs.el.id) {
-          note.setStyle({fillStyle: 'black', strokeStyle: 'black'});
-        }
-      });
 
-      let highlightedNote = notes[bar][notes[bar].indexOf(selectedNote)];
+      // remove highlight from all notes
+      for (let i = 0; i < score.measures.length; i++) {
+        score.measures[i].notes.forEach((note) => {
+          note.setStyle({fillStyle: 'black', strokeStyle: 'black'});
+        });
+      }
+
+      // highlight newly selected note
+      let highlightedNote = score.measures[barIndex].notes[score.measures[barIndex].notes.indexOf(selectedNote)];
       highlightedNote.setStyle({fillStyle: blueAccent, strokeStyle: blueAccent});
       resetCanvas();
     }
 
-    // reset library with new note and voice instances
-    function resetCanvas() {
-      // setLibrary();
-      drawScore();
+    // Creates a new default measure
+    function newMeasure() {
+      let tempBar = {};
+      tempBar.fillColor = '#999999';
+
+      // stave positioning
+      if (score.measures.length % 4 === 0) {
+        tempBar.staveX = 0;
+        staveY += 100;
+      } else {
+        let prevStav = score.measures[score.measures.length - 1];
+        tempBar.staveX = prevStav.stave.width + prevStav.stave.x;
+      }
+      if (score.measures.length < 4) {
+        tempBar.staveY = 0;
+      } else {
+        tempBar.staveY = staveY;
+      }
+      tempBar.stave = new VF.Stave(tempBar.staveX, tempBar.staveY, staveWidth);
+
+      // default ties and notes
+      tempBar.ties = [];
+      tempBar.notes = [];
+      for (let i = 0; i < beatCount; i++) {
+        tempBar.notes[i] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
+        score.noteIDMap.push(`vf-${tempBar.notes[i].attrs.id}`);
+      }
+      score.measures.push(tempBar);
+      let newestStave = score.measures[score.measures.length - 1];
+      setMeasureBeats(newestStave);
     }
 
-    // Creates consistency in VF generated note element ids for selection later
-    function resetNoteElementIds() {
-      let allNotes = document.querySelectorAll('.vf-stavenote');
+    // reset library with new note and voice instances
+    function resetCanvas() {
+      setLibrary();
+      drawScore();
+      bindEvents();
+    }
 
-      // id set to format of note-BAR-BEAT
-      allNotes.forEach((noteEl) => {
-        for (let i = 0; i < notes.length; i++) {
-          for (let j = 0; j < notes[i].length; j++) {
-            if (notes[i][j].attrs.el.id === noteEl.id) {
-              noteEl.id = `note_${i}-${j}`;
-            }
-          }
+    // calculates the current count of beats in a measure
+    function setMeasureBeats(measure) {
+      let totalBeats = 0;
+      measure.notes.forEach((note) => {
+        let beatVal = note.duration.replace('r', '');
+        switch (beatVal) {
+          case 'w':
+            totalBeats += 4;
+            break;
+          case 'h':
+            totalBeats += 2;
+            break;
+          case 'q':
+            totalBeats += 1;
+            break;
+          case '8':
+            totalBeats += .5;
+            break;
+          case '16':
+            totalBeats += .25;
+            break;
         }
       });
+      measure.beats = totalBeats;
+      validateMeasure(measure);
+    }
+
+    // sets note to a specified duration
+    function setNoteDuration(durVal) {
+      duration = durVal;
+
+      selectedNote = new VF.StaveNote({clef: "treble", keys: selectedNote.keys, duration: duration});
+      selectedId = `vf-${selectedNote.attrs.id}`;
+      score.measures[barIndex].notes[barNoteIndex] = selectedNote;
+      score.noteIDMap[idMapIndex] = selectedId;
+
+      setMeasureBeats(score.measures[barIndex]);
+      highlightNote();
+    }
+
+    // sets a tie to initial selection and allows use of left and right arrow keys to extend the tie
+    function tieNotes() {
+      if (firstTie) {
+        let newTie = new VF.StaveTie({
+          first_note: score.measures[barIndex].notes[barNoteIndex],
+          last_note: score.measures[barIndex].notes[barNoteIndex],
+          first_indices: [0],
+          last_indices: [0]
+        });
+        score.measures[barIndex].ties.push(newTie);
+        firstTie = false;
+      } else {
+        let tieExtension = new VF.StaveTie({
+          first_note: score.measures[barIndex].ties[0].first_note,
+          last_note: score.measures[barIndex].notes[barNoteIndex],
+          first_indices: [0],
+          last_indices: [0]
+        });
+        score.measures[barIndex].ties[0] = (tieExtension);
+        firstTie = true;
+      }
+
+      resetCanvas();
+      highlightNote();
     }
 
     // unselect a note
     function unselectNote() {
       selectedNote = null;
-      notes.forEach((noteArr) => {
-        noteArr.forEach((note) => {
+      barIndex = null;
+      selectedId = null;
+      idMapIndex = null;
+      selectedNote = null;
+      barNoteIndex = null;
+      for (let i = 0; i < score.measures.length; i++) {
+        score.measures[i].notes.forEach((note) => {
           note.setStyle({fillStyle: 'black', strokeStyle: 'black'});
         });
-      });
+      }
       resetCanvas();
     }
+
+    // provides validation for a measure's beat value
+    function validateMeasure(measure) {
+      if (measure.beats > beatCount || measure.beats < beatCount) {
+        measure.fillColor = '#FF7800';
+        resetCanvas();
+      } else {
+        measure.fillColor = '#999999';
+        resetCanvas();
+      }
+    }
+
+    bindEvents();
   }
 
   render() {
 
     return (
-      <div id="vfDisplay"></div>
+      <div id="vfDisplay" className="is-flex"></div>
     );
   }
 }
