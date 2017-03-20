@@ -1,12 +1,23 @@
+// Main Profile Wrapper Css
+
+.profile-wrapper {
+    height: 900px;
+}
+// Header Css
+
 .header-container {
     align-items: center;
     background: $mediumDark;
     color: $orange;
     display: flex;
-    height: 80px;
-    font-size: 50px;
+    height: 150px;
     flex-direction: row;
     justify-content: center;
+    width: 100%;
+
+    h1 {
+        font-size: 40px;
+    }
 }
 
 .logo-container {
@@ -19,6 +30,66 @@
     width: 100px;
 }
 
+.main-header-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    justify-content: space-around;
+    width: 100%;
+}
+// Search Bar Css
+
 .search-comp {
-    padding: 30px;
+    background: $medium;
+    border: 5px solid $orange;
+    color: $orange;
+    font-size: 20px;
+    height: 50px;
+    padding: 20px;
+    width: 50%;
+}
+// HeaderFrom Css
+
+.social-media-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    width: 20%;
+
+    .media-icons {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    img {
+        background: $orange;
+        width: 20%;
+    }
+}
+// Logo Css
+
+.main-logo-container {
+    height: 100%;
+    width: 20%;
+
+    .logo-container {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        justify-content: space-around;
+        width: 100%;
+
+        .logo-image {
+            background: $orange;
+            width: 30%;
+        }
+
+        .logo-text {
+            font-size: 20px;
+        }
+    }
 }
