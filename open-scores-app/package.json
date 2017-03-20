@@ -1,4 +1,4 @@
-
+{
  "name": "open-scores-app",
  "version": "0.1.0",
  "private": true,
@@ -29,4 +29,5 @@
    "build": "npm run build-css && react-scripts build",
    "test": "react-scripts test --env=jsdom",
    "eject": "react-scripts eject"
+ }
  }

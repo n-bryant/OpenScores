@@ -1,15 +1,18 @@
+// Main css
+
 .main-side-container {
     display: flex;
     flex-direction: row;
-    height: 700px;
+    height: 100%;
     margin: 0;
     width: 20%;
-    position: fix;
 }
+// Profile css
 
 .profile-pic {
+    border: 5px solid $orange;
     border-radius: 50%;
-    width: 80%;
+    width: 60%;
 }
 
 .user-profile-image {
@@ -17,4 +20,39 @@
     background: $mediumDark;
     display: flex;
     flex-direction: column;
+}
+// Friends container css
+
+.friends-list {
+    align-items: flex-start;
+    border: 4px solid $orange;
+    border-radius: 10px;
+    display: flex;
+    height: 300px;
+    flex-direction: column;
+    margin-left: 10px;
+    width: 90%;
+
+    a {
+        color: $light;
+        text-decoration: none;
+    }
+
+    .single-friend-container {
+        background: $mediumDark;
+        border-radius: 10px;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        margin: 10px;
+
+        .friend-image {
+            border-radius: 10px;
+            width: 18%;
+        }
+    }
+
+    .single-friend-container:hover {
+        box-shadow: 0 1px 6px $light, 0 1px 8px $medium;
+    }
 }
