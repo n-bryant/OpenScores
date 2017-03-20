@@ -293,6 +293,7 @@ class VFDisplay extends Component {
     let beatCount = 4;
     let beatValue = 4;
     let barIndex = null;
+    let firstTie = true;
     let selectedId = null;
     let idMapIndex = null;
     let selectedNote = null;
@@ -320,16 +321,15 @@ class VFDisplay extends Component {
       context.clear();
 
       for (let i = 0; i < score.measures.length; i++) {
+        // add a clef and time signature to first bar.
+        let x = score.measures[i].staveX;
+        let y = score.measures[i].staveY;
+        let fill = score.measures[i].fillColor;
         if (i === 0) {
-          // create a stave of width 300 at position 10, 40 on the canvas.
-          score.measures[i].stave = new VF.Stave(staveX, staveY, staveWidth, { fill_style: score.measures[i].fillColor});
-
-          // add a clef and time signature to first bar.
+          score.measures[i].stave = new VF.Stave(x, y, staveWidth, { fill_style: fill});
           score.measures[i].stave.addClef("treble").addTimeSignature(`${beatCount}/${beatValue}`);
-        } else if (i % 4 === 0) {
-          score.measures[i].stave = new VF.Stave(staveX, score.measures[i - 1].stave.y + 100, staveWidth, { fill_style: score.measures[i].fillColor});
         } else {
-          score.measures[i].stave = new VF.Stave(score.measures[i - 1].stave.width + score.measures[i - 1].stave.x, staveY, staveWidth, { fill_style: score.measures[i].fillColor});
+          score.measures[i].stave = new VF.Stave(x, y, staveWidth, { fill_style: fill});
         }
 
         // draw staves and notes
@@ -341,6 +341,8 @@ class VFDisplay extends Component {
         beams.forEach(function(beam) {
           beam.setContext(context).draw();
         });
+
+        score.measures[i].ties.forEach(function(tie) {tie.setContext(context).draw()});
       }
     }
 
@@ -349,10 +351,12 @@ class VFDisplay extends Component {
       bindNotes();
 
       if (pageLoad) {
+        // add measure button
         document.querySelector('.add-measure-btn').addEventListener('click', () => {
           addMeasure();
         });
 
+        // note options buttons
         let noteOptions = document.querySelectorAll('.note-option');
         noteOptions.forEach((option) => {
           option.addEventListener('click', function() {
@@ -362,6 +366,7 @@ class VFDisplay extends Component {
           });
         });
 
+        // accidental options buttons
         let accidentalOptions = document.querySelectorAll('.acc-option');
         accidentalOptions.forEach((option) => {
           option.addEventListener('click', function() {
@@ -369,6 +374,14 @@ class VFDisplay extends Component {
               addAccidental(option.getAttribute('data-val'));
             }
           })
+        });
+
+        document.querySelector('.tie-btn').addEventListener('click', function() {
+          if (selectedNote) {
+            tieNotes();
+            // do I want this as a toggle or have user click button once, set first index, and then again to set second index?
+            // is there a way to wait for a secondary click while tieNotes is running?
+          }
         });
 
         pageLoad = false;
@@ -566,14 +579,32 @@ class VFDisplay extends Component {
     function newMeasure() {
       let tempBar = {};
       tempBar.fillColor = '#999999';
-      tempBar.stave = new VF.Stave(staveX, staveY, staveWidth);
+
+      // stave positioning
+      if (score.measures.length % 4 === 0) {
+        tempBar.staveX = 0;
+        staveY += 100;
+      } else {
+        let prevStav = score.measures[score.measures.length - 1];
+        tempBar.staveX = prevStav.stave.width + prevStav.stave.x;
+      }
+      if (score.measures.length < 4) {
+        tempBar.staveY = 0;
+      } else {
+        tempBar.staveY = staveY;
+      }
+      tempBar.stave = new VF.Stave(tempBar.staveX, tempBar.staveY, staveWidth);
+
+      // default ties and notes
+      tempBar.ties = [];
       tempBar.notes = [];
       for (let i = 0; i < beatCount; i++) {
         tempBar.notes[i] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
         score.noteIDMap.push(`vf-${tempBar.notes[i].attrs.id}`);
       }
       score.measures.push(tempBar);
-      setMeasureBeats(score.measures[score.measures.length - 1]);
+      let newestStave = score.measures[score.measures.length - 1];
+      setMeasureBeats(newestStave);
     }
 
     // reset library with new note and voice instances
@@ -620,6 +651,32 @@ class VFDisplay extends Component {
       score.noteIDMap[idMapIndex] = selectedId;
 
       setMeasureBeats(score.measures[barIndex]);
+      highlightNote();
+    }
+
+    // sets a tie to initial selection and allows use of left and right arrow keys to extend the tie
+    function tieNotes() {
+      if (firstTie) {
+        let newTie = new VF.StaveTie({
+          first_note: score.measures[barIndex].notes[barNoteIndex],
+          last_note: score.measures[barIndex].notes[barNoteIndex],
+          first_indices: [0],
+          last_indices: [0]
+        });
+        score.measures[barIndex].ties.push(newTie);
+        firstTie = false;
+      } else {
+        let tieExtension = new VF.StaveTie({
+          first_note: score.measures[barIndex].ties[0].first_note,
+          last_note: score.measures[barIndex].notes[barNoteIndex],
+          first_indices: [0],
+          last_indices: [0]
+        });
+        score.measures[barIndex].ties[0] = (tieExtension);
+        firstTie = true;
+      }
+
+      resetCanvas();
       highlightNote();
     }
 
