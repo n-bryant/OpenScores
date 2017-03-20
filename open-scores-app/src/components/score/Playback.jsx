@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Tone from 'tone';
 
 class Playback extends Component {
   toggleToolBoxPosition(event) {
@@ -13,6 +14,14 @@ class Playback extends Component {
       toolBox.classList.add('horizontal');
     }
   }
+playSomething(event){
+  var osc = new Tone.Oscillator({
+    "frequency" : 440,
+    "volume" : -10
+  }).toMaster();
+
+}
+
 
 render() {
   return (
@@ -24,7 +33,7 @@ render() {
         <button className="playback pauseBtn is-centered">
           <img src="https://image.flaticon.com/icons/svg/122/122326.svg" alt="pause button"/>
         </button>
-        <button className="playback playBtn is-centered">
+        <button className="playback playBtn is-centered" onClick={this.playSomething.bind(this)}>
           <img src="https://image.flaticon.com/icons/svg/122/122323.svg" alt="play button"/>
         </button>
         <button className="toggle-pos" onClick={this.toggleToolBoxPosition.bind(this)}>
