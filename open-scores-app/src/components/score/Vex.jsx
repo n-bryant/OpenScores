@@ -293,6 +293,7 @@ class VFDisplay extends Component {
     let beatCount = 4;
     let beatValue = 4;
     let barIndex = null;
+    let firstTie = true;
     let selectedId = null;
     let idMapIndex = null;
     let selectedNote = null;
@@ -341,6 +342,8 @@ class VFDisplay extends Component {
         beams.forEach(function(beam) {
           beam.setContext(context).draw();
         });
+
+        score.measures[i].ties.forEach(function(tie) {tie.setContext(context).draw()});
       }
     }
 
@@ -349,10 +352,12 @@ class VFDisplay extends Component {
       bindNotes();
 
       if (pageLoad) {
+        // add measure button
         document.querySelector('.add-measure-btn').addEventListener('click', () => {
           addMeasure();
         });
 
+        // note options buttons
         let noteOptions = document.querySelectorAll('.note-option');
         noteOptions.forEach((option) => {
           option.addEventListener('click', function() {
@@ -362,6 +367,7 @@ class VFDisplay extends Component {
           });
         });
 
+        // accidental options buttons
         let accidentalOptions = document.querySelectorAll('.acc-option');
         accidentalOptions.forEach((option) => {
           option.addEventListener('click', function() {
@@ -369,6 +375,14 @@ class VFDisplay extends Component {
               addAccidental(option.getAttribute('data-val'));
             }
           })
+        });
+
+        document.querySelector('.tie-btn').addEventListener('click', function() {
+          if (selectedNote) {
+            tieNotes();
+            // do I want this as a toggle or have user click button once, set first index, and then again to set second index?
+            // is there a way to wait for a secondary click while tieNotes is running?
+          }
         });
 
         pageLoad = false;
@@ -567,6 +581,7 @@ class VFDisplay extends Component {
       let tempBar = {};
       tempBar.fillColor = '#999999';
       tempBar.stave = new VF.Stave(staveX, staveY, staveWidth);
+      tempBar.ties = [];
       tempBar.notes = [];
       for (let i = 0; i < beatCount; i++) {
         tempBar.notes[i] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
@@ -620,6 +635,32 @@ class VFDisplay extends Component {
       score.noteIDMap[idMapIndex] = selectedId;
 
       setMeasureBeats(score.measures[barIndex]);
+      highlightNote();
+    }
+
+    // sets a tie to initial selection and allows use of left and right arrow keys to extend the tie
+    function tieNotes() {
+      if (firstTie) {
+        let newTie = new VF.StaveTie({
+          first_note: score.measures[barIndex].notes[barNoteIndex],
+          last_note: score.measures[barIndex].notes[barNoteIndex],
+          first_indices: [0],
+          last_indices: [0]
+        });
+        score.measures[barIndex].ties.push(newTie);
+        firstTie = false;
+      } else {
+        let tieExtension = new VF.StaveTie({
+          first_note: score.measures[barIndex].ties[0].first_note,
+          last_note: score.measures[barIndex].notes[barNoteIndex],
+          first_indices: [0],
+          last_indices: [0]
+        });
+        score.measures[barIndex].ties[0] = (tieExtension);
+        firstTie = true;
+      }
+
+      resetCanvas();
       highlightNote();
     }
 
