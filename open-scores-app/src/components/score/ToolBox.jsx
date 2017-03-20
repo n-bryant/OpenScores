@@ -4,7 +4,6 @@ import Playback from './Playback';
 class ToolBox extends Component {
 
 
-
   render() {
     return (
       <div>

@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import Tone from 'tone';
+import $ from 'jquery';
+import Interface from 'interface';
+import AudioContext from 'audio-context';
 
 class Playback extends Component {
   toggleToolBoxPosition(event) {
     // const toggleBtn = document.querySelector('.toggle-pos');
     const toolBox = document.querySelector('.tool-box');
+
 
     if (toolBox.classList.contains('horizontal')) {
       toolBox.classList.remove('horizontal');
@@ -14,12 +18,36 @@ class Playback extends Component {
       toolBox.classList.add('horizontal');
     }
   }
-playSomething(event){
-  var osc = new Tone.Oscillator({
-    "frequency" : 440,
-    "volume" : -10
-  }).toMaster();
 
+   playSound(event) {
+     var context = new AudioContext();
+      var source = context.createBufferSource();
+      source.buffer = dogBarkingBuffer;
+      source.connect(context.destination);
+      source.start(0);
+  }
+
+playSomething(event){
+  // var synth = new Tone.Synth({
+  //       "oscillator" : {
+  //         "type" : "square"
+  //       },
+  //       "envelope" : {
+  //         "attack" : 0.01,
+  //         "decay" : 0.2,
+  //         "sustain" : 0.2,
+  //         "release" : 0.2,
+  //       }
+  //     }).toMaster();
+  // var keyboard = Interface.Keyboard();
+  //
+  // keyboard.keyDown = function (note) {
+  //   synth.triggerAttack(note);
+  // };
+  //
+  // keyboard.keyUp = function () {
+  //   synth.triggerRelease();
+  // };
 }
 
 
@@ -33,7 +61,7 @@ render() {
         <button className="playback pauseBtn is-centered">
           <img src="https://image.flaticon.com/icons/svg/122/122326.svg" alt="pause button"/>
         </button>
-        <button className="playback playBtn is-centered" onClick={this.playSomething.bind(this)}>
+        <button className="playback playBtn is-centered" id="Keyboard" onClick={this.playSound.bind(this)}>
           <img src="https://image.flaticon.com/icons/svg/122/122323.svg" alt="play button"/>
         </button>
         <button className="toggle-pos" onClick={this.toggleToolBoxPosition.bind(this)}>
