@@ -327,9 +327,9 @@ class VFDisplay extends Component {
           // add a clef and time signature to first bar.
           score.measures[i].stave.addClef("treble").addTimeSignature(`${beatCount}/${beatValue}`);
         } else if (i % 4 === 0) {
-          score.measures[i].stave = new VF.Stave(staveX, score.measures[i - 1].stave.y + 100, staveWidth);
+          score.measures[i].stave = new VF.Stave(staveX, score.measures[i - 1].stave.y + 100, staveWidth, { fill_style: score.measures[i].fillColor});
         } else {
-          score.measures[i].stave = new VF.Stave(score.measures[i - 1].stave.width + score.measures[i - 1].stave.x, staveY, staveWidth);
+          score.measures[i].stave = new VF.Stave(score.measures[i - 1].stave.width + score.measures[i - 1].stave.x, staveY, staveWidth, { fill_style: score.measures[i].fillColor});
         }
 
         // draw staves and notes
@@ -360,6 +360,15 @@ class VFDisplay extends Component {
               setNoteDuration(option.getAttribute('data-val'));
             }
           });
+        });
+
+        let accidentalOptions = document.querySelectorAll('.acc-option');
+        accidentalOptions.forEach((option) => {
+          option.addEventListener('click', function() {
+            if (selectedNote) {
+              addAccidental(option.getAttribute('data-val'));
+            }
+          })
         });
 
         pageLoad = false;
@@ -419,8 +428,14 @@ class VFDisplay extends Component {
 
     // adds specified accidental to selected note
     function addAccidental(accidental) {
-      // if note.keys does not already have an accidental
-        // give it the one provided by the button press
+      selectedNote = new VF.StaveNote({clef: "treble", keys: selectedNote.keys, duration: duration})
+        .addAccidental(0, new VF.Accidental(accidental));
+      selectedId = `vf-${selectedNote.attrs.id}`;
+      score.measures[barIndex].notes[barNoteIndex] = selectedNote;
+      score.noteIDMap[idMapIndex] = selectedId;
+
+      resetCanvas();
+      highlightNote();
     }
 
     // inserts a measure at the end of the score
@@ -494,10 +509,18 @@ class VFDisplay extends Component {
 
     // remove selected note from score
     function deleteNote() {
-      score.measures[barIndex].notes.splice(barNoteIndex, 1);
-      score.noteIDMap.splice(idMapIndex, 1);
-      setMeasureBeats(score.measures[barIndex]);
-      unselectNote();
+      // don't allow first note in first measure to be deleted
+      if (score.measures[0].notes.length > 1) {
+        score.measures[barIndex].notes.splice(barNoteIndex, 1);
+        score.noteIDMap.splice(idMapIndex, 1);
+        setMeasureBeats(score.measures[barIndex]);
+
+        // handle deleting last note in a measure
+        if (score.measures[barIndex].beats === 0) {
+          score.measures.splice(barIndex, 1);
+        }
+        unselectNote();
+      }
     }
 
     // match clicked note with its data by id and set as selected
@@ -590,9 +613,8 @@ class VFDisplay extends Component {
     // sets note to a specified duration
     function setNoteDuration(durVal) {
       duration = durVal;
-      let pitchVal = selectedNote.keys;
 
-      selectedNote = new VF.StaveNote({clef: "treble", keys: pitchVal, duration: duration});
+      selectedNote = new VF.StaveNote({clef: "treble", keys: selectedNote.keys, duration: duration});
       selectedId = `vf-${selectedNote.attrs.id}`;
       score.measures[barIndex].notes[barNoteIndex] = selectedNote;
       score.noteIDMap[idMapIndex] = selectedId;
@@ -619,8 +641,7 @@ class VFDisplay extends Component {
 
     // provides validation for a measure's beat value
     function validateMeasure(measure) {
-      let beats = measure.beats;
-      if (beats > beatCount || beats < beatCount) {
+      if (measure.beats > beatCount || measure.beats < beatCount) {
         measure.fillColor = '#FF7800';
         resetCanvas();
       } else {
