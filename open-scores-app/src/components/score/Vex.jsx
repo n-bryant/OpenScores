@@ -321,16 +321,15 @@ class VFDisplay extends Component {
       context.clear();
 
       for (let i = 0; i < score.measures.length; i++) {
+        // add a clef and time signature to first bar.
+        let x = score.measures[i].staveX;
+        let y = score.measures[i].staveY;
+        let fill = score.measures[i].fillColor;
         if (i === 0) {
-          // create a stave of width 300 at position 10, 40 on the canvas.
-          score.measures[i].stave = new VF.Stave(staveX, staveY, staveWidth, { fill_style: score.measures[i].fillColor});
-
-          // add a clef and time signature to first bar.
+          score.measures[i].stave = new VF.Stave(x, y, staveWidth, { fill_style: fill});
           score.measures[i].stave.addClef("treble").addTimeSignature(`${beatCount}/${beatValue}`);
-        } else if (i % 4 === 0) {
-          score.measures[i].stave = new VF.Stave(staveX, score.measures[i - 1].stave.y + 100, staveWidth, { fill_style: score.measures[i].fillColor});
         } else {
-          score.measures[i].stave = new VF.Stave(score.measures[i - 1].stave.width + score.measures[i - 1].stave.x, staveY, staveWidth, { fill_style: score.measures[i].fillColor});
+          score.measures[i].stave = new VF.Stave(x, y, staveWidth, { fill_style: fill});
         }
 
         // draw staves and notes
@@ -580,7 +579,23 @@ class VFDisplay extends Component {
     function newMeasure() {
       let tempBar = {};
       tempBar.fillColor = '#999999';
-      tempBar.stave = new VF.Stave(staveX, staveY, staveWidth);
+
+      // stave positioning
+      if (score.measures.length % 4 === 0) {
+        tempBar.staveX = 0;
+        staveY += 100;
+      } else {
+        let prevStav = score.measures[score.measures.length - 1];
+        tempBar.staveX = prevStav.stave.width + prevStav.stave.x;
+      }
+      if (score.measures.length < 4) {
+        tempBar.staveY = 0;
+      } else {
+        tempBar.staveY = staveY;
+      }
+      tempBar.stave = new VF.Stave(tempBar.staveX, tempBar.staveY, staveWidth);
+
+      // default ties and notes
       tempBar.ties = [];
       tempBar.notes = [];
       for (let i = 0; i < beatCount; i++) {
@@ -588,7 +603,8 @@ class VFDisplay extends Component {
         score.noteIDMap.push(`vf-${tempBar.notes[i].attrs.id}`);
       }
       score.measures.push(tempBar);
-      setMeasureBeats(score.measures[score.measures.length - 1]);
+      let newestStave = score.measures[score.measures.length - 1];
+      setMeasureBeats(newestStave);
     }
 
     // reset library with new note and voice instances
