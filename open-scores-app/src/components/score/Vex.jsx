@@ -266,7 +266,7 @@ class VFDisplay extends Component {
       measures: [],
       noteIDMap: []
     }
-
+console.log(score);
     let staveX = 0;
     let staveY = 0;
     let staveWidth = 300;

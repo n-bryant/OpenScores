@@ -18,7 +18,7 @@
   }
 }
 
-.playback-controls {
+.Transport-controls {
   flex-direction: column;
   width: 16rem;
   .toggle-pos {
@@ -34,7 +34,7 @@
   }
 }
 
-.playback {
+.Transport {
   width: 55px;
   display: inline-block;
   background: $mediumDark;

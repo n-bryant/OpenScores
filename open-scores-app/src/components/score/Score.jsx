@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import VFDisplay from './Vex';
 import ToolBox from './ToolBox';
-// import ABCDisplay from './ABC';
 
 class Score extends Component {
 
@@ -13,6 +12,8 @@ class Score extends Component {
     this.bpmForm.reset();
     this.bpmForm.classList.add('is-hidden');
     this.bpmEl.classList.remove('is-hidden');
+    console.log(newBPM);
+    // updateBpm(newBPM);
   }
 
   processTitleForm(event) {
