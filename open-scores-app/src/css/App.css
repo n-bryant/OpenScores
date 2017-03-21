@@ -59,6 +59,17 @@ body {
   font: 16px/1.6 "Nunito Sans", sans-serif;
   position: relative; }
 
+@media print {
+  body * {
+    visibility: hidden; }
+  .score-title, .score-bpm, .score-to-print, .score-to-print * {
+    visibility: visible; }
+  .score-to-print {
+    left: 0;
+    position: fixed;
+    top: 0;
+    transform: scale(0.75); } }
+
 .is-centered {
   text-align: center; }
 
@@ -106,6 +117,21 @@ body {
         background: rgba(71, 71, 71, 0.25);
         border-bottom: 2px solid #FF7800;
         outline: none; }
+
+.print-btn {
+  background: none;
+  border: none;
+  color: #FF7800;
+  cursor: pointer;
+  font: 1rem "Nunito Sans", sans-serif;
+  left: 1rem;
+  position: absolute;
+  top: 1rem; }
+  .print-btn:hover {
+    color: #FAFAFA;
+    text-decoration: underline; }
+  .print-btn:focus {
+    outline: none; }
 
 .bpm-container .edit-bpm-form {
   flex-direction: row-reverse;
@@ -197,9 +223,11 @@ body {
   justify-content: space-around;
   flex-wrap: wrap;
   color: #FAFAFA; }
+  .notation-selectors .key-sig-btn {
+    font: 1rem "Nunito Sans", sans-serif; }
 
 .selectors {
-  width: 10rem; }
+  width: 20rem; }
 
 .triplet-btn p {
   text-align: center;
@@ -231,6 +259,31 @@ body {
 .chat-container {
   flex-direction: column;
   color: #FAFAFA; }
+
+.options-wrapper {
+  flex-wrap: wrap;
+  justify-content: center; }
+  .options-wrapper .icon {
+    width: 2.5rem; }
+
+.time-options-wrapper {
+  position: relative; }
+  .time-options-wrapper .time-options-container {
+    background: #313131;
+    border: 2px solid #FAFAFA;
+    color: #FF7800;
+    justify-content: space-around;
+    left: 0;
+    padding: .5rem;
+    position: absolute;
+    top: 0;
+    transform: translate(-35%, -100%);
+    width: 200px; }
+    .time-options-wrapper .time-options-container .time-option {
+      cursor: pointer; }
+      .time-options-wrapper .time-options-container .time-option:hover {
+        color: #FAFAFA;
+        text-decoration: underline; }
 
 .profile-wrapper {
   height: 900px; }
