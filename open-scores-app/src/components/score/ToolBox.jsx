@@ -58,7 +58,7 @@ class ToolBox extends Component {
               </div>
             </div>
             <div className="dynamics-container selectors is-centered">
-              <h3>Dynaics</h3>
+              <h3>Dynamics</h3>
               <div className="options-wrapper is-flex">
                 <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125066.svg" alt="note"/></button>
                 <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125058.svg" alt="note"/></button>

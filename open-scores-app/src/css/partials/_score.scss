@@ -88,6 +88,71 @@
   }
 }
 
+.key-options-container {
+  background: rgba(49,49,49,.75);
+  left: 0;
+  min-height: 100vh;
+  min-width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+
+  .exit-keys-btn {
+    color: $orange;
+    cursor: pointer;
+    font: 2rem $primaryFont;
+    height: 2.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 2.5rem;
+
+    &:hover {
+      color: $light;
+      transition: color .5s;
+    }
+  }
+
+  .keys-wrapper {
+    background: $dark;
+    border: 4px solid $orange;
+    flex-wrap: wrap;
+    margin: 4rem auto;
+    max-height: 85vh;
+    justify-content: space-around;
+    overflow: scroll;
+    padding: 2rem;
+    width: 85%;
+  }
+}
+
+.key-option {
+  border: 4px solid transparent;
+  color: $light;
+  cursor: pointer;
+  font: 1.5rem $primaryFont;
+  padding: 1rem;
+  text-decoration: underline;
+  width: 200px;
+
+  &:hover {
+    border: 4px solid $light;
+    transition: border 1s;
+  }
+
+  .key-name {
+    margin-bottom: .5rem;
+  }
+  .key-display {
+    background: $orange;
+    img {
+      display: block;
+      padding: 1rem;
+      width: 100%;
+    }
+  }
+}
+
 #vfDisplay {
   display: flex;
   justify-content: center;
