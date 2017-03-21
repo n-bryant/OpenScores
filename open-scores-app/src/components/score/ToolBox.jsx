@@ -14,7 +14,7 @@ class ToolBox extends Component {
               <h3>Measure</h3>
               <div className="options-wrapper is-flex">
                 <button className="icon is-centered add-measure-btn"><img src="https://image.flaticon.com/icons/svg/7/7632.svg" alt="add measure"/></button>
-                <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125036.svg" alt="clef"/></button>
+                <button className="icon toggle-clef-btn is-centered"><img src="" alt="clef"/></button>
                 <div className="time-options-wrapper">
                   <button className="icon time-sig-btn is-centered">4/4</button>
                   <div className="time-options-container is-hidden is-flex">
@@ -71,13 +71,6 @@ class ToolBox extends Component {
               </div>
             </div>
           </section>
-          <div className="chat-container is-flex is-centered">
-            <h4>Chat</h4>
-            <form className="chat-form is-flex">
-              <textarea className="text-box"></textarea>
-              <button type="submit">send</button>
-            </form>
-          </div>
         </div>
       </div>
     );

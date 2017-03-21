@@ -330,6 +330,12 @@ class VFDisplay extends Component {
       // clear anything on the canvas
       context.clear();
 
+      if (score.clef === 'treble') {
+        document.querySelector('.toggle-clef-btn img').src = 'https://image.flaticon.com/icons/svg/2/2227.svg';
+      } else {
+        document.querySelector('.toggle-clef-btn img').src = 'https://image.flaticon.com/icons/svg/125/125036.svg';
+      }
+
       for (let i = 0; i < score.measures.length; i++) {
         let x = score.measures[i].staveX;
         let y = score.measures[i].staveY;
@@ -338,7 +344,7 @@ class VFDisplay extends Component {
         if (i === 0) {
           // add a clef, key, and time signature to first bar.
           score.measures[i].stave = new VF.Stave(x, y, staveWidth, { fill_style: fill});
-          score.measures[i].stave.addClef("treble").addTimeSignature(`${score.timeSig.count}/${score.timeSig.value}`);
+          score.measures[i].stave.addClef(score.clef).addTimeSignature(`${score.timeSig.count}/${score.timeSig.value}`);
           let keySig = new VF.KeySignature(score.keySig);
           keySig.addToStave(score.measures[i].stave);
         } else {
@@ -433,6 +439,11 @@ class VFDisplay extends Component {
           toggleOptions('.time-options-container');
         });
 
+        // toggle clef button
+        document.querySelector('.toggle-clef-btn').addEventListener('click', () => {
+          toggleClef();
+        });
+
         // exit key options button
         document.querySelector('.exit-keys-btn').addEventListener('click', () => {
           toggleOptions('.key-options-container');
@@ -495,7 +506,7 @@ class VFDisplay extends Component {
 
     // adds specified accidental to selected note
     function addAccidental(accidental) {
-      selectedNote = new VF.StaveNote({clef: "treble", keys: selectedNote.keys, duration: duration})
+      selectedNote = new VF.StaveNote({clef: score.clef, keys: selectedNote.keys, duration: duration})
         .addAccidental(0, new VF.Accidental(accidental));
       selectedId = `vf-${selectedNote.attrs.id}`;
       score.measures[barIndex].notes[barNoteIndex] = selectedNote;
@@ -565,7 +576,7 @@ class VFDisplay extends Component {
       let pitchVal = selectedNote.keys;
       let durVal = selectedNote.duration;
 
-      selectedNote = new VF.StaveNote({clef: "treble", keys: pitchVal, duration: durVal});
+      selectedNote = new VF.StaveNote({clef: score.clef, keys: pitchVal, duration: durVal});
       selectedId = `vf-${selectedNote.attrs.id}`;
       score.measures[barIndex].notes.splice(barNoteIndex, 0, selectedNote);
       score.noteIDMap.splice(idMapIndex, 0, selectedId);
@@ -653,12 +664,12 @@ class VFDisplay extends Component {
       tempBar.notes = [];
       if (beatCount === '6') {
         for (let i = 0; i < beatCount / 2; i++) {
-          tempBar.notes[i] = new VF.StaveNote({clef: "treble", keys: noteVals[7].keys, duration: "q"});
+          tempBar.notes[i] = new VF.StaveNote({clef: score.clef, keys: noteVals[7].keys, duration: "q"});
           score.noteIDMap.push(`vf-${tempBar.notes[i].attrs.id}`);
         }
       } else {
         for (let i = 0; i < beatCount; i++) {
-          tempBar.notes[i] = new VF.StaveNote({clef: "treble", keys: noteVals[7].keys, duration: "q"});
+          tempBar.notes[i] = new VF.StaveNote({clef: score.clef, keys: noteVals[7].keys, duration: "q"});
           score.noteIDMap.push(`vf-${tempBar.notes[i].attrs.id}`);
         }
       }
@@ -711,7 +722,7 @@ class VFDisplay extends Component {
     function setNoteDuration(durVal) {
       duration = durVal;
 
-      selectedNote = new VF.StaveNote({clef: "treble", keys: selectedNote.keys, duration: duration});
+      selectedNote = new VF.StaveNote({clef: score.clef, keys: selectedNote.keys, duration: duration});
       selectedId = `vf-${selectedNote.attrs.id}`;
       score.measures[barIndex].notes[barNoteIndex] = selectedNote;
       score.noteIDMap[idMapIndex] = selectedId;
@@ -744,6 +755,25 @@ class VFDisplay extends Component {
 
       resetCanvas();
       highlightNote();
+    }
+
+    // toggles clef between treble and bass
+    function toggleClef() {
+      if (score.clef === 'treble') {
+        score.clef = 'bass';
+      } else {
+        score.clef = 'treble';
+      }
+
+      let count = 0;
+      score.measures.forEach((measure) => {
+        measure.notes.forEach((note, index, nArr) => {
+          count++;
+          nArr[index] = new VF.StaveNote({clef: score.clef, keys: note.keys, duration: note.duration});
+          score.noteIDMap[count - 1] = `vf-${nArr[index].attrs.id}`;
+        });
+      });
+      unselectNote();
     }
 
     // toggles display of time signature options
@@ -779,7 +809,7 @@ class VFDisplay extends Component {
 
       // transpose notes to the closest value in the new key
       let count = 0;
-      score.measures.forEach((measure, mIndex, mArray) => {
+      score.measures.forEach((measure) => {
         measure.notes.forEach((note, nIndex, nArray) => {
           if (newKey.indexOf(note) === -1) {
             count++;
@@ -789,12 +819,10 @@ class VFDisplay extends Component {
               for (let j = 0; j < newKey.length; j++) {
                 if (allNoteVals[i] === newKey[j].keys[0]) {
                   transposedNote = allNoteVals[i];
-                  note = new VF.StaveNote({clef: "treble", keys: [transposedNote], duration: note.duration});
-                  console.log(note.keys[0]);
-                  score.noteIDMap[count - 1] = `vf-${note.attrs.id}`;
+                  nArray[nIndex] = new VF.StaveNote({clef: score.clef, keys: [transposedNote], duration: note.duration});
+                  score.noteIDMap[count - 1] = `vf-${nArray[nIndex].attrs.id}`;
                   j = newKey.length;
                   i = allNoteVals.length;
-                  nArray[nIndex] = note;
                 }
               }
             }
@@ -826,7 +854,7 @@ class VFDisplay extends Component {
       if (score.timeSig.count === '6' && score.timeSig.value === '8') {
         score.measures.forEach((measure) => {
           if (measure.beats > beatCount / 2 || measure.beats < beatCount / 2) {
-            measure.fillColor = '#FF7800';
+            measure.fillColor = 'red';
             resetCanvas();
           } else {
             measure.fillColor = '#999999';
@@ -836,7 +864,7 @@ class VFDisplay extends Component {
       } else {
         score.measures.forEach((measure) => {
           if (measure.beats > beatCount || measure.beats < beatCount) {
-            measure.fillColor = '#FF7800';
+            measure.fillColor = 'red';
             resetCanvas();
           } else {
             measure.fillColor = '#999999';
