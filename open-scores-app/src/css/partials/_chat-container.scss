@@ -1,0 +1,30 @@
+form {
+    align-items: center;
+    display: flex;
+    background: $mediumDark;
+    bottom: 0;
+    height: 60px;
+    justify-content: center;
+    padding: 5px;
+    position: fixed;
+    width: 100%;
+}
+
+form input {
+    border: 0;
+    font: $primaryFont;
+    font-size: 15px;
+    // height: 100%;
+    margin-right: 0.5%;
+    padding: 10px;
+    width: 94%;
+}
+
+form button {
+    background: $orange;
+    border: none;
+    font: $primaryFont;
+    // padding: 25px;
+    height: 100%;
+    width: 5%;
+}

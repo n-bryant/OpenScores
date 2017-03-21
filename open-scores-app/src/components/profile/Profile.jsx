@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import MainHeader from './MainHeader';
 import MainSideBar from './MainSideBar';
 import UserCompositions from './UserCompositions';
+import ChatContainer from './ChatContainer';
 
 class Profile extends Component {
     render() {
@@ -10,6 +11,7 @@ class Profile extends Component {
                 <MainHeader/>
                 <UserCompositions/>
                 <MainSideBar/>
+                <ChatContainer/>
             </section>
         );
     }

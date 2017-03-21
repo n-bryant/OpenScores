@@ -1,0 +1,26 @@
+// MainForm Container Css
+
+.main-form-container {
+    align-items: center;
+    background: $dark;
+    display: flex;
+    height: 900px;
+    justify-content: center;
+}
+
+.main-form {
+    align-items: center;
+    background: $medium;
+    border: 5px solid $orange;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    justify-content: space-around;
+    width: 80%;
+}
+// Logo Css
+
+.logo-image {
+    width: 100px;
+}
