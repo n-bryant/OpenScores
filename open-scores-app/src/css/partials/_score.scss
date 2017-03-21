@@ -46,6 +46,25 @@
   }
 }
 
+.print-btn {
+  background: none;
+  border: none;
+  color: $orange;
+  cursor: pointer;
+  font: 1rem $primaryFont;
+  left: 1rem;
+  position: absolute;
+  top: 1rem;
+
+  &:hover {
+    color: $light;
+    text-decoration: underline;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
 .bpm-container {
   .edit-bpm-form {
     flex-direction: row-reverse;

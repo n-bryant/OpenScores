@@ -16,3 +16,21 @@
         @media screen and (min-width: 1060px) { @content; }
     }
 }
+
+// printing media query
+@mixin print {
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    .score-title, .score-bpm, .score-to-print, .score-to-print * {
+      visibility: visible;
+    }
+    .score-to-print {
+      left: 0;
+      position: fixed;
+      top: 0;
+      transform: scale(.75);
+    }
+  }
+}

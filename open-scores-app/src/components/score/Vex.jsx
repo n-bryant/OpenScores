@@ -23,7 +23,7 @@ class VFDisplay extends Component {
     let noteVals = [];
     // let noteVals = getScale(scaleIWant);
 
-    function setLibrary() {
+    function setLibrary(key) {
       noteVals = [];
       let c3 = new VF.StaveNote({keys: ['C/3'], duration: duration});
       let cs3 = new VF.StaveNote({keys: ['C#/3'], duration: duration}).addAccidental(0, new VF.Accidental('#'));
@@ -115,37 +115,6 @@ class VFDisplay extends Component {
       let c7 = new VF.StaveNote({keys: ['C/7'], duration: duration});
 
       let allNoteVals = [c3, cs3, df3, d3, ds3, ef3, e3, es3, ff3, f3, fs3, gf3, g3, gs3, af3, a3, as3, bf3, b3, bs3, cf4, c4, cs4, df4, d4, ds4, ef4, e4, es4, ff4, f4, fs4, gf4, g4, gs4, af4, a4, as4, bf4, b4, bs4, cf5, c5, cs5, df5, d5, ds5, ef5, e5, es5, ff5, f5, fs5, gf5, g5, gs5, af5, a5, as5, bf5, b5, bs5, cf6, c6, cs6, df6, d6, ds6, ef6, e6, es6, ff6, f6, fs6, gf6, g6, gs6, af6, a6, as6, bf6, b6, bs6, cf7];
-      //major scales
-      let cMajScale = [c3, d3, e3, f3, g3, a3, b3, c4, d4, e4, f4, g4, a4, b4, c5, d5, e5, f5, g5, a5, b5, c6, d6, e6, f6, g6, a6, b6, c7];
-      let gMajScale = [c3, d3, e3, fs3, g3, a3, b3, c4, d4, e4, fs4, g4, a4, b4, c5, d5, e5, fs5, g5, a5, b5, c6, d6, e6, fs6, g6, a6, b6, c7];
-      let dMajScale = [cs3, d3, e3, fs3, g3, a3, b3, cs4, d4, e4, fs4, g4, a4, b4, cs5, d5, e5, fs5, g5, a5, b5, cs6, d6, e6, fs6, g6, a6, b6];
-      let aMajScale = [cs3, d3, e3, fs3, gs3, a3, b3, cs4, d4, e4, fs4, gs4, a4, b4, cs5, d5, e5, fs5, gs5, a5, b5, cs6, d6, e6, fs6, gs6, a6, b6];
-      let eMajScale = [cs3, ds3, e3, fs3, gs3, a3, b3, cs4, ds4, e4, fs4, gs4, a4, b4, cs5, ds5, e5, fs5, gs5, a5, b5, cs6, ds6, e6, fs6, gs6, a6, b6];
-      let bMajScale = [cs3, ds3, e3, fs3, gs3, as3, b3, cs4, ds4, e4, fs4, gs4, as4, b4, cs5, ds5, e5, fs5, gs5, as5, b5, cs6, ds6, e6, fs6, gs6, as6, b6];
-      let fsMajScale = [cs3, ds3, es3, fs3, gs3, as3, b3, cs4, ds4, es4, fs4, gs4, as4, b4, cs5, ds5, es5, fs5, gs5, as5, b5, cs6, ds6, es6, fs6, gs6, as6, b6];
-
-      let fMajScale = [c3, d3, e3, f3, g3, a3, bf3, c4, d4, e4, f4, g4, a4, bf4, c5, d5, e5, f5, g5, a5, bf5, c6, d6, e6, f6, g6, a6, bf6, c7];
-      let bfMajScale = [c3, d3, ef3, f3, g3, a3, bf3, c4, d4, ef4, f4, g4, a4, bf4, c5, d5, ef5, f5, g5, a5, bf5, c6, d6, ef6, g6, a6, bf6, c7];
-      let efMajScale = [c3, d3, ef3, f3, g3, af3, bf3, c4, d4, ef4, f4, g4, af4, bf4, c5, d5, ef5, f5, g5, af5, bf5, c6, d6, ef6, g6, af6, bf6, c7];
-      let afMajScale = [c3, df3, ef3, f3, g3, af3, bf3, c4, df4, ef4, f4, g4, af4, bf4, c5, df5, ef5, f5, g5, af5, bf5, c6, df6, ef6, g6, af6, bf6, c7];
-      let dfMajScale = [c3, df3, ef3, f3, gf3, af3, bf3, c4, df4, ef4, f4, gf4, af4, bf4, c5, df5, ef5, f5, gf5, af5, bf5, c6, df6, ef6, gf6, af6, bf6, c7];
-      let gfMajScale = [df3, ef3, f3, gf3, af3, bf3, cf4, df4, ef4, f4, gf4, af4, bf4, cf5, df5, ef5, f5, gf5, af5, bf5, cf6, df6, ef6, gf6, af6, bf6, cf7];
-
-      //minor scales
-      let aminScale = [c3, d3, e3, f3, g3, a3, b3, c4, d4, e4, f4, g4, a4, b4, c5, d5, e5, f5, g5, a5, b5, c6, d6, e6, f6, g6, a6, b6, c7];
-      let eminScale = [c3, d3, e3, fs3, g3, a3, b3, c4, d4, e4, fs4, g4, a4, b4, c5, d5, e5, fs5, g5, a5, b5, c6, d6, e6, fs6, g6, a6, b6, c7];
-      let bminScale = [cs3, d3, e3, fs3, g3, a3, b3, cs4, d4, e4, fs4, g4, a4, b4, cs5, d5, e5, fs5, g5, a5, b5, cs6, d6, e6, fs6, g6, a6, b6];
-      let fsminScale = [cs3, d3, e3, fs3, gs3, a3, b3, cs4, d4, e4, fs4, gs4, a4, b4, cs5, d5, e5, fs5, gs5, a5, b5, cs6, d6, e6, fs6, gs6, a6, b6];
-      let csminScale = [cs3, ds3, e3, fs3, gs3, a3, b3, cs4, ds4, e4, fs4, gs4, a4, b4, cs5, ds5, e5, fs5, gs5, a5, b5, cs6, ds6, e6, fs6, gs6, a6, b6];
-      let gsminScale = [cs3, ds3, e3, fs3, gs3, as3, b3, cs4, ds4, e4, fs4, gs4, as4, b4, cs5, ds5, e5, fs5, gs5, as5, b5, cs6, ds6, e6, fs6, gs6, as6, b6];
-      let dsminScale = [cs3, ds3, es3, fs3, gs3, as3, b3, cs4, ds4, es4, fs4, gs4, as4, b4, cs5, ds5, es5, fs5, gs5, as5, b5, cs6, ds6, es6, fs6, gs6, as6, b6];
-
-      let dminScale = [c3, d3, e3, f3, g3, a3, bf3, c4, d4, e4, f4, g4, a4, bf4, c5, d5, e5, f5, g5, a5, bf5, c6, d6, e6, f6, g6, a6, bf6, c7];
-      let gfminScale = [c3, d3, ef3, f3, g3, a3, bf3, c4, d4, ef4, f4, g4, a4, bf4, c5, d5, ef5, f5, g5, a5, bf5, c6, d6, ef6, g6, a6, bf6, c7];
-      let cminScale = [c3, d3, ef3, f3, g3, af3, bf3, c4, d4, ef4, f4, g4, af4, bf4, c5, d5, ef5, f5, g5, af5, bf5, c6, d6, ef6, g6, af6, bf6, c7];
-      let fminScale = [c3, df3, ef3, f3, g3, af3, bf3, c4, df4, ef4, f4, g4, af4, bf4, c5, df5, ef5, f5, g5, af5, bf5, c6, df6, ef6, g6, af6, bf6, c7];
-      let bfminScale = [c3, df3, ef3, f3, gf3, af3, bf3, c4, df4, ef4, f4, gf4, af4, bf4, c5, df5, ef5, f5, gf5, af5, bf5, c6, df6, ef6, gf6, af6, bf6, c7];
-      let efminScale = [df3, ef3, f3, gf3, af3, bf3, cf4, df4, ef4, f4, gf4, af4, bf4, cf5, df5, ef5, f5, gf5, af5, bf5, cf6, df6, ef6, gf6, af6, bf6, cf7];
 
       //major triads
       let C5 = new VF.StaveNote({keys: ['C/4', 'E/4', 'G/4'], duration: duration});
@@ -241,12 +210,77 @@ class VFDisplay extends Component {
       let Bfmin7 = new VF.StaveNote({keys: ['Bb/4', 'Db/5', 'F/5', 'Ab/5'], duration: duration}).addAccidental(0, new VF.Accidental('b')).addAccidental(1, new VF.Accidental('b')).addAccidental(3, new VF.Accidental('b'));
       let Bmin7 = new VF.StaveNote({keys: ['B/4', 'D/5', 'F#/5', 'A/5'], duration: duration}).addAccidental(2, new VF.Accidental('#'));
 
+      //major scales
+      let cMajScale = [c3, d3, e3, f3, g3, a3, b3, c4, d4, e4, f4, g4, a4, b4, c5, d5, e5, f5, g5, a5, b5, c6, d6, e6, f6, g6, a6, b6, c7];
+      let gMajScale = [c3, d3, e3, fs3, g3, a3, b3, c4, d4, e4, fs4, g4, a4, b4, c5, d5, e5, fs5, g5, a5, b5, c6, d6, e6, fs6, g6, a6, b6, c7];
+      let dMajScale = [cs3, d3, e3, fs3, g3, a3, b3, cs4, d4, e4, fs4, g4, a4, b4, cs5, d5, e5, fs5, g5, a5, b5, cs6, d6, e6, fs6, g6, a6, b6];
+      let aMajScale = [cs3, d3, e3, fs3, gs3, a3, b3, cs4, d4, e4, fs4, gs4, a4, b4, cs5, d5, e5, fs5, gs5, a5, b5, cs6, d6, e6, fs6, gs6, a6, b6];
+      let eMajScale = [cs3, ds3, e3, fs3, gs3, a3, b3, cs4, ds4, e4, fs4, gs4, a4, b4, cs5, ds5, e5, fs5, gs5, a5, b5, cs6, ds6, e6, fs6, gs6, a6, b6];
+      let bMajScale = [cs3, ds3, e3, fs3, gs3, as3, b3, cs4, ds4, e4, fs4, gs4, as4, b4, cs5, ds5, e5, fs5, gs5, as5, b5, cs6, ds6, e6, fs6, gs6, as6, b6];
+      let fsMajScale = [cs3, ds3, es3, fs3, gs3, as3, b3, cs4, ds4, es4, fs4, gs4, as4, b4, cs5, ds5, es5, fs5, gs5, as5, b5, cs6, ds6, es6, fs6, gs6, as6, b6];
+
+      let fMajScale = [c3, d3, e3, f3, g3, a3, bf3, c4, d4, e4, f4, g4, a4, bf4, c5, d5, e5, f5, g5, a5, bf5, c6, d6, e6, f6, g6, a6, bf6, c7];
+      let bfMajScale = [c3, d3, ef3, f3, g3, a3, bf3, c4, d4, ef4, f4, g4, a4, bf4, c5, d5, ef5, f5, g5, a5, bf5, c6, d6, ef6, g6, a6, bf6, c7];
+      let efMajScale = [c3, d3, ef3, f3, g3, af3, bf3, c4, d4, ef4, f4, g4, af4, bf4, c5, d5, ef5, f5, g5, af5, bf5, c6, d6, ef6, g6, af6, bf6, c7];
+      let afMajScale = [c3, df3, ef3, f3, g3, af3, bf3, c4, df4, ef4, f4, g4, af4, bf4, c5, df5, ef5, f5, g5, af5, bf5, c6, df6, ef6, g6, af6, bf6, c7];
+      let dfMajScale = [c3, df3, ef3, f3, gf3, af3, bf3, c4, df4, ef4, f4, gf4, af4, bf4, c5, df5, ef5, f5, gf5, af5, bf5, c6, df6, ef6, gf6, af6, bf6, c7];
+      let gfMajScale = [df3, ef3, f3, gf3, af3, bf3, cf4, df4, ef4, f4, gf4, af4, bf4, cf5, df5, ef5, f5, gf5, af5, bf5, cf6, df6, ef6, gf6, af6, bf6, cf7];
+
+      //minor scales
+      let aminScale = [c3, d3, e3, f3, g3, a3, b3, c4, d4, e4, f4, g4, a4, b4, c5, d5, e5, f5, g5, a5, b5, c6, d6, e6, f6, g6, a6, b6, c7];
+      let eminScale = [c3, d3, e3, fs3, g3, a3, b3, c4, d4, e4, fs4, g4, a4, b4, c5, d5, e5, fs5, g5, a5, b5, c6, d6, e6, fs6, g6, a6, b6, c7];
+      let bminScale = [cs3, d3, e3, fs3, g3, a3, b3, cs4, d4, e4, fs4, g4, a4, b4, cs5, d5, e5, fs5, g5, a5, b5, cs6, d6, e6, fs6, g6, a6, b6];
+      let fsminScale = [cs3, d3, e3, fs3, gs3, a3, b3, cs4, d4, e4, fs4, gs4, a4, b4, cs5, d5, e5, fs5, gs5, a5, b5, cs6, d6, e6, fs6, gs6, a6, b6];
+      let csminScale = [cs3, ds3, e3, fs3, gs3, a3, b3, cs4, ds4, e4, fs4, gs4, a4, b4, cs5, ds5, e5, fs5, gs5, a5, b5, cs6, ds6, e6, fs6, gs6, a6, b6];
+      let gsminScale = [cs3, ds3, e3, fs3, gs3, as3, b3, cs4, ds4, e4, fs4, gs4, as4, b4, cs5, ds5, e5, fs5, gs5, as5, b5, cs6, ds6, e6, fs6, gs6, as6, b6];
+      let dsminScale = [cs3, ds3, es3, fs3, gs3, as3, b3, cs4, ds4, es4, fs4, gs4, as4, b4, cs5, ds5, es5, fs5, gs5, as5, b5, cs6, ds6, es6, fs6, gs6, as6, b6];
+
+      let dminScale = [c3, d3, e3, f3, g3, a3, bf3, c4, d4, e4, f4, g4, a4, bf4, c5, d5, e5, f5, g5, a5, bf5, c6, d6, e6, f6, g6, a6, bf6, c7];
+      let gfminScale = [c3, d3, ef3, f3, g3, a3, bf3, c4, d4, ef4, f4, g4, a4, bf4, c5, d5, ef5, f5, g5, a5, bf5, c6, d6, ef6, g6, a6, bf6, c7];
+      let cminScale = [c3, d3, ef3, f3, g3, af3, bf3, c4, d4, ef4, f4, g4, af4, bf4, c5, d5, ef5, f5, g5, af5, bf5, c6, d6, ef6, g6, af6, bf6, c7];
+      let fminScale = [c3, df3, ef3, f3, g3, af3, bf3, c4, df4, ef4, f4, g4, af4, bf4, c5, df5, ef5, f5, g5, af5, bf5, c6, df6, ef6, g6, af6, bf6, c7];
+      let bfminScale = [c3, df3, ef3, f3, gf3, af3, bf3, c4, df4, ef4, f4, gf4, af4, bf4, c5, df5, ef5, f5, gf5, af5, bf5, c6, df6, ef6, gf6, af6, bf6, c7];
+      let efminScale = [df3, ef3, f3, gf3, af3, bf3, cf4, df4, ef4, f4, gf4, af4, bf4, cf5, df5, ef5, f5, gf5, af5, bf5, cf6, df6, ef6, gf6, af6, bf6, cf7];
+
       // console.log(scale);
-      cMajScale.forEach((note) => {
-        noteVals.push(note);
-      });
+      switch (key) {
+        case 'C':
+          cMajScale.forEach((note) => {
+            noteVals.push(note);
+          });
+          break;
+        case 'D':
+          dMajScale.forEach((note) => {
+            noteVals.push(note);
+          });
+          break;
+        case 'E':
+          eMajScale.forEach((note) => {
+            noteVals.push(note);
+          });
+          break;
+        case 'F':
+          fMajScale.forEach((note) => {
+            noteVals.push(note);
+          });
+          break;
+        case 'G':
+          gMajScale.forEach((note) => {
+            noteVals.push(note);
+          });
+          break;
+        case 'A':
+          aMajScale.forEach((note) => {
+            noteVals.push(note);
+          });
+          break;
+        case 'B':
+          bMajScale.forEach((note) => {
+            noteVals.push(note);
+          });
+          break;
+      }
     }
-    setLibrary();
 
     // declaration of base score values
     let beatCount = 4;
@@ -260,13 +294,17 @@ class VFDisplay extends Component {
 
     let score = {
       title: 'Score Title',
-      keySig: 'CMaj',
-      timeSig: '4/4',
+      keySig: 'C',
+      timeSig: {count: beatCount, value: beatValue},
       clef: 'treble',
       measures: [],
       noteIDMap: []
     }
-console.log(score);
+
+    console.log(score);
+
+    setLibrary(score.keySig);
+
     let staveX = 0;
     let staveY = 0;
     let staveWidth = 300;
@@ -280,19 +318,23 @@ console.log(score);
       context.clear();
 
       for (let i = 0; i < score.measures.length; i++) {
-        // add a clef and time signature to first bar.
         let x = score.measures[i].staveX;
         let y = score.measures[i].staveY;
         let fill = score.measures[i].fillColor;
+
         if (i === 0) {
+          // add a clef, key, and time signature to first bar.
           score.measures[i].stave = new VF.Stave(x, y, staveWidth, { fill_style: fill});
-          score.measures[i].stave.addClef("treble").addTimeSignature(`${beatCount}/${beatValue}`);
+          score.measures[i].stave.addClef("treble").addTimeSignature(`${score.timeSig.count}/${score.timeSig.value}`);
+          let keySig = new VF.KeySignature(score.keySig);
+          keySig.addToStave(score.measures[i].stave);
         } else {
           score.measures[i].stave = new VF.Stave(x, y, staveWidth, { fill_style: fill});
         }
 
         // draw staves and notes
         score.measures[i].stave.setContext(context).draw();
+
         VF.Formatter.FormatAndDraw(context, score.measures[i].stave, score.measures[i].notes);
 
         // generate beams
@@ -310,9 +352,19 @@ console.log(score);
       bindNotes();
 
       if (pageLoad) {
+        // print button
+        document.querySelector('.print-btn').addEventListener('click', () => {
+          printScore();
+        });
+
         // add measure button
         document.querySelector('.add-measure-btn').addEventListener('click', () => {
           addMeasure();
+        });
+
+        // key signature button
+        document.querySelector('.key-sig-btn').addEventListener('click', () => {
+          updateKeySig();
         });
 
         // note options buttons
@@ -325,6 +377,16 @@ console.log(score);
           });
         });
 
+        // time options buttons
+        let timeOptions = document.querySelectorAll('.time-option');
+        timeOptions.forEach((option) => {
+          option.addEventListener('click', function() {
+            let count = option.getAttribute('data-count');
+            let val = option.getAttribute('data-val');
+            updateTimeSig(count, val);
+          })
+        });
+
         // accidental options buttons
         let accidentalOptions = document.querySelectorAll('.acc-option');
         accidentalOptions.forEach((option) => {
@@ -335,12 +397,18 @@ console.log(score);
           })
         });
 
+        // tie notes button
         document.querySelector('.tie-btn').addEventListener('click', function() {
           if (selectedNote) {
             tieNotes();
             // do I want this as a toggle or have user click button once, set first index, and then again to set second index?
             // is there a way to wait for a secondary click while tieNotes is running?
           }
+        });
+
+        // time signature button
+        document.querySelector('.time-sig-btn').addEventListener('click', () => {
+          toggleTimeOptions();
         });
 
         pageLoad = false;
@@ -552,23 +620,36 @@ console.log(score);
       } else {
         tempBar.staveY = staveY;
       }
-      tempBar.stave = new VF.Stave(tempBar.staveX, tempBar.staveY, staveWidth);
+      tempBar.stave = new VF.Stave(staveX, staveY, staveWidth);
 
       // default ties and notes
       tempBar.ties = [];
       tempBar.notes = [];
-      for (let i = 0; i < beatCount; i++) {
-        tempBar.notes[i] = new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q"});
-        score.noteIDMap.push(`vf-${tempBar.notes[i].attrs.id}`);
+      if (beatCount === '6') {
+        for (let i = 0; i < beatCount / 2; i++) {
+          tempBar.notes[i] = new VF.StaveNote({clef: "treble", keys: noteVals[7].keys, duration: "q"});
+          score.noteIDMap.push(`vf-${tempBar.notes[i].attrs.id}`);
+        }
+      } else {
+        for (let i = 0; i < beatCount; i++) {
+          tempBar.notes[i] = new VF.StaveNote({clef: "treble", keys: noteVals[7].keys, duration: "q"});
+          score.noteIDMap.push(`vf-${tempBar.notes[i].attrs.id}`);
+        }
       }
+
       score.measures.push(tempBar);
       let newestStave = score.measures[score.measures.length - 1];
       setMeasureBeats(newestStave);
     }
 
+    // triggers print diaglogue to print score
+    function printScore() {
+      window.print();
+    }
+
     // reset library with new note and voice instances
     function resetCanvas() {
-      setLibrary();
+      setLibrary(score.keySig);
       drawScore();
       bindEvents();
     }
@@ -597,7 +678,7 @@ console.log(score);
         }
       });
       measure.beats = totalBeats;
-      validateMeasure(measure);
+      validateMeasures();
     }
 
     // sets note to a specified duration
@@ -639,6 +720,16 @@ console.log(score);
       highlightNote();
     }
 
+    // toggles display of time signature options
+    function toggleTimeOptions() {
+      const timeOptionsContainer = document.querySelector('.time-options-container')
+      if (timeOptionsContainer.classList.contains('is-hidden')) {
+        timeOptionsContainer.classList.remove('is-hidden');
+      } else {
+        timeOptionsContainer.classList.add('is-hidden');
+      }
+    }
+
     // unselect a note
     function unselectNote() {
       selectedNote = null;
@@ -655,14 +746,47 @@ console.log(score);
       resetCanvas();
     }
 
+    // updates key signature to selected option
+    function updateKeySig() {
+      // render key on page by setting score.key value and tying that to VF
+      // deal with how that might affect notes on the page that weren't in that key
+    }
+
+    // updates time signature to selected option
+    function updateTimeSig(count, value) {
+      beatCount = count;
+      beatValue = value;
+      score.timeSig.count = beatCount;
+      score.timeSig.value = beatValue;
+      resetCanvas();
+      validateMeasures();
+      if (selectedNote) {
+        highlightNote();
+      }
+    }
+
     // provides validation for a measure's beat value
-    function validateMeasure(measure) {
-      if (measure.beats > beatCount || measure.beats < beatCount) {
-        measure.fillColor = '#FF7800';
-        resetCanvas();
+    function validateMeasures() {
+      if (score.timeSig.count === '6' && score.timeSig.value === '8') {
+        score.measures.forEach((measure) => {
+          if (measure.beats > beatCount / 2 || measure.beats < beatCount / 2) {
+            measure.fillColor = '#FF7800';
+            resetCanvas();
+          } else {
+            measure.fillColor = '#999999';
+            resetCanvas();
+          }
+        });
       } else {
-        measure.fillColor = '#999999';
-        resetCanvas();
+        score.measures.forEach((measure) => {
+          if (measure.beats > beatCount || measure.beats < beatCount) {
+            measure.fillColor = '#FF7800';
+            resetCanvas();
+          } else {
+            measure.fillColor = '#999999';
+            resetCanvas();
+          }
+        });
       }
     }
 
@@ -672,7 +796,7 @@ console.log(score);
   render() {
 
     return (
-      <div id="vfDisplay" className="is-flex"></div>
+      <div id="vfDisplay" className="score-to-print is-flex"></div>
     );
   }
 }

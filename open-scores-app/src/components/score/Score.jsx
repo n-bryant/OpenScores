@@ -37,6 +37,7 @@ class Score extends Component {
         <ToolBox/>
         <section className="score-wrapper">
           <div className="score-container">
+            <button className="print-btn">print</button>
             <div className="title-container">
               <img className="edit-title-icon is-hidden" src="edit-icon" alt="edit-icon"/>
               <h2 ref={(scoreTitle) => this.titleEl = scoreTitle} className="score-title is-centered" onClick={() => {this.toggleForm(this.titleEl, this.titleForm)}}>{this.props.title}</h2>
