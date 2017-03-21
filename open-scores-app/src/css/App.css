@@ -149,6 +149,57 @@ body {
       border-bottom: 2px solid #FF7800;
       outline: none; }
 
+.key-options-container {
+  background: rgba(49, 49, 49, 0.75);
+  left: 0;
+  min-height: 100vh;
+  min-width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000; }
+  .key-options-container .exit-keys-btn {
+    color: #FF7800;
+    cursor: pointer;
+    font: 2rem "Nunito Sans", sans-serif;
+    height: 2.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 2.5rem; }
+    .key-options-container .exit-keys-btn:hover {
+      color: #FAFAFA;
+      transition: color .5s; }
+  .key-options-container .keys-wrapper {
+    background: #313131;
+    border: 4px solid #FF7800;
+    flex-wrap: wrap;
+    margin: 4rem auto;
+    max-height: 85vh;
+    justify-content: space-around;
+    overflow: scroll;
+    padding: 2rem;
+    width: 85%; }
+
+.key-option {
+  border: 4px solid transparent;
+  color: #FAFAFA;
+  cursor: pointer;
+  font: 1.5rem "Nunito Sans", sans-serif;
+  padding: 1rem;
+  text-decoration: underline;
+  width: 200px; }
+  .key-option:hover {
+    border: 4px solid #FAFAFA;
+    transition: border 1s; }
+  .key-option .key-name {
+    margin-bottom: .5rem; }
+  .key-option .key-display {
+    background: #FF7800; }
+    .key-option .key-display img {
+      display: block;
+      padding: 1rem;
+      width: 100%; }
+
 #vfDisplay {
   display: flex;
   justify-content: center;
