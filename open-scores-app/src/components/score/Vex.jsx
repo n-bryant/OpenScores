@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Vex from 'vexflow/releases/vexflow-min';
-// import {getScale} from './helpers';
-// import jQuery from '../../vendor/jquery-3.1.1.min.js';
+import Tone from 'tone';
+import $ from 'jquery';
+
 
 class VFDisplay extends Component {
 
@@ -411,6 +412,12 @@ class VFDisplay extends Component {
           toggleTimeOptions();
         });
 
+        //playback controls
+        document.querySelector('.playBtn').addEventListener('click', () => {
+          toneArray = [];
+            convertVexToTone();
+        });
+
         pageLoad = false;
       }
 
@@ -545,6 +552,84 @@ class VFDisplay extends Component {
 
       setMeasureBeats(score.measures[barIndex]);
       highlightNote();
+    }
+
+    let toneArray = [];
+
+    function convertVexToTone() {
+      console.log(toneArray);
+      score.measures.forEach((measure) => {
+        measure.notes.forEach((note) => {
+          let pitch = note.keys[0].replace('/', '');
+          // let measureIndex  = score.measures.indexOf(measure);
+          // let noteIndex = measure.notes.indexOf(note);
+          let tempObj = {};
+          tempObj.dur = note.duration;
+          tempObj.note = pitch;
+          tempObj.time = '0:';
+          toneArray.push(tempObj);
+        });
+      });
+      // console.log(eachMeasure);
+      formatToneArr();
+    }
+
+    function formatToneArr() {
+      let timeVal = 0;
+      let durVal = 0;
+      toneArray.forEach((obj, index) => {
+        if (index === 0) {
+          obj.time = '0';
+        }
+        switch (obj.dur) {
+          case 'w':
+            obj.dur = '2';
+            obj.time = `0:${timeVal}`;
+            timeVal += 4;
+            break;
+          case 'h':
+            obj.dur = '1';
+            obj.time = `0:${timeVal}`;
+            timeVal += 2;
+            break;
+          case 'q':
+            obj.dur = '0.5';
+            obj.time = `0:${timeVal}`;
+            timeVal += 1;
+            break;
+          case '8':
+            obj.dur = '0.25';
+            obj.time = `0:${timeVal}`;
+            timeVal += 0.5;
+            break;
+          case '16':
+            obj.dur = '0.125';
+            obj.time = `0:${timeVal}`;
+            timeVal += 0.25;
+            break;
+        }
+      });
+      // console.log(arr);
+      playSound();
+    }
+
+    function playSound() {
+      console.log('in');
+      let started = false;
+      let synth = new Tone.PolySynth().toMaster();
+      Tone.Transport.bpm.value = 120;
+
+      //pass in an array of events
+      let part = new Tone.Part(function(time, event){
+      	//the events will be given to the callback with the time they occur
+      	synth.triggerAttackRelease(event.note, event.dur, time)
+      }, toneArray);
+
+      // part.loop = 8;
+      // part.loopStart = '1m';
+      // part.loopEnd = '2m';
+      part.start(0);
+      toneArray = [];
     }
 
     // remove selected note from score
