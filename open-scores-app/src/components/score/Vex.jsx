@@ -640,33 +640,24 @@ class VFDisplay extends Component {
       console.log(toneArray);
       score.measures.forEach((measure) => {
         measure.notes.forEach((note) => {
-          // console.log(note.noteType);
+          console.log(note);
           let pitch = note.keys[0].replace('/', '');
           let tempObj = {};
           tempObj.dur = note.duration;
           tempObj.note = pitch;
           tempObj.time = '0:';
-<<<<<<< HEAD
 
           if (note.noteType === 'r') {
-            console.log(note);
-            tempObj.dur = note.duration;
             delete tempObj.note;
-            tempObj.time = '0:';
-=======
-          if (note.noteType === 'r') {
-            console.log(note);
-            tempObj.note = '';
->>>>>>> staging
           }
+          if (note.dots) {
+            tempObj.dot = true;
+          }
+
           toneArray.push(tempObj);
         });
       });
-<<<<<<< HEAD
       formatToneArr();
-=======
-      // formatToneArr();
->>>>>>> staging
     }
 
     // remove selected note from score
@@ -707,34 +698,52 @@ class VFDisplay extends Component {
         if (index === 0) {
           obj.time = '0';
         }
-        // if (obj.note === 'r') {
-        //   obj.note = null;
-        // }
+
         switch (obj.dur) {
           case 'w':
             obj.dur = '2';
             obj.time = `0:${timeVal}`;
-            timeVal += 4;
+            if (!obj.dot) {
+              timeVal += 4;
+            } else {
+              timeVal += 6;
+            };
             break;
           case 'h':
             obj.dur = '1';
             obj.time = `0:${timeVal}`;
-            timeVal += 2;
+            if (!obj.dot) {
+              timeVal += 2;
+            } else {
+              timeVal += 3;
+            };
             break;
           case 'q':
             obj.dur = '0.5';
             obj.time = `0:${timeVal}`;
-            timeVal += 1;
+            if (!obj.dot) {
+              timeVal += 1;
+            } else {
+              timeVal += 1.5;
+            };
             break;
           case '8':
             obj.dur = '0.25';
             obj.time = `0:${timeVal}`;
-            timeVal += 0.5;
+            if (!obj.dot) {
+              timeVal += 0.5;
+            } else {
+              timeVal += 0.75;
+            };
             break;
           case '16':
             obj.dur = '0.125';
             obj.time = `0:${timeVal}`;
-            timeVal += 0.25;
+            if (!obj.dot) {
+              timeVal += 0.25;
+            } else {
+              timeVal += 0.375;
+            };
             break;
         }
       });
