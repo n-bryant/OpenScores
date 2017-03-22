@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Playback from './Playback';
+import Transport from './Transport';
 
 class ToolBox extends Component {
 
@@ -8,7 +8,7 @@ class ToolBox extends Component {
     return (
       <div>
         <div className="tool-box horizontal is-flex">
-          <Playback/>
+          <Transport/>
           <section className="notation-selectors is-flex">
             <div className="note-lengths-container selectors is-centered">
               <h3>Measure</h3>

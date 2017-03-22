@@ -224,29 +224,29 @@ body {
     min-height: 100vh;
     width: 16rem; }
 
-.playback-controls {
+.Transport-controls {
   flex-direction: column;
   width: 16rem; }
-  .playback-controls .toggle-pos {
+  .Transport-controls .toggle-pos {
     position: relative;
     bottom: 1.5rem;
     left: 1rem;
     width: 2rem;
     background: none;
     border: none; }
-    .playback-controls .toggle-pos:hover {
+    .Transport-controls .toggle-pos:hover {
       cursor: pointer; }
 
-.playback {
+.Transport {
   width: 55px;
   display: inline-block;
   background: #373737;
   border-radius: 5px;
   margin: 3px;
   padding: 5px; }
-  .playback:hover {
+  .Transport:hover {
     cursor: pointer; }
-  .playback img {
+  .Transport img {
     filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
 
 .stopBtn:focus {
