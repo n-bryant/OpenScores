@@ -35,7 +35,7 @@ class Score extends Component {
     return (
       <section className="score-page-container is-flex">
         <ToolBox/>
-        <section className="score-wrapper">
+        <section className="score-wrapper vertical">
           <div className="score-container">
             <button className="print-btn">print</button>
             <div className="title-container">

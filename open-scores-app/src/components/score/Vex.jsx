@@ -25,6 +25,7 @@ class VFDisplay extends Component {
     let noteVals = [];
     let newKey = [];
 
+    // initializes new instances of VF StaveNotes
     function setLibrary(key, changing) {
       noteVals = [];
       newKey = [];
@@ -449,7 +450,7 @@ class VFDisplay extends Component {
 
         // time signature button
         document.querySelector('.time-sig-btn').addEventListener('click', () => {
-          toggleOptions('.time-options-container');
+          toggleOptions('.time-options-wrapper');
         });
 
         // toggle clef button
@@ -460,6 +461,11 @@ class VFDisplay extends Component {
         // exit key options button
         document.querySelector('.exit-keys-btn').addEventListener('click', () => {
           toggleOptions('.key-options-container');
+        });
+
+        // exit time options button
+        document.querySelector('.exit-times-btn').addEventListener('click', () => {
+          toggleOptions('.time-options-wrapper');
         });
 
         //playback controls
@@ -645,14 +651,14 @@ class VFDisplay extends Component {
           tempObj.dur = note.duration;
           tempObj.note = pitch;
           tempObj.time = '0:';
-          if (note.noteType === 'r') {
-            console.log(note);
-            tempObj.note = '';
-          }
+          // if (note.noteType === 'r') {
+          //   console.log(note);
+          //   tempObj.note = '';
+          // }
           toneArray.push(tempObj);
         });
       });
-      // formatToneArr();
+      formatToneArr();
     }
 
     // remove selected note from score
@@ -992,7 +998,7 @@ class VFDisplay extends Component {
       if (selectedNote) {
         highlightNote();
       }
-      toggleOptions('.time-options-container');
+      toggleOptions('.time-options-wrapper');
     }
 
     // provides validation for a measure's beat value
