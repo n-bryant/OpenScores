@@ -3,25 +3,50 @@ import Transport from './Transport';
 
 class ToolBox extends Component {
 
+  toggleToolBoxPosition(event) {
+    const toolBox = document.querySelector('.tool-box');
+    const scoreWrapper = document.querySelector('.score-wrapper');
+    if (toolBox.classList.contains('horizontal')) {
+      toolBox.classList.remove('horizontal');
+      toolBox.classList.add('vertical');
+      scoreWrapper.classList.add('vertical');
+    } else if (toolBox.classList.contains('vertical')) {
+      toolBox.classList.remove('vertical');
+      scoreWrapper.classList.remove('vertical');
+      toolBox.classList.add('horizontal');
+    }
+  }
 
   render() {
     return (
       <div>
-        <div className="tool-box horizontal is-flex">
-          <Transport/>
+        <div className="tool-box vertical is-flex">
+          <button className="toggle-pos" onClick={this.toggleToolBoxPosition.bind(this)}>
+            <img src="https://image.flaticon.com/icons/svg/122/122303.svg" alt="toggle toolbox view button"/>
+          </button>
           <section className="notation-selectors is-flex">
+            <Transport/>
             <div className="note-lengths-container selectors is-centered">
               <h3>Measure</h3>
               <div className="options-wrapper is-flex">
                 <button className="icon is-centered add-measure-btn"><img src="https://image.flaticon.com/icons/svg/7/7632.svg" alt="add measure"/></button>
                 <button className="icon toggle-clef-btn is-centered"><img src="" alt="clef"/></button>
-                <div className="time-options-wrapper">
-                  <button className="icon time-sig-btn is-centered">4/4</button>
-                  <div className="time-options-container is-hidden is-flex">
-                    <div className="time-option" data-count="2" data-val="4">2/4</div>
-                    <div className="time-option" data-count="3" data-val="4">3/4</div>
-                    <div className="time-option" data-count="4" data-val="4">4/4</div>
-                    <div className="time-option" data-count="6" data-val="8">6/8</div>
+                <button className="icon time-sig-btn is-centered">4/4</button>
+                <div className="time-options-wrapper is-hidden">
+                  <div className="exit-times-btn">X</div>
+                  <div className="time-options-container is-flex">
+                    <div className="time-option" data-count="2" data-val="4">
+                      <p>2/4</p>
+                    </div>
+                    <div className="time-option" data-count="3" data-val="4">
+                      <p>3/4</p>
+                      </div>
+                    <div className="time-option" data-count="4" data-val="4">
+                      <p>4/4</p>
+                    </div>
+                    <div className="time-option" data-count="6" data-val="8">
+                      <p>6/8</p>
+                    </div>
                   </div>
                 </div>
                 <button className="icon key-sig-btn is-centered">key</button>
@@ -35,6 +60,7 @@ class ToolBox extends Component {
                 <button className="icon note-option is-centered" data-val="q"><img src="https://image.flaticon.com/icons/svg/122/122352.svg" alt="quarter note"/></button>
                 <button className="icon note-option is-centered" data-val="8"><img src="https://image.flaticon.com/icons/svg/122/122321.svg" alt="eighth note"/></button>
                 <button className="icon note-option is-centered" data-val="16"><img src="https://image.flaticon.com/icons/svg/122/122353.svg" alt="sixteenth note"/></button>
+                <button className="icon chord-btn is-centered"><img src="http://www.midnightmusic.com.au/wp-content/uploads/2013/08/Generic-power-chord-on-E-string.png" alt="chord"/></button>
               </div>
             </div>
             <div className="accidentals-container selectors is-centered">
