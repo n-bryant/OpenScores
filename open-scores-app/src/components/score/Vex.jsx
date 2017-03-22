@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Vex from 'vexflow/releases/vexflow-min';
-// import {getScale} from './helpers';
-// import jQuery from '../../vendor/jquery-3.1.1.min.js';
+import Tone from 'tone';
+import $ from 'jquery';
+
 
 class VFDisplay extends Component {
 
@@ -318,6 +319,9 @@ class VFDisplay extends Component {
       ties: [],
       noteIDMap: []
     }
+
+    let toneArray = [];
+
     setLibrary(score.keySig, false);
 
     let staveX = 0;
@@ -454,6 +458,11 @@ class VFDisplay extends Component {
         // exit key options button
         document.querySelector('.exit-keys-btn').addEventListener('click', () => {
           toggleOptions('.key-options-container');
+        });
+
+        //playback controls
+        document.querySelector('.playBtn').addEventListener('click', () => {
+            convertVexToTone();
         });
 
         pageLoad = false;
@@ -611,6 +620,24 @@ class VFDisplay extends Component {
       highlightNote();
     }
 
+    function convertVexToTone() {
+      console.log(toneArray);
+      score.measures.forEach((measure) => {
+        measure.notes.forEach((note) => {
+          let pitch = note.keys[0].replace('/', '');
+          // let measureIndex  = score.measures.indexOf(measure);
+          // let noteIndex = measure.notes.indexOf(note);
+          let tempObj = {};
+          tempObj.dur = note.duration;
+          tempObj.note = pitch;
+          tempObj.time = '0:';
+          toneArray.push(tempObj);
+        });
+      });
+      // console.log(eachMeasure);
+      formatToneArr();
+    }
+
     // remove selected note from score
     function deleteNote() {
       // don't allow first note in first measure to be deleted
@@ -640,6 +667,45 @@ class VFDisplay extends Component {
       score.noteIDMap[idMapIndex] = selectedId;
       setMeasureBeats(score.measures[barIndex]);
       highlightNote();
+    }
+
+    function formatToneArr() {
+      let timeVal = 0;
+      let durVal = 0;
+      toneArray.forEach((obj, index) => {
+        if (index === 0) {
+          obj.time = '0';
+        }
+        switch (obj.dur) {
+          case 'w':
+            obj.dur = '2';
+            obj.time = `0:${timeVal}`;
+            timeVal += 4;
+            break;
+          case 'h':
+            obj.dur = '1';
+            obj.time = `0:${timeVal}`;
+            timeVal += 2;
+            break;
+          case 'q':
+            obj.dur = '0.5';
+            obj.time = `0:${timeVal}`;
+            timeVal += 1;
+            break;
+          case '8':
+            obj.dur = '0.25';
+            obj.time = `0:${timeVal}`;
+            timeVal += 0.5;
+            break;
+          case '16':
+            obj.dur = '0.125';
+            obj.time = `0:${timeVal}`;
+            timeVal += 0.25;
+            break;
+        }
+      });
+      // console.log(arr);
+      playSound();
     }
 
     // match clicked note with its data by id and set as selected
@@ -718,6 +784,20 @@ class VFDisplay extends Component {
       score.measures.push(tempBar);
       let newestStave = score.measures[score.measures.length - 1];
       setMeasureBeats(newestStave);
+    }
+    
+    function playSound() {
+      console.log('in');
+      let started = false;
+      let synth = new Tone.PolySynth().toMaster();
+      Tone.Transport.bpm.value = 120;
+
+      let part = new Tone.Part(function(time, event){
+        synth.triggerAttackRelease(event.note, event.dur, time)
+      }, toneArray);
+
+      part.start(0);
+      toneArray = [];
     }
 
     // triggers print diaglogue to print score
