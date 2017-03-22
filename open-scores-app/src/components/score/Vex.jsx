@@ -25,6 +25,7 @@ class VFDisplay extends Component {
     let noteVals = [];
     let newKey = [];
 
+    // initializes new instances of VF StaveNotes
     function setLibrary(key, changing) {
       noteVals = [];
       newKey = [];
@@ -302,7 +303,7 @@ class VFDisplay extends Component {
     // declaration of base score values
     let beatCount = 4;
     let beatValue = 4;
-    let barIndex = null;
+    let barIndex = 0;
     let firstTie = true;
     let tieIndex = null;
     let firstTied = null;
@@ -450,7 +451,7 @@ class VFDisplay extends Component {
 
         // time signature button
         document.querySelector('.time-sig-btn').addEventListener('click', () => {
-          toggleOptions('.time-options-container');
+          toggleOptions('.time-options-wrapper');
         });
 
         // toggle clef button
@@ -461,6 +462,11 @@ class VFDisplay extends Component {
         // exit key options button
         document.querySelector('.exit-keys-btn').addEventListener('click', () => {
           toggleOptions('.key-options-container');
+        });
+
+        // exit time options button
+        document.querySelector('.exit-times-btn').addEventListener('click', () => {
+          toggleOptions('.time-options-wrapper');
         });
 
         //playback controls
@@ -637,36 +643,23 @@ class VFDisplay extends Component {
 
     function convertVexToTone() {
       // console.log(score.measures);
-      console.log(toneArray);
+      // console.log(toneArray);
       score.measures.forEach((measure) => {
         measure.notes.forEach((note) => {
-          // console.log(note.noteType);
+          // console.log(note);
           let pitch = note.keys[0].replace('/', '');
           let tempObj = {};
           tempObj.dur = note.duration;
           tempObj.note = pitch;
           tempObj.time = '0:';
-<<<<<<< HEAD
-
-          if (note.noteType === 'r') {
-            console.log(note);
-            tempObj.dur = note.duration;
-            delete tempObj.note;
-            tempObj.time = '0:';
-=======
-          if (note.noteType === 'r') {
-            console.log(note);
-            tempObj.note = '';
->>>>>>> staging
-          }
+          // if (note.noteType === 'r') {
+          //   console.log(note);
+          //   tempObj.note = '';
+          // }
           toneArray.push(tempObj);
         });
       });
-<<<<<<< HEAD
       formatToneArr();
-=======
-      // formatToneArr();
->>>>>>> staging
     }
 
     // remove selected note from score
@@ -702,39 +695,66 @@ class VFDisplay extends Component {
 
     function formatToneArr() {
       let timeVal = 0;
-      let durVal = 0;
+      let toneDur = 0;
       toneArray.forEach((obj, index) => {
         if (index === 0) {
           obj.time = '0';
         }
-        // if (obj.note === 'r') {
-        //   obj.note = null;
-        // }
         switch (obj.dur) {
           case 'w':
-            obj.dur = '2';
+            obj.dur = `${toneDur}`;
             obj.time = `0:${timeVal}`;
-            timeVal += 4;
+            if (!obj.dot) {
+              toneDur += 2;
+              timeVal += 4;
+            } else {
+              toneDur += 3;
+              timeVal += 6;
+            };
             break;
           case 'h':
             obj.dur = '1';
             obj.time = `0:${timeVal}`;
-            timeVal += 2;
+            if (!obj.dot) {
+              toneDur += 1;
+              timeVal += 2;
+            } else {
+              toneDur += 1.5;
+              timeVal += 3;
+            };
             break;
           case 'q':
             obj.dur = '0.5';
             obj.time = `0:${timeVal}`;
-            timeVal += 1;
+            if (!obj.dot) {
+              toneDur += 0.5;
+              timeVal += 1;
+            } else {
+              toneDur += 0.75;
+              timeVal += 1.5;
+            };
             break;
           case '8':
             obj.dur = '0.25';
             obj.time = `0:${timeVal}`;
-            timeVal += 0.5;
+            if (!obj.dot) {
+              toneDur += 0.25;
+              timeVal += 0.5;
+            } else {
+              toneDur += 0.375;
+              timeVal += 0.75;
+            };
             break;
           case '16':
             obj.dur = '0.125';
             obj.time = `0:${timeVal}`;
-            timeVal += 0.25;
+            if (!obj.dot) {
+              toneDur += 0.125;
+              timeVal += 0.25;
+            } else {
+              toneDur += 0.1875;
+              timeVal += 0.375;
+            };
             break;
         }
       });
@@ -760,8 +780,16 @@ class VFDisplay extends Component {
           }
         }
       }
+      // setTransportStart(barIndex);
       highlightNote();
     }
+
+    // function setTransportStart(start) {
+    //   if (start) {
+    //     Tone.Transport.
+    //
+    //   }
+    // }
 
     // mark a note as highlighted
     function highlightNote() {
@@ -777,9 +805,10 @@ class VFDisplay extends Component {
       // highlight newly selected note
       let highlightedNote = score.measures[barIndex].notes[score.measures[barIndex].notes.indexOf(selectedNote)];
       highlightedNote.setStyle({fillStyle: blueAccent, strokeStyle: blueAccent});
+      // console.log(selectedNote);
       resetCanvas();
     }
-
+// score.measures[barIndex].notes[barNoteIndex];
     // Creates a new default measure
     function newMeasure() {
       let tempBar = {};
@@ -830,6 +859,9 @@ class VFDisplay extends Component {
       }, toneArray);
 
       part.start(0);
+      console.log(barIndex);
+      Tone.Transport.start('+0.5', `${barIndex}:0`);
+
       toneArray = [];
     }
 
@@ -1008,7 +1040,7 @@ class VFDisplay extends Component {
       if (selectedNote) {
         highlightNote();
       }
-      toggleOptions('.time-options-container');
+      toggleOptions('.time-options-wrapper');
     }
 
     // provides validation for a measure's beat value
