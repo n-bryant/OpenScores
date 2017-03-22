@@ -2,3 +2,5 @@ body {
   font: 16px/1.6 $primaryFont;
   position: relative;
 }
+
+@include print;

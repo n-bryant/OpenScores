@@ -16,6 +16,7 @@
     "vextab": "^2.0.13"
   },
   "devDependencies": {
+    "interface": "^1.1.1",
     "node-sass": "^4.5.0",
     "npm-run-all": "^4.0.2",
     "react-scripts": "0.9.5",
@@ -32,4 +33,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
+
 }
