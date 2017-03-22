@@ -2,6 +2,10 @@
   background: $mediumDark;
   min-height: 100vh;
   width: 100%;
+
+  &.vertical {
+    margin-left: 256px;
+  }
   @include bp(mobile) {
     padding: 0;
   }
@@ -16,30 +20,43 @@
   color: $darkest;
   margin: 0 auto;
   max-width: 900px;
-  min-height: 85vh;
+  min-height: 100vh;
   overflow: scroll;
   padding: 2rem;
+  position: relative;
   width: 85%;
   @include bp(mobile) {
     width: 100%;
   }
+}
 
+.title-container {
+  position: relative;
   .score-title {
     font: 2rem $commentsFont;
   }
   .edit-title-form {
+    background: $light;
+    position: absolute;
+    left: 50%;
+    text-align: center;
+    top: -1rem;
+    transform: translateX(-50%);
+    width: 50%;
     text-align: center;
 
     .title-input {
       background: $light;
       border: none;
+      border-bottom: 4px solid $orange;
       color: $darkest;
       font: 2rem $commentsFont;
-      width: 50%;
+      margin: 0 auto;
+      width: 100%;
 
       &:focus {
         background: rgba(71,71,71,.25);
-        border-bottom: 2px solid $orange;
+        border-bottom: 4px solid $orange;
         outline: none;
       }
     }
@@ -52,12 +69,11 @@
   color: $orange;
   cursor: pointer;
   font: 1rem $primaryFont;
-  left: 1rem;
+  right: .5rem;
   position: absolute;
-  top: 1rem;
+  top: .5rem;
 
   &:hover {
-    color: $light;
     text-decoration: underline;
   }
   &:focus {
@@ -66,22 +82,27 @@
 }
 
 .bpm-container {
+  position: relative;
+  width: 100px;
   .edit-bpm-form {
+    background: $light;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    width: 200px;
+    position: absolute;
+    top: -1rem;
+    width: 100px;
 
     .bpm-input {
       background: $light;
       border: none;
-      border-bottom: 2px solid $orange;
+      border-bottom: 4px solid $orange;
       font: 1rem $primaryFont;
       margin-right: .5rem;
-      width: 30%;
+      width: 70px;
 
       &:focus {
         background: rgba(71,71,71,.25);
-        border-bottom: 2px solid $orange;
+        border-bottom: 4px solid $orange;
         outline: none;
       }
     }
