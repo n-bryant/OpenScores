@@ -12,7 +12,7 @@ super();
   playSound(event) {
     if (!this.started) {
       this.started = true;
-      Tone.Transport.start('+0.1');
+      // Tone.Transport.start('+0.1');
     }
   }
 
