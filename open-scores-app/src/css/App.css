@@ -252,6 +252,35 @@ body {
   padding: 1rem;
   position: fixed;
   border: 3px solid #474747;
+<<<<<<< HEAD
+  background: #474747; }
+  .tool-box.horizontal {
+    flex-wrap: nowrap;
+    height: 196px;
+    justify-content: center;
+    overflow: scroll;
+    padding: 2rem;
+    width: 100vw;
+    bottom: 0px; }
+  .tool-box.vertical {
+    flex-direction: column;
+    min-height: 100vh;
+    width: 16rem; }
+
+.Transport-controls {
+  flex-direction: column;
+  width: 16rem; }
+  .Transport-controls .toggle-pos {
+    position: relative;
+    bottom: 1.5rem;
+    left: 1rem;
+    width: 2rem;
+    background: none;
+    border: none; }
+    .Transport-controls .toggle-pos:hover {
+      cursor: pointer; }
+
+=======
   background: #474747;
   z-index: 1000; }
 
@@ -331,6 +360,7 @@ body {
   border: 4px solid #FAFAFA;
   cursor: pointer; }
 
+>>>>>>> 754bab7b7d75bc03411eca77fe600c81d9517c23
 .Transport {
   width: 55px;
   display: inline-block;
@@ -338,6 +368,25 @@ body {
   border-radius: 5px;
   margin: 3px;
   padding: 5px; }
+<<<<<<< HEAD
+  .Transport:hover {
+    cursor: pointer; }
+  .Transport img {
+    filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
+
+.stopBtn:focus {
+  background: #af4242; }
+
+.pauseBtn:focus {
+  background: #FAFAFA; }
+
+.playBtn:focus {
+  background: green; }
+
+.to-beg-btn:active {
+  background: #41A2EB; }
+=======
+>>>>>>> 754bab7b7d75bc03411eca77fe600c81d9517c23
 
 .Transport:hover {
   cursor: pointer; }
@@ -551,6 +600,10 @@ body {
   display: flex;
   flex-direction: column; }
 
+.user-name {
+  color: #FF7800;
+  font-size: 20px; }
+
 .friends-list {
   align-items: flex-start;
   border: 4px solid #60D394;
@@ -585,11 +638,13 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   float: right;
+  height: 100%;
   width: 80%; }
 
 .container-one {
   background: #FAFAFA;
   border: 1px solid black;
+  height: 23.5%;
   width: 17%;
   margin: 40px; }
 
@@ -600,7 +655,6 @@ body {
 .container-one a img {
   display: block;
   width: 100%; }
-
 .container-one:hover {
   border-color: #60D394;
   box-shadow: 10px 10px 5px #474747;
@@ -636,8 +690,7 @@ body {
   flex-direction: column;
   height: 500px;
   justify-content: center;
-  width: 40%; }
-
+  width: 500px; }
 .login-container input {
   background: #474747;
   border: 5px solid #60D394;
@@ -654,16 +707,14 @@ body {
   height: 8%;
   width: 30%; }
 
-form {
-  align-items: center;
-  display: flex;
-  background: #373737;
+.chat-form-container {
+  background: #313131;
   bottom: 0;
   height: 60px;
-  justify-content: center;
+  left: 0;
   padding: 5px;
   position: fixed;
-  width: 100%; }
+  width: 20%; }
 
 form input {
   border: 0;
