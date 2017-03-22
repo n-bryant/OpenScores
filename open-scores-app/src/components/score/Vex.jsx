@@ -619,15 +619,10 @@ class VFDisplay extends Component {
       let synth = new Tone.PolySynth().toMaster();
       Tone.Transport.bpm.value = 120;
 
-      //pass in an array of events
       let part = new Tone.Part(function(time, event){
-      	//the events will be given to the callback with the time they occur
       	synth.triggerAttackRelease(event.note, event.dur, time)
       }, toneArray);
 
-      // part.loop = 8;
-      // part.loopStart = '1m';
-      // part.loopEnd = '2m';
       part.start(0);
       toneArray = [];
     }
