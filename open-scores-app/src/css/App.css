@@ -444,12 +444,11 @@ body {
     align-items: center;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     margin: 10px; }
     .friends-list .single-friend-container .friend-image {
       border-radius: 10px;
       width: 18%; }
-  .friends-list .single-friend-container:hover {
-    box-shadow: 0 1px 6px #FAFAFA, 0 1px 8px #474747; }
 
 .main-comp-container {
   border-radius: 25px;
@@ -497,6 +496,31 @@ body {
 
 .logo-image {
   width: 100px; }
+
+.login-container {
+  align-items: center;
+  background: #313131;
+  border: 5px solid #FF7800;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  justify-content: center;
+  width: 40%; }
+  .login-container input {
+    background: #474747;
+    border: 5px solid #FF7800;
+    color: #FF7800;
+    font-size: 20px;
+    height: 50px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 60%; }
+  .login-container .login-button {
+    font-size: 15px;
+    height: 8%;
+    width: 30%; }
 
 form {
   align-items: center;
