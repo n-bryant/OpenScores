@@ -302,7 +302,7 @@ class VFDisplay extends Component {
     // declaration of base score values
     let beatCount = 4;
     let beatValue = 4;
-    let barIndex = null;
+    let barIndex = 0;
     let firstTie = true;
     let tieIndex = null;
     let firstTied = null;
@@ -637,10 +637,10 @@ class VFDisplay extends Component {
 
     function convertVexToTone() {
       // console.log(score.measures);
-      console.log(toneArray);
+      // console.log(toneArray);
       score.measures.forEach((measure) => {
         measure.notes.forEach((note) => {
-          console.log(note);
+          // console.log(note);
           let pitch = note.keys[0].replace('/', '');
           let tempObj = {};
           tempObj.dur = note.duration;
@@ -778,8 +778,16 @@ class VFDisplay extends Component {
           }
         }
       }
+      // setTransportStart(barIndex);
       highlightNote();
     }
+
+    // function setTransportStart(start) {
+    //   if (start) {
+    //     Tone.Transport.
+    //
+    //   }
+    // }
 
     // mark a note as highlighted
     function highlightNote() {
@@ -795,9 +803,10 @@ class VFDisplay extends Component {
       // highlight newly selected note
       let highlightedNote = score.measures[barIndex].notes[score.measures[barIndex].notes.indexOf(selectedNote)];
       highlightedNote.setStyle({fillStyle: blueAccent, strokeStyle: blueAccent});
+      // console.log(selectedNote);
       resetCanvas();
     }
-
+// score.measures[barIndex].notes[barNoteIndex];
     // Creates a new default measure
     function newMeasure() {
       let tempBar = {};
@@ -848,6 +857,9 @@ class VFDisplay extends Component {
       }, toneArray);
 
       part.start(0);
+      console.log(barIndex);
+      Tone.Transport.start('+0.5', `${barIndex}:0`);
+
       toneArray = [];
     }
 
