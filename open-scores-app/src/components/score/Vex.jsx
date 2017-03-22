@@ -621,21 +621,24 @@ class VFDisplay extends Component {
     }
 
     function convertVexToTone() {
+      // console.log(score.measures);
       console.log(toneArray);
       score.measures.forEach((measure) => {
         measure.notes.forEach((note) => {
+          // console.log(note.noteType);
           let pitch = note.keys[0].replace('/', '');
-          // let measureIndex  = score.measures.indexOf(measure);
-          // let noteIndex = measure.notes.indexOf(note);
           let tempObj = {};
           tempObj.dur = note.duration;
           tempObj.note = pitch;
           tempObj.time = '0:';
+          if (note.noteType === 'r') {
+            console.log(note);
+            tempObj.note = '';
+          }
           toneArray.push(tempObj);
         });
       });
-      // console.log(eachMeasure);
-      formatToneArr();
+      // formatToneArr();
     }
 
     // remove selected note from score
@@ -676,6 +679,9 @@ class VFDisplay extends Component {
         if (index === 0) {
           obj.time = '0';
         }
+        // if (obj.note === 'r') {
+        //   obj.note = null;
+        // }
         switch (obj.dur) {
           case 'w':
             obj.dur = '2';
@@ -785,9 +791,8 @@ class VFDisplay extends Component {
       let newestStave = score.measures[score.measures.length - 1];
       setMeasureBeats(newestStave);
     }
-    
+
     function playSound() {
-      console.log('in');
       let started = false;
       let synth = new Tone.PolySynth().toMaster();
       Tone.Transport.bpm.value = 120;

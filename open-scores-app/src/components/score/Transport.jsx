@@ -7,7 +7,6 @@ constructor(){
 super();
   Tone.Transport.bpm.value = 120;
   this.started = false;
-
 }
 
   playSound(event) {
@@ -15,7 +14,6 @@ super();
       this.started = true;
       Tone.Transport.start('+0.1');
     }
-
   }
 
   stopSound(event) {
@@ -24,6 +22,7 @@ super();
       this.started = false;
     }
   }
+
   pauseSound(event) {
     if (this.started) {
       Tone.Transport.pause();
