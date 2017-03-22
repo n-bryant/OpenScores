@@ -303,6 +303,7 @@ class VFDisplay extends Component {
     let beatValue = 4;
     let barIndex = null;
     let firstTie = true;
+    let tieIndex = null;
     let selectedId = null;
     let idMapIndex = null;
     let selectedNote = null;
@@ -314,6 +315,7 @@ class VFDisplay extends Component {
       timeSig: {count: beatCount, value: beatValue},
       clef: 'treble',
       measures: [],
+      ties: [],
       noteIDMap: []
     }
     setLibrary(score.keySig, false);
@@ -362,7 +364,7 @@ class VFDisplay extends Component {
           beam.setContext(context).draw();
         });
 
-        score.measures[i].ties.forEach(function(tie) {tie.setContext(context).draw()});
+        score.ties.forEach(function(tie) {tie.vfTie.setContext(context).draw()});
       }
     }
 
@@ -379,6 +381,13 @@ class VFDisplay extends Component {
         // add measure button
         document.querySelector('.add-measure-btn').addEventListener('click', () => {
           addMeasure();
+        });
+
+        // add dot button
+        document.querySelector('.dot-btn').addEventListener('click', () => {
+          if (selectedNote) {
+            dotNote();
+          }
         });
 
         // key options buttons
@@ -429,8 +438,6 @@ class VFDisplay extends Component {
         document.querySelector('.tie-btn').addEventListener('click', function() {
           if (selectedNote) {
             tieNotes();
-            // do I want this as a toggle or have user click button once, set first index, and then again to set second index?
-            // is there a way to wait for a secondary click while tieNotes is running?
           }
         });
 
@@ -544,6 +551,14 @@ class VFDisplay extends Component {
       score.measures[barIndex].notes[score.measures[barIndex].notes.indexOf(selectedNote)] = newPitch;
       score.noteIDMap[score.noteIDMap.indexOf(selectedId)] = `vf-${newPitch.attrs.id}`;
       selectedId = `vf-${newPitch.attrs.id}`;
+      if (selectedNote.dots) {
+        newPitch.addDotToAll();
+      }
+
+      // account for existing ties/slurs
+      checkTies(newPitch);
+
+      // make update and repaint
       selectedNote = newPitch;
       resetCanvas();
       highlightNote();
@@ -569,6 +584,17 @@ class VFDisplay extends Component {
           getNoteById(score.noteIDMap[score.noteIDMap.length - 1], true);
         }
       }
+    }
+
+    // updates any ties the selectedNote is included in
+    function checkTies(newNote) {
+      score.ties.forEach((tie, index, arr) => {
+        if (tie.vfTie.first_note === selectedNote) {
+          arr[index].vfTie.first_note = newNote;
+        } else if (tie.vfTie.last_note === selectedNote) {
+          arr[index].vfTie.last_note = newNote;
+        }
+      });
     }
 
     // copy selected note and paste copy next to it
@@ -599,6 +625,21 @@ class VFDisplay extends Component {
         }
         unselectNote();
       }
+    }
+
+    // add dot to note
+    function dotNote() {
+      if (!selectedNote.dots) {
+        selectedNote = new VF.StaveNote({clef: score.clef, keys: selectedNote.keys, duration: selectedNote.duration}).addDotToAll();
+      } else {
+        selectedNote = new VF.StaveNote({clef: score.clef, keys: selectedNote.keys, duration: selectedNote.duration});
+      }
+
+      selectedId = `vf-${selectedNote.attrs.id}`;
+      score.measures[barIndex].notes[barNoteIndex] = selectedNote;
+      score.noteIDMap[idMapIndex] = selectedId;
+      setMeasureBeats(score.measures[barIndex]);
+      highlightNote();
     }
 
     // match clicked note with its data by id and set as selected
@@ -698,19 +739,19 @@ class VFDisplay extends Component {
         let beatVal = note.duration.replace('r', '');
         switch (beatVal) {
           case 'w':
-            totalBeats += 4;
+            note.dots ? totalBeats += 6 : totalBeats += 4;
             break;
           case 'h':
-            totalBeats += 2;
+            note.dots ? totalBeats += 3 : totalBeats += 2;
             break;
           case 'q':
-            totalBeats += 1;
+            note.dots ? totalBeats += 1.5 : totalBeats += 1;
             break;
           case '8':
-            totalBeats += .5;
+            note.dots ? totalBeats += .75 : totalBeats += .5;
             break;
           case '16':
-            totalBeats += .25;
+            note.dots ? totalBeats += (.25 + (.25 / 2)) : totalBeats += .25;
             break;
         }
       });
@@ -734,22 +775,28 @@ class VFDisplay extends Component {
     // sets a tie to initial selection and allows use of left and right arrow keys to extend the tie
     function tieNotes() {
       if (firstTie) {
-        let newTie = new VF.StaveTie({
+        let newTie = {};
+        newTie.startBar = barIndex;
+        newTie.vfTie = new VF.StaveTie({
           first_note: score.measures[barIndex].notes[barNoteIndex],
           last_note: score.measures[barIndex].notes[barNoteIndex],
-          first_indices: [0],
-          last_indices: [0]
+          first_indices: 0,
+          last_indices: 0
         });
-        score.measures[barIndex].ties.push(newTie);
+        score.ties.push(newTie);
         firstTie = false;
       } else {
-        let tieExtension = new VF.StaveTie({
-          first_note: score.measures[barIndex].ties[0].first_note,
+        let newestTie = score.ties[score.ties.length - 1];
+        let tieExtension = {};
+        tieExtension.startBar = newestTie.startBar;
+        tieExtension.endBar = barIndex;
+        tieExtension.vfTie = new VF.StaveTie({
+          first_note: newestTie.vfTie.first_note,
           last_note: score.measures[barIndex].notes[barNoteIndex],
-          first_indices: [0],
-          last_indices: [0]
+          first_indices: 0,
+          last_indices: 0
         });
-        score.measures[barIndex].ties[0] = (tieExtension);
+        score.ties[score.ties.length - 1] = tieExtension;
         firstTie = true;
       }
 

@@ -57,19 +57,21 @@ class ToolBox extends Component {
                 <button className="icon note-option is-centered" data-val="16r"><img src="https://cdn3.iconfinder.com/data/icons/music-notes-symbols/512/Icon_19-128.png" alt="sixteenth rest"/></button>
               </div>
             </div>
-            <div className="dynamics-container selectors is-centered">
-              <h3>Dynamics</h3>
-              <div className="options-wrapper is-flex">
-                <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125066.svg" alt="note"/></button>
-                <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125058.svg" alt="note"/></button>
-                <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125059.svg" alt="note"/></button>
-                <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125060.svg" alt="note"/></button>
-                <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125062.svg" alt="note"/></button>
-                <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125063.svg" alt="note"/></button>
-                <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125064.svg" alt="note"/></button>
-                <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125067.svg" alt="note"/></button>
+            {/*
+              <div className="dynamics-container selectors is-centered">
+                <h3>Dynamics</h3>
+                <div className="options-wrapper is-flex">
+                  <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125066.svg" alt="note"/></button>
+                  <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125058.svg" alt="note"/></button>
+                  <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125059.svg" alt="note"/></button>
+                  <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125060.svg" alt="note"/></button>
+                  <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125062.svg" alt="note"/></button>
+                  <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125063.svg" alt="note"/></button>
+                  <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125064.svg" alt="note"/></button>
+                  <button className="icon is-centered"><img src="https://image.flaticon.com/icons/svg/125/125067.svg" alt="note"/></button>
+                </div>
               </div>
-            </div>
+            */}
           </section>
         </div>
       </div>
