@@ -693,19 +693,20 @@ class VFDisplay extends Component {
 
     function formatToneArr() {
       let timeVal = 0;
-      let durVal = 0;
+      let toneDur = 0;
       toneArray.forEach((obj, index) => {
         if (index === 0) {
           obj.time = '0';
         }
-
         switch (obj.dur) {
           case 'w':
-            obj.dur = '2';
+            obj.dur = `${toneDur}`;
             obj.time = `0:${timeVal}`;
             if (!obj.dot) {
+              toneDur += 2;
               timeVal += 4;
             } else {
+              toneDur += 3;
               timeVal += 6;
             };
             break;
@@ -713,8 +714,10 @@ class VFDisplay extends Component {
             obj.dur = '1';
             obj.time = `0:${timeVal}`;
             if (!obj.dot) {
+              toneDur += 1;
               timeVal += 2;
             } else {
+              toneDur += 1.5;
               timeVal += 3;
             };
             break;
@@ -722,8 +725,10 @@ class VFDisplay extends Component {
             obj.dur = '0.5';
             obj.time = `0:${timeVal}`;
             if (!obj.dot) {
+              toneDur += 0.5;
               timeVal += 1;
             } else {
+              toneDur += 0.75;
               timeVal += 1.5;
             };
             break;
@@ -731,8 +736,10 @@ class VFDisplay extends Component {
             obj.dur = '0.25';
             obj.time = `0:${timeVal}`;
             if (!obj.dot) {
+              toneDur += 0.25;
               timeVal += 0.5;
             } else {
+              toneDur += 0.375;
               timeVal += 0.75;
             };
             break;
@@ -740,8 +747,10 @@ class VFDisplay extends Component {
             obj.dur = '0.125';
             obj.time = `0:${timeVal}`;
             if (!obj.dot) {
+              toneDur += 0.125;
               timeVal += 0.25;
             } else {
+              toneDur += 0.1875;
               timeVal += 0.375;
             };
             break;
