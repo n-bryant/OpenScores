@@ -44,15 +44,12 @@
         align-items: center;
         display: flex;
         flex-direction: row;
+        justify-content: space-around;
         margin: 10px;
 
         .friend-image {
             border-radius: 10px;
             width: 18%;
         }
-    }
-
-    .single-friend-container:hover {
-        box-shadow: 0 1px 6px $light, 0 1px 8px $medium;
     }
 }
