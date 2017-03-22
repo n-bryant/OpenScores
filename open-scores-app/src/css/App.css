@@ -426,6 +426,10 @@ body {
   display: flex;
   flex-direction: column; }
 
+.user-name {
+  color: #FF7800;
+  font-size: 20px; }
+
 .friends-list {
   align-items: flex-start;
   border: 4px solid #FF7800;
@@ -457,19 +461,15 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   float: right;
+  height: 100%;
   width: 80%; }
 
 .container-one {
   background: #FAFAFA;
   border: 1px solid black;
+  height: 23.5%;
   width: 17%;
   margin: 40px; }
-  .container-one a {
-    height: 100%;
-    width: 100%; }
-    .container-one a img {
-      display: block;
-      width: 100%; }
 
 .container-one:hover {
   border-color: #FF7800;
@@ -506,7 +506,7 @@ body {
   flex-direction: column;
   height: 500px;
   justify-content: center;
-  width: 40%; }
+  width: 500px; }
   .login-container input {
     background: #474747;
     border: 5px solid #FF7800;
@@ -516,22 +516,20 @@ body {
     margin: 10px;
     padding: 20px;
     text-align: center;
-    width: 60%; }
+    width: 80%; }
   .login-container .login-button {
     font-size: 15px;
     height: 8%;
-    width: 30%; }
+    width: 50%; }
 
-form {
-  align-items: center;
-  display: flex;
-  background: #373737;
+.chat-form-container {
+  background: #313131;
   bottom: 0;
   height: 60px;
-  justify-content: center;
+  left: 0;
   padding: 5px;
   position: fixed;
-  width: 100%; }
+  width: 20%; }
 
 form input {
   border: 0;
