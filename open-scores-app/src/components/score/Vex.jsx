@@ -652,10 +652,10 @@ class VFDisplay extends Component {
           tempObj.dur = note.duration;
           tempObj.note = pitch;
           tempObj.time = '0:';
-          // if (note.noteType === 'r') {
-          //   console.log(note);
-          //   tempObj.note = '';
-          // }
+          if (note.noteType === 'r') {
+            console.log(note);
+            delete tempObj.note;
+          }
           toneArray.push(tempObj);
         });
       });
