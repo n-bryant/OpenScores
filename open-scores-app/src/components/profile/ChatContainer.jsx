@@ -16,7 +16,7 @@ class ChatContainer extends Component {
             <div>
                 <ul id="messages"></ul>
                 <form action="" onSubmit={this.chatApp.bind(this)}>
-                    <input id="m" autocomplete="off" required placeholder="BE SOCIAL" ref={(input) => {
+                    <input id="m" autoComplete="off" required placeholder="BE SOCIAL" ref={(input) => {
                         this.chatInput = input
                     }}/>
                     <button>Chat</button>
