@@ -427,6 +427,7 @@ class VFDisplay extends Component {
             let count = option.getAttribute('data-count');
             let val = option.getAttribute('data-val');
             updateTimeSig(count, val);
+
           })
         });
 
@@ -645,14 +646,27 @@ class VFDisplay extends Component {
           tempObj.dur = note.duration;
           tempObj.note = pitch;
           tempObj.time = '0:';
+<<<<<<< HEAD
+
+          if (note.noteType === 'r') {
+            console.log(note);
+            tempObj.dur = note.duration;
+            delete tempObj.note;
+            tempObj.time = '0:';
+=======
           if (note.noteType === 'r') {
             console.log(note);
             tempObj.note = '';
+>>>>>>> staging
           }
           toneArray.push(tempObj);
         });
       });
+<<<<<<< HEAD
+      formatToneArr();
+=======
       // formatToneArr();
+>>>>>>> staging
     }
 
     // remove selected note from score
@@ -983,6 +997,8 @@ class VFDisplay extends Component {
 
     // updates time signature to selected option
     function updateTimeSig(count, value) {
+      Tone.Transport.timeSignature = [count, value];
+      console.log(Tone.Transport.timeSignature);
       beatCount = count;
       beatValue = value;
       score.timeSig.count = beatCount;
