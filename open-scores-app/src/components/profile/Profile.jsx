@@ -11,7 +11,6 @@ class Profile extends Component {
                 <MainHeader/>
                 <UserCompositions/>
                 <MainSideBar/>
-                <ChatContainer/>
             </section>
         );
     }

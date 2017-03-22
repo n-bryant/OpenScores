@@ -224,49 +224,29 @@ body {
     min-height: 100vh;
     width: 16rem; }
 
-<<<<<<< HEAD
 .Transport-controls {
   flex-direction: column;
   width: 16rem; }
   .Transport-controls .toggle-pos {
-=======
-.playback-controls {
-  flex-direction: column;
-  width: 16rem; }
-  .playback-controls .toggle-pos {
->>>>>>> scott-branch
     position: relative;
     bottom: 1.5rem;
     left: 1rem;
     width: 2rem;
     background: none;
     border: none; }
-<<<<<<< HEAD
     .Transport-controls .toggle-pos:hover {
       cursor: pointer; }
 
 .Transport {
-=======
-    .playback-controls .toggle-pos:hover {
-      cursor: pointer; }
-
-.playback {
->>>>>>> scott-branch
   width: 55px;
   display: inline-block;
   background: #373737;
   border-radius: 5px;
   margin: 3px;
   padding: 5px; }
-<<<<<<< HEAD
   .Transport:hover {
     cursor: pointer; }
   .Transport img {
-=======
-  .playback:hover {
-    cursor: pointer; }
-  .playback img {
->>>>>>> scott-branch
     filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
 
 .stopBtn:focus {
@@ -446,6 +426,10 @@ body {
   display: flex;
   flex-direction: column; }
 
+.user-name {
+  color: #FF7800;
+  font-size: 20px; }
+
 .friends-list {
   align-items: flex-start;
   border: 4px solid #FF7800;
@@ -464,19 +448,11 @@ body {
     align-items: center;
     display: flex;
     flex-direction: row;
-<<<<<<< HEAD
-=======
     justify-content: space-around;
->>>>>>> scott-branch
     margin: 10px; }
     .friends-list .single-friend-container .friend-image {
       border-radius: 10px;
       width: 18%; }
-<<<<<<< HEAD
-  .friends-list .single-friend-container:hover {
-    box-shadow: 0 1px 6px #FAFAFA, 0 1px 8px #474747; }
-=======
->>>>>>> scott-branch
 
 .main-comp-container {
   border-radius: 25px;
@@ -485,19 +461,15 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   float: right;
+  height: 100%;
   width: 80%; }
 
 .container-one {
   background: #FAFAFA;
   border: 1px solid black;
+  height: 23.5%;
   width: 17%;
   margin: 40px; }
-  .container-one a {
-    height: 100%;
-    width: 100%; }
-    .container-one a img {
-      display: block;
-      width: 100%; }
 
 .container-one:hover {
   border-color: #FF7800;
@@ -524,8 +496,6 @@ body {
 
 .logo-image {
   width: 100px; }
-<<<<<<< HEAD
-=======
 
 .login-container {
   align-items: center;
@@ -536,7 +506,7 @@ body {
   flex-direction: column;
   height: 500px;
   justify-content: center;
-  width: 40%; }
+  width: 500px; }
   .login-container input {
     background: #474747;
     border: 5px solid #FF7800;
@@ -546,23 +516,20 @@ body {
     margin: 10px;
     padding: 20px;
     text-align: center;
-    width: 60%; }
+    width: 80%; }
   .login-container .login-button {
     font-size: 15px;
     height: 8%;
-    width: 30%; }
->>>>>>> scott-branch
+    width: 50%; }
 
-form {
-  align-items: center;
-  display: flex;
-  background: #373737;
+.chat-form-container {
+  background: #313131;
   bottom: 0;
   height: 60px;
-  justify-content: center;
+  left: 0;
   padding: 5px;
   position: fixed;
-  width: 100%; }
+  width: 20%; }
 
 form input {
   border: 0;
@@ -577,4 +544,4 @@ form button {
   border: none;
   font: "Nunito Sans", sans-serif;
   height: 100%;
-  width: 5%; }
+  width: %; }
