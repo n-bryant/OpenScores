@@ -304,6 +304,8 @@ class VFDisplay extends Component {
     let barIndex = null;
     let firstTie = true;
     let tieIndex = null;
+    let firstTied = null;
+    let lastTied = null;
     let selectedId = null;
     let idMapIndex = null;
     let selectedNote = null;
@@ -526,7 +528,7 @@ class VFDisplay extends Component {
     // inserts a measure at the end of the score
     function addMeasure() {
       newMeasure();
-      resetCanvas();
+      unselectNote();
     }
 
     // increase note value on up arrow
@@ -556,11 +558,22 @@ class VFDisplay extends Component {
       }
 
       // account for existing ties/slurs
-      checkTies(newPitch);
+      for (let i = 0; i < score.ties.length; i++) {
+        if (score.ties[i].vfTie.first_note === selectedNote) {
+          firstTied = selectedNote;
+          tieIndex = i;
+        } else if (score.ties[i].vfTie.last_note === selectedNote) {
+          lastTied = selectedNote;
+          tieIndex = i;
+        }
+      }
 
       // make update and repaint
       selectedNote = newPitch;
+
+      // updateTies();
       resetCanvas();
+      updateTies();
       highlightNote();
     }
 
@@ -587,14 +600,15 @@ class VFDisplay extends Component {
     }
 
     // updates any ties the selectedNote is included in
-    function checkTies(newNote) {
-      score.ties.forEach((tie, index, arr) => {
-        if (tie.vfTie.first_note === selectedNote) {
-          arr[index].vfTie.first_note = newNote;
-        } else if (tie.vfTie.last_note === selectedNote) {
-          arr[index].vfTie.last_note = newNote;
-        }
-      });
+    function updateTies() {
+      if (firstTied) {
+        score.ties[tieIndex].vfTie.first_note = selectedNote;
+      }
+      if (lastTied) {
+        score.ties[tieIndex].vfTie.last_note = selectedNote;
+      }
+      firstTied = null;
+      lastTied = null;
     }
 
     // copy selected note and paste copy next to it
