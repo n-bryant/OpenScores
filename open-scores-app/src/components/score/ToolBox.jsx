@@ -4,13 +4,16 @@ import Transport from './Transport';
 class ToolBox extends Component {
 
   toggleToolBoxPosition(event) {
+    const header = document.querySelector('header');
     const toolBox = document.querySelector('.tool-box');
     const scoreWrapper = document.querySelector('.score-wrapper');
     if (toolBox.classList.contains('horizontal')) {
       toolBox.classList.remove('horizontal');
       toolBox.classList.add('vertical');
       scoreWrapper.classList.add('vertical');
+      header.classList.add('vertical');
     } else if (toolBox.classList.contains('vertical')) {
+      header.classList.remove('vertical');
       toolBox.classList.remove('vertical');
       scoreWrapper.classList.remove('vertical');
       toolBox.classList.add('horizontal');
@@ -60,17 +63,7 @@ class ToolBox extends Component {
                 <button className="icon note-option is-centered" data-val="q"><img src="https://image.flaticon.com/icons/svg/122/122352.svg" alt="quarter note"/></button>
                 <button className="icon note-option is-centered" data-val="8"><img src="https://image.flaticon.com/icons/svg/122/122321.svg" alt="eighth note"/></button>
                 <button className="icon note-option is-centered" data-val="16"><img src="https://image.flaticon.com/icons/svg/122/122353.svg" alt="sixteenth note"/></button>
-                <button className="icon chord-btn is-centered"><img src="http://www.midnightmusic.com.au/wp-content/uploads/2013/08/Generic-power-chord-on-E-string.png" alt="chord"/></button>
-              </div>
-            </div>
-            <div className="accidentals-container selectors is-centered">
-              <h3>Modifiers</h3>
-              <div className="options-wrapper is-flex">
-                <button className="icon acc-option is-centered" data-val="b"><img src="https://image.flaticon.com/icons/svg/125/125090.svg" alt="flat"/></button>
-                <button className="icon acc-option is-centered" data-val="n"><img src="https://image.flaticon.com/icons/svg/125/125085.svg" alt="natural"/></button>
-                <button className="icon acc-option is-centered" data-val="#"><img src="https://image.flaticon.com/icons/svg/125/125088.svg" alt="sharp"/></button>
-                <button className="icon tie-btn is-centered"><img src="https://image.flaticon.com/icons/svg/125/125125.svg" alt="tie"/></button>
-                <button className="icon dot-btn is-centered">•</button>
+                <button className="icon chords-btn is-centered"><img src="http://www.midnightmusic.com.au/wp-content/uploads/2013/08/Generic-power-chord-on-E-string.png" alt="chord"/></button>
               </div>
             </div>
             <div className="rest-lengths-container selectors is-centered">
@@ -81,6 +74,16 @@ class ToolBox extends Component {
                 <button className="icon note-option is-centered" data-val="qr"><img src="https://image.flaticon.com/icons/svg/125/125054.svg" alt="quarter rest"/></button>
                 <button className="icon note-option is-centered" data-val="8r"><img src="https://image.flaticon.com/icons/svg/125/125055.svg" alt="eighth rest"/></button>
                 <button className="icon note-option is-centered" data-val="16r"><img src="https://cdn3.iconfinder.com/data/icons/music-notes-symbols/512/Icon_19-128.png" alt="sixteenth rest"/></button>
+              </div>
+            </div>
+            <div className="accidentals-container selectors is-centered">
+              <h3>Modifiers</h3>
+              <div className="options-wrapper is-flex">
+                <button className="icon acc-option is-centered" data-val="b"><img src="https://image.flaticon.com/icons/svg/125/125090.svg" alt="flat"/></button>
+                <button className="icon acc-option is-centered" data-val="n"><img src="https://image.flaticon.com/icons/svg/125/125085.svg" alt="natural"/></button>
+                <button className="icon acc-option is-centered" data-val="#"><img src="https://image.flaticon.com/icons/svg/125/125088.svg" alt="sharp"/></button>
+                <button className="icon tie-btn is-centered"><img src="https://image.flaticon.com/icons/svg/125/125125.svg" alt="tie"/></button>
+                <button className="icon dot-btn is-centered">•</button>
               </div>
             </div>
             {/*

@@ -6,7 +6,7 @@ class MainSideBar extends Component {
         return (
             <div className="main-side-container">
                 <div className="user-profile-image">
-                    <img className="profile-pic" src="https://s-media-cache-ak0.pinimg.com/736x/bf/b6/19/bfb6192a36bb33728209ac1040f2f574.jpg" alt="Corgi default image"></img>
+                    <img className="profile-pic" src="https://s-media-cache-ak0.pinimg.com/736x/bf/b6/19/bfb6192a36bb33728209ac1040f2f574.jpg" alt="Corgi default avatar"></img>
                     <p>Scott Corgi</p>
                     <FriendsList/>
                 </div>

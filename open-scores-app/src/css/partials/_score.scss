@@ -1,5 +1,39 @@
+header {
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  a {
+    align-items: center;
+    height: 100px;
+    justify-content: space-around;
+    text-decoration: none;
+  }
+
+  .header-content-container {
+    margin: 0 auto;
+    width: 250px;
+    .logo-image {
+      background: $orange;
+      border-radius: 5px;
+      width: 50px;
+    }
+    .logo-text {
+      color: $light;
+      font: 2rem $primaryFont;
+    }
+  }
+
+  &.vertical {
+    transform: translateX(128px);
+  }
+}
+
 .score-wrapper {
-  background: $mediumDark;
+  background-color: #373737;
+  background-image: url("https://www.transparenttextures.com/patterns/rebel.png");
+  margin-top: 100px;
   min-height: 100vh;
   width: 100%;
 
@@ -16,7 +50,6 @@
 
 .score-container {
   background: $light;
-  box-shadow: -1.5rem 1.5rem 1.5rem $darkest;
   color: $darkest;
   margin: 0 auto;
   max-width: 900px;
@@ -138,11 +171,14 @@
     background: $dark;
     border: 4px solid $orange;
     flex-wrap: wrap;
-    margin: 4rem auto;
-    max-height: 85vh;
+    left: 50%;
+    height: 85vh;
     justify-content: space-around;
     overflow: scroll;
     padding: 2rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
     width: 85%;
   }
 }
