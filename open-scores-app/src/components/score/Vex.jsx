@@ -469,17 +469,17 @@ class VFDisplay extends Component {
 
         //playback controls
         document.querySelector('.playBtn').addEventListener('click', () => {
-            // toneArray = [];
             convertVexToTone();
         });
         document.querySelector('.pauseBtn').addEventListener('click', () => {
-            // toneArray = [];
             convertVexToTone();
         });
         document.querySelector('.stopBtn').addEventListener('click', () => {
-            // toneArray = [];
             stopPlayback();
         });
+        // document.querySelector('.edit-bpm-form').addEventListener('submit', () => {
+        //   console.log(document.getElementById('scoreBpm').value);
+        // });
 
         pageLoad = false;
       }
@@ -1055,6 +1055,7 @@ class VFDisplay extends Component {
           }
         });
       });
+
 
       // setLibrary(score.keySig, false);
       resetCanvas();
