@@ -80,8 +80,33 @@ body {
 .is-hidden {
   display: none; }
 
+header {
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+  header a {
+    align-items: center;
+    height: 100px;
+    justify-content: space-around;
+    text-decoration: none; }
+  header .header-content-container {
+    margin: 0 auto;
+    width: 250px; }
+    header .header-content-container .logo-image {
+      background: #60D394;
+      border-radius: 5px;
+      width: 50px; }
+    header .header-content-container .logo-text {
+      color: #FAFAFA;
+      font: 2rem "Nunito Sans", sans-serif; }
+  header.vertical {
+    transform: translateX(128px); }
+
 .score-wrapper {
-  background: #373737;
+  background-color: #373737;
+  background-image: url("https://www.transparenttextures.com/patterns/rebel.png");
+  margin-top: 100px;
   min-height: 100vh;
   width: 100%; }
   .score-wrapper.vertical {
@@ -95,7 +120,6 @@ body {
 
 .score-container {
   background: #FAFAFA;
-  box-shadow: -1.5rem 1.5rem 1.5rem #212121;
   color: #212121;
   margin: 0 auto;
   max-width: 900px;
@@ -140,13 +164,30 @@ body {
   color: #60D394;
   cursor: pointer;
   font: 1rem "Nunito Sans", sans-serif;
-  right: .5rem;
+  right: 3rem;
   position: absolute;
   top: .5rem; }
   .print-btn:hover {
+    color: #212121;
     text-decoration: underline; }
   .print-btn:focus {
     outline: none; }
+
+.save-btn {
+  background: #60D394;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: .25rem;
+  position: absolute;
+  right: .5rem;
+  top: .5rem;
+  width: 30px; }
+  .save-btn .save-icon {
+    display: block;
+    width: 100%; }
+  .save-btn:hover {
+    border: 2px solid #212121; }
 
 .bpm-container {
   position: relative;
@@ -194,11 +235,14 @@ body {
     background: #313131;
     border: 4px solid #60D394;
     flex-wrap: wrap;
-    margin: 4rem auto;
-    max-height: 85vh;
+    left: 50%;
+    height: 85vh;
     justify-content: space-around;
     overflow: scroll;
     padding: 2rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
     width: 85%; }
 
 .key-option {
@@ -233,6 +277,7 @@ body {
   position: fixed;
   border: 3px solid #474747;
   background: #474747;
+  background-image: url(https://www.transparenttextures.com/patterns/diagmonds.png);
   z-index: 1000; }
   .tool-box.horizontal {
     box-shadow: 0 -0.5rem 1rem #60D394;
@@ -387,7 +432,6 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
     left: 50%;
-    margin: 4rem auto;
     overflow: scroll;
     padding: 2rem;
     position: absolute;
@@ -634,3 +678,70 @@ form button {
   flex-direction: column;
   flex-wrap: wrap;
   width: 100%; }
+.chord-options-wrapper {
+  background: rgba(49, 49, 49, 0.75);
+  left: 0;
+  min-height: 100vh;
+  min-width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000; }
+  .chord-options-wrapper .exit-chords-btn {
+    color: #60D394;
+    cursor: pointer;
+    font: 2rem "Nunito Sans", sans-serif;
+    height: 2.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 2.5rem; }
+    .chord-options-wrapper .exit-chords-btn:hover {
+      color: #FAFAFA;
+      transition: color .5s; }
+
+.chord-options-container {
+  background: #313131;
+  border: 4px solid #60D394;
+  flex-wrap: wrap;
+  left: 50%;
+  height: 85vh;
+  justify-content: space-around;
+  overflow: scroll;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%; }
+  .chord-options-container .chord-triggers-container, .chord-options-container .chords-wrapper {
+    align-items: center;
+    flex-wrap: wrap;
+    height: 85vh;
+    justify-content: space-around;
+    overflow: scroll; }
+    .chord-options-container .chord-triggers-container .chord-note-option, .chord-options-container .chords-wrapper .chord-note-option {
+      align-items: center;
+      color: #FAFAFA;
+      cursor: pointer;
+      display: flex;
+      font-size: 3rem;
+      height: 200px;
+      margin-bottom: 2rem;
+      justify-content: center;
+      width: 200px; }
+      .chord-options-container .chord-triggers-container .chord-note-option:hover, .chord-options-container .chords-wrapper .chord-note-option:hover {
+        text-decoration: underline; }
+
+.chords-wrapper .chord-option {
+  background: #60D394;
+  border: 4px solid transparent;
+  cursor: pointer;
+  height: 200px;
+  margin: 2rem;
+  padding: 1rem;
+  width: 200px; }
+  .chords-wrapper .chord-option img {
+    display: block;
+    width: 200px; }
+  .chords-wrapper .chord-option:hover {
+    border: 4px solid #FAFAFA;
+    transition: border 1s; }

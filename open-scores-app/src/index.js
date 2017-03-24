@@ -15,7 +15,12 @@ ReactDOM.render((
     <Router history={browserHistory}>
         <Route path='/' component={App}>
             <IndexRoute component={Profile}/>
+            {/*<Route path='profile/:userId' component={Profile}*/}
             <Route path='score' component={Score}/>
+            {/*}<Route path='score' component={Score}>
+              <IndexRoute component={Score}/>
+              <Route path='score/:scoreId' component={Score}/>
+            </Route>*/}
             <Route path='loginForm' component={MainForm}/>
             <Route path='chatApp' component={ChatContainer}/>
             <Route path='react-chat' component={ReactChat}/>
