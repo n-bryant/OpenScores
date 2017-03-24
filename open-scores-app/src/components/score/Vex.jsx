@@ -323,8 +323,6 @@ class VFDisplay extends Component {
       noteIDMap: []
     }
 
-    let toneArray = [];
-
     setLibrary(score.keySig, false);
 
     let staveX = 0;
@@ -471,7 +469,16 @@ class VFDisplay extends Component {
 
         //playback controls
         document.querySelector('.playBtn').addEventListener('click', () => {
+            // toneArray = [];
             convertVexToTone();
+        });
+        document.querySelector('.pauseBtn').addEventListener('click', () => {
+            // toneArray = [];
+            convertVexToTone();
+        });
+        document.querySelector('.stopBtn').addEventListener('click', () => {
+            // toneArray = [];
+            stopPlayback();
         });
 
         pageLoad = false;
@@ -641,12 +648,11 @@ class VFDisplay extends Component {
       highlightNote();
     }
 
+    let toneArray = [];
+
     function convertVexToTone() {
-      // console.log(score.measures);
-      // console.log(toneArray);
       score.measures.forEach((measure) => {
         measure.notes.forEach((note) => {
-          // console.log(note);
           let pitch = note.keys[0].replace('/', '');
           let tempObj = {};
           tempObj.dur = note.duration;
@@ -659,6 +665,7 @@ class VFDisplay extends Component {
         });
       });
       formatToneArr();
+
     }
 
     // remove selected note from score
@@ -676,7 +683,6 @@ class VFDisplay extends Component {
         unselectNote();
       }
     }
-
     // add dot to note
     function dotNote() {
       if (!selectedNote.dots) {
@@ -757,8 +763,7 @@ class VFDisplay extends Component {
             break;
         }
       });
-      // console.log(arr);
-      playSound();
+      createVoice();
     }
 
     // match clicked note with its data by id and set as selected
@@ -782,13 +787,6 @@ class VFDisplay extends Component {
       // setTransportStart(barIndex);
       highlightNote();
     }
-
-    // function setTransportStart(start) {
-    //   if (start) {
-    //     Tone.Transport.
-    //
-    //   }
-    // }
 
     // mark a note as highlighted
     function highlightNote() {
@@ -848,22 +846,59 @@ class VFDisplay extends Component {
       setMeasureBeats(newestStave);
     }
 
-    function playSound() {
-      let started = false;
-      let synth = new Tone.PolySynth().toMaster();
-      Tone.Transport.bpm.value = 120;
+    let synth;
+    let part;
+    let started = false;
+    let bpm = Tone.Transport.bpm.value;
+    let paused = false;
 
-      let part = new Tone.Part(function(time, event){
+    function createVoice() {
+      bpm = 120;
+      synth = new Tone.PolySynth().toMaster();
+      part = new Tone.Part(function(time, event){
         synth.triggerAttackRelease(event.note, event.dur, time)
       }, toneArray);
 
       part.start(0);
-      console.log(barIndex);
-      Tone.Transport.start('+0.5', `${barIndex}:0`);
-
-      toneArray = [];
+      let endPos = toneArray[toneArray.length - 1].time + toneArray[toneArray.length - 1].dur;
+      part.stop(endPos);
+      startPlayback();
     }
 
+
+    function startPlayback() {
+      if (!barIndex) {
+        barIndex = 0;
+      }
+
+      if (!started && !paused) {
+        Tone.Transport.start('+0.5', `${barIndex}:0`);
+        started = true;
+        toneArray = [];
+      } else if (started && !paused){
+        Tone.Transport.pause();
+        paused = true;
+        part.dispose();
+        synth.dispose();
+        toneArray = [];
+        // console.log(Tone.Transport.position);
+      } else if (paused) {
+        let pausedPos = Tone.Transport.position;
+        Tone.Transport.start('+0.5', `${pausedPos}`);
+        toneArray = [];
+        paused = false;
+      }
+    }
+
+    function stopPlayback() {
+      if (started) {
+        Tone.Transport.stop();
+        part.dispose();
+        synth.dispose();
+        started = false;
+        toneArray = [];
+      }
+    }
     // triggers print diaglogue to print score
     function printScore() {
       window.print();
