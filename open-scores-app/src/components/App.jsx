@@ -64,10 +64,10 @@ class App extends Component {
         editBPM: this.updateBPM,
         editTitle: this.updateTitle,
         bpm: this.state.bpm,
+        scores: this.state.scores,
         title: this.state.title
       });
     });
-
     return (
       <div>
         {childWithProp}

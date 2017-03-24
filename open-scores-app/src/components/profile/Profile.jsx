@@ -10,7 +10,7 @@ class Profile extends Component {
         return (
             <section className="profile-wrapper">
                 <MainHeader/>
-                <UserCompositions/>
+                <UserCompositions scores={this.props.scores}/>
                 <ReactApp/>
                 <MainSideBar/>
             </section>
