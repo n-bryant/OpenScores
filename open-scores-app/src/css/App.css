@@ -65,10 +65,17 @@ body {
     visibility: hidden; }
   .score-title, .score-bpm, .score-to-print, .score-to-print * {
     visibility: visible; }
+  .score-title, .score-bpm {
+    position: absolute;
+    top: 0; }
+  .score-title {
+    left: 0; }
+  .score-bpm {
+    left: 12rem; }
   .score-to-print {
     left: 0;
     position: fixed;
-    top: 0;
+    top: 5rem;
     transform: scale(0.75); } }
 
 .is-centered {
@@ -663,11 +670,36 @@ form button {
   height: 100%;
   width: 5%; }
 
+.chat-toggle {
+  align-content: center;
+  background: #60D394;
+  border-radius: 5rem;
+  bottom: 5px;
+  display: flex;
+  height: 4rem;
+  justify-content: center;
+  position: fixed;
+  right: 5px;
+  width: 4rem; }
+
+.chat-toggle img {
+  filter: invert(30%);
+  width: 65%; }
+
+.chat-toggle.up {
+  transform: rotate(180deg); }
+
 .main-chat-container {
-  width: 20%; }
+  bottom: 75px;
+  position: fixed;
+  right: 5px;
+  width: 25%; }
 
 .message-container {
+  display: flex;
   border: 5px solid #60D394;
+  flex-direction: column;
+  overflow: scroll;
   width: 100%; }
 
 .message-text-container {
@@ -675,7 +707,8 @@ form button {
   background: #60D394;
   border: 5px solid #313131;
   flex-direction: column;
-  flex-wrap: wrap;
+  height: 200px;
+  overflow: scroll;
   width: 100%; }
 
 .chord-options-wrapper {

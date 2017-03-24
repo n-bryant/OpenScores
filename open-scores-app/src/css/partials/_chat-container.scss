@@ -29,12 +29,39 @@ form button {
 
 // Live Chat Css
 
+.chat-toggle {
+  align-content: center;
+  background: #60D394;
+  // border: 4px solid $dark;
+  border-radius: 5rem;
+  bottom: 5px;
+  display: flex;
+  height: 4rem;
+  justify-content: center;
+  position: fixed;
+  right: 5px;
+  width: 4rem;
+  img {
+    filter:invert(30%);
+    width: 65%;
+  }
+  &.up {
+    transform: rotate(180deg);
+  }
+}
+
 .main-chat-container {
-  width: 20%;
+  bottom: 75px;
+  position: fixed;
+  right: 5px;
+  width: 25%;
 }
 
 .message-container {
+  display: flex;
   border: 5px solid $orange;
+  flex-direction: column;
+  overflow: scroll;
   width: 100%;
 }
 
@@ -43,6 +70,7 @@ form button {
   background: $orange;
   border: 5px solid $dark;
   flex-direction: column;
-  flex-wrap: wrap;
+  height: 200px;
+  overflow: scroll;
   width: 100%;
 }

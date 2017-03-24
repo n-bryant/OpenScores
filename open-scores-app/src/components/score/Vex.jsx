@@ -2,19 +2,34 @@ import React, {Component} from 'react';
 import Vex from 'vexflow/releases/vexflow-min';
 import Tone from 'tone';
 import $ from 'jquery';
-import base from '../../base';
+// import base from '../../base';
 
 
 class VFDisplay extends Component {
   constructor() {
     super();
     this.state = {
-      score: {}
+      score: {},
+      scores: {}
     }
   }
 
+  // componentWillMount() {
+  //   this.ref = base.syncState('/scores',
+  //     {
+  //       context: this,
+  //       state: 'scores'
+  //     }
+  //   );
+  // }
+  //
+  // componentWillUnmount() {
+  //   base.removeBinding(this.ref);
+  // }
+
   // wait for page load to bring in VexFlow
   componentDidMount() {
+
     const forbiddenChars = '.$[]#/';
     let _this = this;
     let pageLoad = true;
@@ -599,14 +614,27 @@ class VFDisplay extends Component {
       noteIDMap: []
     }
 
-    setLibrary(score.keySig, false);
+    setTimeout(() => {
+      if (this.props.score) {
+        score = this.props.score;
+        if (!score.ties) {
+          score.ties = [];
+        }
+        loadScore();
+        setLibrary(score.keySig, false);
+        drawScore();
+        bindEvents();
+      } else {
+        setLibrary(score.keySig, false);
+        newMeasure();
+        drawScore();
+        bindEvents();
+      }
+    }, 2000);
 
     let staveX = 0;
     let staveY = 0;
     let staveWidth = 300;
-
-    newMeasure();
-    drawScore();
 
     // draw a bar for each measure to the canvas
     function drawScore() {
@@ -1097,6 +1125,7 @@ class VFDisplay extends Component {
           }
         }
       }
+      console.log(selectedNote);
       // setTransportStart(barIndex);
       highlightNote();
     }
@@ -1479,7 +1508,7 @@ class VFDisplay extends Component {
       highlightNote();
     }
 
-    bindEvents();
+    // bindEvents();
   }
 
   render() {
