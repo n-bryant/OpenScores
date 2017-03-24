@@ -12,7 +12,7 @@ class Score extends Component {
     this.bpmForm.reset();
     this.bpmForm.classList.add('is-hidden');
     this.bpmEl.classList.remove('is-hidden');
-    console.log(newBPM);
+    // console.log(newBPM);
     // updateBpm(newBPM);
   }
 

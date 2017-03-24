@@ -20,7 +20,7 @@ class ToolBox extends Component {
   render() {
     return (
       <div>
-        <div className="tool-box vertical is-flex">
+        <div className="tool-box horizontal is-flex">
           <button className="toggle-pos" onClick={this.toggleToolBoxPosition.bind(this)}>
             <img src="https://image.flaticon.com/icons/svg/122/122303.svg" alt="toggle toolbox view button"/>
           </button>
