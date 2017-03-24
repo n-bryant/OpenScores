@@ -26,3 +26,23 @@ form button {
     height: 100%;
     width: 5%;
 }
+
+// Live Chat Css
+
+.main-chat-container {
+  width: 20%;
+}
+
+.message-container {
+  border: 5px solid $orange;
+  width: 100%;
+}
+
+.message-text-container {
+  display: flex;
+  background: $orange;
+  border: 5px solid $dark;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+}
