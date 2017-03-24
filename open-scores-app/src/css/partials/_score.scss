@@ -102,15 +102,37 @@ header {
   color: $orange;
   cursor: pointer;
   font: 1rem $primaryFont;
-  right: .5rem;
+  right: 3rem;
   position: absolute;
   top: .5rem;
 
   &:hover {
+    color: $darkest;
     text-decoration: underline;
   }
   &:focus {
     outline: none;
+  }
+}
+
+.save-btn {
+  background: $orange;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: .25rem;
+  position: absolute;
+  right: .5rem;
+  top: .5rem;
+  width: 30px;
+
+  .save-icon {
+    display: block;
+    width: 100%;
+  }
+
+  &:hover {
+    border: 2px solid $darkest;
   }
 }
 

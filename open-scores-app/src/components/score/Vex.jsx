@@ -2,12 +2,21 @@ import React, {Component} from 'react';
 import Vex from 'vexflow/releases/vexflow-min';
 import Tone from 'tone';
 import $ from 'jquery';
+import base from '../../base';
 
 
 class VFDisplay extends Component {
+  constructor() {
+    super();
+    this.state = {
+      score: {}
+    }
+  }
 
   // wait for page load to bring in VexFlow
   componentDidMount() {
+    const forbiddenChars = '.$[]#/';
+    let _this = this;
     let pageLoad = true;
     const VF = Vex.Flow;
 
@@ -579,7 +588,9 @@ class VFDisplay extends Component {
     let barNoteIndex = null;
 
     let score = {
+      id: Date.now(),
       title: 'Score Title',
+      bpm: 120,
       keySig: 'C',
       timeSig: {count: beatCount, value: beatValue},
       clef: 'treble',
@@ -627,7 +638,6 @@ class VFDisplay extends Component {
 
         // draw staves and notes
         score.measures[i].stave.setContext(context).draw();
-
         VF.Formatter.FormatAndDraw(context, score.measures[i].stave, score.measures[i].notes);
 
         // generate beams
@@ -1077,6 +1087,23 @@ class VFDisplay extends Component {
       highlightNote();
     }
 
+    // creates new StaveNote and noteIDMap data for previously stripped firebase version of score
+    function loadScore() {
+      score.noteIDMap = [];
+      for (let i = 0; i < score.measures.length; i++) {
+        for (let j = 0; j < score.measures[i].notes.length; j++) {
+          let keyVals = score.measures[i].notes[j].keys;
+          let durVal = score.measures[i].notes[j].duration;
+          score.measures[i].notes[j] = new VF.StaveNote({clef: score.clef, keys: keyVals, duration: durVal});
+
+          // update id map
+          let newId = `vf-${score.measures[i].notes[j].attrs.id}`;
+          score.noteIDMap.push(newId);
+        }
+      }
+      console.log(score.noteIDMap);
+    }
+
     // mark a note as highlighted
     function highlightNote() {
       const blueAccent = "#41A2EB";
@@ -1157,6 +1184,7 @@ class VFDisplay extends Component {
       setLibrary(score.keySig, false);
       drawScore();
       bindEvents();
+      _this.setState({score: score});
     }
 
     // calculates the current count of beats in a measure

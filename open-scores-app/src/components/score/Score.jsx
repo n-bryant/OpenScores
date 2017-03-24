@@ -6,6 +6,13 @@ import KeySigs from './KeySigs';
 import ChordOptions from './chords/ChordOptions';
 
 class Score extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      score: {}
+    }
+  }
 
   processBPMForm(event) {
     event.preventDefault();
@@ -15,9 +22,64 @@ class Score extends Component {
     this.bpmForm.reset();
     this.bpmForm.classList.add('is-hidden');
     this.bpmEl.classList.remove('is-hidden');
-    console.log(newBPM);
     // updateBpm(newBPM);
   }
+
+  processScore(data) {
+    // gather score data from Vex
+    // if id already exists, update id with that record, otherwise create new record
+
+    for (let i = 0; i < data.measures.length; i++) {
+      data.measures[i].stave = {};
+      for (let j = 0; j < data.measures[i].notes.length; j++) {
+        data.measures[i].notes[j] = {
+          keys: data.measures[i].notes[j].keys,
+          duration: data.measures[i].notes[j].duration
+        };
+      }
+    }
+    console.log(data);
+
+    // HOW TO ITERATE OVER EACH CHILD OBJECT'S KEYS AND ENCODE THOSE AS WELL?
+    // for (let i = 0; i < data.measures.length; i++) {
+    //   let objToEncode = data.measures[i].stave.context.element;
+    //   let keyToEncode = Object.keys(objToEncode)[0];
+    //   let encodedKey = encodeURIComponent(keyToEncode);
+    //   this.fbKeyEncode(objToEncode, keyToEncode, encodedKey);
+    // }
+
+    // let count = data.measures.length;
+    // for (let i = 0; i < count; i++) {
+    //   this.traverseObjKeys(data);
+    // }
+
+    this.props.addScore(data);
+  }
+
+  // traverseObjKeys(obj) {
+  //   let keys = Object.keys(obj);
+  //   for (let i = 0; i < keys.length; i++) {
+  //     let keyToEncode = keys[i];
+  //     let encodedKey = encodeURIComponent(keyToEncode);
+  //     // if needs to be encoded -> key contains any of these '.$[]#/'
+  //       // this.fbKeyEncode(obj, keyToEncode, encodedKey);
+  //     console.log(obj);
+  //     if (typeof obj[encodedKey] === 'object') {
+  //       console.log('in');
+  //       // traverseObjKeys(obj[encodedKey]);
+  //     }
+  //   }
+  // }
+  //
+  // fbKeyEncode(obj, oldName, newName) {
+  //   if(!obj.hasOwnProperty(oldName)) {
+  //     return false;
+  //   }
+  //
+  //   obj[newName] = obj[oldName];
+  //   delete obj[oldName];
+  //   return true;
+  // }
 
   processTitleForm(event) {
     event.preventDefault();
@@ -41,6 +103,9 @@ class Score extends Component {
         <section className="score-wrapper vertical">
           <SkinnyHeader/>
           <div className="score-container">
+            <div className="save-btn" onClick={() => {this.processScore(this.vexData.state.score)}}>
+              <img className="save-icon" src="https://cdn0.iconfinder.com/data/icons/rcons-basic/16/floppy_disk-512.png" alt="save button" />
+            </div>
             <button className="print-btn">print</button>
             <div className="title-container">
               <img className="edit-title-icon is-hidden" src="edit-icon" alt="edit-icon"/>
@@ -67,7 +132,7 @@ class Score extends Component {
             </div>
             <KeySigs />
             <ChordOptions />
-            <VFDisplay />
+            <VFDisplay ref={(vexData) => {this.vexData = vexData;}}/>
           </div>
         </section>
       </section>
