@@ -668,3 +668,10 @@ form input {
   margin-right: 0.5%;
   padding: 10px;
   width: 94%; }
+
+form button {
+  background: #60D394;
+  border: none;
+  font: "Nunito Sans", sans-serif;
+  height: 100%;
+  width: 5%; }
