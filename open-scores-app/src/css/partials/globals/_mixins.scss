@@ -26,10 +26,20 @@
     .score-title, .score-bpm, .score-to-print, .score-to-print * {
       visibility: visible;
     }
+    .score-title, .score-bpm {
+      position: absolute;
+      top: 0;
+    }
+    .score-title {
+      left: 0;
+    }
+    .score-bpm {
+      left: 12rem;
+    }
     .score-to-print {
       left: 0;
       position: fixed;
-      top: 0;
+      top: 5rem;
       transform: scale(.75);
     }
   }

@@ -4,15 +4,51 @@ import VFDisplay from './Vex';
 import ToolBox from './ToolBox';
 import KeySigs from './KeySigs';
 import ChordOptions from './chords/ChordOptions';
+// import base from '../../base';
 
 class Score extends Component {
   constructor() {
     super();
 
     this.state = {
-      score: {}
+      score: {},
+      scores: {}
     }
   }
+
+  // componentWillMount() {
+  //   this.ref = base.syncState('/scores',
+  //     {
+  //       context: this,
+  //       state: 'scores'
+  //     }
+  //   );
+  // }
+  //
+  // componentWillUnmount() {
+  //   base.removeBinding(this.ref);
+  // }
+
+  // 1. will mount
+    // 1.a. sync FB
+      // gets all scores into state
+
+    // 1.b. store [this.props.params.scoreId]
+    // grab this.state.scores[this.props.params.scoreId]
+
+    // in vfdisplay set property score={}
+  // componentWillMount() {
+  //   this.ref = base.syncState('/scores',
+  //     {
+  //       context: this,
+  //       state: 'scores'
+  //     }
+  //   );
+  // }
+  //
+  // componentWillUnmount() {
+  //   base.removeBinding(this.ref);
+  // }
 
   processBPMForm(event) {
     event.preventDefault();
@@ -39,7 +75,7 @@ class Score extends Component {
         };
       }
     }
-    console.log(data);
+    // console.log(data);
 
     // HOW TO ITERATE OVER EACH CHILD OBJECT'S KEYS AND ENCODE THOSE AS WELL?
     // for (let i = 0; i < data.measures.length; i++) {
@@ -133,7 +169,7 @@ class Score extends Component {
             </div>
             <KeySigs />
             <ChordOptions />
-            <VFDisplay ref={(vexData) => {this.vexData = vexData;}}/>
+            <VFDisplay ref={(vexData) => {this.vexData = vexData;}} score={this.props.scores[`score-${this.props.params.scoreId}`]}/>
           </div>
         </section>
       </section>
