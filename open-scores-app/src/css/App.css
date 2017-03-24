@@ -447,6 +447,9 @@ header {
       margin-bottom: 2rem;
       justify-content: center;
       width: 200px; }
+      .time-options-wrapper .time-options-container .time-option img {
+        display: block;
+        width: auto; }
       .time-options-wrapper .time-options-container .time-option:hover {
         color: #FAFAFA;
         text-decoration: underline; }
@@ -661,6 +664,20 @@ form button {
   height: 100%;
   width: 5%; }
 
+.main-chat-container {
+  width: 20%; }
+
+.message-container {
+  border: 5px solid #60D394;
+  width: 100%; }
+
+.message-text-container {
+  display: flex;
+  background: #60D394;
+  border: 5px solid #313131;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%; }
 .chord-options-wrapper {
   background: rgba(49, 49, 49, 0.75);
   left: 0;

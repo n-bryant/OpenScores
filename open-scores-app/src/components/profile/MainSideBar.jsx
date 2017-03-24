@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ChatContainer from './ChatContainer';
+import ChatContainer from '../chatApp/ChatContainer';
 
 class MainSideBar extends Component {
     render() {

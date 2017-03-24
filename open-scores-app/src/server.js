@@ -1,18 +1,17 @@
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+let express = require('express');
+let app = require('express')();
+let http = require('http').Server(app);
+let io = require('socket.io')(http);
 
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + './index.html');
+    res.sendFile(__dirname + '/public');
 });
 
 io.on('connection', function(socket) {
     console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-    socket.on('chat message', function(msg){
-      console.log('message: ' + msg);
-    });
+    socket.on('new-message', function(msg){
+      console.log(msg);
+      io.emit("receive-message", msg);
   });
 });
 
