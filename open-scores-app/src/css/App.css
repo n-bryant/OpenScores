@@ -675,3 +675,18 @@ form button {
   font: "Nunito Sans", sans-serif;
   height: 100%;
   width: 5%; }
+
+.main-chat-container {
+  width: 20%; }
+
+.message-container {
+  border: 5px solid #60D394;
+  width: 100%; }
+
+.message-text-container {
+  display: flex;
+  background: #60D394;
+  border: 5px solid #313131;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%; }
