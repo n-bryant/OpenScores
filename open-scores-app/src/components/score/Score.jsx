@@ -107,7 +107,9 @@ class Score extends Component {
             <div className="save-btn" onClick={() => {this.processScore(this.vexData.state.score)}}>
               <img className="save-icon" src="https://cdn0.iconfinder.com/data/icons/rcons-basic/16/floppy_disk-512.png" alt="save button" />
             </div>
-            <button className="print-btn">print</button>
+            <div className="print-btn">
+              <img className="print-icon" src="https://image.flaticon.com/icons/svg/149/149854.svg" alt="print button" />
+            </div>
             <div className="title-container">
               <img className="edit-title-icon is-hidden" src="edit-icon" alt="edit-icon"/>
               <h2 ref={(scoreTitle) => this.titleEl = scoreTitle} className="score-title is-centered" onClick={() => {this.toggleForm(this.titleEl, this.titleForm)}}>{this.props.title}</h2>

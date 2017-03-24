@@ -97,21 +97,23 @@ header {
 }
 
 .print-btn {
-  background: none;
-  border: none;
-  color: $orange;
+  background: $orange;
+  border: 2px solid transparent;
+  border-radius: 6px;
   cursor: pointer;
-  font: 1rem $primaryFont;
-  right: 3rem;
+  padding: .25rem;
   position: absolute;
+  right: 3rem;
   top: .5rem;
+  width: 30px;
+
+  .print-icon {
+    display: block;
+    width: 100%;
+  }
 
   &:hover {
-    color: $darkest;
-    text-decoration: underline;
-  }
-  &:focus {
-    outline: none;
+    border: 2px solid $darkest;
   }
 }
 
@@ -129,6 +131,7 @@ header {
   .save-icon {
     display: block;
     width: 100%;
+    filter: brightness(20%);
   }
 
   &:hover {
