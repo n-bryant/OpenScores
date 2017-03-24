@@ -447,9 +447,6 @@ header {
       margin-bottom: 2rem;
       justify-content: center;
       width: 200px; }
-      .time-options-wrapper .time-options-container .time-option img {
-        display: block;
-        width: auto; }
       .time-options-wrapper .time-options-container .time-option:hover {
         color: #FAFAFA;
         text-decoration: underline; }
@@ -678,6 +675,7 @@ form button {
   flex-direction: column;
   flex-wrap: wrap;
   width: 100%; }
+
 .chord-options-wrapper {
   background: rgba(49, 49, 49, 0.75);
   left: 0;
