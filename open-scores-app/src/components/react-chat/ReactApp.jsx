@@ -6,6 +6,7 @@ let socket = io(`http://localhost:3001`);
 
 class ReactApp extends Component {
 
+
   constructor() {
     super();
     this.state = {
@@ -23,11 +24,28 @@ class ReactApp extends Component {
   }
 
 
+
+
   submitMessage(event) {
     event.preventDefault();
     let message = document.getElementById("message").value;
     socket.emit("new-message", message);
     console.log(message);
+  }
+
+  rotateIcon(event) {
+    event.preventDefault();
+    const chatButton = document.querySelector('.chat-toggle');
+    const chatWindow = document.querySelector('.chat');
+    if (chatButton.classList.contains('up')) {
+      chatButton.classList.remove('up');
+      chatButton.classList.add('down');
+      chatWindow.classList.remove('is-hidden');
+    }else if (chatButton.classList.contains('down')) {
+      chatButton.classList.remove('down');
+      chatButton.classList.add('up');
+      chatWindow.classList.add('is-hidden');
+    }
   }
 
   render() {
@@ -38,11 +56,9 @@ class ReactApp extends Component {
       return <li key={i++}>{msg}</li>
     });
 
-
-
-
     return(
       <div className="main-chat-container">
+        <div className="chat is-hidden">
         <ul className="message-text-container">
           {messages}
         </ul>
@@ -51,6 +67,10 @@ class ReactApp extends Component {
         <input className="message-container" id="message" type="text"></input>
         </form>
         </fieldset>
+        </div>
+        <div className="chat-toggle up" onClick={this.rotateIcon.bind(this)}>
+          <img src="https://image.flaticon.com/icons/svg/25/25629.svg"></img>
+        </div>
       </div>
     );
   }

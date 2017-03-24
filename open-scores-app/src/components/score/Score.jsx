@@ -5,6 +5,10 @@ import ToolBox from './ToolBox';
 import KeySigs from './KeySigs';
 import ChordOptions from './chords/ChordOptions';
 import ReactApp from '../react-chat/ReactApp';
+import io from 'socket.io-client';
+import $ from 'jquery';
+
+let socket = io(`http://localhost:3001`);
 
 class Score extends Component {
   constructor() {

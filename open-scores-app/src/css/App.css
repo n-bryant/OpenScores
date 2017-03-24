@@ -460,43 +460,47 @@ header.vertical {
   top: 0;
   z-index: 1000; }
 
-  .time-options-wrapper .exit-times-btn {
-    color: #60D394;
-    cursor: pointer;
-    font: 2rem "Nunito Sans", sans-serif;
-    height: 2.5rem;
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    width: 2.5rem; }
-    .time-options-wrapper .exit-times-btn:hover {
-      color: #FAFAFA;
-      transition: color .5s; }
-  .time-options-wrapper .time-options-container {
-    background: #313131;
-    border: 4px solid #60D394;
-    color: #FAFAFA;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    left: 50%;
-    overflow: scroll;
-    padding: 2rem;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 85%; }
-    .time-options-wrapper .time-options-container .time-option {
-      align-items: center;
-      cursor: pointer;
-      display: flex;
-      font-size: 2rem;
-      height: 200px;
-      margin-bottom: 2rem;
-      justify-content: center;
-      width: 200px; }
-      .time-options-wrapper .time-options-container .time-option:hover {
-        color: #FAFAFA;
-        text-decoration: underline; }
+.time-options-wrapper .exit-times-btn {
+  color: #60D394;
+  cursor: pointer;
+  font: 2rem "Nunito Sans", sans-serif;
+  height: 2.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 2.5rem; }
+
+.time-options-wrapper .exit-times-btn:hover {
+  color: #FAFAFA;
+  transition: color .5s; }
+
+.time-options-wrapper .time-options-container {
+  background: #313131;
+  border: 4px solid #60D394;
+  color: #FAFAFA;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  left: 50%;
+  overflow: scroll;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%; }
+
+.time-options-wrapper .time-options-container .time-option {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 2rem;
+  height: 200px;
+  margin-bottom: 2rem;
+  justify-content: center;
+  width: 200px; }
+
+.time-options-wrapper .time-options-container .time-option:hover {
+  color: #FAFAFA;
+  text-decoration: underline; }
 
 .profile-wrapper {
   height: 900px; }
@@ -719,11 +723,36 @@ form button {
   height: 100%;
   width: 5%; }
 
+.chat-toggle {
+  align-content: center;
+  background: #60D394;
+  border-radius: 5rem;
+  bottom: 5px;
+  display: flex;
+  height: 4rem;
+  justify-content: center;
+  position: fixed;
+  right: 5px;
+  width: 4rem; }
+
+.chat-toggle img {
+  filter: invert(30%);
+  width: 65%; }
+
+.chat-toggle.up {
+  transform: rotate(180deg); }
+
 .main-chat-container {
-  width: 20%; }
+  bottom: 75px;
+  position: fixed;
+  right: 5px;
+  width: 25%; }
 
 .message-container {
+  display: flex;
   border: 5px solid #60D394;
+  flex-direction: column;
+  overflow: scroll;
   width: 100%; }
 
 .message-text-container {
@@ -731,7 +760,8 @@ form button {
   background: #60D394;
   border: 5px solid #313131;
   flex-direction: column;
-  flex-wrap: wrap;
+  height: 200px;
+  overflow: scroll;
   width: 100%; }
 
 .chord-options-wrapper {
