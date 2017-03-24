@@ -730,14 +730,37 @@ form button {
   height: 100%;
   width: 5%; }
 
-.main-chat-container {
-  bottom: 0;
+.chat-toggle {
+  align-content: center;
+  background: #60D394;
+  border-radius: 5rem;
+  bottom: 5px;
+  display: flex;
+  height: 4rem;
+  justify-content: center;
   position: fixed;
-  right: 0;
-  width: 20%; }
+  right: 5px;
+  width: 4rem; }
+
+.chat-toggle img {
+  filter: invert(30%);
+  width: 65%; }
+
+.chat-toggle.up {
+  transform: rotate(180deg); }
+
+.main-chat-container {
+  bottom: 75px;
+  position: fixed;
+  right: 5px;
+  width: 25%; }
+
 
 .message-container {
+  display: flex;
   border: 5px solid #60D394;
+  flex-direction: column;
+  overflow: scroll;
   width: 100%; }
 
 .message-text-container {
@@ -745,7 +768,8 @@ form button {
   background: #60D394;
   border: 5px solid #313131;
   flex-direction: column;
-  flex-wrap: wrap;
+  height: 200px;
+  overflow: scroll;
   width: 100%; }
 
 .chord-options-wrapper {
@@ -805,34 +829,6 @@ form button {
 
 .chord-options-container .chord-triggers-container .chord-note-option:hover, .chord-options-container .chords-wrapper .chord-note-option:hover {
   text-decoration: underline; }
-
-.chords-wrapper .chord-option {
-  background: #60D394;
-  border: 4px solid transparent;
-  cursor: pointer;
-  height: 200px;
-  margin: 2rem;
-  padding: 1rem;
-  width: 200px; }
-
-.chords-wrapper .chord-option img {
-  display: block;
-  width: 200px; }
-
-.chords-wrapper .chord-option:hover {
-  border: 4px solid #FAFAFA;
-  transition: border 1s; }
-er;
-      color: #FAFAFA;
-      cursor: pointer;
-      display: flex;
-      font-size: 3rem;
-      height: 200px;
-      margin-bottom: 2rem;
-      justify-content: center;
-      width: 200px; }
-      .chord-options-container .chord-triggers-container .chord-note-option:hover, .chord-options-container .chords-wrapper .chord-note-option:hover {
-        text-decoration: underline; }
 
 .chords-wrapper .chord-option {
   background: #60D394;
