@@ -4,6 +4,7 @@ import VFDisplay from './Vex';
 import ToolBox from './ToolBox';
 import KeySigs from './KeySigs';
 import ChordOptions from './chords/ChordOptions';
+import ReactApp from '../react-chat/ReactApp';
 
 class Score extends Component {
   constructor() {
@@ -133,6 +134,7 @@ class Score extends Component {
             </div>
             <KeySigs />
             <ChordOptions />
+            <ReactApp/>
             <VFDisplay ref={(vexData) => {this.vexData = vexData;}}/>
           </div>
         </section>
