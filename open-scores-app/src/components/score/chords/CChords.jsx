@@ -1,4 +1,14 @@
 import React, {Component} from 'react';
+import C5 from '../../../images/C5.png';
+import Cs5 from '../../../images/Cs5.png';
+import Cm5 from '../../../images/Cm5.png';
+import Csm5 from '../../../images/Csm5.png';
+import C7 from '../../../images/C7.png';
+import Cs7 from '../../../images/Cs7.png';
+import CMaj7 from '../../../images/CMaj7.png';
+import CsMaj7 from '../../../images/CsMaj7.png';
+import Cmin7 from '../../../images/Cmin7.png';
+import Csmin7 from '../../../images/Csmin7.png';
 
 class CChords extends Component {
 
@@ -6,34 +16,34 @@ class CChords extends Component {
     return (
       <div className="c-chords chords-wrapper is-flex is-hidden">
         <div className="chord-option" data-val="C5">
-          <img src="http://jguitar.com/images/chordshape/C-Major-C-x%2C3%2C2%2C0%2C1%2C0.png" alt="C5"/>
+          <img src={C5} alt="C5"/>
         </div>
         <div className="chord-option" data-val="Cs5">
-          <img src="http://jguitar.com/images/chordshape/Csharp-Major-Csharp-x%2C4%2C3%2C1%2C2%2C1.png" alt="Cs5"/>
+          <img src={Cs5} alt="Cs5"/>
         </div>
         <div className="chord-option" data-val="Cm5">
-          <img src="http://jguitar.com/images/chordshape/C-Minor-C-x%2C3%2C5%2C5%2C4%2C3.png" alt="Cm5"/>
+          <img src={Cm5} alt="Cm5"/>
         </div>
         <div className="chord-option" data-val="Csm5">
-          <img src="http://jguitar.com/images/chordshape/Csharp-Minor-Csharp-x%2C4%2C6%2C6%2C5%2C4.png" alt="Csm5"/>
+          <img src={Csm5} alt="Csm5"/>
         </div>
         <div className="chord-option" data-val="C7">
-          <img src="http://jguitar.com/images/chordshape/C-7th-C-x%2C3%2C5%2C3%2C5%2C3.png" alt="C7"/>
+          <img src={C7} alt="C7"/>
         </div>
         <div className="chord-option" data-val="Cs7">
-          <img src="http://jguitar.com/images/chordshape/Csharp-7th-Csharp-x%2C4%2C6%2C4%2C6%2C4.png" alt="Cs7"/>
+          <img src={Cs7} alt="Cs7"/>
         </div>
         <div className="chord-option" data-val="CMaj7">
-          <img src="http://jguitar.com/images/chordshape/C-Major%207th-C-x%2C3%2C5%2C4%2C5%2C3.png" alt="CMaj7"/>
+          <img src={CMaj7} alt="CMaj7"/>
         </div>
         <div className="chord-option" data-val="CsMaj7">
-          <img src="http://jguitar.com/images/chordshape/Csharp-Major%207th-Csharp-x%2C4%2C6%2C5%2C6%2C4.png" alt="CsMaj7"/>
+          <img src={CsMaj7} alt="CsMaj7"/>
         </div>
         <div className="chord-option" data-val="Cmin7">
-          <img src="http://jguitar.com/images/chordshape/C-Minor%207th-C-x%2C3%2C5%2C3%2C4%2C3.png" alt="Cmin7"/>
+          <img src={Cmin7} alt="Cmin7"/>
         </div>
         <div className="chord-option" data-val="Csmin7">
-          <img src="http://jguitar.com/images/chordshape/Csharp-Minor%207th-Csharp-x%2C4%2C6%2C4%2C5%2C4.png" alt="Csmin7"/>
+          <img src={Csmin7} alt="Csmin7"/>
         </div>
       </div>
     );

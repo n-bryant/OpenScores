@@ -1,54 +1,68 @@
 import React, {Component} from 'react';
+import Df5 from '../../../images/Df5.png';
+import D5 from '../../../images/D5.png';
+import Ds5 from '../../../images/Ds5.png';
+import Dfm5 from '../../../images/Dfm5.png';
+import Dm5 from '../../../images/Dm5.png';
+import Dsm5 from '../../../images/Dsm5.png';
+import Df7 from '../../../images/Df7.png';
+import D7 from '../../../images/D7.png';
+import Ds7 from '../../../images/Ds7.png';
+import DfMaj7 from '../../../images/DfMaj7.png';
+import DMaj7 from '../../../images/DMaj7.png';
+import DsMaj7 from '../../../images/DsMaj7.png';
+import Dfmin7 from '../../../images/Dfmin7.png';
+import Dmin7 from '../../../images/Dmin7.png';
+import Dsmin7 from '../../../images/Dsmin7.png';
 
 class DChords extends Component {
-
   render() {
     return (
       <div className="d-chords chords-wrapper is-flex is-hidden">
         <div className="chord-option" data-val="Df5">
-          <img src="http://jguitar.com/images/chordshape/Db-Major-Db-x%2C4%2C6%2C6%2C6%2C4.png" alt="Df5"/>
+          <img src={Df5} alt="Df5"/>
         </div>
         <div className="chord-option" data-val="D5">
-          <img src="http://jguitar.com/images/chordshape/D-Major-D-x%2C5%2C7%2C7%2C7%2C5.png" alt="D5"/>
+          <img src={D5} alt="D5"/>
         </div>
         <div className="chord-option" data-val="Ds5">
-          <img src="http://jguitar.com/images/chordshape/Dsharp-Major-Dsharp-x%2C6%2C8%2C8%2C8%2C6.png" alt="Ds5"/>
+          <img src={Ds5} alt="Ds5"/>
         </div>
         <div className="chord-option" data-val="Dfm5">
-          <img src="http://jguitar.com/images/chordshape/Db-Minor-Db-x%2C4%2C6%2C6%2C5%2C4.png" alt="Dfm5"/>
+          <img src={Dfm5} alt="Dfm5"/>
         </div>
         <div className="chord-option" data-val="Dm5">
-          <img src="http://jguitar.com/images/chordshape/D-Minor-D-x%2C5%2C7%2C7%2C6%2C5.png" alt="Dm5"/>
+          <img src={Dm5} alt="Dm5"/>
         </div>
         <div className="chord-option" data-val="Dsm5">
-          <img src="http://jguitar.com/images/chordshape/Dsharp-Minor-Dsharp-x%2C6%2C8%2C8%2C7%2C6.png" alt="Dsm5"/>
+          <img src={Dsm5} alt="Dsm5"/>
         </div>
         <div className="chord-option" data-val="Df7">
-          <img src="http://jguitar.com/images/chordshape/Db-7th-Db-x%2C4%2C6%2C4%2C6%2C4.png" alt="Df7"/>
+          <img src={Df7} alt="Df7"/>
         </div>
         <div className="chord-option" data-val="D7">
-          <img src="http://jguitar.com/images/chordshape/D-7th-D-x%2C5%2C7%2C5%2C7%2C5.png" alt="D7"/>
+          <img src={D7} alt="D7"/>
         </div>
         <div className="chord-option" data-val="Ds7">
-          <img src="http://jguitar.com/images/chordshape/Dsharp-7th-Dsharp-x%2C6%2C8%2C6%2C8%2C6.png" alt="Ds7"/>
+          <img src={Ds7} alt="Ds7"/>
         </div>
         <div className="chord-option" data-val="DfMaj7">
-          <img src="http://jguitar.com/images/chordshape/Db-Major%207th-Db-x%2C4%2C6%2C5%2C6%2C4.png" alt="DfMaj7"/>
+          <img src={DfMaj7} alt="DfMaj7"/>
         </div>
         <div className="chord-option" data-val="DMaj7">
-          <img src="http://jguitar.com/images/chordshape/D-Major%207th-D-x%2C5%2C7%2C6%2C7%2C5.png" alt="DMaj7"/>
+          <img src={DMaj7} alt="DMaj7"/>
         </div>
         <div className="chord-option" data-val="DsMaj7">
-          <img src="http://jguitar.com/images/chordshape/Dsharp-Major%207th-Dsharp-x%2C6%2C8%2C7%2C8%2C6.png" alt="DsMaj7"/>
+          <img src={DsMaj7} alt="DsMaj7"/>
         </div>
         <div className="chord-option" data-val="Dfmin7">
-          <img src="http://jguitar.com/images/chordshape/Db-Minor%207th-Db-x%2C4%2C6%2C4%2C5%2C4.png" alt="Dfmin7"/>
+          <img src={Dfmin7} alt="Dfmin7"/>
         </div>
         <div className="chord-option" data-val="Dmin7">
-          <img src="http://jguitar.com/images/chordshape/D-Minor%207th-D-x%2C5%2C7%2C5%2C6%2C5.png" alt="Dmin7"/>
+          <img src={Dmin7} alt="Dmin7"/>
         </div>
         <div className="chord-option" data-val="Dsmin7">
-          <img src="http://jguitar.com/images/chordshape/Dsharp-Minor%207th-Dsharp-x%2C6%2C8%2C6%2C7%2C6.png" alt="Dsmin7"/>
+          <img src={Dsmin7} alt="Dsmin7"/>
         </div>
       </div>
     );

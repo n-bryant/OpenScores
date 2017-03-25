@@ -1,4 +1,15 @@
 import React, {Component} from 'react';
+import Ef5 from '../../../images/Ef5.png';
+import E5 from '../../../images/E5.png';
+import Efm5 from '../../../images/Efm5.png';
+import Em5 from '../../../images/Em5.png';
+import Ef7 from '../../../images/Ef7.png';
+import E7 from '../../../images/E7.png';
+import EfMaj7 from '../../../images/EfMaj7.png';
+import EMaj7 from '../../../images/EMaj7.png';
+import Efmin7 from '../../../images/Efmin7.png';
+import Emin7 from '../../../images/Emin7.png';
+
 
 class EChords extends Component {
 
@@ -6,34 +17,34 @@ class EChords extends Component {
     return (
       <div className="e-chords chords-wrapper is-flex is-hidden">
         <div className="chord-option" data-val="Ef5">
-          <img src="http://jguitar.com/images/chordshape/Eb-Major-Eb-x%2C6%2C5%2C3%2C4%2C3.png" alt="Ef5"/>
+          <img src={Ef5} alt="Ef5"/>
         </div>
         <div className="chord-option" data-val="E5">
-          <img src="http://jguitar.com/images/chordshape/E-Major-E-x%2C7%2C6%2C4%2C5%2C4.png" alt="E5"/>
+          <img src={E5} alt="E5"/>
         </div>
         <div className="chord-option" data-val="Efm5">
-          <img src="http://jguitar.com/images/chordshape/Eb-Minor-Eb-x%2C6%2C4%2C3%2C4%2Cx.png" alt="Efm5"/>
+          <img src={Efm5} alt="Efm5"/>
         </div>
         <div className="chord-option" data-val="Em5">
-          <img src="http://jguitar.com/images/chordshape/E-Minor-E-x%2C7%2C5%2C4%2C5%2Cx.png" alt="Em5"/>
+          <img src={Em5} alt="Em5"/>
         </div>
         <div className="chord-option" data-val="Ef7">
-          <img src="http://jguitar.com/images/chordshape/Eb-7th-Eb-x%2C6%2C5%2C6%2C4%2Cx.png" alt="Ef7"/>
+          <img src={Ef7} alt="Ef7"/>
         </div>
         <div className="chord-option" data-val="E7">
-          <img src="http://jguitar.com/images/chordshape/E-7th-E-x%2C7%2C6%2C7%2C5%2Cx.png" alt="E7"/>
+          <img src={E7} alt="E7"/>
         </div>
         <div className="chord-option" data-val="EfMaj7">
-          <img src="http://jguitar.com/images/chordshape/Eb-Major%207th-Eb-x%2C6%2C5%2C3%2C3%2C6.png" alt="EfMaj7"/>
+          <img src={EfMaj7} alt="EfMaj7"/>
         </div>
         <div className="chord-option" data-val="EMaj7">
-          <img src="http://jguitar.com/images/chordshape/E-Major%207th-E-x%2C7%2C6%2C4%2C4%2C4.png" alt="EMaj7"/>
+          <img src={EMaj7} alt="EMaj7"/>
         </div>
         <div className="chord-option" data-val="Efmin7">
-          <img src="http://jguitar.com/images/chordshape/Eb-Minor%207th-Eb-x%2C6%2C4%2C6%2C4%2C6.png" alt="Efmin7"/>
+          <img src={Efmin7} alt="Efmin7"/>
         </div>
         <div className="chord-option" data-val="Emin7">
-          <img src="http://jguitar.com/images/chordshape/E-Minor%207th-E-x%2C7%2C5%2C7%2C5%2C7.png" alt="Emin7"/>
+          <img src={Emin7} alt="Emin7"/>
         </div>
       </div>
     );

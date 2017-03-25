@@ -1,4 +1,15 @@
 import React, {Component} from 'react';
+import Bf5 from '../../../images/Bf5.png';
+import B5 from '../../../images/B5.png';
+import Bfmin5 from '../../../images/Bfmin5.png';
+import Bmin5 from '../../../images/Bmin5.png';
+import Bf7 from '../../../images/Bf7.png';
+import B7 from '../../../images/B7.png';
+import BfMaj7 from '../../../images/BfMaj7.png';
+import BMaj7 from '../../../images/BMaj7.png';
+import Bfmin7 from '../../../images/Bfmin7.png';
+import Bmin7 from '../../../images/Bmin7.png';
+
 
 class BChords extends Component {
 
@@ -6,34 +17,34 @@ class BChords extends Component {
     return (
       <div className="b-chords chords-wrapper is-flex is-hidden">
         <div className="chord-option" data-val="Bf5">
-          <img src="http://jguitar.com/images/chordshape/Bb-Major-Bb-6%2C8%2C8%2C7%2C6%2C6.png" alt="Bf5"/>
+          <img src={Bf5} alt="Bf5"/>
         </div>
         <div className="chord-option" data-val="B5">
-          <img src="http://jguitar.com/images/chordshape/B-Major-B-7%2C9%2C9%2C8%2C7%2C7.png" alt="B5"/>
+          <img src={B5} alt="B5"/>
         </div>
-        <div className="chord-option" data-val="Bfm5">
-          <img src="http://jguitar.com/images/chordshape/Bb-Minor-Bb-6%2C8%2C8%2C6%2C6%2C6.png" alt="Bfm5"/>
+        <div className="chord-option" data-val="Bfmin5">
+          <img src={Bfmin5} alt="Bfm5"/>
         </div>
-        <div className="chord-option" data-val="Bm5">
-          <img src="http://jguitar.com/images/chordshape/B-Minor-B-7%2C9%2C9%2C7%2C7%2C7.png" alt="Bm5"/>
+        <div className="chord-option" data-val="Bmin5">
+          <img src={Bmin5} alt="Bm5"/>
         </div>
         <div className="chord-option" data-val="Bf7">
-          <img src="http://jguitar.com/images/chordshape/Bb-7th-Bb-6%2C8%2C6%2C7%2C6%2C6.png" alt="Bf7"/>
+          <img src={Bf7} alt="Bf7"/>
         </div>
         <div className="chord-option" data-val="B7">
-          <img src="http://jguitar.com/images/chordshape/B-7th-B-7%2C9%2C7%2C8%2C7%2C7.png" alt="B7"/>
+          <img src={B7} alt="B7"/>
         </div>
         <div className="chord-option" data-val="BfMaj7">
-          <img src="http://jguitar.com/images/chordshape/Bb-Major%207th-Bb-6%2C8%2C7%2C7%2C6%2C6.png" alt="BfMaj7"/>
+          <img src={BfMaj7} alt="BfMaj7"/>
         </div>
         <div className="chord-option" data-val="BMaj7">
-          <img src="http://jguitar.com/images/chordshape/B-Major%207th-B-7%2C9%2C8%2C8%2C7%2C7.png" alt="BMaj7"/>
+          <img src={BMaj7} alt="BMaj7"/>
         </div>
         <div className="chord-option" data-val="Bfmin7">
-          <img src="http://jguitar.com/images/chordshape/Bb-Minor%207th-Bb-6%2C8%2C6%2C6%2C6%2C6.png" alt="Bfmin7"/>
+          <img src={Bfmin7} alt="Bfmin7"/>
         </div>
         <div className="chord-option" data-val="Bmin7">
-          <img src="http://jguitar.com/images/chordshape/B-Minor%207th-B-7%2C9%2C7%2C7%2C7%2C7.png" alt="Bmin7"/>
+          <img src={Bmin7} alt="Bmin7"/>
         </div>
       </div>
     );
