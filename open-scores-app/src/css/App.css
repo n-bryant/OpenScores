@@ -172,7 +172,6 @@ header {
   cursor: pointer;
   padding: .25rem;
   position: absolute;
-<<<<<<< HEAD
   right: 3rem;
   top: .5rem;
   width: 30px; }
@@ -181,14 +180,6 @@ header {
     width: 100%; }
   .print-btn:hover {
     border: 2px solid #212121; }
-=======
-  top: .5rem; }
-  .print-btn:hover {
-    color: #212121;
-    text-decoration: underline; }
-  .print-btn:focus {
-    outline: none; }
->>>>>>> staging
 
 .save-btn {
   background: #60D394;
@@ -202,12 +193,8 @@ header {
   width: 30px; }
   .save-btn .save-icon {
     display: block;
-<<<<<<< HEAD
     width: 100%;
     filter: brightness(20%); }
-=======
-    width: 100%; }
->>>>>>> staging
   .save-btn:hover {
     border: 2px solid #212121; }
 
@@ -320,11 +307,7 @@ header {
       margin-bottom: 2rem;
       width: 220px; }
   .tool-box.vertical {
-<<<<<<< HEAD
     box-shadow: 0.35rem 0 1rem #60D394;
-=======
-    box-shadow: 0.5rem 0 1rem #60D394;
->>>>>>> staging
     flex-direction: column;
     min-height: 100vh;
     overflow: scroll;
@@ -662,18 +645,6 @@ header {
     font-size: 15px;
     height: 8%;
     width: 50%; }
-<<<<<<< HEAD
-=======
-
-.chat-form-container {
-  background: #313131;
-  bottom: 0;
-  height: 60px;
-  left: 0;
-  padding: 5px;
-  position: fixed;
-  width: 20%; }
->>>>>>> staging
 
 form input {
   border: 0;
@@ -713,19 +684,12 @@ form button {
   right: 5px;
   width: 4rem; }
   .chat-toggle img {
-<<<<<<< HEAD
     filter: invert(25%);
     width: 55%;
     top: 5px; }
 
 .arrow {
   transform: rotate(180deg); }
-=======
-    filter: invert(30%);
-    width: 65%; }
-  .chat-toggle.up {
-    transform: rotate(180deg); }
->>>>>>> staging
 
 .main-chat-container {
   bottom: 75px;
