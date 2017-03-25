@@ -19,17 +19,22 @@ handleSubmit(event) {
   }
   this.props.onMessageSubmit(message);
   this.setState({ text: this.newMessage});
+  // this.form.clear();
+  // this.state.text = "";
+
 }
 
 changeHandler(event) {
   this.setState({ text : event.target.value});
+  this.inputForm.value="";
+  this.newMessage.value="";
 }
 
   render() {
     return(
       <div className="message_form">
         <h3>Write New Message</h3>
-        <form onSubmit={this.handleSubmit}>
+        <form ref={(inputForm) => this.importForm = inputForm} onSubmit={this.handleSubmit.bind(this)}>
           <input
             ref={(newMessage) => this.newMessage = newMessage}
             onChange={this.changeHandler.bind(this)}
