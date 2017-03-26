@@ -1,0 +1,24 @@
+// avatar css
+.avatar-container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto 3rem auto;
+    width: 200px;
+}
+
+.profile-pic {
+  border: 5px solid $orange;
+  border-radius: 50%;
+}
+
+.user-profile-image {
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-name {
+  color: $light;
+  font-size: 1.5rem;
+  margin-top: .5rem;
+}

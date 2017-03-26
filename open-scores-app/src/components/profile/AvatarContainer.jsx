@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ChatContainer from '../chatApp/ChatContainer';
 import base from '../../base';
 
-class MainSideBar extends Component {
+class AvatarContainer extends Component {
   logout() {
     base.unauth();
     // this.setState({ uid: null});
@@ -12,10 +12,10 @@ class MainSideBar extends Component {
   render() {
     const logout = <button className="logout-btn" onClick={this.logout}>Log Out!</button>
     return (
-      <div className="main-side-container">
-        <div className="user-profile-image">
+      <div className="avatar-container">
+        <div className="user-profile-image is-flex">
           <img className="profile-pic" src={this.props.avatar} alt={this.props.name}></img>
-          <p>{this.props.name}</p>
+          <p className="user-name">{this.props.name}</p>
           {logout}
         </div>
       </div>
@@ -23,4 +23,4 @@ class MainSideBar extends Component {
   }
 }
 
-export default MainSideBar;
+export default AvatarContainer;
