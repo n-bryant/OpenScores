@@ -57,7 +57,6 @@ class ReactApp extends Component {
     let id = Date.now();
     let messages = self.state.messages.map(function(msg) {
       return <li className="user-message is-flex" key={i++}>
-        <div className="user-icon"></div>
         <div className="user-text">{msg}</div>
         </li>
     });
@@ -73,7 +72,7 @@ class ReactApp extends Component {
           <div className="input-container is-flex">
         <input ref={(input) => this.input = input} className="message-container" id="message" type="text" name="chat form input"></input>
         <div className="current-user-icon is-flex">
-          <img src="https://s-media-cache-ak0.pinimg.com/736x/bf/b6/19/bfb6192a36bb33728209ac1040f2f574.jpg"></img>
+          <img src={this.props.avatar}></img>
         </div>
         </div>
         </form>

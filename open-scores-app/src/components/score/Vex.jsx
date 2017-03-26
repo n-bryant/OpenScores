@@ -1211,11 +1211,11 @@ class VFDisplay extends Component {
     let synth;
     let part;
     let started = false;
-    let bpm = Tone.Transport.bpm.value;
+    let toneBpm = Tone.Transport.bpm.value;
     let paused = false;
 
     function createVoice() {
-      bpm = 120;
+      toneBpm = 120;
       synth = new Tone.PolySynth().toMaster();
       part = new Tone.Part(function(time, event){
         synth.triggerAttackRelease(event.note, event.dur, time)
@@ -1241,7 +1241,6 @@ class VFDisplay extends Component {
         part.dispose();
         synth.dispose();
         toneArray = [];
-        // console.log(Tone.Transport.position);
       } else if (paused) {
         let pausedPos = Tone.Transport.position;
         Tone.Transport.start('+0.5', `${pausedPos}`);

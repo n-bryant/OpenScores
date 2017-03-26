@@ -71,7 +71,7 @@ class Profile extends Component {
       <section className="profile-wrapper">
         <MainHeader/>
         <UserCompositions user={this.state.user}/>
-        <ReactApp/>
+        <ReactApp avatar={this.state.avatar}/>
         <MainSideBar name={this.state.name} avatar={this.state.avatar}/>
       </section>
     );
