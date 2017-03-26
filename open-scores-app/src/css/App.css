@@ -474,35 +474,38 @@ header {
         text-decoration: underline; }
 
 .profile-wrapper {
-  height: 900px; }
+  background-color: #373737;
+  background-image: url("https://www.transparenttextures.com/patterns/rebel.png");
+  min-height: 100vh;
+  padding-bottom: 6rem; }
 
 .header-container {
-  align-items: center;
   background: #373737;
   color: #60D394;
-  display: flex;
-  height: 150px;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%; }
-  .header-container h1 {
-    font-size: 40px; }
+  margin-bottom: 2rem; }
 
-.logo-container {
-  height: 20px;
-  width: 15%; }
+@media screen and (min-width: 320px) {
+  .header-container {
+    height: 225px;
+    padding-top: 1rem; } }
 
-.newThing {
-  background: #373737;
-  width: 100px; }
+@media screen and (min-width: 550px) {
+  .header-container {
+    height: 150px; } }
 
 .main-header-container {
   align-items: center;
-  display: flex;
-  flex-direction: row;
   height: 100%;
-  justify-content: space-around;
-  width: 100%; }
+  justify-content: space-around; }
+
+@media screen and (min-width: 320px) {
+  .main-header-container {
+    flex-direction: column;
+    flex-wrap: wrap; } }
+
+@media screen and (min-width: 550px) {
+  .main-header-container {
+    flex-direction: row; } }
 
 .search-comp {
   background: #474747;
@@ -511,95 +514,70 @@ header {
   font-size: 20px;
   height: 50px;
   padding: 20px;
-  width: 50%; }
+  max-width: 900px; }
+
+@media screen and (min-width: 320px) {
+  .search-comp {
+    width: 85%; } }
+
+@media screen and (min-width: 550px) {
+  .search-comp {
+    width: 50%; } }
+
+.search-comp:focus {
+  outline: none; }
 
 .social-media-container {
-  display: flex;
+  width: 225px; }
+
+.social-media-container img {
+  background: #60D394;
+  width: 60%; }
+
+.main-logo-container .logo-container {
   align-items: center;
-  justify-content: flex-end;
+  color: #FAFAFA;
   height: 100%;
-  width: 20%; }
-  .social-media-container .media-icons {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center; }
-  .social-media-container img {
-    background: #60D394;
-    width: 60%; }
+  justify-content: space-around;
+  width: 225px; }
 
-.main-logo-container {
-  height: 100%;
-  width: 20%; }
-  .main-logo-container .logo-container {
-    align-items: center;
-    display: flex;
-    height: 100%;
-    justify-content: space-around;
-    width: 90%; }
-    .main-logo-container .logo-container .logo-image {
-      background: #60D394;
-      border-radius: 5px;
-      width: 60px; }
-    .main-logo-container .logo-container .logo-text {
-      font-size: 25px;
-      font-weight: 900; }
+.main-logo-container .logo-container .logo-image {
+  background: #60D394;
+  border-radius: 5px;
+  width: 60px; }
 
-.main-side-container {
+.main-logo-container .logo-container .logo-text {
+  font-size: 25px;
+  font-weight: 900; }
+
+.avatar-container {
   display: flex;
   flex-direction: row;
-  height: 100%;
-  margin: 0;
-  width: 20%; }
+  margin: 0 auto 3rem auto;
+  width: 200px; }
 
 .profile-pic {
   border: 5px solid #60D394;
-  border-radius: 50%;
-  width: 60%; }
+  border-radius: 50%; }
 
 .user-profile-image {
   align-items: center;
-  background: #373737;
-  display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+
+  justify-content: center; }
 
 .user-name {
-  color: #60D394;
-  font-size: 20px; }
+  color: #FAFAFA;
+  font-size: 1.5rem;
+  margin-top: .5rem; }
 
-.friends-list {
-  align-items: flex-start;
+.user-comp-container {
+  background: #474747;
+  background-image: url(https://www.transparenttextures.com/patterns/diagmonds.png);
   border: 4px solid #60D394;
-  border-radius: 10px;
-  display: flex;
-  height: 300px;
-  flex-direction: column;
-  margin-left: 10px;
-  width: 90%; }
-  .friends-list a {
-    color: #FAFAFA;
-    text-decoration: none; }
-  .friends-list .single-friend-container {
-    background: #373737;
-    border-radius: 10px;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 10px; }
-    .friends-list .single-friend-container .friend-image {
-      border-radius: 10px;
-      width: 18%; }
-
-.main-comp-container {
-  border-radius: 25px;
-  background: #FAFAFA;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  float: right;
-  height: 100%;
-  width: 80%; }
+  margin: 0 auto;
+  max-width: 900px;
+  width: 85%; }
 
 .container-one {
   background: #FAFAFA;
@@ -612,6 +590,35 @@ header {
   border-color: #60D394;
   box-shadow: 10px 10px 5px #474747;
   opacity: 1; }
+
+.user-score-list {
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem; }
+
+.user-score-list .user-score-item {
+  cursor: pointer;
+  height: 275px;
+  margin: 1rem 1rem;
+  width: 200px; }
+
+.user-score-list .user-score-item .score-title {
+  color: #FAFAFA;
+  font-size: 1.5rem; }
+
+.user-score-list .user-score-item .score-link {
+  border: 4px solid #212121;
+  display: block; }
+
+.user-score-list .user-score-item .score-link img {
+  display: block; }
+
+.user-score-list .user-score-item:hover .score-title {
+  color: #60D394;
+  text-decoration: underline; }
+
+.user-score-list .user-score-item:hover .score-link {
+  border: 4px solid #60D394; }
 
 .login-header {
   background: #373737;
@@ -693,6 +700,9 @@ form button {
   height: 100%;
   width: 5%; }
 
+.chat {
+  border: 4px solid #60D394; }
+
 .chat-icon {
   width: 20px;
   position: fixed;
@@ -705,12 +715,13 @@ form button {
   align-content: center;
   background: #60D394;
   border-radius: 5rem;
-  bottom: 5px;
+  bottom: 1rem;
+  cursor: pointer;
   display: flex;
   height: 4rem;
   justify-content: center;
   position: fixed;
-  right: 5px;
+  right: 1rem;
   width: 4rem; }
   .chat-toggle img {
     filter: invert(25%);
@@ -721,17 +732,18 @@ form button {
   transform: rotate(180deg); }
 
 .main-chat-container {
-  bottom: 75px;
+  bottom: 6rem;
+  min-width: 325px;
   position: fixed;
-  right: 5px;
-  width: 25%; }
+  right: 1rem;
+  width: 40%; }
 
 .message-text-container {
   display: flex;
   background: #474747;
   background-image: url(https://www.transparenttextures.com/patterns/diagmonds.png);
-  border: 3px solid #474747;
   flex-direction: column;
+  height: 275px;
   overflow: scroll;
   width: 100%;
   min-height: 150px;
@@ -748,7 +760,7 @@ form button {
   background: #474747;
   flex-direction: row;
   align-items: center;
-  border: 4px solid #60D394;
+  border-top: 4px solid #FAFAFA;
   overflow: hidden; }
   .input-container .current-user-icon {
     margin: 5px;
