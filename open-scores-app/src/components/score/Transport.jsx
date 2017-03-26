@@ -10,24 +10,27 @@ super();
 }
 
   playSound(event) {
-    if (!this.started) {
-      this.started = true;
-      // Tone.Transport.start('+0.1');
-    }
+    // console.log(Tone.Transport.state);
+    // if (!this.started) {
+    //   this.started = true;
+    //   Tone.Transport.start();
+    // }
   }
 
   stopSound(event) {
-    if (this.started) {
-      Tone.Transport.stop();
-      this.started = false;
-    }
+    // console.log(Tone.Transport.state);
+    // if (this.started) {
+      // Tone.Transport.stop();
+      // this.started = false;
+    // }
   }
 
   pauseSound(event) {
-    if (this.started) {
-      Tone.Transport.pause();
-      this.started = false;
-    }
+    // console.log(Tone.Transport.state);
+    // if (this.started) {
+    //   Tone.Transport.pause();
+    //   this.started = false;
+    // }
   }
 
 render() {

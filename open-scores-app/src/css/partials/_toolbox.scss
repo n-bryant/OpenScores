@@ -3,6 +3,7 @@
   position: fixed;
   border: 3px solid $medium;
   background: $medium;
+  background-image: url(https://www.transparenttextures.com/patterns/diagmonds.png);
   z-index: 1000;
   &.horizontal {
     box-shadow: 0 -.5rem 1rem $orange;
@@ -29,7 +30,7 @@
     }
   }
   &.vertical {
-    box-shadow: 0.5rem 0 1rem $orange;
+    box-shadow: 0.35rem 0 1rem $orange;
     flex-direction: column;
     min-height: 100vh;
     overflow: scroll;
@@ -196,7 +197,6 @@
     flex-wrap: wrap;
     justify-content: space-around;
     left: 50%;
-    margin: 4rem auto;
     overflow: scroll;
     padding: 2rem;
     position: absolute;
@@ -213,11 +213,6 @@
       margin-bottom: 2rem;
       justify-content: center;
       width: 200px;
-
-      img {
-        display: block;
-        width: auto;
-      }
 
       &:hover {
         color: $light;
