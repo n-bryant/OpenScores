@@ -21,40 +21,6 @@ class Score extends Component {
     }
   }
 
-  // componentWillMount() {
-  //   this.ref = base.syncState('/scores',
-  //     {
-  //       context: this,
-  //       state: 'scores'
-  //     }
-  //   );
-  // }
-  //
-  // componentWillUnmount() {
-  //   base.removeBinding(this.ref);
-  // }
-
-  // 1. will mount
-    // 1.a. sync FB
-      // gets all scores into state
-
-    // 1.b. store [this.props.params.scoreId]
-    // grab this.state.scores[this.props.params.scoreId]
-
-    // in vfdisplay set property score={}
-  // componentWillMount() {
-  //   this.ref = base.syncState('/scores',
-  //     {
-  //       context: this,
-  //       state: 'scores'
-  //     }
-  //   );
-  // }
-  //
-  // componentWillUnmount() {
-  //   base.removeBinding(this.ref);
-  // }
-
   processBPMForm(event) {
     event.preventDefault();
     const newBPM = this.bpm.value;
@@ -80,48 +46,9 @@ class Score extends Component {
         };
       }
     }
-    // console.log(data);
-
-    // HOW TO ITERATE OVER EACH CHILD OBJECT'S KEYS AND ENCODE THOSE AS WELL?
-    // for (let i = 0; i < data.measures.length; i++) {
-    //   let objToEncode = data.measures[i].stave.context.element;
-    //   let keyToEncode = Object.keys(objToEncode)[0];
-    //   let encodedKey = encodeURIComponent(keyToEncode);
-    //   this.fbKeyEncode(objToEncode, keyToEncode, encodedKey);
-    // }
-
-    // let count = data.measures.length;
-    // for (let i = 0; i < count; i++) {
-    //   this.traverseObjKeys(data);
-    // }
 
     this.props.addScore(data);
   }
-
-  // traverseObjKeys(obj) {
-  //   let keys = Object.keys(obj);
-  //   for (let i = 0; i < keys.length; i++) {
-  //     let keyToEncode = keys[i];
-  //     let encodedKey = encodeURIComponent(keyToEncode);
-  //     // if needs to be encoded -> key contains any of these '.$[]#/'
-  //       // this.fbKeyEncode(obj, keyToEncode, encodedKey);
-  //     console.log(obj);
-  //     if (typeof obj[encodedKey] === 'object') {
-  //       console.log('in');
-  //       // traverseObjKeys(obj[encodedKey]);
-  //     }
-  //   }
-  // }
-  //
-  // fbKeyEncode(obj, oldName, newName) {
-  //   if(!obj.hasOwnProperty(oldName)) {
-  //     return false;
-  //   }
-  //
-  //   obj[newName] = obj[oldName];
-  //   delete obj[oldName];
-  //   return true;
-  // }
 
   processTitleForm(event) {
     event.preventDefault();

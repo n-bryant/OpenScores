@@ -4,4 +4,22 @@ body {
   position: relative;
 }
 
+.logout-btn {
+  background: none;
+  border: none;
+  color: $orange;
+  cursor: pointer;
+  font: 1rem $primaryFont;
+
+  &:active {
+    color: $light;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 @include print;

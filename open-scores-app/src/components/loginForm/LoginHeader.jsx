@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 
-class SkinnyHeader extends Component {
+class LoginHeader extends Component {
 
   render() {
     return (
-      <header className="vertical">
+      <header className="login-header">
         <div className="header-content-container">
-          <a href="/profile" className="is-flex">
+          <a href="/" className="is-flex">
             <img className="logo-image" src="https://image.flaticon.com/icons/svg/118/118328.svg" alt="OpenScores Logo"></img>
             <p className="logo-text">OpenScores</p>
           </a>
@@ -16,4 +16,4 @@ class SkinnyHeader extends Component {
   }
 }
 
-export default SkinnyHeader;
+export default LoginHeader;

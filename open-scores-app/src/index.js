@@ -14,15 +14,10 @@ import './css/App.css';
 ReactDOM.render((
     <Router history={browserHistory}>
         <Route path='/' component={App}>
-            <IndexRoute component={Profile}/>
-            {/*<Route path='profile/:userId' component={Profile}*/}
+            <IndexRoute component={MainForm}/>
+            <Route path='profile(/:userId)' component={Profile}/>
             <Route path='score(/:scoreId)' component={Score}/>
-            {/*}<Route path='score' component={Score}>
-              <IndexRoute component={Score}/>
-              <Route path='score/:scoreId' component={Score}/>
-            </Route>*/}
-            <Route path='loginForm' component={MainForm}/>
-            <Route path='chatApp' component={ChatContainer}/>
+            <Route path='login' component={MainForm}/>
             <Route path='react-chat' component={ReactChat}/>
         </Route>
     </Router>
