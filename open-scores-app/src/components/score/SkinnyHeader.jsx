@@ -6,7 +6,7 @@ class SkinnyHeader extends Component {
     return (
       <header className="vertical">
         <div className="header-content-container">
-          <a href="/" className="is-flex">
+          <a href="/profile" className="is-flex">
             <img className="logo-image" src="https://image.flaticon.com/icons/svg/118/118328.svg" alt="OpenScores Logo"></img>
             <p className="logo-text">OpenScores</p>
           </a>

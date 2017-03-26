@@ -56,7 +56,6 @@ class Profile extends Component {
   }
 
   render() {
-    const logout = <button onClick={this.logout}>Log Out!</button>
 
     // check if they are the owner of the current profile
     // if (this.state.uid !== this.state.collaborator) {

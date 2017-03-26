@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
 import Transport from './Transport';
+import base from '../../base';
 
 class ToolBox extends Component {
+  logout() {
+    base.unauth();
+    // this.setState({ uid: null});
+    window.location.href = '/';
+  }
 
   toggleToolBoxPosition(event) {
     const header = document.querySelector('header');
@@ -21,6 +27,7 @@ class ToolBox extends Component {
   }
 
   render() {
+    const logout = <button className="logout-btn" onClick={this.logout}>Log Out!</button>
     return (
       <div>
         <div className="tool-box vertical is-flex">
@@ -86,6 +93,7 @@ class ToolBox extends Component {
                 <button className="icon dot-btn is-centered">•</button>
               </div>
             </div>
+            <div>{logout}</div>
             {/*
               <div className="dynamics-container selectors is-centered">
                 <h3>Dynamics</h3>

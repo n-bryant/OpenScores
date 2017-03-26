@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import Vex from 'vexflow/releases/vexflow-min';
 import Tone from 'tone';
-import $ from 'jquery';
-// import base from '../../base';
+import base from '../../base';
 
 
 class VFDisplay extends Component {
   constructor() {
     super();
     this.state = {
-      score: {},
-      scores: {}
+      score: {}
     }
   }
 

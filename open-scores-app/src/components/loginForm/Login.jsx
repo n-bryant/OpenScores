@@ -29,7 +29,6 @@ class Login extends Component {
 
   logout() {
     base.unauth();
-    this.setState({ uid: null});
   }
 
   authHandler(err, authData) {
@@ -75,13 +74,12 @@ class Login extends Component {
   }
 
   render() {
-    const logout = <button onClick={this.logout}>Log Out!</button>
 
     // check if not logged in at all
     if (!this.state.uid) {
       return <div className="login-form-container is-flex">{this.renderLogin()}</div>
     } else {
-      return <div className="login-form-container is-flex">{this.renderLogin()}{logout}</div>
+      return <div className="login-form-container is-flex">{this.renderLogin()}</div>
     }
 
     // check if they are the collaborator of the current score
