@@ -983,25 +983,21 @@ class VFDisplay extends Component {
     let toneArray = [];
 
     function convertVexToTone() {
-
       score.measures.forEach((measure) => {
         measure.notes.forEach((note) => {
-          // notes.note.forEach((pitch) => {
-          //
-          //   console.log(pitch);
-          // });
-
-          // console.log(measure);
-
-          let pitch = note.keys[0].replace('/', '');
+          let pitchArr = [];
+          note.keys.forEach((thing) => {
+            let pitch = thing.replace('/', '');
+            pitchArr.push(pitch);
+          });
           let tempObj = {};
           tempObj.dur = note.duration;
-          tempObj.note = pitch;
+          tempObj.note = pitchArr;
           tempObj.time = '0:';
           if (note.noteType === 'r') {
             delete tempObj.note;
           }
-          console.log(tempObj);
+          // console.log(tempObj);
           toneArray.push(tempObj);
         });
       });
@@ -1233,12 +1229,10 @@ class VFDisplay extends Component {
 
 
     function startPlayback() {
-      if (!barIndex) {
-        // barIndex = 0;
-      }
+      let startPos = barIndex || 0;
 
       if (!started && !paused) {
-        Tone.Transport.start('+0.5', `${barIndex}:0`);
+        Tone.Transport.start('+0.5', `${startPos}:0`);
         started = true;
         toneArray = [];
       } else if (started && !paused){
