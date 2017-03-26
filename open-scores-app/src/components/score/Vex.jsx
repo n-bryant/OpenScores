@@ -1227,7 +1227,7 @@ class VFDisplay extends Component {
 
     function startPlayback() {
       if (!barIndex) {
-        barIndex = 0;
+        // barIndex = 0;
       }
 
       if (!started && !paused) {
