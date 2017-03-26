@@ -65,19 +65,19 @@ class ReactApp extends Component {
     return(
       <div className="main-chat-container">
         <div className="chat is-hidden">
-        <ul className="message-text-container">
-          {messages}
-        </ul>
-        <fieldset name="chat-input">
-        <form ref={(message) => this.message = message} onSubmit={this.submitMessage.bind(this)}  name="chat form">
-          <div className="input-container is-flex">
-        <input ref={(input) => this.input = input} className="message-container" id="message" type="text" name="chat form input"></input>
-        <div className="current-user-icon is-flex">
-          <img src="https://s-media-cache-ak0.pinimg.com/736x/bf/b6/19/bfb6192a36bb33728209ac1040f2f574.jpg"></img>
-        </div>
-        </div>
-        </form>
-        </fieldset>
+          <ul className="message-text-container">
+            {messages}
+          </ul>
+          <fieldset name="chat-input">
+            <form ref={(message) => this.message = message} onSubmit={this.submitMessage.bind(this)}  name="chat form">
+              <div className="input-container is-flex">
+                <input ref={(input) => this.input = input} className="message-container" id="message" type="text" name="chat form input"></input>
+                <div className="current-user-icon is-flex">
+                  <img src={this.props.avatar}></img>
+                </div>
+              </div>
+            </form>
+          </fieldset>
         </div>
         <div className="chat-toggle down" onClick={this.rotateIcon.bind(this)}>
           <img className="arrow is-hidden" src="https://image.flaticon.com/icons/svg/25/25223.svg"></img>
