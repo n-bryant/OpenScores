@@ -985,8 +985,16 @@ class VFDisplay extends Component {
     let toneArray = [];
 
     function convertVexToTone() {
+
       score.measures.forEach((measure) => {
         measure.notes.forEach((note) => {
+          // notes.note.forEach((pitch) => {
+          //
+          //   console.log(pitch);
+          // });
+
+          // console.log(measure);
+
           let pitch = note.keys[0].replace('/', '');
           let tempObj = {};
           tempObj.dur = note.duration;
@@ -995,6 +1003,7 @@ class VFDisplay extends Component {
           if (note.noteType === 'r') {
             delete tempObj.note;
           }
+          console.log(tempObj);
           toneArray.push(tempObj);
         });
       });
@@ -1125,7 +1134,7 @@ class VFDisplay extends Component {
           }
         }
       }
-      console.log(selectedNote);
+      // console.log(selectedNote);
       // setTransportStart(barIndex);
       highlightNote();
     }
@@ -1144,7 +1153,7 @@ class VFDisplay extends Component {
           score.noteIDMap.push(newId);
         }
       }
-      console.log(score.noteIDMap);
+      // console.log(score.noteIDMap);
     }
 
     // mark a note as highlighted
