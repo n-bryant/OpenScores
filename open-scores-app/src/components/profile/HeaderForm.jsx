@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 class HeaderForm extends Component {
     render() {
         return (
-            <div className="social-media-container">
-                <section className="media-icons">
+            <div className="social-media-container is-centered">
+                <section className="media-icons is-flex">
                     <a href="#">
                         <img className="twitter" src="https://cdn2.iconfinder.com/data/icons/social-media-free-9/32/twitter_social_media_logo-128.png" alt="twitter logo"></img>
                     </a>

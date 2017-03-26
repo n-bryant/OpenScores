@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import MainHeader from './MainHeader';
-import MainSideBar from './MainSideBar';
+import AvatarContainer from './AvatarContainer';
 import UserCompositions from './UserCompositions';
 import ChatContainer from '../chatApp/ChatContainer';
 import ReactApp from '../react-chat/ReactApp';
@@ -70,9 +70,9 @@ class Profile extends Component {
     return (
       <section className="profile-wrapper">
         <MainHeader/>
-        <UserCompositions user={this.state.user}/>
-        <ReactApp/>
-        <MainSideBar name={this.state.name} avatar={this.state.avatar}/>
+        <AvatarContainer name={this.state.name} avatar={this.state.avatar}/>
+        <UserCompositions uid={this.state.uid} scores={this.props.scores}/>
+        <ReactApp avatar={this.state.avatar}/>
       </section>
     );
   }
