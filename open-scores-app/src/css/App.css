@@ -948,3 +948,32 @@ form button {
 .chords-wrapper .chord-option:hover {
   border: 4px solid #FAFAFA;
   transition: border 1s; }
+;
+    overflow: scroll; }
+    .chord-options-container .chord-triggers-container .chord-note-option, .chord-options-container .chords-wrapper .chord-note-option {
+      align-items: center;
+      color: #FAFAFA;
+      cursor: pointer;
+      display: flex;
+      font-size: 3rem;
+      height: 200px;
+      margin-bottom: 2rem;
+      justify-content: center;
+      width: 200px; }
+      .chord-options-container .chord-triggers-container .chord-note-option:hover, .chord-options-container .chords-wrapper .chord-note-option:hover {
+        text-decoration: underline; }
+
+.chords-wrapper .chord-option {
+  background: #60D394;
+  border: 4px solid transparent;
+  cursor: pointer;
+  height: 200px;
+  margin: 2rem;
+  padding: 1rem;
+  width: 200px; }
+  .chords-wrapper .chord-option img {
+    display: block;
+    width: 200px; }
+  .chords-wrapper .chord-option:hover {
+    border: 4px solid #FAFAFA;
+    transition: border 1s; }
