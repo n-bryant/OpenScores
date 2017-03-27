@@ -10,9 +10,7 @@ class Profile extends Component {
   constructor() {
     super();
 
-    this.state = {
-      uid: null
-    }
+    this.state = {};
   }
 
   componentDidMount() {
@@ -34,24 +32,26 @@ class Profile extends Component {
 
     // query the firebase once for the profile data
     profileRef.once('value', (snapshot) => {
-      const data = snapshot.val() || {};
+      const data = snapshot.val();
 
-      // create new user record if user record does not yet exist in Firebase
-      if (!data.uid) {
-        let recordId = `user-${authData.user.uid}`;
-        profileRef.set({
-          avatar: authData.user.photoURL,
-          id: authData.user.uid,
-          name: authData.user.displayName
-        });
+      // if score.collaborators[`user-${data.id}`] {}
+        // push into user scores list
+      let scoresKeys = Object.keys(this.props.scores);
+      let userScores = [];
+      for (let i = 0; i < scoresKeys.length; i++) {
+        if (this.props.scores[scoresKeys[i]].collaborators[`user-${data.id}`]) {
+          userScores.push(this.props.scores[scoresKeys[i]]);
+        }
       }
 
       this.setState({
         uid: data.id,
         avatar: data.avatar,
         name: data.name,
-        scores: data.scores
+        scores: userScores
       });
+
+      this.props.setUser(this.state.uid);
     });
   }
 
@@ -61,7 +61,7 @@ class Profile extends Component {
     // if (this.state.uid !== this.state.collaborator) {
     //   return (
     //     <div>
-    //       <p>Sorry you aren't the collaborator of this document!</p>
+    //       <p>Sorry you aren't a collaborator on this document!</p>
     //       {logout}
     //     </div>
     //   )
@@ -71,7 +71,7 @@ class Profile extends Component {
       <section className="profile-wrapper">
         <MainHeader/>
         <AvatarContainer name={this.state.name} avatar={this.state.avatar}/>
-        <UserCompositions uid={this.state.uid} scores={this.props.scores}/>
+        <UserCompositions uid={this.state.uid} scores={this.state.scores}/>
         <ReactApp avatar={this.state.avatar}/>
       </section>
     );

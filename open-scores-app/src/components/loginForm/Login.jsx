@@ -9,8 +9,7 @@ class Login extends Component {
     this.logout = this.logout.bind(this);
     this.authHandler = this.authHandler.bind(this);
     this.state = {
-      uid: null,
-      collaborator: null
+      uid: null
     }
   }
 
@@ -57,8 +56,8 @@ class Login extends Component {
 
       this.setState({
         uid: authData.user.uid
-        // collaborator: data.collaborator || authData.user.uid
       });
+
       window.location.href = `/profile/${this.state.uid}`;
     });
   }
@@ -81,16 +80,6 @@ class Login extends Component {
     } else {
       return <div className="login-form-container is-flex">{this.renderLogin()}</div>
     }
-
-    // check if they are the collaborator of the current score
-    // if (this.state.uid !== this.state.collaborator) {
-    //   return (
-    //     <div>
-    //       <p>Sorry you aren't the collaborator of this document!</p>
-    //       {logout}
-    //     </div>
-    //   )
-    // }
   }
 }
 
