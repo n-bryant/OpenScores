@@ -661,7 +661,23 @@ header.vertical {
 
 .user-score-list .user-score-item .score-link {
   border: 4px solid #212121;
-  display: block; }
+  display: block;
+  padding: 0.5rem 0;
+  background: #fff;
+  text-decoration: none; }
+
+.user-score-list .user-score-item .score-link .plus {
+  position: relative;
+  font-size: 5rem;
+  font-weight: bold;
+  color: #60D394;
+  bottom: 14.5rem;
+  left: 1.7rem;
+  z-index: 3;
+  text-align: center;
+  width: 0;
+  height: 0;
+  overflow: visible; }
 
 .user-score-list .user-score-item .score-link img {
   display: block; }
@@ -853,24 +869,11 @@ form button {
 .current-user-icon img {
   width: 100%; }
 
-.user-icon {
-  align-self: flex-start;
-  background: #60D394;
-  margin: 5px;
-  width: 20px;
-  height: 20px;
-  border-radius: 3rem;
-  overflow: hidden; }
-
-.user-icon img {
-  width: 100%; }
-
 .user-text {
   background: #60D394;
   align-self: flex-end;
   word-wrap: break-word;
   border-radius: 5px;
-  border: 1px solid black;
   padding: 5px;
   max-width: 75%; }
 

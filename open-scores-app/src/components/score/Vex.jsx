@@ -606,10 +606,9 @@ class VFDisplay extends Component {
     let idMapIndex = null;
     let selectedNote = null;
     let barNoteIndex = null;
-
     let score = {
       id: Date.now(),
-      title: 'Score Title',
+      title: '',
       bpm: 120,
       keySig: 'C',
       timeSig: {count: beatCount, value: beatValue},
@@ -623,6 +622,8 @@ class VFDisplay extends Component {
     setTimeout(() => {
       if (this.props.score) {
         score = this.props.score;
+        document.querySelector('.score-title').innerHTML = this.props.score.title;
+        // document.querySelector('.score-bpm').innerHTML = `${this.props.score.bpm}bpm`;
         if (!score.ties) {
           score.ties = [];
         }
@@ -1220,11 +1221,12 @@ class VFDisplay extends Component {
     let synth;
     let part;
     let started = false;
-    let bpm = Tone.Transport.bpm.value;
     let paused = false;
 
     function createVoice() {
-      bpm = 120;
+      Tone.Transport.bpm.value = parseInt(score.bpm, 10);
+      console.log(Tone.Transport.bpm.value);
+
       synth = new Tone.PolySynth().toMaster();
       part = new Tone.Part(function(time, event){
         synth.triggerAttackRelease(event.note, event.dur, time)
@@ -1250,7 +1252,6 @@ class VFDisplay extends Component {
         part.dispose();
         synth.dispose();
         toneArray = [];
-        // console.log(Tone.Transport.position);
       } else if (paused) {
         let pausedPos = Tone.Transport.position;
         Tone.Transport.start('+0.5', `${pausedPos}`);
