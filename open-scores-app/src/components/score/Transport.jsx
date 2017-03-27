@@ -5,8 +5,8 @@ import $ from 'jquery';
 class Transport extends Component {
 constructor(){
 super();
-  Tone.Transport.bpm.value = 120;
-  this.started = false;
+  // Tone.Transport.bpm.value = 120;
+  // this.started = false;
 }
 
   playSound(event) {

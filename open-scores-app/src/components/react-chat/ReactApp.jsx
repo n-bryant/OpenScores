@@ -57,7 +57,6 @@ class ReactApp extends Component {
     let id = Date.now();
     let messages = self.state.messages.map(function(msg) {
       return <li className="user-message is-flex" key={i++}>
-        <div className="user-icon"></div>
         <div className="user-text">{msg}</div>
         </li>
     });

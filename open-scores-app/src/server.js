@@ -4,7 +4,7 @@ let http = require('http').Server(app);
 let io = require('socket.io')(http);
 
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/public');
+    res.sendFile(__dirname + '/index.html');
 });
 
 io.on('connection', function(socket) {
@@ -12,8 +12,16 @@ io.on('connection', function(socket) {
     socket.on('new-message', function(msg){
       console.log(msg);
       io.emit("receive-message", msg);
-  });
+    });
+    socket.on('new-score', function(scoreNet){
+      io.emit('receive-score', scoreNet);
+      console.log(scoreNet);
+    });
+
+
 });
+
+
 
 
 http.listen(3001, function() {

@@ -14,7 +14,9 @@ class UserCompositions extends Component {
             <li className="user-score-item">
                 <p className="score-title is-centered">New Score</p>
                 <a className="score-link"href={"/score"}>
-                  <img src="https://s-media-cache-ak0.pinimg.com/564x/06/48/23/0648237215ce75e4bf516e144c647177.jpg" alt="document icon"/>
+                  <img src="https://image.flaticon.com/icons/svg/92/92971.svg" alt="document icon"/>
+                    <div className="plus">+</div>
+
                 </a>
             </li>
             {Object.keys(this.props.scores)
@@ -29,7 +31,7 @@ class UserCompositions extends Component {
             <li className="user-score-item">
                 <p className="score-title is-centered">New Score</p>
                 <a className="score-link" href={"/score"}>
-                  <img src="https://s-media-cache-ak0.pinimg.com/564x/06/48/23/0648237215ce75e4bf516e144c647177.jpg" alt="document icon"/>
+                  <img src="https://image.flaticon.com/icons/svg/92/92971.svg" alt="document icon"/>
                 </a>
             </li>
           </ul>

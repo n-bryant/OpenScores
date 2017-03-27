@@ -661,7 +661,27 @@ header.vertical {
 
 .user-score-list .user-score-item .score-link {
   border: 4px solid #212121;
+<<<<<<< HEAD
   display: block; }
+=======
+  display: block;
+  padding: 0.5rem 0;
+  background: #fff;
+  text-decoration: none; }
+
+.user-score-list .user-score-item .score-link .plus {
+  position: relative;
+  font-size: 5rem;
+  font-weight: bold;
+  color: #60D394;
+  bottom: 14.5rem;
+  left: 1.7rem;
+  z-index: 3;
+  text-align: center;
+  width: 0;
+  height: 0;
+  overflow: visible; }
+>>>>>>> staging
 
 .user-score-list .user-score-item .score-link img {
   display: block; }
@@ -849,6 +869,7 @@ form button {
   border: 1px solid black;
   border-radius: 3rem;
   overflow: hidden; }
+<<<<<<< HEAD
 
 .current-user-icon img {
   width: 100%; }
@@ -863,6 +884,10 @@ form button {
   overflow: hidden; }
 
 .user-icon img {
+=======
+
+.current-user-icon img {
+>>>>>>> staging
   width: 100%; }
 
 .user-text {
@@ -870,7 +895,6 @@ form button {
   align-self: flex-end;
   word-wrap: break-word;
   border-radius: 5px;
-  border: 1px solid black;
   padding: 5px;
   max-width: 75%; }
 
@@ -931,6 +955,40 @@ form button {
 
 .chord-options-container .chord-triggers-container .chord-note-option:hover, .chord-options-container .chords-wrapper .chord-note-option:hover {
   text-decoration: underline; }
+<<<<<<< HEAD
+=======
+
+.chords-wrapper .chord-option {
+  background: #60D394;
+  border: 4px solid transparent;
+  cursor: pointer;
+  height: 200px;
+  margin: 2rem;
+  padding: 1rem;
+  width: 200px; }
+
+.chords-wrapper .chord-option img {
+  display: block;
+  width: 200px; }
+
+.chords-wrapper .chord-option:hover {
+  border: 4px solid #FAFAFA;
+  transition: border 1s; }
+;
+    overflow: scroll; }
+    .chord-options-container .chord-triggers-container .chord-note-option, .chord-options-container .chords-wrapper .chord-note-option {
+      align-items: center;
+      color: #FAFAFA;
+      cursor: pointer;
+      display: flex;
+      font-size: 3rem;
+      height: 200px;
+      margin-bottom: 2rem;
+      justify-content: center;
+      width: 200px; }
+      .chord-options-container .chord-triggers-container .chord-note-option:hover, .chord-options-container .chords-wrapper .chord-note-option:hover {
+        text-decoration: underline; }
+>>>>>>> staging
 
 .chords-wrapper .chord-option {
   background: #60D394;
