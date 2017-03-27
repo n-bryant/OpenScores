@@ -1,0 +1,19 @@
+{
+  "name": "open-scores",
+  "version": "1.0.0",
+  "description": "Open Scores is a reactjs collaboration tool for composers allowing users to simultaneously draft music notation in real time.",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "cd open-scores-app && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n-bryant/openScores_musicCollabTool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n-bryant/openScores_musicCollabTool/issues"
+  },
+  "homepage": "https://github.com/n-bryant/openScores_musicCollabTool#readme"
+}
