@@ -1220,11 +1220,12 @@ class VFDisplay extends Component {
     let synth;
     let part;
     let started = false;
-    let toneBpm = Tone.Transport.bpm.value;
     let paused = false;
 
     function createVoice() {
-      toneBpm = 120;
+      Tone.Transport.bpm.value = parseInt(score.bpm, 10);
+      console.log(Tone.Transport.bpm.value);
+
       synth = new Tone.PolySynth().toMaster();
       part = new Tone.Part(function(time, event){
         synth.triggerAttackRelease(event.note, event.dur, time)
