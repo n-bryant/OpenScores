@@ -1,0 +1,105 @@
+.toggle-invites-btn {
+  background: $orange;
+  border: 4px solid transparent;
+  border-radius: 1rem;
+  bottom: 1rem;
+  color: $mediumDark;
+  cursor: pointer;
+  font-size: 1.21rem;
+  padding: .75rem;
+  position: fixed;
+  right: 6rem;
+
+  &:hover {
+    border: 4px solid $mediumDark;
+  }
+}
+
+.invites-wrapper {
+  background: rgba(49,49,49,.75);
+  left: 0;
+  min-height: 100vh;
+  min-width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.exit-invites-btn {
+  color: $orange;
+  cursor: pointer;
+  font: 2rem $primaryFont;
+  height: 2.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 2.5rem;
+
+  &:hover { 
+    color: $light;
+    transition: color .5s;
+  }
+}
+
+.invites-container {
+  background: $dark;
+  border: 4px solid $orange;
+  left: 50%;
+  height: 85vh;
+  overflow: scroll;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 85%;
+}
+
+.invites-list {
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.invite-item {
+  border: 4px solid $light;
+  height: 175px;
+  width: 225px;
+
+  .invite-info-container {
+    align-items: center;
+    background: $orange;
+    justify-content: center;
+    flex-direction: column;
+    height: 125px;
+
+    .score-title {
+      color: $light;
+      font-size: 1.5rem;
+    }
+    .by-line {
+
+    }
+  }
+
+  .actions-container {
+    color: $light;
+    justify-content: space-around;
+    font-size: 1.5rem;
+
+    .accept-btn, .reject-btn {
+      cursor: pointer;
+    }
+    .accept-btn {
+      &:hover {
+        color: $orange;
+      }
+    }
+    .reject-btn {
+      &:hover {
+        color: red;
+      }
+    }
+  }
+}
