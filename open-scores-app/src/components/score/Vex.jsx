@@ -606,10 +606,9 @@ class VFDisplay extends Component {
     let idMapIndex = null;
     let selectedNote = null;
     let barNoteIndex = null;
-
     let score = {
       id: Date.now(),
-      title: 'Score Title',
+      title: '',
       bpm: 120,
       keySig: 'C',
       timeSig: {count: beatCount, value: beatValue},
@@ -623,6 +622,8 @@ class VFDisplay extends Component {
     setTimeout(() => {
       if (this.props.score) {
         score = this.props.score;
+        document.querySelector('.score-title').innerHTML = this.props.score.title;
+        // document.querySelector('.score-bpm').innerHTML = `${this.props.score.bpm}bpm`;
         if (!score.ties) {
           score.ties = [];
         }
