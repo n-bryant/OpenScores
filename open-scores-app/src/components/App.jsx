@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Login from './loginForm/Login';
 import base from '../base';
 // import Tone from 'tone';
 
@@ -6,6 +7,7 @@ class App extends Component {
   constructor() {
     super();
     this.addScore = this.addScore.bind(this);
+    this.setUser = this.setUser.bind(this);
     this.updateBPM = this.updateBPM.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
 
@@ -13,7 +15,7 @@ class App extends Component {
       bpm: 120,
       title: 'Score Title',
       scores: {},
-      users: {}
+      user: null
     };
   }
 
@@ -24,6 +26,12 @@ class App extends Component {
         state: 'scores'
       }
     );
+    // this.ref = base.syncState('/users',
+    //   {
+    //     context: this,
+    //     state: 'users'
+    //   }
+    // );
   }
 
   componentWillUnmount() {
@@ -34,9 +42,22 @@ class App extends Component {
     const scores = {
       ...this.state.scores
     };
-
     scores[`score-${scoreObj.id}`] = scoreObj;
     this.setState({scores});
+
+    // const users = {
+    //   ...this.state.users
+    // };
+    // users[`user-${this.state.user}`].scores
+  }
+
+  setUser(currUser) {
+    let user = {
+      ...this.state.user
+    };
+
+    user = currUser;
+    this.setState({user});
   }
 
   updateBPM(newBPM) {
@@ -63,9 +84,11 @@ class App extends Component {
         addScore: this.addScore,
         editBPM: this.updateBPM,
         editTitle: this.updateTitle,
+        setUser: this.setUser,
         bpm: this.state.bpm,
         scores: this.state.scores,
-        title: this.state.title
+        title: this.state.title,
+        user: this.state.user
       });
     });
     return (

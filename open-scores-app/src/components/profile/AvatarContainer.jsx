@@ -15,7 +15,7 @@ class AvatarContainer extends Component {
       <div className="avatar-container">
         <div className="user-profile-image is-flex">
           <img className="profile-pic" src={this.props.avatar} alt={this.props.name}></img>
-          <p className="user-name">{this.props.name}</p>
+          <p className="user-name is-centered">{this.props.name}</p>
           {logout}
         </div>
       </div>
