@@ -2,22 +2,13 @@ import React, {Component} from 'react';
 import Vex from 'vexflow/releases/vexflow-min';
 import Tone from 'tone';
 import base from '../../base';
-import $ from 'jquery';
-import io from 'socket.io-client';
-// import base from '../../base';
-
-
-let socket = io('http://localhost:3001');
 
 
 class VFDisplay extends Component {
   constructor() {
     super();
     this.state = {
-      score: {},
-      scores: {}
-      // scoreNet: []
-
+      score: {}
     }
   }
 
@@ -31,14 +22,6 @@ class VFDisplay extends Component {
     let _this = this;
     let pageLoad = true;
     const VF = Vex.Flow;
-
-    socket.on("receive-score", function(scoreDoc){
-      // document.querySelector('').innerHTML = scoreDoc;
-      let scoreNet = _this.state.scoreDoc;
-        // scoreNet.push(scoreDoc);
-      _this.setState({scoreDoc: scoreDoc});
-      console.log(scoreDoc);
-    });
 
     // Create an SVG renderer and attach it to the DIV element named "vfDisplay".
     const vfDisplay = document.getElementById('vfDisplay');
@@ -606,9 +589,10 @@ class VFDisplay extends Component {
     let idMapIndex = null;
     let selectedNote = null;
     let barNoteIndex = null;
+
     let score = {
       id: Date.now(),
-      title: '',
+      title: 'Score Title',
       bpm: 120,
       keySig: 'C',
       timeSig: {count: beatCount, value: beatValue},
@@ -622,8 +606,6 @@ class VFDisplay extends Component {
     setTimeout(() => {
       if (this.props.score) {
         score = this.props.score;
-        document.querySelector('.score-title').innerHTML = this.props.score.title;
-        // document.querySelector('.score-bpm').innerHTML = `${this.props.score.bpm}bpm`;
         if (!score.ties) {
           score.ties = [];
         }
@@ -1221,12 +1203,11 @@ class VFDisplay extends Component {
     let synth;
     let part;
     let started = false;
+    let bpm = Tone.Transport.bpm.value;
     let paused = false;
 
     function createVoice() {
-      Tone.Transport.bpm.value = parseInt(score.bpm, 10);
-      console.log(Tone.Transport.bpm.value);
-
+      bpm = 120;
       synth = new Tone.PolySynth().toMaster();
       part = new Tone.Part(function(time, event){
         synth.triggerAttackRelease(event.note, event.dur, time)
@@ -1252,6 +1233,7 @@ class VFDisplay extends Component {
         part.dispose();
         synth.dispose();
         toneArray = [];
+        // console.log(Tone.Transport.position);
       } else if (paused) {
         let pausedPos = Tone.Transport.position;
         Tone.Transport.start('+0.5', `${pausedPos}`);
@@ -1274,16 +1256,11 @@ class VFDisplay extends Component {
       window.print();
     }
 
-
-
     // reset library with new note and voice instances
     function resetCanvas() {
       setLibrary(score.keySig, false);
       drawScore();
       bindEvents();
-      // PUT EMIT/BROADCAST STATEMENT HERE
-      let scoreDoc = document.querySelector('body').innerHTML;
-      socket.emit('new-score', scoreDoc);
       _this.setState({score: score});
     }
 
