@@ -4,13 +4,16 @@ import AvatarContainer from './AvatarContainer';
 import UserCompositions from './UserCompositions';
 import ChatContainer from '../chatApp/ChatContainer';
 import ReactApp from '../react-chat/ReactApp';
+import Invites from './Invites';
 import base from '../../base';
 
 class Profile extends Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      invites: []
+    };
   }
 
   componentDidMount() {
@@ -34,8 +37,6 @@ class Profile extends Component {
     profileRef.once('value', (snapshot) => {
       const data = snapshot.val();
 
-      // if score.collaborators[`user-${data.id}`] {}
-        // push into user scores list
       let scoresKeys = Object.keys(this.props.scores);
       let userScores = [];
       for (let i = 0; i < scoresKeys.length; i++) {
@@ -44,15 +45,29 @@ class Profile extends Component {
         }
       }
 
+      let invitesKeys = Object.keys(data.scoreInvites);
+      let userInvites = {};
+      for (let i = 0; i < invitesKeys.length; i++) {
+        if (invitesKeys[i] !== 'placeholder') {
+          userInvites[invitesKeys[i]] = data.scoreInvites[invitesKeys[i]];
+        }
+      }
+
       this.setState({
         uid: data.id,
         avatar: data.avatar,
         name: data.name,
-        scores: userScores
+        allScores: this.props.scores,
+        scores: userScores,
+        invites: userInvites
       });
 
       this.props.setUser(this.state.uid);
     });
+  }
+
+  toggleInvites() {
+    document.querySelector('.invites-wrapper').classList.remove('is-hidden');
   }
 
   render() {
@@ -72,6 +87,8 @@ class Profile extends Component {
         <MainHeader/>
         <AvatarContainer name={this.state.name} avatar={this.state.avatar}/>
         <UserCompositions uid={this.state.uid} scores={this.state.scores}/>
+        <div className="toggle-invites-btn" onClick={this.toggleInvites}>Invites</div>
+        <Invites scores={this.props.scores} invites={this.state.invites} currUser={this.props.user}/>
         <ReactApp avatar={this.state.avatar}/>
       </section>
     );

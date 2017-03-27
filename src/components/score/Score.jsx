@@ -159,7 +159,7 @@ class Score extends Component {
             <KeySigs />
             <ChordOptions />
             <div className="invite-btn" onClick={this.toggleCollaborators}>Invite Collaborators!</div>
-            <Collaborators users={this.state.users}/>
+            <Collaborators users={this.state.users} score={this.props.scores[`score-${this.props.params.scoreId}`]} scoreId={`score-${this.props.params.scoreId}`}/>
             <ReactApp/>
             <VFDisplay ref={(vexData) => {this.vexData = vexData;}} score={this.props.scores[`score-${this.props.params.scoreId}`]} user={this.props.user} bpm={this.props.bpm} title={this.props.title}/>
           </div>
