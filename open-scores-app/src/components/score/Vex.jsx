@@ -2,13 +2,22 @@ import React, {Component} from 'react';
 import Vex from 'vexflow/releases/vexflow-min';
 import Tone from 'tone';
 import base from '../../base';
+import $ from 'jquery';
+import io from 'socket.io-client';
+// import base from '../../base';
+
+
+let socket = io('http://localhost:3001');
 
 
 class VFDisplay extends Component {
   constructor() {
     super();
     this.state = {
-      score: {}
+      score: {},
+      scores: {}
+      // scoreNet: []
+
     }
   }
 
@@ -22,6 +31,14 @@ class VFDisplay extends Component {
     let _this = this;
     let pageLoad = true;
     const VF = Vex.Flow;
+
+    socket.on("receive-score", function(scoreDoc){
+      // document.querySelector('').innerHTML = scoreDoc;
+      let scoreNet = _this.state.scoreDoc;
+        // scoreNet.push(scoreDoc);
+      _this.setState({scoreDoc: scoreDoc});
+      console.log(scoreDoc);
+    });
 
     // Create an SVG renderer and attach it to the DIV element named "vfDisplay".
     const vfDisplay = document.getElementById('vfDisplay');
@@ -1256,11 +1273,16 @@ class VFDisplay extends Component {
       window.print();
     }
 
+
+
     // reset library with new note and voice instances
     function resetCanvas() {
       setLibrary(score.keySig, false);
       drawScore();
       bindEvents();
+      // PUT EMIT/BROADCAST STATEMENT HERE
+      let scoreDoc = document.querySelector('body').innerHTML;
+      socket.emit('new-score', scoreDoc);
       _this.setState({score: score});
     }
 
