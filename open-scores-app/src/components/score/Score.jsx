@@ -7,6 +7,7 @@ import ChordOptions from './chords/ChordOptions';
 import ReactApp from '../react-chat/ReactApp';
 import io from 'socket.io-client';
 import $ from 'jquery';
+import base from '../../base';
 
 let socket = io(`http://localhost:3001`);
 
@@ -19,6 +20,38 @@ class Score extends Component {
       score: {},
       scores: {}
     }
+  }
+
+  componentDidMount() {
+    base.onAuth((user) => {
+      if(user) {
+        this.authHandler(null, { user });
+      }
+    });
+  }
+
+  authHandler(err, authData) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    // grab the profile info
+    const profileRef = base.database().ref(`users/user-${authData.user.uid}`);
+
+    // query the firebase once for the profile data
+    profileRef.once('value', (snapshot) => {
+      const data = snapshot.val();
+
+      this.setState({
+        uid: data.id,
+        avatar: data.avatar,
+        name: data.name,
+        scores: data.scores
+      });
+
+      this.props.setUser(this.state.uid);
+    });
   }
 
   processBPMForm(event) {
@@ -35,7 +68,9 @@ class Score extends Component {
 
   processScore(data) {
     // gather score data from Vex
-    // if id already exists, update id with that record, otherwise create new record
+    data.title = this.props.title;
+    data.bpm = this.props.bpm;
+    console.log(data);
 
     for (let i = 0; i < data.measures.length; i++) {
       data.measures[i].stave = {};
@@ -48,6 +83,7 @@ class Score extends Component {
     }
 
     this.props.addScore(data);
+    // window.location.href = `/score/${data.id}`;
   }
 
   processTitleForm(event) {
@@ -104,7 +140,7 @@ class Score extends Component {
             <KeySigs />
             <ChordOptions />
             <ReactApp/>
-            <VFDisplay ref={(vexData) => {this.vexData = vexData;}} score={this.props.scores[`score-${this.props.params.scoreId}`]}/>
+            <VFDisplay ref={(vexData) => {this.vexData = vexData;}} score={this.props.scores[`score-${this.props.params.scoreId}`]} user={this.props.user} bpm={this.props.bpm} title={this.props.title}/>
           </div>
         </section>
       </section>

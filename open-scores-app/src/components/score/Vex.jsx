@@ -12,14 +12,6 @@ class VFDisplay extends Component {
     }
   }
 
-  // componentWillMount() {
-  //   this.ref = base.syncState('/scores',
-  //     {
-  //       context: this,
-  //       state: 'scores'
-  //     }
-  //   );
-  // }
   //
   // componentWillUnmount() {
   //   base.removeBinding(this.ref);
@@ -27,8 +19,6 @@ class VFDisplay extends Component {
 
   // wait for page load to bring in VexFlow
   componentDidMount() {
-
-    const forbiddenChars = '.$[]#/';
     let _this = this;
     let pageLoad = true;
     const VF = Vex.Flow;
@@ -607,6 +597,7 @@ class VFDisplay extends Component {
       keySig: 'C',
       timeSig: {count: beatCount, value: beatValue},
       clef: 'treble',
+      collaborators: {},
       measures: [],
       ties: [],
       noteIDMap: []
@@ -623,6 +614,7 @@ class VFDisplay extends Component {
         drawScore();
         bindEvents();
       } else {
+        score.collaborators[`user-${this.props.user}`] = true;
         setLibrary(score.keySig, false);
         newMeasure();
         drawScore();
