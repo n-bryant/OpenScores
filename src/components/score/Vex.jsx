@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import Vex from 'vexflow/releases/vexflow-min';
 import Tone from 'tone';
 import base from '../../base';
-import $ from 'jquery';
 import io from 'socket.io-client';
-// import base from '../../base';
 
 
 let socket = io('http://localhost:3001');
@@ -1225,13 +1223,10 @@ class VFDisplay extends Component {
 
     function createVoice() {
       Tone.Transport.bpm.value = parseInt(score.bpm, 10);
-      console.log(Tone.Transport.bpm.value);
-
       synth = new Tone.PolySynth().toMaster();
       part = new Tone.Part(function(time, event){
         synth.triggerAttackRelease(event.note, event.dur, time)
       }, toneArray);
-
       part.start(0);
       let endPos = toneArray[toneArray.length - 1].time + toneArray[toneArray.length - 1].dur;
       part.stop(endPos);
