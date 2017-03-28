@@ -97,6 +97,7 @@ class ReactApp extends Component {
           <img className="arrow is-hidden" src="https://image.flaticon.com/icons/svg/25/25223.svg"></img>
           <img className="bubble" src="https://image.flaticon.com/icons/svg/25/25663.svg"></img>
         </div>
+        <div className="message-count is-flex">{this.state.messages.length}</div>
       </div>
     );
   }
