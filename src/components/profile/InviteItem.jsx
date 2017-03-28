@@ -33,7 +33,7 @@ class InviteItem extends Component {
     base.removeBinding(this.userRef);
   }
 
-  hideCollaborators() {
+  hideInvites() {
     document.querySelector('.invites-wrapper').classList.add('is-hidden');
   }
 
@@ -52,7 +52,7 @@ class InviteItem extends Component {
     users[this.props.currUser].scoreInvites[this.props.scoreId] = null;
     this.setState({users});
 
-    this.hideCollaborators()
+    this.hideInvites();
   }
 
   rejectInvite() {
@@ -62,7 +62,7 @@ class InviteItem extends Component {
     users[this.props.currUser].scoreInvites[this.props.scoreId] = null;
     this.setState({users});
 
-    this.hideCollaborators()
+    this.hideInvites();
   }
 
   render() {

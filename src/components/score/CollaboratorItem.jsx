@@ -39,7 +39,11 @@ class CollaboratorItem extends Component {
     };
     this.setState({users});
 
-    // hide collaborators list
+    this.hideCollaborators();
+  }
+
+  hideCollaborators() {
+    document.querySelector('.collaborators-wrapper').classList.add('is-hidden');
   }
 
   render() {
