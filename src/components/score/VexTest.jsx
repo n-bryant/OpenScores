@@ -3,8 +3,10 @@ import Vex from 'vexflow/releases/vexflow-min';
 import Tone from 'tone';
 import base from '../../base';
 import io from 'socket.io-client';
+import $ from 'jquery';
 
 let socket = io(`http://localhost:3001`);
+
 
 class VFDisplay extends Component {
   constructor() {
@@ -25,18 +27,20 @@ class VFDisplay extends Component {
     let pageLoad = true;
     const VF = Vex.Flow;
 
-    // socket config for recipient of score change
     socket.on("receive-score", function(scoreChange) {
       // socket.emit("receive-score");
       let parsedParams = JSON.parse(scoreChange);
       score = parsedParams.score;
+      console.log(parsedParams);
       loadScore();
       if (parsedParams.selectedKeys) {
         loadNote(parsedParams.selectedKeys);
-        highlightNote();
-      } else {
-        resetCanvas();
       }
+      setLibrary(score.keySig, false);
+      drawScore();
+      bindEvents();
+      _this.setState({score: score});
+      // resetCanvas();
     });
 
     // Create an SVG renderer and attach it to the DIV element named "vfDisplay".
@@ -608,7 +612,7 @@ class VFDisplay extends Component {
 
     let score = {
       id: Date.now(),
-      title: '',
+      title: 'Score Title',
       bpm: 120,
       keySig: 'C',
       timeSig: {count: beatCount, value: beatValue},
@@ -619,10 +623,24 @@ class VFDisplay extends Component {
       noteIDMap: []
     }
 
+
+    // socket.on("receive-score", function(score) {
+    //   console.log(score);
+      // socket.emit("receive-score", score);
+
+      // socket.on("receive-message", function(msg){
+      //   let messages = self.state.messages;
+      //     messages.push(msg);
+      //   self.setState({messages: messages});
+      //   console.log(self.state.messages);
+      // });
+
+
+    // });
+
     setTimeout(() => {
       if (this.props.score) {
         score = this.props.score;
-        document.querySelector('.score-title').innerHTML = this.props.score.title;
         if (!score.ties) {
           score.ties = [];
         }
@@ -631,20 +649,12 @@ class VFDisplay extends Component {
         drawScore();
         bindEvents();
       } else {
-        score.title = 'Score Title';
-        document.querySelector('.score-title').innerHTML = score.title;
         score.collaborators[`user-${this.props.user}`] = true;
         setLibrary(score.keySig, false);
         newMeasure();
         drawScore();
         bindEvents();
       }
-      barIndex = 0;
-      selectedId = `vf-${score.measures[0].notes[0].attrs.id}`;
-      selectedNote = score.measures[0].notes[0];
-      barNoteIndex = 0;
-      idMapIndex = score.noteIDMap.indexOf(selectedId);
-      highlightNote();
     }, 2000);
 
     let staveX = 0;
@@ -696,12 +706,8 @@ class VFDisplay extends Component {
       bindNotes();
 
       if (pageLoad) {
-        // chat toggle
-        const messageInput = document.getElementById('message');
-        messageInput.addEventListener('focus', () => {
-          if (selectedNote) {
-            unselectNote();
-          }
+        document.querySelector('.socket-test').addEventListener('click', () => {
+          socketTest();
         });
 
         // print button
@@ -717,7 +723,6 @@ class VFDisplay extends Component {
         // toggle chord options button
         document.querySelector('.chords-btn').addEventListener('click', () => {
           if (selectedNote) {
-            unselectNote();
             toggleOptions('.chord-options-wrapper');
           }
         });
@@ -749,7 +754,6 @@ class VFDisplay extends Component {
 
         // key signature button
         document.querySelector('.key-sig-btn').addEventListener('click', () => {
-          unselectNote();
           toggleOptions('.key-options-container');
         });
 
@@ -903,14 +907,12 @@ class VFDisplay extends Component {
 
       resetCanvas();
       highlightNote();
-      socketForScore();
     }
 
     // inserts a measure at the end of the score
     function addMeasure() {
       newMeasure();
       unselectNote();
-      socketForScore();
     }
 
     // increase note value on up arrow
@@ -958,7 +960,7 @@ class VFDisplay extends Component {
         resetCanvas();
         updateTies();
         highlightNote();
-        socketForScore();
+        socketTest();
       }
     }
 
@@ -982,7 +984,6 @@ class VFDisplay extends Component {
           getNoteById(score.noteIDMap[score.noteIDMap.length - 1], true);
         }
       }
-      socketForScore();
     }
 
     // updates any ties the selectedNote is included in
@@ -1071,7 +1072,6 @@ class VFDisplay extends Component {
       score.noteIDMap[idMapIndex] = selectedId;
       setMeasureBeats(score.measures[barIndex]);
       highlightNote();
-      socketForScore();
     }
 
     function formatToneArr() {
@@ -1308,15 +1308,18 @@ class VFDisplay extends Component {
     }
 
     // reset library with new note and voice instances
+    // aaaa
     function resetCanvas() {
       setLibrary(score.keySig, false);
       drawScore();
       bindEvents();
+      // score = JSON.stringify(score);
+      // socket.emit("new-score", score);
+      // score = JSON.parse(score);
       _this.setState({score: score});
     }
 
-    // score socket setup
-    function socketForScore() {
+    function socketTest() {
       let params = {};
       if (selectedNote) {
         let selectedKeys = {};
@@ -1329,9 +1332,11 @@ class VFDisplay extends Component {
       params.score = score;
       processScore(params.score);
       socket.emit("new-score", JSON.stringify(params));
+      console.log(params.score);
+      // score = JSON.parse(score);
+      // socket.emit("receive-score", JSON.stringify(score));
     }
 
-    // strip out unnecessary values from selectedKeys to allow socket transfer
     function processNote(data) {
       let processedNote = {
         keys: data.keys,
@@ -1340,9 +1345,10 @@ class VFDisplay extends Component {
       return processedNote;
     }
 
-    // strip out unnecessary values from score to allow socket transfer
     function processScore(data) {
      // gather score data from Vex
+     console.log(data);
+
      for (let i = 0; i < data.measures.length; i++) {
        data.measures[i].stave = {};
        for (let j = 0; j < data.measures[i].notes.length; j++) {
@@ -1392,7 +1398,6 @@ class VFDisplay extends Component {
 
       setMeasureBeats(score.measures[barIndex]);
       highlightNote();
-      socketForScore();
     }
 
     // sets a tie to initial selection and allows use of left and right arrow keys to extend the tie
@@ -1425,7 +1430,6 @@ class VFDisplay extends Component {
 
       resetCanvas();
       highlightNote();
-      socketForScore();
     }
 
     // toggles clef between treble and bass
@@ -1445,7 +1449,6 @@ class VFDisplay extends Component {
         });
       });
       unselectNote();
-      socketForScore();
     }
 
     // toggles display of time signature options
@@ -1518,7 +1521,6 @@ class VFDisplay extends Component {
       // setLibrary(score.keySig, false);
       resetCanvas();
       toggleOptions('.key-options-container');
-      socketForScore();
     }
 
     // updates time signature to selected option
@@ -1535,7 +1537,6 @@ class VFDisplay extends Component {
         highlightNote();
       }
       toggleOptions('.time-options-wrapper');
-      socketForScore();
     }
 
     // provides validation for a measure's beat value
@@ -1594,7 +1595,6 @@ class VFDisplay extends Component {
       toggleOptions('.chord-options-wrapper');
       resetCanvas();
       highlightNote();
-      socketForScore();
     }
 
     // bindEvents();
@@ -1603,7 +1603,9 @@ class VFDisplay extends Component {
   render() {
 
     return (
-      <div id="vfDisplay" className="score-to-print is-flex"></div>
+      <div id="vfDisplay" className="score-to-print is-flex">
+        <button className="socket-test">Test</button>
+      </div>
     );
   }
 }
