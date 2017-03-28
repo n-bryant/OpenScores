@@ -2,9 +2,15 @@ import React, {Component} from 'react';
 import InviteItem from './InviteItem';
 
 class Invites extends Component {
+  constructor() {
+    super();
+    this.state = {};
+    this.hideInvites = this.hideInvites.bind(this);
+  }
 
   hideInvites() {
     document.querySelector('.invites-wrapper').classList.add('is-hidden');
+    console.log(this.props.invites);
   }
 
   render() {

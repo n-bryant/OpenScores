@@ -85,7 +85,6 @@ class Score extends Component {
     // gather score data from Vex
     data.title = this.props.title;
     data.bpm = this.props.bpm;
-    console.log(data);
 
     for (let i = 0; i < data.measures.length; i++) {
       data.measures[i].stave = {};
@@ -98,7 +97,7 @@ class Score extends Component {
     }
 
     this.props.addScore(data);
-    // window.location.href = `/score/${data.id}`;
+    window.location.href = `/score/${data.id}`;
   }
 
   processTitleForm(event) {
