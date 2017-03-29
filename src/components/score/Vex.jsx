@@ -1253,20 +1253,19 @@ class VFDisplay extends Component {
     let part = null;
     let synth = null;
     let started = false;
-    let bpm = Tone.Transport.bpm.value;
     let paused = false;
 
     function createVoice() {
+      Tone.Transport.bpm.value = parseInt(score.bpm, 10);
       if (part) {
         part.dispose();
         synth.dispose();
       }
-      bpm = 120;
+      // bpm = 120;
       synth = new Tone.PolySynth().toMaster();
       part = new Tone.Part(function(time, event){
         synth.triggerAttackRelease(event.note, event.dur, time)
       }, toneArray);
-
       part.start(0);
       let endPos = toneArray[toneArray.length - 1].time + toneArray[toneArray.length - 1].dur;
       part.stop(endPos);
