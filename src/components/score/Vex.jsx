@@ -14,11 +14,6 @@ class VFDisplay extends Component {
     }
   }
 
-  //
-  // componentWillUnmount() {
-  //   base.removeBinding(this.ref);
-  // }
-
   // wait for page load to bring in VexFlow
   componentDidMount() {
     let _this = this;
