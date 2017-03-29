@@ -10,7 +10,7 @@ class AvatarContainer extends Component {
   }
 
   render() {
-    const logout = <button className="logout-btn" onClick={this.logout}>Log Out!</button>
+    const logout = <button className="logout-btn" onClick={this.logout}>Log Out</button>
     return (
       <div className="avatar-container">
         <div className="user-profile-image is-flex">
