@@ -831,18 +831,7 @@ class VFDisplay extends Component {
         document.querySelector('.exit-times-btn').addEventListener('click', () => {
           toggleOptions('.time-options-wrapper');
         });
-        //
-        // //playback controls
-        // document.querySelector('.playBtn').removeEventListener('click', () => {
-        //   // debugger;
-        //     convertVexToTone();
-        // });
-        // document.querySelector('.pauseBtn').removeEventListener('click', () => {
-        //     convertVexToTone();
-        // });
-        // document.querySelector('.stopBtn').removeEventListener('click', () => {
-        //     stopPlayback();
-        // });
+
         //playback controls
         document.querySelector('.playBtn').addEventListener('click', () => {
           // debugger;
