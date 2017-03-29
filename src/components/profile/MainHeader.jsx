@@ -8,7 +8,7 @@ class MainHeader extends Component {
             <div className="header-container">
                 <section className="main-header-container is-flex">
                     <Logo/>
-                    <input className="search-comp" type="search" placeholder="Find Compositions..."></input>
+                    {/*}<input className="search-comp" type="search" placeholder="Find Compositions..."></input>*/}
                     <HeaderForm/>
                 </section>
             </div>
