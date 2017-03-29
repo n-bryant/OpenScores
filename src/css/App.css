@@ -737,6 +737,11 @@ form button {
       right: 2.75rem;
       transition: all .25s; }
 
+.score-page-container .chat-toggle {
+  bottom: 15rem; }
+  .score-page-container .chat-toggle.vertical {
+    bottom: 1rem; }
+
 .arrow {
   transform: rotate(180deg); }
 
