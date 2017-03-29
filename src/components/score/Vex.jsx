@@ -14,11 +14,6 @@ class VFDisplay extends Component {
     }
   }
 
-  //
-  // componentWillUnmount() {
-  //   base.removeBinding(this.ref);
-  // }
-
   // wait for page load to bring in VexFlow
   componentDidMount() {
     let _this = this;
@@ -608,6 +603,9 @@ class VFDisplay extends Component {
     let idMapIndex = null;
     let selectedNote = null;
     let barNoteIndex = null;
+    let staveX = 0;
+    let staveY = 0;
+    let staveWidth = 300;
 
     let score = {
       id: Date.now(),
@@ -649,10 +647,6 @@ class VFDisplay extends Component {
       idMapIndex = score.noteIDMap.indexOf(selectedId);
       highlightNote();
     }, 2000);
-
-    let staveX = 0;
-    let staveY = 0;
-    let staveWidth = 300;
 
     // draw a bar for each measure to the canvas
     function drawScore() {
@@ -1204,6 +1198,9 @@ class VFDisplay extends Component {
           score.noteIDMap.push(newId);
         }
       }
+
+      staveX = score.measures[score.measures.length - 1].staveX;
+      staveY = score.measures[score.measures.length - 1].staveY;
     }
 
     // mark a note as highlighted
@@ -1226,6 +1223,7 @@ class VFDisplay extends Component {
 // score.measures[barIndex].notes[barNoteIndex];
     // Creates a new default measure
     function newMeasure() {
+      console.log(score);
       let tempBar = {};
       tempBar.fillColor = '#999999';
 

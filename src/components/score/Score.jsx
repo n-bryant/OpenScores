@@ -145,7 +145,7 @@ class Score extends Component {
       <section className="score-page-container is-flex">
         <ToolBox/>
         <section className="score-wrapper vertical">
-          <SkinnyHeader/>
+          <SkinnyHeader avatar={this.state.avatar}/>
           <div className="score-container">
             <div className="save-btn" onClick={() => {this.processScore(this.vexData.state.score)}}>
               <img className="save-icon" src="https://cdn0.iconfinder.com/data/icons/rcons-basic/16/floppy_disk-512.png" alt="save button" />
@@ -179,7 +179,7 @@ class Score extends Component {
             <KeySigs />
             <ChordOptions />
             <div className="invite-btn vertical" onClick={this.toggleCollaborators}>Invite Collaborators!</div>
-            <Collaborators users={this.state.users} title={this.props.title} scoreId={`score-${this.props.params.scoreId}`}/>
+            <Collaborators currUser={`user-${this.state.uid}`} users={this.state.users} title={this.props.title} scoreId={`score-${this.props.params.scoreId}`}/>
             <ReactApp/>
             <VFDisplay ref={(vexData) => {this.vexData = vexData;}} score={this.props.scores[`score-${this.props.params.scoreId}`]} user={this.state.uid} bpm={this.state.score.bpm} title={this.props.title}/>
           </div>

@@ -92,3 +92,15 @@
     }
   }
 }
+
+// .header-content-container {
+//   align-items: center;
+//   display: flex;
+// }
+
+header .header-content-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
