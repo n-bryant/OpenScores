@@ -30,10 +30,12 @@
     }
   }
   &.vertical {
+    bottom: 0;
     box-shadow: 0.35rem 0 1rem $orange;
     flex-direction: column;
     min-height: 100vh;
-    overflow: scroll;
+    overflow-y: scroll;
+    top: 0;
     width: 16rem;
   }
 }
