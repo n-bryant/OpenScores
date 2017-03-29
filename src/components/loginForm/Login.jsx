@@ -45,12 +45,15 @@ class Login extends Component {
       const data = snapshot.val() || {};
 
       // create new user record if user record does not yet exist in Firebase
-      if (!data.uid) {
+      if (!data.id) {
         let recordId = `user-${authData.user.uid}`;
         profileRef.set({
           avatar: authData.user.photoURL,
           id: authData.user.uid,
-          name: authData.user.displayName
+          name: authData.user.displayName,
+          scoreInvites: {
+            placeholder: true
+          }
         });
       }
 

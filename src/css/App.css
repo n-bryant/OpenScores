@@ -716,6 +716,7 @@ form button {
 .chat-toggle {
   align-content: center;
   background: #60D394;
+  border: 4px solid transparent;
   border-radius: 5rem;
   bottom: 1rem;
   cursor: pointer;
@@ -891,3 +892,176 @@ form button {
   .chords-wrapper .chord-option:hover {
     border: 4px solid #FAFAFA;
     transition: border 1s; }
+
+.invite-btn {
+  background: #60D394;
+  border: 4px solid transparent;
+  border-radius: 1rem;
+  bottom: 15rem;
+  color: #373737;
+  cursor: pointer;
+  font-size: 1.21rem;
+  padding: .75rem;
+  position: fixed;
+  right: 6rem; }
+  .invite-btn.vertical {
+    bottom: 1rem; }
+  .invite-btn:hover {
+    border: 4px solid #373737; }
+
+.collaborators-wrapper {
+  background: rgba(49, 49, 49, 0.75);
+  left: 0;
+  min-height: 100vh;
+  min-width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000; }
+  .collaborators-wrapper .exit-collaborators-btn {
+    color: #60D394;
+    cursor: pointer;
+    font: 2rem "Nunito Sans", sans-serif;
+    height: 2.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 2.5rem; }
+    .collaborators-wrapper .exit-collaborators-btn:hover {
+      color: #FAFAFA;
+      transition: color .5s; }
+
+.collaborators-container {
+  background: #313131;
+  border: 4px solid #60D394;
+  left: 50%;
+  height: 85vh;
+  overflow: scroll;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%; }
+
+.users-list {
+  flex-wrap: wrap;
+  justify-content: space-around; }
+  .users-list .collaborator-item {
+    cursor: pointer;
+    margin: 1rem;
+    padding: .5rem;
+    width: 225px; }
+    .users-list .collaborator-item .avatar-container {
+      border: 4px solid #FAFAFA;
+      border-radius: 50%;
+      display: block;
+      height: 200px;
+      overflow: hidden;
+      width: 200px; }
+    .users-list .collaborator-item .collaborator-name {
+      color: #FAFAFA;
+      font-size: 1.5rem; }
+    .users-list .collaborator-item:hover .avatar-container {
+      border: 4px solid #60D394; }
+    .users-list .collaborator-item:hover .collaborator-name {
+      color: #60D394;
+      text-decoration: underline; }
+
+.toggle-invites-btn {
+  background: #60D394;
+  border: 4px solid transparent;
+  border-radius: 1rem;
+  bottom: 1rem;
+  color: #373737;
+  cursor: pointer;
+  font-size: 1.21rem;
+  padding: .75rem;
+  position: fixed;
+  right: 6rem;
+  z-index: 2; }
+  .toggle-invites-btn:hover {
+    border: 4px solid #373737; }
+    .toggle-invites-btn:hover + .invite-count {
+      border: 2px solid #FAFAFA;
+      bottom: 5.5rem;
+      right: 7.5rem;
+      transition: all .25s; }
+
+.invite-count {
+  align-items: center;
+  background: #E8B20C;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  bottom: 3rem;
+  color: #FAFAFA;
+  font-size: .75rem;
+  height: 35px;
+  justify-content: center;
+  position: fixed;
+  right: 10rem;
+  width: 35px;
+  z-index: 0; }
+
+.invites-wrapper {
+  background: rgba(49, 49, 49, 0.75);
+  left: 0;
+  min-height: 100vh;
+  min-width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000; }
+
+.exit-invites-btn {
+  color: #60D394;
+  cursor: pointer;
+  font: 2rem "Nunito Sans", sans-serif;
+  height: 2.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 2.5rem; }
+  .exit-invites-btn:hover {
+    color: #FAFAFA;
+    transition: color .5s; }
+
+.invites-container {
+  background: #313131;
+  border: 4px solid #60D394;
+  left: 50%;
+  height: 85vh;
+  overflow: scroll;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%; }
+
+.invites-list {
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: space-around;
+  width: 100%; }
+
+.invite-item {
+  border: 4px solid #FAFAFA;
+  height: 175px;
+  width: 225px; }
+  .invite-item .invite-info-container {
+    align-items: center;
+    background: #60D394;
+    justify-content: center;
+    flex-direction: column;
+    height: 125px; }
+    .invite-item .invite-info-container .score-title {
+      color: #FAFAFA;
+      font-size: 1.5rem; }
+  .invite-item .actions-container {
+    color: #FAFAFA;
+    justify-content: space-around;
+    font-size: 1.5rem; }
+    .invite-item .actions-container .accept-btn, .invite-item .actions-container .reject-btn {
+      cursor: pointer; }
+    .invite-item .actions-container .accept-btn:hover {
+      color: #60D394; }
+    .invite-item .actions-container .reject-btn:hover {
+      color: red; }

@@ -4,6 +4,7 @@ import VFDisplay from './Vex';
 import ToolBox from './ToolBox';
 import KeySigs from './KeySigs';
 import ChordOptions from './chords/ChordOptions';
+import Collaborators from './Collaborators';
 import ReactApp from '../react-chat/ReactApp';
 import io from 'socket.io-client';
 import $ from 'jquery';
@@ -18,8 +19,18 @@ class Score extends Component {
 
     this.state = {
       score: {},
-      scores: {}
+      scores: {},
+      users: {}
     }
+  }
+
+  componentWillMount() {
+    this.ref = base.syncState('/users',
+      {
+        context: this,
+        state: 'users'
+      }
+    );
   }
 
   componentDidMount() {
@@ -28,6 +39,10 @@ class Score extends Component {
         this.authHandler(null, { user });
       }
     });
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
   }
 
   authHandler(err, authData) {
@@ -114,6 +129,10 @@ class Score extends Component {
     };
     score.title = newTitle;
     this.setState({score});
+  }
+
+  toggleCollaborators() {
+    document.querySelector('.collaborators-wrapper').classList.remove('is-hidden');
   }
 
   toggleForm(element, form) {

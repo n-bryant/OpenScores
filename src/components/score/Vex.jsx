@@ -10,10 +10,7 @@ class VFDisplay extends Component {
   constructor() {
     super();
     this.state = {
-      score: {},
-      scores: {}
-      // scoreNet: []
-
+      score: {}
     }
   }
 
@@ -611,6 +608,7 @@ class VFDisplay extends Component {
     let idMapIndex = null;
     let selectedNote = null;
     let barNoteIndex = null;
+
     let score = {
       id: Date.now(),
       title: '',
@@ -1319,16 +1317,11 @@ class VFDisplay extends Component {
       window.print();
     }
 
-
-
     // reset library with new note and voice instances
     function resetCanvas() {
       setLibrary(score.keySig, false);
       drawScore();
       bindEvents();
-      // PUT EMIT/BROADCAST STATEMENT HERE
-      let scoreDoc = document.querySelector('body').innerHTML;
-      socket.emit('new-score', scoreDoc);
       _this.setState({score: score});
     }
 
