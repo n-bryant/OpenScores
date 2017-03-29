@@ -26,12 +26,6 @@ class App extends Component {
         state: 'scores'
       }
     );
-    // this.ref = base.syncState('/users',
-    //   {
-    //     context: this,
-    //     state: 'users'
-    //   }
-    // );
   }
 
   componentWillUnmount() {
@@ -44,11 +38,6 @@ class App extends Component {
     };
     scores[`score-${scoreObj.id}`] = scoreObj;
     this.setState({scores});
-
-    // const users = {
-    //   ...this.state.users
-    // };
-    // users[`user-${this.state.user}`].scores
   }
 
   setUser(currUser) {
