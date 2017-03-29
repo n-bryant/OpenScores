@@ -13,15 +13,21 @@ class ToolBox extends Component {
     const header = document.querySelector('header');
     const toolBox = document.querySelector('.tool-box');
     const scoreWrapper = document.querySelector('.score-wrapper');
+    const inviteBtn = document.querySelector('.invite-btn');
+    const chatToggle = document.querySelector('.chat-toggle');
     if (toolBox.classList.contains('horizontal')) {
       toolBox.classList.remove('horizontal');
       toolBox.classList.add('vertical');
       scoreWrapper.classList.add('vertical');
       header.classList.add('vertical');
+      inviteBtn.classList.add('vertical');
+      chatToggle.classList.add('vertical');
     } else if (toolBox.classList.contains('vertical')) {
       header.classList.remove('vertical');
       toolBox.classList.remove('vertical');
       scoreWrapper.classList.remove('vertical');
+      inviteBtn.classList.remove('vertical');
+      chatToggle.classList.remove('vertical');
       toolBox.classList.add('horizontal');
     }
   }
