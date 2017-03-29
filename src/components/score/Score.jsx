@@ -4,7 +4,6 @@ import VFDisplay from './Vex';
 import ToolBox from './ToolBox';
 import KeySigs from './KeySigs';
 import ChordOptions from './chords/ChordOptions';
-import Collaborators from './Collaborators';
 import ReactApp from '../react-chat/ReactApp';
 import io from 'socket.io-client';
 import $ from 'jquery';
@@ -19,18 +18,8 @@ class Score extends Component {
 
     this.state = {
       score: {},
-      scores: {},
-      users: {}
+      scores: {}
     }
-  }
-
-  componentWillMount() {
-    this.ref = base.syncState('/users',
-      {
-        context: this,
-        state: 'users'
-      }
-    );
   }
 
   componentDidMount() {
@@ -39,10 +28,6 @@ class Score extends Component {
         this.authHandler(null, { user });
       }
     });
-  }
-
-  componentWillUnmount() {
-    base.removeBinding(this.ref);
   }
 
   authHandler(err, authData) {
@@ -118,10 +103,6 @@ class Score extends Component {
     this.titleEl.classList.remove('is-hidden');
   }
 
-  toggleCollaborators() {
-    document.querySelector('.collaborators-wrapper').classList.remove('is-hidden');
-  }
-
   toggleForm(element, form) {
     element.classList.add('is-hidden');
     form.classList.remove('is-hidden');
@@ -165,8 +146,11 @@ class Score extends Component {
             </div>
             <KeySigs />
             <ChordOptions />
+<<<<<<< HEAD
+=======
             <div className="invite-btn" onClick={this.toggleCollaborators}>Invite Collaborators!</div>
             <Collaborators users={this.state.users} score={this.state.currTitle} scoreId={`score-${this.props.params.scoreId}`}/>
+>>>>>>> dcdf674f0aaa65d9243535ab92e59f9665485e17
             <ReactApp/>
             <VFDisplay ref={(vexData) => {this.vexData = vexData;}} score={this.props.scores[`score-${this.props.params.scoreId}`]} user={this.props.user} bpm={this.props.bpm} title={this.props.title}/>
           </div>

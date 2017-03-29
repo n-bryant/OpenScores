@@ -11,9 +11,7 @@ class Profile extends Component {
   constructor() {
     super();
 
-    this.state = {
-      invites: []
-    };
+    this.state = {};
   }
 
   componentDidMount() {
@@ -37,6 +35,8 @@ class Profile extends Component {
     profileRef.once('value', (snapshot) => {
       const data = snapshot.val();
 
+      // if score.collaborators[`user-${data.id}`] {}
+        // push into user scores list
       let scoresKeys = Object.keys(this.props.scores);
       let userScores = [];
       for (let i = 0; i < scoresKeys.length; i++) {
@@ -45,29 +45,15 @@ class Profile extends Component {
         }
       }
 
-      let invitesKeys = Object.keys(data.scoreInvites);
-      let userInvites = {};
-      for (let i = 0; i < invitesKeys.length; i++) {
-        if (invitesKeys[i] !== 'placeholder') {
-          userInvites[invitesKeys[i]] = data.scoreInvites[invitesKeys[i]];
-        }
-      }
-
       this.setState({
         uid: data.id,
         avatar: data.avatar,
         name: data.name,
-        allScores: this.props.scores,
-        scores: userScores,
-        invites: userInvites
+        scores: userScores
       });
 
       this.props.setUser(this.state.uid);
     });
-  }
-
-  toggleInvites() {
-    document.querySelector('.invites-wrapper').classList.remove('is-hidden');
   }
 
   render() {
