@@ -4,6 +4,7 @@ import AvatarContainer from './AvatarContainer';
 import UserCompositions from './UserCompositions';
 import ChatContainer from '../chatApp/ChatContainer';
 import ReactApp from '../react-chat/ReactApp';
+import Invites from './Invites';
 import base from '../../base';
 
 class Profile extends Component {
