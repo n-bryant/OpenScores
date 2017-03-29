@@ -1263,7 +1263,7 @@ class VFDisplay extends Component {
         part.dispose();
         synth.dispose();
       }
-      bpm = 120;
+      // bpm = 120;
       synth = new Tone.PolySynth().toMaster();
       part = new Tone.Part(function(time, event){
         synth.triggerAttackRelease(event.note, event.dur, time)
