@@ -147,7 +147,6 @@ class Score extends Component {
         <ToolBox/>
         <section className="score-wrapper vertical">
           <SkinnyHeader/>
-          <AvatarContainer name={this.state.name} avatar={this.state.avatar}/>
           <div className="score-container">
             <div className="save-btn" onClick={() => {this.processScore(this.vexData.state.score)}}>
               <img className="save-icon" src="https://cdn0.iconfinder.com/data/icons/rcons-basic/16/floppy_disk-512.png" alt="save button" />
