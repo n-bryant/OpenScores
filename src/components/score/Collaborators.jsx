@@ -19,7 +19,7 @@ class Collaborators extends Component {
         <div className="collaborators-container">
           <ul className="users-list is-flex">
             {Object.keys(this.props.users)
-              .map((user) => <CollaboratorItem key={user} user={this.props.users[user]} scoreTitle={this.props.score.title} scoreID={this.props.scoreId} />)}
+              .map((user) => <CollaboratorItem key={user} user={this.props.users[user]} scoreTitle={this.props.score.title || 'Score Title'} scoreID={this.props.scoreId} />)}
           </ul>
         </div>
       </div>
