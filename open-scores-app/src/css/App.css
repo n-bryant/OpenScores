@@ -244,11 +244,19 @@ body {
   min-height: 100vh;
   width: 16rem; }
 
+<<<<<<< 0de9ce02e7e38463c3ad3409bed0cf7f4bb3c9cc
 .playback-controls {
   flex-direction: column;
   width: 16rem; }
 
 .playback-controls .toggle-pos {
+=======
+.Transport-controls {
+  flex-direction: column;
+  width: 16rem; }
+
+.Transport-controls .toggle-pos {
+>>>>>>> no message
   position: relative;
   bottom: 1.5rem;
   left: 1rem;
@@ -256,10 +264,17 @@ body {
   background: none;
   border: none; }
 
+<<<<<<< 0de9ce02e7e38463c3ad3409bed0cf7f4bb3c9cc
 .playback-controls .toggle-pos:hover {
   cursor: pointer; }
 
 .playback {
+=======
+.Transport-controls .toggle-pos:hover {
+  cursor: pointer; }
+
+.Transport {
+>>>>>>> no message
   width: 55px;
   display: inline-block;
   background: #373737;
@@ -267,10 +282,17 @@ body {
   margin: 3px;
   padding: 5px; }
 
+<<<<<<< 0de9ce02e7e38463c3ad3409bed0cf7f4bb3c9cc
 .playback:hover {
   cursor: pointer; }
 
 .playback img {
+=======
+.Transport:hover {
+  cursor: pointer; }
+
+.Transport img {
+>>>>>>> no message
   filter: drop-shadow(2px 2px 2px 1px rgba(65, 162, 235, 0.5)); }
 
 .stopBtn:focus {
@@ -485,14 +507,21 @@ body {
   align-items: center;
   display: flex;
   flex-direction: row;
+<<<<<<< 0de9ce02e7e38463c3ad3409bed0cf7f4bb3c9cc
+=======
+  justify-content: space-around;
+>>>>>>> no message
   margin: 10px; }
 
 .friends-list .single-friend-container .friend-image {
   border-radius: 10px;
   width: 18%; }
+<<<<<<< 0de9ce02e7e38463c3ad3409bed0cf7f4bb3c9cc
 
 .friends-list .single-friend-container:hover {
   box-shadow: 0 1px 6px #FAFAFA, 0 1px 8px #474747; }
+=======
+>>>>>>> no message
 
 .main-comp-container {
   border-radius: 25px;
@@ -543,6 +572,36 @@ body {
 .logo-image {
   width: 100px; }
 
+<<<<<<< 0de9ce02e7e38463c3ad3409bed0cf7f4bb3c9cc
+=======
+.login-container {
+  align-items: center;
+  background: #313131;
+  border: 5px solid #FF7800;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  justify-content: center;
+  width: 40%; }
+
+.login-container input {
+  background: #474747;
+  border: 5px solid #FF7800;
+  color: #FF7800;
+  font-size: 20px;
+  height: 50px;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  width: 60%; }
+
+.login-container .login-button {
+  font-size: 15px;
+  height: 8%;
+  width: 30%; }
+
+>>>>>>> no message
 form {
   align-items: center;
   display: flex;
