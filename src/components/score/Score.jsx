@@ -181,7 +181,7 @@ class Score extends Component {
             <div className="invite-btn vertical" onClick={this.toggleCollaborators}>Invite Collaborators!</div>
             <Collaborators users={this.state.users} title={this.props.title} scoreId={`score-${this.props.params.scoreId}`}/>
             <ReactApp/>
-            <VFDisplay ref={(vexData) => {this.vexData = vexData;}} score={this.props.scores[`score-${this.props.params.scoreId}`]} user={this.props.user} bpm={this.state.score.bpm} title={this.props.title}/>
+            <VFDisplay ref={(vexData) => {this.vexData = vexData;}} score={this.props.scores[`score-${this.props.params.scoreId}`]} user={this.state.uid} bpm={this.state.score.bpm} title={this.props.title}/>
           </div>
         </section>
       </section>
