@@ -6,7 +6,6 @@ import KeySigs from './KeySigs';
 import ChordOptions from './chords/ChordOptions';
 import Collaborators from './Collaborators';
 import ReactApp from '../react-chat/ReactApp';
-import AvatarContainer from '../profile/AvatarContainer';
 import io from 'socket.io-client';
 import $ from 'jquery';
 import base from '../../base';
@@ -133,8 +132,7 @@ class Score extends Component {
       <section className="score-page-container is-flex">
         <ToolBox/>
         <section className="score-wrapper vertical">
-          <SkinnyHeader/>
-          <AvatarContainer name={this.state.name} avatar={this.state.avatar}/>
+          <SkinnyHeader avatar={this.state.avatar}/>
           <div className="score-container">
             <div className="save-btn" onClick={() => {this.processScore(this.vexData.state.score)}}>
               <img className="save-icon" src="https://cdn0.iconfinder.com/data/icons/rcons-basic/16/floppy_disk-512.png" alt="save button" />
