@@ -294,6 +294,15 @@ header {
   min-width: 800px;
   width: 100%; }
 
+.score-header-avatar {
+  border: 5px solid #60D394;
+  border-radius: 50%;
+  height: 70px;
+  position: fixed;
+  right: 6rem;
+  top: 1rem;
+  width: 70px; }
+
 .tool-box {
   padding: 1rem;
   position: fixed;
@@ -541,6 +550,12 @@ header {
   .main-logo-container .logo-container .logo-text {
     font-size: 25px;
     font-weight: 900; }
+
+header .header-content-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto; }
 
 .avatar-container {
   align-items: center;

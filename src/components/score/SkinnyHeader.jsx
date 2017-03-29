@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import AvatarContainer from '../profile/AvatarContainer';
 
 class SkinnyHeader extends Component {
+
 
   render() {
     return (
@@ -11,6 +13,10 @@ class SkinnyHeader extends Component {
             <p className="logo-text">OpenScores</p>
           </a>
         </div>
+        <a href="/profile">
+          <p className="score-user-name">{this.props.name}</p>
+          <img className="score-header-avatar" src={this.props.avatar} alt={this.props.name}/>
+        </a>
       </header>
     );
   }
