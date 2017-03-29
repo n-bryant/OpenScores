@@ -65,6 +65,14 @@ form button {
     }
   }
 }
+
+.score-page-container .chat-toggle {
+  bottom: 15rem;
+  &.vertical {
+    bottom: 1rem;
+  }
+}
+
 .arrow {
   transform: rotate(180deg);
 }
