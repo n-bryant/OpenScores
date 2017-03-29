@@ -242,3 +242,15 @@ header {
   min-width: 800px;
   width: 100%;
 }
+
+.score-header-avatar {
+   border: 5px solid $orange;
+   border-radius: 50%;
+   height: 70px;
+   position: fixed;
+   right: 6rem;
+   top: 1rem;
+   width: 70px;
+  //  z-index: 1;
+   // width: 100%;
+ }
