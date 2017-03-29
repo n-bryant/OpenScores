@@ -1079,7 +1079,7 @@ class VFDisplay extends Component {
       let toneDur = 0;
       toneArray.forEach((obj, index) => {
         if (index === 0) {
-          obj.time = '0';
+          obj.time = '0:0';
         }
         switch (obj.dur) {
           case 'w':
@@ -1250,20 +1250,22 @@ class VFDisplay extends Component {
       let newestStave = score.measures[score.measures.length - 1];
       setMeasureBeats(newestStave);
     }
-
-    let synth;
-    let part;
+    let part = null;
+    let synth = null;
     let started = false;
-    let bpm = Tone.Transport.bpm.value;
     let paused = false;
 
     function createVoice() {
-      bpm = 120;
+      Tone.Transport.bpm.value = parseInt(score.bpm, 10);
+      if (part) {
+        part.dispose();
+        synth.dispose();
+      }
+      // bpm = 120;
       synth = new Tone.PolySynth().toMaster();
       part = new Tone.Part(function(time, event){
         synth.triggerAttackRelease(event.note, event.dur, time)
       }, toneArray);
-
       part.start(0);
       let endPos = toneArray[toneArray.length - 1].time + toneArray[toneArray.length - 1].dur;
       part.stop(endPos);
@@ -1273,18 +1275,15 @@ class VFDisplay extends Component {
 
     function startPlayback() {
       let startPos = barIndex || 0;
-
       if (!started && !paused) {
+        // console.log(part);
         Tone.Transport.start('+0.5', `${startPos}:0`);
         started = true;
         toneArray = [];
       } else if (started && !paused){
         Tone.Transport.pause();
         paused = true;
-        part.dispose();
-        synth.dispose();
         toneArray = [];
-        // console.log(Tone.Transport.position);
       } else if (paused) {
         let pausedPos = Tone.Transport.position;
         Tone.Transport.start('+0.5', `${pausedPos}`);
@@ -1296,8 +1295,6 @@ class VFDisplay extends Component {
     function stopPlayback() {
       if (started) {
         Tone.Transport.stop();
-        part.dispose();
-        synth.dispose();
         started = false;
         toneArray = [];
       }
