@@ -72,6 +72,9 @@ class Profile extends Component {
         <MainHeader/>
         <AvatarContainer name={this.state.name} avatar={this.state.avatar}/>
         <UserCompositions uid={this.state.uid} scores={this.state.scores}/>
+        <div className="toggle-invites-btn" onClick={this.toggleInvites}>Invites</div>
+        <div className="invite-count is-flex">{Object.keys(this.state.invites).length}</div>
+        <Invites scores={this.props.scores} invites={this.state.invites} currUser={this.props.user}/>
         <ReactApp avatar={this.state.avatar}/>
       </section>
     );

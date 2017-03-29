@@ -13,7 +13,7 @@ class App extends Component {
 
     this.state = {
       bpm: 120,
-      title: "Score Title",
+      title: '',
       scores: {},
       user: null
     };

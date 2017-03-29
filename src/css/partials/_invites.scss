@@ -9,10 +9,34 @@
   padding: .75rem;
   position: fixed;
   right: 6rem;
+  z-index: 2;
 
   &:hover {
     border: 4px solid $mediumDark;
+
+    & + .invite-count {
+      border: 2px solid $light;
+      bottom: 5.5rem;
+      right: 7.5rem;
+      transition: all .25s;
+    }
   }
+}
+
+.invite-count {
+  align-items: center;
+  background: #E8B20C;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  bottom: 3rem;
+  color: $light;
+  font-size: .75rem;
+  height: 35px;
+  justify-content: center;
+  position: fixed;
+  right: 10rem;
+  width: 35px;
+  z-index: 0;
 }
 
 .invites-wrapper {
@@ -35,7 +59,7 @@
   top: 1rem;
   width: 2.5rem;
 
-  &:hover { 
+  &:hover {
     color: $light;
     transition: color .5s;
   }

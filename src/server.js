@@ -13,10 +13,9 @@ io.on('connection', function(socket) {
       console.log(msg);
       io.emit("receive-message", msg);
     });
-    socket.on('new-score', function(scoreNet){
-      console.log('recieve score');
-      io.emit('receive-score', scoreNet);
-      console.log('emit score ');
+    socket.on('new-score', function(scoreChange){
+      io.emit('receive-score', scoreChange);
+      console.log("test");
     });
 
 
