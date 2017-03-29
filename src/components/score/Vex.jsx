@@ -721,7 +721,6 @@ class VFDisplay extends Component {
         // toggle chord options button
         document.querySelector('.chords-btn').addEventListener('click', () => {
           if (selectedNote) {
-            unselectNote();
             toggleOptions('.chord-options-wrapper');
           }
         });
