@@ -831,9 +831,21 @@ class VFDisplay extends Component {
         document.querySelector('.exit-times-btn').addEventListener('click', () => {
           toggleOptions('.time-options-wrapper');
         });
-
+        //
+        // //playback controls
+        // document.querySelector('.playBtn').removeEventListener('click', () => {
+        //   // debugger;
+        //     convertVexToTone();
+        // });
+        // document.querySelector('.pauseBtn').removeEventListener('click', () => {
+        //     convertVexToTone();
+        // });
+        // document.querySelector('.stopBtn').removeEventListener('click', () => {
+        //     stopPlayback();
+        // });
         //playback controls
         document.querySelector('.playBtn').addEventListener('click', () => {
+          // debugger;
             convertVexToTone();
         });
         document.querySelector('.pauseBtn').addEventListener('click', () => {
@@ -1025,6 +1037,9 @@ class VFDisplay extends Component {
       score.measures.forEach((measure) => {
         measure.notes.forEach((note) => {
           let pitchArr = [];
+          if (note.duration === "4") {
+            note.duration = "q";
+          };
           note.keys.forEach((thing) => {
             let pitch = thing.replace('/', '');
             pitchArr.push(pitch);
@@ -1090,7 +1105,7 @@ class VFDisplay extends Component {
         }
         switch (obj.dur) {
           case 'w':
-            obj.dur = `${toneDur}`;
+            obj.dur = '2';
             obj.time = `0:${timeVal}`;
             if (!obj.dot) {
               toneDur += 2;
@@ -1223,7 +1238,7 @@ class VFDisplay extends Component {
 // score.measures[barIndex].notes[barNoteIndex];
     // Creates a new default measure
     function newMeasure() {
-      console.log(score);
+      // console.log(score);
       let tempBar = {};
       tempBar.fillColor = '#999999';
 
