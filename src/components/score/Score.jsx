@@ -43,19 +43,16 @@ class Score extends Component {
     profileRef.once('value', (snapshot) => {
       const data = snapshot.val();
       let currentScore;
-      let currentTitle;
 
       if (this.props.params.scoreId) {
         currentScore = this.props.scores[`score-${this.props.params.scoreId}`];
-        currentTitle = this.props.scores[`score-${this.props.params.scoreId}`].title;
       }
 
       this.setState({
         uid: data.id,
         avatar: data.avatar,
         name: data.name,
-        score: currentScore || null,
-        currTitle: currentTitle || 'Score Title'
+        score: currentScore || null
       });
 
       this.props.setUser(this.state.uid);
@@ -72,11 +69,21 @@ class Score extends Component {
     this.bpmEl.classList.remove('is-hidden');
     // console.log(newBPM);
     // updateBpm(newBPM);
+
+    const score = {
+      ...this.state.score
+    };
+    score.bpm = newBPM;
+    this.setState({score});
   }
 
   processScore(data) {
     // gather score data from Vex
-    data.title = this.props.title;
+    if (this.props.title !== "") {
+      data.title = this.props.title;
+    } else {
+      data.title = this.state.score.title;
+    }
     data.bpm = this.props.bpm;
 
     for (let i = 0; i < data.measures.length; i++) {
@@ -101,6 +108,12 @@ class Score extends Component {
     this.titleForm.reset();
     this.titleForm.classList.add('is-hidden');
     this.titleEl.classList.remove('is-hidden');
+
+    const score = {
+      ...this.state.score
+    };
+    score.title = newTitle;
+    this.setState({score});
   }
 
   toggleForm(element, form) {
@@ -123,7 +136,7 @@ class Score extends Component {
             </div>
             <div className="title-container">
               <img className="edit-title-icon is-hidden" src="edit-icon" alt="edit-icon"/>
-              <h2 ref={(scoreTitle) => this.titleEl = scoreTitle} className="score-title is-centered" onClick={() => {this.toggleForm(this.titleEl, this.titleForm)}}>{this.props.title}</h2>
+              <h2 ref={(scoreTitle) => this.titleEl = scoreTitle} className="score-title is-centered" onClick={() => {this.toggleForm(this.titleEl, this.titleForm)}}>{this.props.title || this.state.score.title}</h2>
               <form ref={(fullTitleForm) => this.titleForm = fullTitleForm} className="edit-title-form is-hidden" name="edit-title-form" onSubmit={this.processTitleForm.bind(this)}>
                 <legend className="is-hidden">Edit Title</legend>
                 <label htmlFor="title" className="is-hidden"/>
@@ -134,7 +147,7 @@ class Score extends Component {
               </form>
             </div>
             <div className="bpm-container">
-              <p ref={(scoreBPM) => this.bpmEl = scoreBPM} className="score-bpm" onClick={() => {this.toggleForm(this.bpmEl, this.bpmForm)}}>{this.props.bpm}bpm</p>
+              <p ref={(scoreBPM) => this.bpmEl = scoreBPM} className="score-bpm" onClick={() => {this.toggleForm(this.bpmEl, this.bpmForm)}}>{this.state.score.bpm || this.props.bpm}bpm</p>
               <form ref={(fullBPMForm) => this.bpmForm = fullBPMForm} className="edit-bpm-form is-flex is-hidden" name="edit-bpm-form" onSubmit={this.processBPMForm.bind(this)}>
                 <legend>bpm</legend>
                 <label htmlFor="bpm" className="is-hidden"/>
@@ -146,10 +159,10 @@ class Score extends Component {
             </div>
             <KeySigs />
             <ChordOptions />
-            <div className="invite-btn" onClick={this.toggleCollaborators}>Invite Collaborators!</div>
-            <Collaborators users={this.state.users} score={this.state.currTitle} scoreId={`score-${this.props.params.scoreId}`}/>
+            <div className="invite-btn vertical" onClick={this.toggleCollaborators}>Invite Collaborators!</div>
+            <Collaborators users={this.state.users} title={this.props.title} scoreId={`score-${this.props.params.scoreId}`}/>
             <ReactApp/>
-            <VFDisplay ref={(vexData) => {this.vexData = vexData;}} score={this.props.scores[`score-${this.props.params.scoreId}`]} user={this.props.user} bpm={this.props.bpm} title={this.props.title}/>
+            <VFDisplay ref={(vexData) => {this.vexData = vexData;}} score={this.props.scores[`score-${this.props.params.scoreId}`]} user={this.props.user} bpm={this.state.score.bpm} title={this.props.title}/>
           </div>
         </section>
       </section>

@@ -37,6 +37,7 @@ class VFDisplay extends Component {
         loadScore();
         if (parsedParams.selectedKeys) {
           loadNote(parsedParams.selectedKeys);
+          drawScore();
           highlightNote();
         } else {
           resetCanvas();
@@ -702,7 +703,19 @@ class VFDisplay extends Component {
       if (pageLoad) {
         // chat toggle
         const messageInput = document.getElementById('message');
+        const titleInput = document.querySelector('.title-input');
+        const bpmInput = document.querySelector('.bpm-input');
         messageInput.addEventListener('focus', () => {
+          if (selectedNote) {
+            unselectNote();
+          }
+        });
+        titleInput.addEventListener('focus', () => {
+          if (selectedNote) {
+            unselectNote();
+          }
+        });
+        bpmInput.addEventListener('focus', () => {
           if (selectedNote) {
             unselectNote();
           }
@@ -1073,7 +1086,6 @@ class VFDisplay extends Component {
       score.measures[barIndex].notes[barNoteIndex] = selectedNote;
       score.noteIDMap[idMapIndex] = selectedId;
       setMeasureBeats(score.measures[barIndex]);
-      highlightNote();
       socketForScore();
     }
 
@@ -1396,7 +1408,6 @@ class VFDisplay extends Component {
       score.noteIDMap[idMapIndex] = selectedId;
 
       setMeasureBeats(score.measures[barIndex]);
-      highlightNote();
       socketForScore();
     }
 
@@ -1427,10 +1438,11 @@ class VFDisplay extends Component {
         score.ties[score.ties.length - 1] = tieExtension;
         firstTie = true;
       }
-
+      console.log(score.measures[0].stave);
+      console.log(score.ties);
       resetCanvas();
       highlightNote();
-      socketForScore();
+      // socketForScore();
     }
 
     // toggles clef between treble and bass
@@ -1519,9 +1531,7 @@ class VFDisplay extends Component {
         });
       });
 
-
       // setLibrary(score.keySig, false);
-      resetCanvas();
       toggleOptions('.key-options-container');
       socketForScore();
     }
@@ -1529,16 +1539,11 @@ class VFDisplay extends Component {
     // updates time signature to selected option
     function updateTimeSig(count, value) {
       Tone.Transport.timeSignature = [count, value];
-      console.log(Tone.Transport.timeSignature);
       beatCount = count;
       beatValue = value;
       score.timeSig.count = beatCount;
       score.timeSig.value = beatValue;
-      resetCanvas();
       validateMeasures();
-      if (selectedNote) {
-        highlightNote();
-      }
       toggleOptions('.time-options-wrapper');
       socketForScore();
     }

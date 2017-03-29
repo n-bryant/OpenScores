@@ -93,7 +93,7 @@ class ReactApp extends Component {
             </form>
           </fieldset>
         </div>
-        <div className="chat-toggle" onClick={this.toggleChatWindow}>
+        <div className="chat-toggle vertical" onClick={this.toggleChatWindow}>
           <img className="arrow is-hidden" src="https://image.flaticon.com/icons/svg/25/25223.svg"></img>
           <img className="bubble" src="https://image.flaticon.com/icons/svg/25/25663.svg"></img>
         </div>
