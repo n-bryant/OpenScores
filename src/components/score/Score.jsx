@@ -42,12 +42,20 @@ class Score extends Component {
     // query the firebase once for the profile data
     profileRef.once('value', (snapshot) => {
       const data = snapshot.val();
+      let currentScore;
+      let currentTitle;
+
+      if (this.props.params.scoreId) {
+        currentScore = this.props.scores[`score-${this.props.params.scoreId}`];
+        currentTitle = this.props.scores[`score-${this.props.params.scoreId}`].title;
+      }
 
       this.setState({
         uid: data.id,
         avatar: data.avatar,
         name: data.name,
-        scores: data.scores
+        score: currentScore || null,
+        currTitle: currentTitle || 'Score Title'
       });
 
       this.props.setUser(this.state.uid);
@@ -138,6 +146,11 @@ class Score extends Component {
             </div>
             <KeySigs />
             <ChordOptions />
+<<<<<<< HEAD
+=======
+            <div className="invite-btn" onClick={this.toggleCollaborators}>Invite Collaborators!</div>
+            <Collaborators users={this.state.users} score={this.state.currTitle} scoreId={`score-${this.props.params.scoreId}`}/>
+>>>>>>> dcdf674f0aaa65d9243535ab92e59f9665485e17
             <ReactApp/>
             <VFDisplay ref={(vexData) => {this.vexData = vexData;}} score={this.props.scores[`score-${this.props.params.scoreId}`]} user={this.props.user} bpm={this.props.bpm} title={this.props.title}/>
           </div>

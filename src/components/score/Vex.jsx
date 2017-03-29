@@ -32,13 +32,15 @@ class VFDisplay extends Component {
     socket.on("receive-score", function(scoreChange) {
       // socket.emit("receive-score");
       let parsedParams = JSON.parse(scoreChange);
-      score = parsedParams.score;
-      loadScore();
-      if (parsedParams.selectedKeys) {
-        loadNote(parsedParams.selectedKeys);
-        highlightNote();
-      } else {
-        resetCanvas();
+      if (score.id === parsedParams.score.id) {
+        score = parsedParams.score;
+        loadScore();
+        if (parsedParams.selectedKeys) {
+          loadNote(parsedParams.selectedKeys);
+          highlightNote();
+        } else {
+          resetCanvas();
+        }
       }
     });
 
