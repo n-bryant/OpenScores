@@ -24,7 +24,7 @@ class VFDisplay extends Component {
     socket.on("receive-score", function(scoreChange) {
       // socket.emit("receive-score");
       let parsedParams = JSON.parse(scoreChange);
-      console.log(parsedParams);
+      // console.log(parsedParams);
       if (score.id === parsedParams.score.id) {
         score = parsedParams.score;
         loadScore();
@@ -909,7 +909,7 @@ class VFDisplay extends Component {
       selectedAcc = accidental;
       selectedNote = new VF.StaveNote({clef: score.clef, keys: selectedNote.keys, duration: duration})
         .addAccidental(0, new VF.Accidental(accidental));
-      console.log(selectedNote);
+      // console.log(selectedNote);
       selectedId = `vf-${selectedNote.attrs.id}`;
       score.measures[barIndex].notes[barNoteIndex] = selectedNote;
       score.noteIDMap[idMapIndex] = selectedId;

@@ -111,7 +111,7 @@ class Score extends Component {
         };
       }
     }
-    console.log(data);
+    // console.log(data);
 
     this.props.addScore(data);
     window.location.href = `/score/${data.id}`;
