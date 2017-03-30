@@ -99,7 +99,6 @@ class ToolBox extends Component {
                 <button className="icon dot-btn is-centered">•</button>
               </div>
             </div>
-            <div>{logout}</div>
             {/*
               <div className="dynamics-container selectors is-centered">
                 <h3>Dynamics</h3>
