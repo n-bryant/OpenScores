@@ -605,6 +605,7 @@ class VFDisplay extends Component {
     let idMapIndex = null;
     let selectedNote = null;
     let barNoteIndex = null;
+
     let staveX = 0;
     let staveY = 0;
     let staveWidth = 300;
@@ -820,10 +821,8 @@ class VFDisplay extends Component {
         });
 
         // exit chord options button
-        //aaaaaa
         document.querySelector('.exit-chords-btn').addEventListener('click', () => {
           toggleOptions('.chord-options-wrapper');
-          // resetChordOptions();
         });
 
         // exit key options button
@@ -838,7 +837,6 @@ class VFDisplay extends Component {
 
         //playback controls
         document.querySelector('.playBtn').addEventListener('click', () => {
-          // debugger;
             convertVexToTone();
         });
         document.querySelector('.pauseBtn').addEventListener('click', () => {
@@ -853,9 +851,11 @@ class VFDisplay extends Component {
 
         pageLoad = false;
       }
+
       // keypresses
       document.onkeydown = checkKey;
     }
+
     // bind notes on each canvas paint
     function bindNotes() {
       let allNotes = document.querySelectorAll('.vf-stavenote');
@@ -916,14 +916,14 @@ class VFDisplay extends Component {
 
       resetCanvas();
       highlightNote();
-      socketForScore();
+      // socketForScore();
     }
 
     // inserts a measure at the end of the score
     function addMeasure() {
       newMeasure();
       unselectNote();
-      socketForScore();
+      // socketForScore();
     }
 
     // increase note value on up arrow
@@ -971,7 +971,7 @@ class VFDisplay extends Component {
         resetCanvas();
         updateTies();
         highlightNote();
-        socketForScore();
+        // socketForScore();
       }
     }
 
@@ -1033,9 +1033,6 @@ class VFDisplay extends Component {
       score.measures.forEach((measure) => {
         measure.notes.forEach((note) => {
           let pitchArr = [];
-          if (note.duration === "4") {
-            note.duration = "q";
-          };
           note.keys.forEach((thing) => {
             let pitch = thing.replace('/', '');
             pitchArr.push(pitch);
@@ -1095,7 +1092,8 @@ class VFDisplay extends Component {
       score.measures[barIndex].notes[barNoteIndex] = selectedNote;
       score.noteIDMap[idMapIndex] = selectedId;
       setMeasureBeats(score.measures[barIndex]);
-      socketForScore();
+      // socketForScore();
+      highlightNote();
     }
 
     function formatToneArr() {
@@ -1107,7 +1105,7 @@ class VFDisplay extends Component {
         }
         switch (obj.dur) {
           case 'w':
-            obj.dur = '2';
+            obj.dur = `${toneDur}`;
             obj.time = `0:${timeVal}`;
             if (!obj.dot) {
               toneDur += 2;
@@ -1282,7 +1280,6 @@ class VFDisplay extends Component {
 // score.measures[barIndex].notes[barNoteIndex];
     // Creates a new default measure
     function newMeasure() {
-      // console.log(score);
       let tempBar = {};
       tempBar.fillColor = '#999999';
 
@@ -1336,7 +1333,6 @@ class VFDisplay extends Component {
       part = new Tone.Part(function(time, event){
         synth.triggerAttackRelease(event.note, event.dur, time)
       }, toneArray);
-      part.humanize = true;
       part.start(0);
       let endPos = toneArray[toneArray.length - 1].time + toneArray[toneArray.length - 1].dur;
       part.stop(endPos);
@@ -1475,7 +1471,8 @@ class VFDisplay extends Component {
       score.noteIDMap[idMapIndex] = selectedId;
 
       setMeasureBeats(score.measures[barIndex]);
-      socketForScore();
+      // socketForScore();
+      highlightNote();
     }
 
     // sets a tie to initial selection and allows use of left and right arrow keys to extend the tie
@@ -1510,10 +1507,6 @@ class VFDisplay extends Component {
         score.ties[score.ties.length - 1] = tieExtension;
         firstTie = true;
       }
-
-      // console.log(score.measures[0].stave);
-      // console.log(score.ties);
-
       resetCanvas();
       highlightNote();
       // socketForScore();
@@ -1541,7 +1534,7 @@ class VFDisplay extends Component {
         });
       });
       unselectNote();
-      socketForScore();
+      // socketForScore();
     }
 
     // toggles display of time signature options
@@ -1552,11 +1545,7 @@ class VFDisplay extends Component {
       } else {
         optionsContainer.classList.add('is-hidden');
       }
-      if (!document.querySelector('.chord-options-wrapper').classList.contains('is-hidden')) {
-        document.querySelector('.chord-triggers-container').classList.remove('is-hidden');
-      }
     }
-
 
     // toggles chord options display by selected root note
     function toggleChordRoot(root) {
@@ -1567,9 +1556,7 @@ class VFDisplay extends Component {
           element.classList.add('is-hidden');
         }
       });
-
       document.querySelector(`${root}`).classList.remove('is-hidden');
-      // console.log(document.querySelector(`${root}`));
     }
 
     // unselect a note
@@ -1623,7 +1610,8 @@ class VFDisplay extends Component {
 
       // setLibrary(score.keySig, false);
       toggleOptions('.key-options-container');
-      socketForScore();
+      unselectNote();
+      // socketForScore();
     }
 
     // updates time signature to selected option
@@ -1656,7 +1644,8 @@ class VFDisplay extends Component {
           }
         });
       }
-      socketForScore();
+      resetCanvas();
+      // socketForScore();
     }
 
     // sets selectedNote to the specified chord
@@ -1683,14 +1672,15 @@ class VFDisplay extends Component {
         if (!element.classList.contains('is-hidden')) {
           element.classList.add('is-hidden');
         }
-
       });
 
       // repaint
       selectedNote = newChord;
       toggleOptions('.chord-options-wrapper');
-      socketForScore();
+      resetCanvas();
+      // socketForScore();
     }
+
     // bindEvents();
   }
 

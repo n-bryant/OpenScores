@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SkinnyHeader from './SkinnyHeader';
-import VFDisplay from './Vex';
+import VFDisplay from './VexSansSocket'; // './Vex'
 import ToolBox from './ToolBox';
 import KeySigs from './KeySigs';
 import ChordOptions from './chords/ChordOptions';
@@ -106,10 +106,12 @@ class Score extends Component {
       for (let j = 0; j < data.measures[i].notes.length; j++) {
         data.measures[i].notes[j] = {
           keys: data.measures[i].notes[j].keys,
-          duration: data.measures[i].notes[j].duration
+          duration: data.measures[i].notes[j].duration,
+          noteType: data.measures[i].notes[j].noteType
         };
       }
     }
+    // console.log(data);
 
     this.props.addScore(data);
     window.location.href = `/score/${data.id}`;

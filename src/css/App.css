@@ -279,13 +279,14 @@ header {
   padding: 1rem;
   text-decoration: underline;
   width: 200px; }
-  .key-option:hover {
+  .key-option:hover .key-display {
     border: 4px solid #FAFAFA;
-    transition: border 1s; }
+    transition: border .5s; }
   .key-option .key-name {
     margin-bottom: .5rem; }
   .key-option .key-display {
-    background: #60D394; }
+    background: #60D394;
+    border: 4px solid transparent; }
     .key-option .key-display img {
       display: block;
       padding: 1rem;
