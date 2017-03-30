@@ -30,27 +30,6 @@ class ReactApp extends Component {
     this.input.value = "";
   }
 
-  // rotateIcon(event) {
-  //   event.preventDefault();
-  //   const chatButton = document.querySelector('.chat-toggle');
-  //   const chatWindow = document.querySelector('.chat');
-  //   const bubble = document.querySelector('.bubble');
-  //   const arrow = document.querySelector('.arrow');
-  //   if (chatButton.classList.contains('up')) {
-  //     chatButton.classList.remove('up');
-  //     chatButton.classList.add('down');
-  //     arrow.classList.remove('is-hidden');
-  //     bubble.classList.add('is-hidden');
-  //     chatWindow.classList.remove('is-hidden');
-  //   } else if (chatButton.classList.contains('down')) {
-  //     chatButton.classList.remove('down');
-  //     chatButton.classList.add('up');
-  //     bubble.classList.remove('is-hidden');
-  //     arrow.classList.add('is-hidden');
-  //     chatWindow.classList.add('is-hidden');
-  //   }
-  // }
-
   toggleChatWindow() {
     const chatWindow = document.querySelector('.chat');
     const arrowIcon = document.querySelector('.arrow');
