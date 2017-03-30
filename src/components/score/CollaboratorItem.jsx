@@ -26,8 +26,8 @@ class CollaboratorItem extends Component {
 
   inviteCollaborator() {
     // write invite to selected user
-    console.log(this.props.scoreID);
-    console.log(this.props.user.id);
+    // console.log(this.props.scoreID);
+    // console.log(this.props.user.id);
 
     const users = {
       ...this.state.users

@@ -818,8 +818,10 @@ class VFDisplay extends Component {
         });
 
         // exit chord options button
+        //aaaaaa
         document.querySelector('.exit-chords-btn').addEventListener('click', () => {
           toggleOptions('.chord-options-wrapper');
+          // resetChordOptions();
         });
 
         // exit key options button
@@ -831,18 +833,7 @@ class VFDisplay extends Component {
         document.querySelector('.exit-times-btn').addEventListener('click', () => {
           toggleOptions('.time-options-wrapper');
         });
-        //
-        // //playback controls
-        // document.querySelector('.playBtn').removeEventListener('click', () => {
-        //   // debugger;
-        //     convertVexToTone();
-        // });
-        // document.querySelector('.pauseBtn').removeEventListener('click', () => {
-        //     convertVexToTone();
-        // });
-        // document.querySelector('.stopBtn').removeEventListener('click', () => {
-        //     stopPlayback();
-        // });
+
         //playback controls
         document.querySelector('.playBtn').addEventListener('click', () => {
           // debugger;
@@ -860,11 +851,9 @@ class VFDisplay extends Component {
 
         pageLoad = false;
       }
-
       // keypresses
       document.onkeydown = checkKey;
     }
-
     // bind notes on each canvas paint
     function bindNotes() {
       let allNotes = document.querySelectorAll('.vf-stavenote');
@@ -1445,8 +1434,8 @@ class VFDisplay extends Component {
         score.ties[score.ties.length - 1] = tieExtension;
         firstTie = true;
       }
-      console.log(score.measures[0].stave);
-      console.log(score.ties);
+      // console.log(score.measures[0].stave);
+      // console.log(score.ties);
       resetCanvas();
       highlightNote();
       // socketForScore();
@@ -1480,7 +1469,11 @@ class VFDisplay extends Component {
       } else {
         optionsContainer.classList.add('is-hidden');
       }
+      if (!document.querySelector('.chord-options-wrapper').classList.contains('is-hidden')) {
+        document.querySelector('.chord-triggers-container').classList.remove('is-hidden');
+      }
     }
+
 
     // toggles chord options display by selected root note
     function toggleChordRoot(root) {
@@ -1491,7 +1484,9 @@ class VFDisplay extends Component {
           element.classList.add('is-hidden');
         }
       });
+
       document.querySelector(`${root}`).classList.remove('is-hidden');
+      // console.log(document.querySelector(`${root}`));
     }
 
     // unselect a note
@@ -1604,6 +1599,7 @@ class VFDisplay extends Component {
         if (!element.classList.contains('is-hidden')) {
           element.classList.add('is-hidden');
         }
+
       });
 
       // repaint
@@ -1613,7 +1609,6 @@ class VFDisplay extends Component {
       highlightNote();
       socketForScore();
     }
-
     // bindEvents();
   }
 
