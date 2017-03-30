@@ -1278,6 +1278,7 @@ class VFDisplay extends Component {
       part = new Tone.Part(function(time, event){
         synth.triggerAttackRelease(event.note, event.dur, time)
       }, toneArray);
+      part.humanize = true;
       part.start(0);
       let endPos = toneArray[toneArray.length - 1].time + toneArray[toneArray.length - 1].dur;
       part.stop(endPos);
