@@ -112,7 +112,11 @@ header {
     justify-content: space-around;
     text-decoration: none; }
   header .logout-btn {
+<<<<<<< HEAD
     margin-right: 40px; }
+=======
+    margin-right: 1rem; }
+>>>>>>> f0e5ff16036197f56a39c05c63ed95043ce2b152
   header .header-content-container {
     margin: 0 auto;
     width: 250px; }
@@ -124,8 +128,13 @@ header {
       color: #FAFAFA;
       font: 2rem "Nunito Sans", sans-serif; }
   header.vertical {
+<<<<<<< HEAD
     padding-left: 310px;
     transform: translateX(30px); }
+=======
+    padding-left: 350px;
+    transform: translateX(0px); }
+>>>>>>> f0e5ff16036197f56a39c05c63ed95043ce2b152
 
 .score-wrapper {
   background-color: #373737;
@@ -279,6 +288,7 @@ header {
   padding: 1rem;
   text-decoration: underline;
   width: 200px; }
+<<<<<<< HEAD
   .key-option:hover {
     border: 4px solid #FAFAFA;
     transition: border 1s; }
@@ -286,6 +296,16 @@ header {
     margin-bottom: .5rem; }
   .key-option .key-display {
     background: #60D394; }
+=======
+  .key-option:hover .key-display {
+    border: 4px solid #FAFAFA;
+    transition: border .5s; }
+  .key-option .key-name {
+    margin-bottom: .5rem; }
+  .key-option .key-display {
+    background: #60D394;
+    border: 4px solid transparent; }
+>>>>>>> f0e5ff16036197f56a39c05c63ed95043ce2b152
     .key-option .key-display img {
       display: block;
       padding: 1rem;
@@ -303,7 +323,7 @@ header {
   border-radius: 50%;
   height: 70px;
   position: fixed;
-  right: 8rem;
+  right: 5.5rem;
   top: 1rem;
   width: 70px; }
 

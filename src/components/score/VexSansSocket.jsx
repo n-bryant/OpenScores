@@ -3,10 +3,8 @@ import Vex from 'vexflow/releases/vexflow-min';
 import Tone from 'tone';
 import base from '../../base';
 import io from 'socket.io-client';
-import $ from 'jquery';
 
 let socket = io(`http://localhost:3001`);
-
 
 class VFDisplay extends Component {
   constructor() {
@@ -16,31 +14,28 @@ class VFDisplay extends Component {
     }
   }
 
-  //
-  // componentWillUnmount() {
-  //   base.removeBinding(this.ref);
-  // }
-
   // wait for page load to bring in VexFlow
   componentDidMount() {
     let _this = this;
     let pageLoad = true;
     const VF = Vex.Flow;
 
+    // socket config for recipient of score change
     socket.on("receive-score", function(scoreChange) {
       // socket.emit("receive-score");
       let parsedParams = JSON.parse(scoreChange);
-      score = parsedParams.score;
-      console.log(parsedParams);
-      loadScore();
-      if (parsedParams.selectedKeys) {
-        loadNote(parsedParams.selectedKeys);
+      // console.log(parsedParams);
+      if (score.id === parsedParams.score.id) {
+        score = parsedParams.score;
+        loadScore();
+        if (parsedParams.selectedKeys) {
+          loadNote(parsedParams.selectedKeys);
+          drawScore();
+          highlightNote();
+        } else {
+          resetCanvas();
+        }
       }
-      setLibrary(score.keySig, false);
-      drawScore();
-      bindEvents();
-      _this.setState({score: score});
-      // resetCanvas();
     });
 
     // Create an SVG renderer and attach it to the DIV element named "vfDisplay".
@@ -605,14 +600,19 @@ class VFDisplay extends Component {
     let tieIndex = null;
     let firstTied = null;
     let lastTied = null;
+    let selectedAcc = null;
     let selectedId = null;
     let idMapIndex = null;
     let selectedNote = null;
     let barNoteIndex = null;
 
+    let staveX = 0;
+    let staveY = 0;
+    let staveWidth = 300;
+
     let score = {
       id: Date.now(),
-      title: 'Score Title',
+      title: '',
       bpm: 120,
       keySig: 'C',
       timeSig: {count: beatCount, value: beatValue},
@@ -623,24 +623,10 @@ class VFDisplay extends Component {
       noteIDMap: []
     }
 
-
-    // socket.on("receive-score", function(score) {
-    //   console.log(score);
-      // socket.emit("receive-score", score);
-
-      // socket.on("receive-message", function(msg){
-      //   let messages = self.state.messages;
-      //     messages.push(msg);
-      //   self.setState({messages: messages});
-      //   console.log(self.state.messages);
-      // });
-
-
-    // });
-
     setTimeout(() => {
       if (this.props.score) {
         score = this.props.score;
+        document.querySelector('.score-title').innerHTML = this.props.score.title;
         if (!score.ties) {
           score.ties = [];
         }
@@ -649,17 +635,21 @@ class VFDisplay extends Component {
         drawScore();
         bindEvents();
       } else {
+        score.title = 'Score Title';
+        document.querySelector('.score-title').innerHTML = score.title;
         score.collaborators[`user-${this.props.user}`] = true;
         setLibrary(score.keySig, false);
         newMeasure();
         drawScore();
         bindEvents();
       }
+      barIndex = 0;
+      selectedId = `vf-${score.measures[0].notes[0].attrs.id}`;
+      selectedNote = score.measures[0].notes[0];
+      barNoteIndex = 0;
+      idMapIndex = score.noteIDMap.indexOf(selectedId);
+      highlightNote();
     }, 2000);
-
-    let staveX = 0;
-    let staveY = 0;
-    let staveWidth = 300;
 
     // draw a bar for each measure to the canvas
     function drawScore() {
@@ -706,8 +696,24 @@ class VFDisplay extends Component {
       bindNotes();
 
       if (pageLoad) {
-        document.querySelector('.socket-test').addEventListener('click', () => {
-          socketTest();
+        // chat toggle
+        const messageInput = document.getElementById('message');
+        const titleInput = document.querySelector('.title-input');
+        const bpmInput = document.querySelector('.bpm-input');
+        messageInput.addEventListener('focus', () => {
+          if (selectedNote) {
+            unselectNote();
+          }
+        });
+        titleInput.addEventListener('focus', () => {
+          if (selectedNote) {
+            unselectNote();
+          }
+        });
+        bpmInput.addEventListener('focus', () => {
+          if (selectedNote) {
+            unselectNote();
+          }
         });
 
         // print button
@@ -754,6 +760,7 @@ class VFDisplay extends Component {
 
         // key signature button
         document.querySelector('.key-sig-btn').addEventListener('click', () => {
+          unselectNote();
           toggleOptions('.key-options-container');
         });
 
@@ -899,20 +906,24 @@ class VFDisplay extends Component {
 
     // adds specified accidental to selected note
     function addAccidental(accidental) {
+      selectedAcc = accidental;
       selectedNote = new VF.StaveNote({clef: score.clef, keys: selectedNote.keys, duration: duration})
         .addAccidental(0, new VF.Accidental(accidental));
+      // console.log(selectedNote);
       selectedId = `vf-${selectedNote.attrs.id}`;
       score.measures[barIndex].notes[barNoteIndex] = selectedNote;
       score.noteIDMap[idMapIndex] = selectedId;
 
       resetCanvas();
       highlightNote();
+      // socketForScore();
     }
 
     // inserts a measure at the end of the score
     function addMeasure() {
       newMeasure();
       unselectNote();
+      // socketForScore();
     }
 
     // increase note value on up arrow
@@ -960,7 +971,7 @@ class VFDisplay extends Component {
         resetCanvas();
         updateTies();
         highlightNote();
-        socketTest();
+        // socketForScore();
       }
     }
 
@@ -1001,9 +1012,13 @@ class VFDisplay extends Component {
     // copy selected note and paste copy next to it
     function copyNote() {
       let pitchVal = selectedNote.keys;
-      let durVal = selectedNote.duration;
+      if (selectedNote.noteType === 'r') {
+        duration = `${selectedNote.duration}r`;
+      } else {
+        duration = selectedNote.duration;
+      }
 
-      selectedNote = new VF.StaveNote({clef: score.clef, keys: pitchVal, duration: durVal});
+      selectedNote = new VF.StaveNote({clef: score.clef, keys: pitchVal, duration: duration});
       selectedId = `vf-${selectedNote.attrs.id}`;
       score.measures[barIndex].notes.splice(barNoteIndex, 0, selectedNote);
       score.noteIDMap.splice(idMapIndex, 0, selectedId);
@@ -1061,16 +1076,23 @@ class VFDisplay extends Component {
     }
     // add dot to note
     function dotNote() {
-      if (!selectedNote.dots) {
-        selectedNote = new VF.StaveNote({clef: score.clef, keys: selectedNote.keys, duration: selectedNote.duration}).addDotToAll();
+      if (selectedNote.noteType === 'r') {
+        duration = `${selectedNote.duration}r`;
       } else {
-        selectedNote = new VF.StaveNote({clef: score.clef, keys: selectedNote.keys, duration: selectedNote.duration});
+        duration = selectedNote.duration;
+      }
+
+      if (!selectedNote.dots) {
+        selectedNote = new VF.StaveNote({clef: score.clef, keys: selectedNote.keys, duration: duration}).addDotToAll();
+      } else {
+        selectedNote = new VF.StaveNote({clef: score.clef, keys: selectedNote.keys, duration: duration});
       }
 
       selectedId = `vf-${selectedNote.attrs.id}`;
       score.measures[barIndex].notes[barNoteIndex] = selectedNote;
       score.noteIDMap[idMapIndex] = selectedId;
       setMeasureBeats(score.measures[barIndex]);
+      // socketForScore();
       highlightNote();
     }
 
@@ -1079,7 +1101,7 @@ class VFDisplay extends Component {
       let toneDur = 0;
       toneArray.forEach((obj, index) => {
         if (index === 0) {
-          obj.time = '0';
+          obj.time = '0:0';
         }
         switch (obj.dur) {
           case 'w':
@@ -1154,20 +1176,39 @@ class VFDisplay extends Component {
           if (selectedId === currentNoteId) {
             barIndex = score.measures.indexOf(score.measures[i]);
             selectedNote = currentNote;
-            duration = selectedNote.duration;
+            if (selectedNote.noteType !== 'r') {
+              duration = selectedNote.duration;
+            } else {
+              duration = `${selectedNote.duration}r`;
+            }
             barNoteIndex = score.measures[barIndex].notes.indexOf(selectedNote);
             idMapIndex = score.noteIDMap.indexOf(selectedId);
           }
         }
       }
-      // console.log(selectedNote);
-      // setTransportStart(barIndex);
       highlightNote();
     }
 
     // reload selected note values passed by socket
     function loadNote(data) {
-      selectedNote = new VF.StaveNote({clef: score.clef, keys: data.selectedNote.keys, duration: data.selectedNote.duration});
+      if (data.selectedNote.noteType === 'r') {
+        data.selectedNote.duration = `${data.selectedNote.duration}r`;
+      }
+
+      if (data.selectedNote.dots) {
+        if (data.accidental) {
+          selectedNote = new VF.StaveNote({clef: score.clef, keys: data.selectedNote.keys, duration: data.selectedNote.duration}).addAccidental(0, new VF.Accidental(data.accidental)).addDotToAll();
+        } else {
+          selectedNote = new VF.StaveNote({clef: score.clef, keys: data.selectedNote.keys, duration: data.selectedNote.duration}).addDotToAll();
+        }
+      } else {
+        if (data.accidental) {
+          selectedNote = new VF.StaveNote({clef: score.clef, keys: data.selectedNote.keys, duration: data.selectedNote.duration}).addAccidental(0, new VF.Accidental(data.accidental));
+        } else {
+          selectedNote = new VF.StaveNote({clef: score.clef, keys: data.selectedNote.keys, duration: data.selectedNote.duration});
+        }
+      }
+
       // update note in score at barNoteIndex, selectedid, and idmap
       selectedId = `vf-${selectedNote.attrs.id}`;
       barIndex = data.barIndex;
@@ -1184,6 +1225,12 @@ class VFDisplay extends Component {
         for (let j = 0; j < score.measures[i].notes.length; j++) {
           let keyVals = score.measures[i].notes[j].keys;
           let durVal = score.measures[i].notes[j].duration;
+          let noteType = score.measures[i].notes[j].noteType;
+
+          if (noteType === 'r') {
+            durVal = `${durVal}r`;
+          }
+
           score.measures[i].notes[j] = new VF.StaveNote({clef: score.clef, keys: keyVals, duration: durVal});
 
           // update id map
@@ -1191,6 +1238,26 @@ class VFDisplay extends Component {
           score.noteIDMap.push(newId);
         }
       }
+
+      // if (score.ties) {
+      //   for (let i = 0; i < score.ties.length; i++) {
+      //     score.ties[i] = {
+      //       endBar: score.ties[i].endBar,
+      //       startBar: score.ties[i].startBar,
+      //       firstNoteIndex: score.ties[i].firstNoteIndex,
+      //       lastNoteIndex: score.ties[i].lastNoteIndex,
+      //     };
+      //     score.ties[i].vfTie = new VF.StaveTie({
+      //       first_note: score.measures[score.ties[i].startBar].notes[score.ties[i].firstNoteIndex],
+      //       last_note: score.measures[score.ties[i].endBar].notes[score.ties[i].lastNoteIndex],
+      //       first_indices: 0,
+      //       last_indices: 0
+      //     });
+      //   }
+      // }
+
+      staveX = score.measures[score.measures.length - 1].staveX;
+      staveY = score.measures[score.measures.length - 1].staveY;
     }
 
     // mark a note as highlighted
@@ -1250,20 +1317,22 @@ class VFDisplay extends Component {
       let newestStave = score.measures[score.measures.length - 1];
       setMeasureBeats(newestStave);
     }
-
-    let synth;
-    let part;
+    let part = null;
+    let synth = null;
     let started = false;
-    let bpm = Tone.Transport.bpm.value;
     let paused = false;
 
     function createVoice() {
-      bpm = 120;
+      Tone.Transport.bpm.value = parseInt(score.bpm, 10);
+      if (part) {
+        part.dispose();
+        synth.dispose();
+      }
+      // bpm = 120;
       synth = new Tone.PolySynth().toMaster();
       part = new Tone.Part(function(time, event){
         synth.triggerAttackRelease(event.note, event.dur, time)
       }, toneArray);
-
       part.start(0);
       let endPos = toneArray[toneArray.length - 1].time + toneArray[toneArray.length - 1].dur;
       part.stop(endPos);
@@ -1273,18 +1342,15 @@ class VFDisplay extends Component {
 
     function startPlayback() {
       let startPos = barIndex || 0;
-
       if (!started && !paused) {
+        // console.log(part);
         Tone.Transport.start('+0.5', `${startPos}:0`);
         started = true;
         toneArray = [];
       } else if (started && !paused){
         Tone.Transport.pause();
         paused = true;
-        part.dispose();
-        synth.dispose();
         toneArray = [];
-        // console.log(Tone.Transport.position);
       } else if (paused) {
         let pausedPos = Tone.Transport.position;
         Tone.Transport.start('+0.5', `${pausedPos}`);
@@ -1296,8 +1362,6 @@ class VFDisplay extends Component {
     function stopPlayback() {
       if (started) {
         Tone.Transport.stop();
-        part.dispose();
-        synth.dispose();
         started = false;
         toneArray = [];
       }
@@ -1308,18 +1372,15 @@ class VFDisplay extends Component {
     }
 
     // reset library with new note and voice instances
-    // aaaa
     function resetCanvas() {
       setLibrary(score.keySig, false);
       drawScore();
       bindEvents();
-      // score = JSON.stringify(score);
-      // socket.emit("new-score", score);
-      // score = JSON.parse(score);
       _this.setState({score: score});
     }
 
-    function socketTest() {
+    // score socket setup
+    function socketForScore() {
       let params = {};
       if (selectedNote) {
         let selectedKeys = {};
@@ -1327,37 +1388,50 @@ class VFDisplay extends Component {
         selectedKeys.barIndex = barIndex;
         selectedKeys.barNoteIndex = barNoteIndex;
         selectedKeys.idMapIndex = idMapIndex;
+        selectedKeys.accidental = selectedAcc;
         params.selectedKeys = selectedKeys;
       }
       params.score = score;
       processScore(params.score);
       socket.emit("new-score", JSON.stringify(params));
-      console.log(params.score);
-      // score = JSON.parse(score);
-      // socket.emit("receive-score", JSON.stringify(score));
     }
 
+    // strip out unnecessary values from selectedKeys to allow socket transfer
     function processNote(data) {
       let processedNote = {
         keys: data.keys,
-        duration: data.duration
+        duration: data.duration,
+        noteType: data.noteType,
+        dots: data.dots
       };
       return processedNote;
     }
 
+    // strip out unnecessary values from score to allow socket transfer
     function processScore(data) {
      // gather score data from Vex
-     console.log(data);
-
      for (let i = 0; i < data.measures.length; i++) {
        data.measures[i].stave = {};
        for (let j = 0; j < data.measures[i].notes.length; j++) {
          data.measures[i].notes[j] = {
+           id: data.measures[i].notes[j].attrs.id,
            keys: data.measures[i].notes[j].keys,
-           duration: data.measures[i].notes[j].duration
+           duration: data.measures[i].notes[j].duration,
+           noteType: data.measures[i].notes[j].noteType
          };
        }
      }
+
+    //  if (data.ties) {
+    //    for (let i = 0; i < data.ties.length; i++) {
+    //      data.ties[i] = {
+    //        endBar: data.ties[i].endBar,
+    //        startBar: data.ties[i].startBar,
+    //        firstNoteIndex: data.ties[i].firstNoteIndex,
+    //        lastNoteIndex: data.ties[i].lastNoteIndex
+    //      };
+    //    }
+    //  }
    }
 
     // calculates the current count of beats in a measure
@@ -1397,6 +1471,7 @@ class VFDisplay extends Component {
       score.noteIDMap[idMapIndex] = selectedId;
 
       setMeasureBeats(score.measures[barIndex]);
+      // socketForScore();
       highlightNote();
     }
 
@@ -1405,6 +1480,9 @@ class VFDisplay extends Component {
       if (firstTie) {
         let newTie = {};
         newTie.startBar = barIndex;
+        newTie.endBar = barIndex;
+        newTie.firstNoteIndex = barNoteIndex;
+        newTie.lastNoteIndex = barNoteIndex;
         newTie.vfTie = new VF.StaveTie({
           first_note: score.measures[barIndex].notes[barNoteIndex],
           last_note: score.measures[barIndex].notes[barNoteIndex],
@@ -1418,6 +1496,8 @@ class VFDisplay extends Component {
         let tieExtension = {};
         tieExtension.startBar = newestTie.startBar;
         tieExtension.endBar = barIndex;
+        tieExtension.firstNoteIndex = newestTie.firstNoteIndex;
+        tieExtension.lastNoteIndex = barNoteIndex;
         tieExtension.vfTie = new VF.StaveTie({
           first_note: newestTie.vfTie.first_note,
           last_note: score.measures[barIndex].notes[barNoteIndex],
@@ -1427,9 +1507,9 @@ class VFDisplay extends Component {
         score.ties[score.ties.length - 1] = tieExtension;
         firstTie = true;
       }
-
       resetCanvas();
       highlightNote();
+      // socketForScore();
     }
 
     // toggles clef between treble and bass
@@ -1444,11 +1524,17 @@ class VFDisplay extends Component {
       score.measures.forEach((measure) => {
         measure.notes.forEach((note, index, nArr) => {
           count++;
-          nArr[index] = new VF.StaveNote({clef: score.clef, keys: note.keys, duration: note.duration});
+          if (note.noteType === 'r') {
+            duration = `${note.duration}r`;
+          } else {
+            duration = note.duration;
+          }
+          nArr[index] = new VF.StaveNote({clef: score.clef, keys: note.keys, duration: duration});
           score.noteIDMap[count - 1] = `vf-${nArr[index].attrs.id}`;
         });
       });
       unselectNote();
+      // socketForScore();
     }
 
     // toggles display of time signature options
@@ -1506,7 +1592,12 @@ class VFDisplay extends Component {
               for (let j = 0; j < newKey.length; j++) {
                 if (allNoteVals[i] === newKey[j].keys[0]) {
                   transposedNote = allNoteVals[i];
-                  nArray[nIndex] = new VF.StaveNote({clef: score.clef, keys: [transposedNote], duration: note.duration});
+                  if (note.noteType === 'r') {
+                    duration = `${note.duration}r`;
+                  } else {
+                    duration = note.duration;
+                  }
+                  nArray[nIndex] = new VF.StaveNote({clef: score.clef, keys: [transposedNote], duration: duration});
                   score.noteIDMap[count - 1] = `vf-${nArray[nIndex].attrs.id}`;
                   j = newKey.length;
                   i = allNoteVals.length;
@@ -1517,26 +1608,21 @@ class VFDisplay extends Component {
         });
       });
 
-
       // setLibrary(score.keySig, false);
-      resetCanvas();
       toggleOptions('.key-options-container');
+      unselectNote();
+      // socketForScore();
     }
 
     // updates time signature to selected option
     function updateTimeSig(count, value) {
       Tone.Transport.timeSignature = [count, value];
-      console.log(Tone.Transport.timeSignature);
       beatCount = count;
       beatValue = value;
       score.timeSig.count = beatCount;
       score.timeSig.value = beatValue;
-      resetCanvas();
-      validateMeasures();
-      if (selectedNote) {
-        highlightNote();
-      }
       toggleOptions('.time-options-wrapper');
+      validateMeasures();
     }
 
     // provides validation for a measure's beat value
@@ -1545,23 +1631,21 @@ class VFDisplay extends Component {
         score.measures.forEach((measure) => {
           if (measure.beats > beatCount / 2 || measure.beats < beatCount / 2) {
             measure.fillColor = 'red';
-            resetCanvas();
           } else {
             measure.fillColor = '#999999';
-            resetCanvas();
           }
         });
       } else {
         score.measures.forEach((measure) => {
           if (measure.beats > beatCount || measure.beats < beatCount) {
             measure.fillColor = 'red';
-            resetCanvas();
           } else {
             measure.fillColor = '#999999';
-            resetCanvas();
           }
         });
       }
+      resetCanvas();
+      // socketForScore();
     }
 
     // sets selectedNote to the specified chord
@@ -1594,7 +1678,7 @@ class VFDisplay extends Component {
       selectedNote = newChord;
       toggleOptions('.chord-options-wrapper');
       resetCanvas();
-      highlightNote();
+      // socketForScore();
     }
 
     // bindEvents();
@@ -1603,9 +1687,7 @@ class VFDisplay extends Component {
   render() {
 
     return (
-      <div id="vfDisplay" className="score-to-print is-flex">
-        <button className="socket-test">Test</button>
-      </div>
+      <div id="vfDisplay" className="score-to-print is-flex"></div>
     );
   }
 }
