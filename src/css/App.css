@@ -112,7 +112,7 @@ header {
     justify-content: space-around;
     text-decoration: none; }
   header .logout-btn {
-    margin-right: 40px; }
+    margin-right: 1rem; }
   header .header-content-container {
     margin: 0 auto;
     width: 250px; }
@@ -124,8 +124,8 @@ header {
       color: #FAFAFA;
       font: 2rem "Nunito Sans", sans-serif; }
   header.vertical {
-    padding-left: 310px;
-    transform: translateX(30px); }
+    padding-left: 350px;
+    transform: translateX(0px); }
 
 .score-wrapper {
   background-color: #373737;
@@ -304,7 +304,7 @@ header {
   border-radius: 50%;
   height: 70px;
   position: fixed;
-  right: 8rem;
+  right: 5.5rem;
   top: 1rem;
   width: 70px; }
 
