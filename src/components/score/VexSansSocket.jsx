@@ -1272,7 +1272,7 @@ class VFDisplay extends Component {
       }
 
       // highlight newly selected note
-      let highlightedNote = score.measures[barIndex].notes[score.measures[barIndex].notes.indexOf(selectedNote)];
+      let highlightedNote = score.measures[barIndex].notes[barNoteIndex];
       highlightedNote.setStyle({fillStyle: blueAccent, strokeStyle: blueAccent});
       // console.log(selectedNote);
       resetCanvas();
@@ -1534,6 +1534,11 @@ class VFDisplay extends Component {
         });
       });
       unselectNote();
+      barIndex = 0;
+      barNoteIndex = 0;
+      selectedNote = score.measures[0].notes[0];
+      selectedId = score.measures[0].notes[0].attrs.el.id;
+      highlightNote();
       // socketForScore();
     }
 
@@ -1610,7 +1615,13 @@ class VFDisplay extends Component {
 
       // setLibrary(score.keySig, false);
       toggleOptions('.key-options-container');
+
       unselectNote();
+      barIndex = 0;
+      barNoteIndex = 0;
+      selectedNote = score.measures[0].notes[0];
+      selectedId = score.measures[0].notes[0].attrs.el.id;
+      highlightNote();
       // socketForScore();
     }
 
