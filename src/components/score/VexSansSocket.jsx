@@ -916,14 +916,14 @@ class VFDisplay extends Component {
 
       resetCanvas();
       highlightNote();
-      socketForScore();
+      // socketForScore();
     }
 
     // inserts a measure at the end of the score
     function addMeasure() {
       newMeasure();
       unselectNote();
-      socketForScore();
+      // socketForScore();
     }
 
     // increase note value on up arrow
@@ -971,7 +971,7 @@ class VFDisplay extends Component {
         resetCanvas();
         updateTies();
         highlightNote();
-        socketForScore();
+        // socketForScore();
       }
     }
 
@@ -1092,7 +1092,8 @@ class VFDisplay extends Component {
       score.measures[barIndex].notes[barNoteIndex] = selectedNote;
       score.noteIDMap[idMapIndex] = selectedId;
       setMeasureBeats(score.measures[barIndex]);
-      socketForScore();
+      // socketForScore();
+      highlightNote();
     }
 
     function formatToneArr() {
@@ -1470,7 +1471,8 @@ class VFDisplay extends Component {
       score.noteIDMap[idMapIndex] = selectedId;
 
       setMeasureBeats(score.measures[barIndex]);
-      socketForScore();
+      // socketForScore();
+      highlightNote();
     }
 
     // sets a tie to initial selection and allows use of left and right arrow keys to extend the tie
@@ -1532,7 +1534,7 @@ class VFDisplay extends Component {
         });
       });
       unselectNote();
-      socketForScore();
+      // socketForScore();
     }
 
     // toggles display of time signature options
@@ -1608,7 +1610,8 @@ class VFDisplay extends Component {
 
       // setLibrary(score.keySig, false);
       toggleOptions('.key-options-container');
-      socketForScore();
+      unselectNote();
+      // socketForScore();
     }
 
     // updates time signature to selected option
@@ -1641,7 +1644,8 @@ class VFDisplay extends Component {
           }
         });
       }
-      socketForScore();
+      resetCanvas();
+      // socketForScore();
     }
 
     // sets selectedNote to the specified chord
@@ -1673,7 +1677,8 @@ class VFDisplay extends Component {
       // repaint
       selectedNote = newChord;
       toggleOptions('.chord-options-wrapper');
-      socketForScore();
+      resetCanvas();
+      // socketForScore();
     }
 
     // bindEvents();
